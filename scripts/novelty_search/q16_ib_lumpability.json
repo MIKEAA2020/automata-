@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S1574013725000784",
+    "name": "Information-theoretic reduction of Markov chains",
+    "snippet": "by BC Geiger · 2026 · Cited by 3 — Indeed, a Markov chain X is lumpable w.r.t. a coarse graining function g or w.r.t. its induced partition if the coarse - grained process Y is a Markov chain . Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.4c00449",
+    "name": "Information Bottleneck Approach for Markov Model Construction",
+    "snippet": "Jun 10, 2024 — We have derived a systematic and accurate way to coarse - grain MSMs to few states and to illustrate the structures of the metastable states of ... Read more",
+    "host_name": "pubs.acs.org",
+    "rank": 1,
+    "date": "Jun 10, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/1304.6603",
+    "name": "Optimal Kullback-Leibler Aggregation via Information",
+    "snippet": "by BC Geiger · 2013 · Cited by 41 — Abstract—In this paper, we present a method for reducing a regular, discrete-time Markov chain (DTMC) to another DTMC. Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10528077",
+    "name": "Exact and Soft Successive Refinement of the Information",
+    "snippet": "by H Charvin · 2023 · Cited by 2 — The Markov chain condition ensures that any information that the bottleneck T extracts about the relevancy variable Y can only come from the ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1099-4300/25/9/1355",
+    "name": "Exact and Soft Successive Refinement of the Information",
+    "snippet": "by H Charvin · 2023 · Cited by 2 — The information bottleneck (IB) framework formalises the essential requirement for efficient information processing systems to achieve an optimal balance ...",
+    "host_name": "www.mdpi.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38947932",
+    "name": "An Information Bottleneck Approach for Markov Model",
+    "snippet": "by D Wang · 2024 · Cited by 29 — In MSMs, the complex configuration space is coarse - grained into conformational states, This process effectively coarse - grains time and space, ...",
+    "host_name": "pubmed.ncbi.nlm.nih.gov",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://uhra.herts.ac.uk/id/eprint/10690/1/entropy-25-01355.pdf",
+    "name": "Exact and Soft Successive Refinement of the Information",
+    "snippet": "by H Charvin · 2023 · Cited by 1 — The idea consists in translating the Markov chain characterisation X notion of SR into a quantification of the loss of information optimality ...",
+    "host_name": "uhra.herts.ac.uk",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/2292552_Exact_and_ordinary_lumpability_in_finite_Markov_chains",
+    "name": "Exact and ordinary lumpability in finite Markov chains",
+    "snippet": "Jul 15, 2026 — Exact Markov closure is characterized by an aggregate-rate lumpability condition: for every retained transition, coarse - graining through Markov ...",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "Jul 15, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-04840226v1/file/Springer___Computational_Statistic___KL-3.pdf",
+    "name": "Deterministic and Heuristic Criteria for Optimized Markov",
+    "snippet": "by L Capocchi · 2024 · Cited by 1 — Exact - lumpability is a property of a Markov chain associated with a specific partition of the state space into groups (or macro-states). This ... Read more 29 pages",
+    "host_name": "hal.science",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

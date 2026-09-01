@@ -1,12 +1,15 @@
 \documentclass[12pt]{article}
 
 \usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage[margin=1in]{geometry}
 \usepackage{parskip}
 \usepackage{xcolor}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
 \usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
 
 %----------------------------------------------------------------------
@@ -156,7 +159,7 @@ satisfies a covariance-tail lower bound with effective rank $M-1$:
 \ge
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 Full KL admits a precise local Fisher asymptotic lower bound under regularity
 assumptions.
@@ -186,8 +189,8 @@ Nehari/AAK-type finite-rank approximation theorem for the multi-shift
 setting, which is not established here.
 
 For finite output alphabets a global converse holds in probability
-coordinates: $\RetKL(M)\ge\sum_{i\ge M}\lambda_i(\Sigma_p)$, where
-$\Sigma_p$ is the covariance of the predictive probability vectors, with no
+coordinates: $\RetKL(M)\ge\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p)$, where
+$\bm{\Sigma}_p$ is the covariance of the predictive probability vectors, with no
 regularity or small-radius hypothesis.  The constant $1$ is optimal, being
 approached by antipodal binary perturbations of the uniform law.  Under uniform
 interiority a corresponding bound holds in a fixed minimal natural-parameter
@@ -2348,8 +2351,10 @@ of scope, not a new derivation.
 \begin{enumerate}[label=(\Roman*),leftmargin=2.2em]
 \item \textbf{Typed variational schema.}
 Every regime gap has the shape
-$\Delta_{\mathbb T}(M)=\inf_{\text{budget-}M\text{ feasible }B}
-\mathcal L(\delta,B)$,
+\[
+\Delta_{\mathbb T}(M)=\inf_{\text{budget-}M\text{ feasible }B}
+\mathcal L(\delta,B),
+\]
 but the feasible class carries a regime-specific type: a finite right
 congruence on histories for commitment (Section~\ref{subsec:det-spec}), a
 stationary lumpable quotient for retention
@@ -3171,7 +3176,9 @@ operators; in the three principal regimes no such map exists
 In the three principal regimes the instantiation is:
 
 \begin{center}
-\begin{tabular}{llll}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{10.5em}>{\raggedright\arraybackslash}p{10em}l@{}}
 \toprule
 regime & admissible factor & exact invariant & analytical bridge \\
 \midrule
@@ -3207,7 +3214,7 @@ explicit refusal to share \emph{analysis}.  Clauses~(a) and~(b) are genuinely
 regime-independent: monotonicity and the zero-distortion threshold follow from
 the factorization structure alone.  Clause~(d) is conditional on a
 representation being supplied, and the three regimes supply different operators
---- $H_\nu$, $\Sigma_\pi$, $N_\Lambda$ --- with different effective rank
+--- $H_\nu$, $\bm{\Sigma}_\pi$, $N_\Lambda$ --- with different effective rank
 budgets $M$, $M-1$, $M$ and unrelated moduli, which is precisely the content of
 clause~(e).
 
@@ -3562,7 +3569,7 @@ D_{\mathrm{KL}}(P_s\|Q_c)
 
 Define the stationary Fisher covariance
 \[
-\Sigma_\pi
+\bm{\Sigma}_\pi
 =
 \sum_{s\in\Splus}
 \pi_s
@@ -3584,7 +3591,7 @@ while in Fisher coordinates it is
 \norm{y_s-\bar y_k}^2.
 \]
 The spectral statement below uses the Fisher-coordinate covariance
-$\Sigma_\pi$.
+$\bm{\Sigma}_\pi$.
 
 \begin{theorem}[Spectral Converse for Quadratic Restricted Retention]
 \label{thm:spectral-retention}
@@ -3594,14 +3601,14 @@ In the Gaussian quadratic restricted regime, for every $M\ge1$,
 \ge
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi),
+\lambda_i(\bm{\Sigma}_\pi),
 \]
 where the eigenvalues are ordered nonincreasingly.  Equivalently,
 \[
 \RetQuad(M)
 \ge
 \frac12
-\Phi^{(1)}_{M-1}(\Sigma_\pi).
+\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi).
 \]
 \end{theorem}
 
@@ -3670,7 +3677,7 @@ B
 \]
 The total covariance decomposes as
 \[
-\Sigma_\pi=W+B.
+\bm{\Sigma}_\pi=W+B.
 \]
 Hence
 \[
@@ -3682,7 +3689,7 @@ Hence
 =
 \frac12\tr(W)
 =
-\frac12\tr(\Sigma_\pi-B).
+\frac12\tr(\bm{\Sigma}_\pi-B).
 \]
 
 Because
@@ -3698,21 +3705,21 @@ By Ky Fan's maximum principle \cite{kyfan1951},
 \tr(B)
 \le
 \sum_{i=1}^{M-1}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 Therefore
 \[
 \RetQuad(M)
 \ge
-\frac12\tr(\Sigma_\pi)
+\frac12\tr(\bm{\Sigma}_\pi)
 -
 \frac12
 \sum_{i=1}^{M-1}
-\lambda_i(\Sigma_\pi)
+\lambda_i(\bm{\Sigma}_\pi)
 =
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 \end{proof}
 
@@ -3722,7 +3729,7 @@ For any lumpable quotient $\phi$,
 \[
 \RetQuad(\phi)
 =
-\frac12\tr(\Sigma_\pi)
+\frac12\tr(\bm{\Sigma}_\pi)
 -
 \frac12\tr(B_\phi),
 \]
@@ -3744,7 +3751,7 @@ Consequently,
 \[
 \RetQuad(M)
 =
-\frac12\tr(\Sigma_\pi)
+\frac12\tr(\bm{\Sigma}_\pi)
 -
 \frac12
 \max_{\substack{
@@ -3760,7 +3767,7 @@ exists a lumpable quotient $\phi$ with $|\mathcal K|\le M$ such that
 \tr(B_\phi)
 =
 \sum_{i=1}^{M-1}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 Equivalently, the lumpable quotient realizes the constrained Ky Fan optimum
 capturing the top $M-1$ Fisher covariance directions.
@@ -3787,7 +3794,7 @@ information if interpreted as a full-KL bound.
 \label{rem:quad-tightness}
 The bound is tight for the quadratic restricted gap whenever an optimal
 $M$-means solution splits along the top $M-1$ eigenvectors of
-$\Sigma_\pi$.  No tightness claim is made for full KL.
+$\bm{\Sigma}_\pi$.  No tightness claim is made for full KL.
 \end{remark}
 
 \begin{lemma}[Uniform Second-Order Expansion of Mixture KL]
@@ -3940,7 +3947,7 @@ lumpable quotients $\phi$ with $|\mathcal K|\le M$,
 \RetKLr{r}(\phi)
 -
 \frac{r^2}{2}
-\operatorname{tr}(\Sigma_\pi-B_\phi)
+\operatorname{tr}(\bm{\Sigma}_\pi-B_\phi)
 \right|
 \le
 C r^3,
@@ -3955,7 +3962,7 @@ perturbed family.  Consequently,
 \phi\ \text{lumpable}\\
 |\mathcal K|\le M
 }}
-\operatorname{tr}(\Sigma_\pi-B_\phi)
+\operatorname{tr}(\bm{\Sigma}_\pi-B_\phi)
 +
 O(r^3).
 \]
@@ -4001,7 +4008,7 @@ y_s=I_0^{1/2}\theta_s,
 \]
 and the stationary local covariance
 \[
-\Sigma_\pi
+\bm{\Sigma}_\pi
 =
 \sum_s
 \pi_s
@@ -4018,7 +4025,7 @@ Then, as $r\downarrow0$,
 \phi\ \text{lumpable}\\
 |\mathcal K|\le M
 }}
-\operatorname{tr}(\Sigma_\pi-B_\phi)
+\operatorname{tr}(\bm{\Sigma}_\pi-B_\phi)
 +
 o(r^2),
 \]
@@ -4042,7 +4049,7 @@ Consequently,
 \ge
 \frac{r^2}{2}
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi)
+\lambda_i(\bm{\Sigma}_\pi)
 +
 o(r^2).
 \]
@@ -4053,7 +4060,7 @@ $M-1$ eigenvalues, then equality holds in the leading term:
 =
 \frac{r^2}{2}
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi)
+\lambda_i(\bm{\Sigma}_\pi)
 +
 o(r^2).
 \]
@@ -4081,7 +4088,7 @@ therefore uniform over all such quotients.  Hence
 =
 \frac{r^2}{2}
 \min_{\phi}
-\operatorname{tr}(\Sigma_\pi-B_\phi)
+\operatorname{tr}(\bm{\Sigma}_\pi-B_\phi)
 +
 o(r^2).
 \]
@@ -4090,14 +4097,14 @@ Since $\rank(B_\phi)\le M-1$, Ky Fan's maximum principle \cite{kyfan1951} gives
 \operatorname{tr}(B_\phi)
 \le
 \sum_{i=1}^{M-1}
-\lambda_i(\Sigma_\pi),
+\lambda_i(\bm{\Sigma}_\pi),
 \]
 and therefore
 \[
-\operatorname{tr}(\Sigma_\pi-B_\phi)
+\operatorname{tr}(\bm{\Sigma}_\pi-B_\phi)
 \ge
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 This yields the spectral-tail lower bound.  If a lumpable quotient attains the
 constrained PCA optimum, equality holds in the leading term.
@@ -4117,7 +4124,7 @@ probability vector $p_s\in\Delta^{|\mathcal O|-1}$.  Put
 \[
 \bar p=\sum_{s\in\Splus}\pi_sp_s,
 \qquad
-\Sigma_p
+\bm{\Sigma}_p
 =
 \sum_{s\in\Splus}\pi_s(p_s-\bar p)(p_s-\bar p)^{\!\top}.
 \]
@@ -4125,16 +4132,16 @@ Then for every lumpable quotient $\phi$ with at most $M$ blocks,
 \[
 \RetKL(\phi)
 \ \ge\
-\sum_{i\ge M}\lambda_i(\Sigma_p),
+\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p),
 \]
 and consequently
 \[
 \RetKL(M)
 \ \ge\
-\sum_{i\ge M}\lambda_i(\Sigma_p).
+\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p).
 \]
 The bound is global: no small-radius, local-asymptotic, or regularity
-hypothesis is used, and $\Sigma_p$ is the covariance of the predictive
+hypothesis is used, and $\bm{\Sigma}_p$ is the covariance of the predictive
 \emph{probability vectors}, not the Fisher covariance.  The constant $1$ is
 the largest possible: by Proposition~\ref{prop:kl-simplex-sharp} there are
 instances on which the ratio of the two sides tends to $1$.
@@ -4209,18 +4216,18 @@ where $W_\phi=\sum_k\sum_{s\in C_k}\pi_s(p_s-\bar p_{C_k})(p_s-\bar p_{C_k})^{\!
 is the within-block covariance.
 
 \emph{Step 3: ANOVA and Ky Fan.}
-The usual variance decomposition gives $\Sigma_p=W_\phi+B_\phi$ with
+The usual variance decomposition gives $\bm{\Sigma}_p=W_\phi+B_\phi$ with
 $B_\phi=\sum_k\pi(C_k)(\bar p_{C_k}-\bar p)(\bar p_{C_k}-\bar p)^{\!\top}$ the
 between-block covariance.  The $M$ centroids satisfy the single affine relation
 $\sum_k\pi(C_k)(\bar p_{C_k}-\bar p)=0$, so $\rank(B_\phi)\le M-1$.  Both
-$\Sigma_p$ and $B_\phi$ are positive semidefinite and symmetric, so Ky Fan's
+$\bm{\Sigma}_p$ and $B_\phi$ are positive semidefinite and symmetric, so Ky Fan's
 maximum principle \cite{kyfan1951} applies to eigenvalues and gives
 \[
-\tr(B_\phi)\ \le\ \sum_{i=1}^{M-1}\lambda_i(\Sigma_p).
+\tr(B_\phi)\ \le\ \sum_{i=1}^{M-1}\lambda_i(\bm{\Sigma}_p).
 \]
 Therefore
 \[
-\tr(W_\phi)=\tr(\Sigma_p)-\tr(B_\phi)\ \ge\ \sum_{i\ge M}\lambda_i(\Sigma_p),
+\tr(W_\phi)=\tr(\bm{\Sigma}_p)-\tr(B_\phi)\ \ge\ \sum_{i\ge M}\lambda_i(\bm{\Sigma}_p),
 \]
 and combining with Step~2 yields the claim.  Taking the infimum over quotients
 with at most $M$ blocks gives the statement for $\RetKL(M)$.
@@ -4238,25 +4245,25 @@ p_\pm=\Bigl(\tfrac12\pm\varepsilon,\ \tfrac12\mp\varepsilon\Bigr),
 \]
 and take $M=1$.  Then
 \[
-\sum_{i\ge1}\lambda_i(\Sigma_p)=\tr(\Sigma_p)=2\varepsilon^2,
+\sum_{i\ge1}\lambda_i(\bm{\Sigma}_p)=\tr(\bm{\Sigma}_p)=2\varepsilon^2,
 \qquad
 \RetKL(1)=2\varepsilon^2+O(\varepsilon^4),
 \]
 so
 \[
-\frac{\RetKL(1)}{\sum_{i\ge1}\lambda_i(\Sigma_p)}
+\frac{\RetKL(1)}{\sum_{i\ge1}\lambda_i(\bm{\Sigma}_p)}
 \ \longrightarrow\ 1
 \qquad(\varepsilon\downarrow0).
 \]
 Consequently no constant $c>1$ satisfies
-$\RetKL(M)\ge c\sum_{i\ge M}\lambda_i(\Sigma_p)$ for all instances.
+$\RetKL(M)\ge c\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p)$ for all instances.
 \end{proposition}
 
 \begin{proof}
 The stationary mixture is $\bar p=(\tfrac12,\tfrac12)$, and
 $p_\pm-\bar p=\pm(\varepsilon,-\varepsilon)$, so
 \[
-\Sigma_p
+\bm{\Sigma}_p
 =
 \tfrac12\begin{pmatrix}\varepsilon\\-\varepsilon\end{pmatrix}
 \begin{pmatrix}\varepsilon&-\varepsilon\end{pmatrix}
@@ -4297,9 +4304,9 @@ and $\delta$ has exactly two nonzero coordinates of equal magnitude.
 
 \begin{remark}[Why This Does Not Contradict the Fisher No-Go]
 \label{rem:simplex-vs-fisher}
-Theorem~\ref{thm:global-kl-simplex} is stated in the covariance $\Sigma_p$ of
+Theorem~\ref{thm:global-kl-simplex} is stated in the covariance $\bm{\Sigma}_p$ of
 the predictive \emph{probability vectors}.  The Fisher covariance
-$\Sigma_\pi$ of Theorem~\ref{thm:local-full-kl} is a different object, computed
+$\bm{\Sigma}_\pi$ of Theorem~\ref{thm:local-full-kl} is a different object, computed
 in natural parameters, and the two are comparable only away from the simplex
 boundary.
 
@@ -4314,7 +4321,7 @@ Note also that ``the natural-parameter Fisher covariance'' is not canonical for
 a global family: it depends on a choice of minimal chart and, if one wishes a
 Fisher-weighted form, on a reference point.  Fixing the natural parameter of
 the stationary mixture $\bar p$ and setting
-$\Sigma_F=I(\eta_{\bar p})^{1/2}\Sigma_\eta I(\eta_{\bar p})^{1/2}$ is one such
+$\bm{\Sigma}_F=I(\eta_{\bar p})^{1/2}\bm{\Sigma}_\eta I(\eta_{\bar p})^{1/2}$ is one such
 choice.  Theorem~\ref{thm:no-global-fisher-converse} is stated against a fixed
 chart in this sense, and rules out a universal constant for either form.
 \end{remark}
@@ -4335,11 +4342,11 @@ their mixture centroids}, and suppose
 \]
 for some $m_K>0$.  Put $\bar\eta=\sum_s\pi_s\eta_s$ and
 \[
-\Sigma_\eta=\sum_s\pi_s(\eta_s-\bar\eta)(\eta_s-\bar\eta)^{\!\top}.
+\bm{\Sigma}_\eta=\sum_s\pi_s(\eta_s-\bar\eta)(\eta_s-\bar\eta)^{\!\top}.
 \]
 Then
 \[
-\RetKL(M)\ \ge\ \frac{m_K}{2}\sum_{i\ge M}\lambda_i(\Sigma_\eta).
+\RetKL(M)\ \ge\ \frac{m_K}{2}\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\eta).
 \]
 \end{theorem}
 
@@ -4372,8 +4379,8 @@ $\zeta=\bar\eta_C$,
 Multiplying by $\pi(C)$ and summing over blocks gives
 $\RetKL(\phi)\ge\frac{m_K}{2}\tr(W_\phi)$ with $W_\phi$ the within-block
 covariance of the $\eta_s$.  The ANOVA decomposition
-$\Sigma_\eta=W_\phi+B_\phi$ with $\rank(B_\phi)\le M-1$ and Ky Fan's principle
-\cite{kyfan1951} give $\tr(W_\phi)\ge\sum_{i\ge M}\lambda_i(\Sigma_\eta)$,
+$\bm{\Sigma}_\eta=W_\phi+B_\phi$ with $\rank(B_\phi)\le M-1$ and Ky Fan's principle
+\cite{kyfan1951} give $\tr(W_\phi)\ge\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\eta)$,
 exactly as in Theorem~\ref{thm:global-kl-simplex}.  Taking the infimum over
 quotients with at most $M$ blocks completes the proof.
 \end{proof}
@@ -4397,14 +4404,14 @@ P_-=\mathrm{Bernoulli}(1-2\varepsilon),
 \qquad
 \varepsilon\downarrow0 .
 \]
-Then, with $\Sigma_\pi$ the Fisher covariance of
+Then, with $\bm{\Sigma}_\pi$ the Fisher covariance of
 Theorem~\ref{thm:local-full-kl} computed in the natural parameter,
 \[
 \RetKL(1)=\Theta(\varepsilon),
 \qquad
-\tr(\Sigma_\pi)=\Theta(\varepsilon),
+\tr(\bm{\Sigma}_\pi)=\Theta(\varepsilon),
 \qquad
-\frac{\RetKL(1)}{\tr(\Sigma_\pi)}
+\frac{\RetKL(1)}{\tr(\bm{\Sigma}_\pi)}
 \longrightarrow
 \frac{\log2-\tfrac32\log\tfrac32}{\sqrt2\,(\tfrac12\log2)^2}
 =
@@ -4444,7 +4451,7 @@ I(\eta)=A''(\eta)=p(1-p),
 parameter $p$, and the two are reciprocal because $dp/d\eta=p(1-p)$.  Setting
 $\eta_\pm=\eta(p_\pm)$ and $\eta_0=\tfrac12(\eta_++\eta_-)$, equal weights give
 \[
-\tr(\Sigma_\pi)
+\tr(\bm{\Sigma}_\pi)
 =
 I(\eta_0)\left(\frac{\eta_+-\eta_-}{2}\right)^{2}.
 \]
@@ -4452,7 +4459,7 @@ As $\varepsilon\downarrow0$ one has $\eta_+-\eta_-\to\log2$ and
 $p_0=1-\sqrt2\,\varepsilon+o(\varepsilon)$, hence
 $I(\eta_0)=p_0(1-p_0)\sim\sqrt2\,\varepsilon$ and
 \[
-\tr(\Sigma_\pi)
+\tr(\bm{\Sigma}_\pi)
 =
 \sqrt2\,\varepsilon\left(\tfrac12\log2\right)^{2}+o(\varepsilon).
 \]
@@ -4465,16 +4472,16 @@ converges to the stated positive constant.
 \label{thm:no-global-fisher-converse}
 Fix a minimal natural-parameter chart for the strictly positive laws on a
 finite $\mathcal O$, write $\eta_s$ for the parameters of the predictive laws,
-and let $\Sigma_\eta$ be their $\pi$-covariance in that chart; for the
+and let $\bm{\Sigma}_\eta$ be their $\pi$-covariance in that chart; for the
 Fisher-weighted form fix in addition the reference point $\eta_{\bar p}$ of the
 stationary mixture and set
-$\Sigma_F=I(\eta_{\bar p})^{1/2}\Sigma_\eta I(\eta_{\bar p})^{1/2}$.
+$\bm{\Sigma}_F=I(\eta_{\bar p})^{1/2}\bm{\Sigma}_\eta I(\eta_{\bar p})^{1/2}$.
 
 There is \emph{no} universal constant $c>0$, independent of the instance, with
 \[
-\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\Sigma_\eta)
+\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\eta)
 \qquad\text{or}\qquad
-\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\Sigma_F)
+\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\bm{\Sigma}_F)
 \]
 for all instances.  The failure occurs already for two binary predictive states
 and $M=1$.
@@ -4514,13 +4521,13 @@ L_\varepsilon=\log\frac{1-\varepsilon}{\varepsilon}.
 \]
 Equal weights give $\bar\eta=0$ and hence the scalar covariance
 \[
-\Sigma_\eta=L_\varepsilon^2\ \longrightarrow\ \infty
+\bm{\Sigma}_\eta=L_\varepsilon^2\ \longrightarrow\ \infty
 \qquad(\varepsilon\downarrow0).
 \]
 
 \emph{Conclusion for the unweighted form.}  Therefore
 \[
-\frac{\RetKL(1)}{\lambda_1(\Sigma_\eta)}
+\frac{\RetKL(1)}{\lambda_1(\bm{\Sigma}_\eta)}
 \ \le\
 \frac{\log2}{L_\varepsilon^2}
 \ \longrightarrow\ 0 ,
@@ -4531,8 +4538,8 @@ so no positive $c$ can work.
 $\bar p=\tfrac12$, at which the natural-parameter Fisher information is
 $I(\eta_{\bar p})=A''(\eta_{\bar p})=\bar p(1-\bar p)=\tfrac14$
 (Proposition~\ref{prop:bernoulli-fisher-scales} records this normalization).
-Hence $\Sigma_F=\tfrac14L_\varepsilon^2\to\infty$ as well, and
-$\RetKL(1)/\lambda_1(\Sigma_F)\le 4\log2/L_\varepsilon^2\to0$.  Weighting by the
+Hence $\bm{\Sigma}_F=\tfrac14L_\varepsilon^2\to\infty$ as well, and
+$\RetKL(1)/\lambda_1(\bm{\Sigma}_F)\le 4\log2/L_\varepsilon^2\to0$.  Weighting by the
 Fisher information at the mixture therefore does not repair the bound: the
 reference point stays in the interior while the states escape to the boundary.
 \end{proof}
@@ -4544,7 +4551,7 @@ Theorem~\ref{thm:global-interior-fisher} are complementary rather than
 competing, and together they settle the natural-parameter question completely.
 
 The interior theorem gives $\RetKL(M)\ge\frac{m_K}{2}\sum_{i\ge M}
-\lambda_i(\Sigma_\eta)$ with $m_K=\inf_{\eta\in K}\lambda_{\min}(\nabla^2A(\eta))$
+\lambda_i(\bm{\Sigma}_\eta)$ with $m_K=\inf_{\eta\in K}\lambda_{\min}(\nabla^2A(\eta))$
 over a compact $K$ containing the state parameters and their mixture
 centroids.  The no-go theorem shows that the dependence of the constant on $K$
 is not an artefact of the proof: $m_K\downarrow0$ as $K$ is enlarged toward the
@@ -4650,9 +4657,9 @@ kind, and each step of its proof can be isolated.  Over $2{,}434$
 enumerating all set partitions, the maximum violation is
 $7.5\times10^{-17}$ for the minorant $\RetKL(\phi)\ge\tr(W_\phi)$,
 $1.1\times10^{-16}$ for the ANOVA decomposition
-$\Sigma_p=W_\phi+B_\phi$, $1.7\times10^{-16}$ for the Ky Fan bound
+$\bm{\Sigma}_p=W_\phi+B_\phi$, $1.7\times10^{-16}$ for the Ky Fan bound
 $\tr(B_\phi)\le\sum_{i\le M-1}\lambda_i$, and $7.5\times10^{-17}$ for the
-composite conclusion $\RetKL(\phi)\ge\sum_{i\ge M}\lambda_i(\Sigma_p)$.  The
+composite conclusion $\RetKL(\phi)\ge\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p)$.  The
 smallest ratio of the two sides over those pairs is $1.0015$, so the bound is
 not vacuous on generic instances.
 
@@ -4919,13 +4926,13 @@ Theorem~\ref{thm:controlled-ib}.
 
 \begin{corollary}[Fiberwise Spectral Converse, General Inputs]
 \label{cor:controlled-simplex-general}
-For finite $\mathcal O$, let $\Sigma_p^{x}$ denote the covariance of the
+For finite $\mathcal O$, let $\bm{\Sigma}_p^{x}$ denote the covariance of the
 predictive probability vectors $\{p_s^x\}$ under the \emph{conditional} weights
 $\{\pi_s^x\}$.  Then
 \[
 \RetKLg(M)
 \ \ge\
-\sum_xp(x)\sum_{i\ge M}\lambda_i\bigl(\Sigma_p^{x}\bigr).
+\sum_xp(x)\sum_{i\ge M}\lambda_i\bigl(\bm{\Sigma}_p^{x}\bigr).
 \]
 \end{corollary}
 
@@ -5237,7 +5244,7 @@ from the general reduction.
 In the controlled Gaussian quadratic regime $P_s^x=\mathcal N(m_s^x,\tfrac12I_D)$,
 with Fisher features $y_s^x=\sqrt2\,m_s^x$ and per-input covariances
 \[
-\Sigma_\pi^x=\sum_s\pi_s(y_s^x-\bar y^x)(y_s^x-\bar y^x)^{\!\top},
+\bm{\Sigma}_\pi^x=\sum_s\pi_s(y_s^x-\bar y^x)(y_s^x-\bar y^x)^{\!\top},
 \qquad
 \bar y^x=\sum_s\pi_sy_s^x,
 \]
@@ -5245,7 +5252,7 @@ the controlled quadratic gap satisfies
 \[
 \RetQuadc(M)
 \ \ge\
-\frac12\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_\pi^x).
+\frac12\sum_xp(x)\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi^x).
 \]
 \end{corollary}
 
@@ -5254,7 +5261,7 @@ The lumpability constraint does not depend on $x$, so a single quotient is used
 on every fiber.  Fix $x$: the inner cost is the Gaussian quadratic restricted
 gap of the family $\{y_s^x\}$ under that quotient, and the ANOVA-plus-Ky-Fan
 argument of Theorem~\ref{thm:spectral-retention} bounds it below by
-$\tfrac12\sum_{i\ge M}\lambda_i(\Sigma_\pi^x)$, the effective rank of the
+$\tfrac12\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi^x)$, the effective rank of the
 between-block covariance being $M-1$ on each fiber.  Multiplying by $p(x)$ and
 summing gives the bound, and taking the minimum over quotients preserves it
 since the bound is quotient-free.
@@ -5263,12 +5270,12 @@ since the bound is quotient-free.
 \begin{corollary}[Controlled Probability-Coordinate Spectral Converse]
 \label{cor:controlled-simplex-spectral}
 For finite $\mathcal O$, let $p_s^x$ be the predictive probability vectors and
-$\Sigma_p^x$ their $\pi$-covariance on fiber $x$.  Then, globally and with no
+$\bm{\Sigma}_p^x$ their $\pi$-covariance on fiber $x$.  Then, globally and with no
 regularity hypothesis,
 \[
 \RetKLc(M)
 \ \ge\
-\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_p^x),
+\sum_xp(x)\sum_{i\ge M}\lambda_i(\bm{\Sigma}_p^x),
 \]
 and the constant $1$ is sharp on any fiber of positive mass.
 \end{corollary}
@@ -5291,9 +5298,9 @@ and that $\nabla^2A(\eta)\succeq m_{K}^{x}I$ on $K^x$.  Then
 \[
 \RetKLc(M)
 \ \ge\
-\frac12\Bigl(\min_xm_{K}^{x}\Bigr)\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_\eta^x),
+\frac12\Bigl(\min_xm_{K}^{x}\Bigr)\sum_xp(x)\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\eta^x),
 \]
-where $\Sigma_\eta^x$ is the $\pi$-covariance of the natural parameters on
+where $\bm{\Sigma}_\eta^x$ is the $\pi$-covariance of the natural parameters on
 fiber $x$.
 \end{corollary}
 
@@ -6070,9 +6077,12 @@ computable in time polynomial in the instance size.  Consequently, comparing
 $\RetKL(\phi)$ with a rational threshold $\tau$ reduces in polynomial time to
 the problem
 \[
-\textsc{RationalExpCompare}:\quad
-\text{given a factored positive rational }R\text{ and a rational }s,
-\ \text{decide whether }R\ge e^{s}.
+\begin{aligned}
+&\textsc{RationalExpCompare}:\\
+&\quad\text{given a factored positive rational }R
+\text{ and a rational }s,\\
+&\quad\text{decide whether }R\ge e^{s}.
+\end{aligned}
 \]
 \end{proposition}
 
@@ -8443,7 +8453,10 @@ partitions, whereas the blockwise accuracy is
 \[
 \sum_{C\in\mathcal P}\max_b\sum_{s\in C}w_s(b),
 \]
-so that $D(\phi)=\sigma_1-\sum_{C\in\mathcal P_\phi}\max_b\sum_{s\in C}w_s(b)$
+so that
+\[
+D(\phi)=\sigma_1-\sum_{C\in\mathcal P_\phi}\max_b\sum_{s\in C}w_s(b)
+\]
 for the partition $\mathcal P_\phi$ induced by $\phi$, and likewise for
 $\psi$.  If a block $C\in\mathcal P_\psi$ is split by the refinement $\phi$
 into $C_1,\dots,C_r\in\mathcal P_\phi$, then, since a maximum of a sum is at
@@ -8457,14 +8470,20 @@ range,
 \max_b\sum_{s\in C}w_s(b).
 \]
 Applying this to every block of $\mathcal P_\psi$ and summing gives
-$\sum_{C'\in\mathcal P_\phi}\max_b\sum_{s\in C'}w_s(b)
-\ge\sum_{C\in\mathcal P_\psi}\max_b\sum_{s\in C}w_s(b)$, and subtracting from
-$\sigma_1$ reverses the inequality to $D(\phi)\le D(\psi)$.  Since every
-budget-$M$ feasible partition is refined by every budget-$M'$ feasible
-partition for $M'\ge M$ that further splits it (nesting of feasible sets, as
-in the previous version of this claim), monotonicity of $D$ under
-refinement upgrades the earlier feasible-set nesting argument to the sharper
-conclusion that $\min_{|\mathcal K|\le M}D(\phi)$ is nonincreasing in $M$.
+\[
+\sum_{C'\in\mathcal P_\phi}\max_b\sum_{s\in C'}w_s(b)
+\ \ge\
+\sum_{C\in\mathcal P_\psi}\max_b\sum_{s\in C}w_s(b),
+\]
+and subtracting from $\sigma_1$ reverses the inequality to $D(\phi)\le D(\psi)$.  The feasible
+sets are nested in the budget: every partition with at most $M$ blocks is
+feasible at every budget $M'\ge M$, and each budget-$M'$ feasible partition
+that splits a budget-$M$ feasible partition refines it.  Combining the
+nesting of the feasible sets with the refinement monotonicity of $D$ just
+established therefore gives the conclusion: enlarging the budget admits
+refinements of each budget-$M$ feasible partition, and $D$ cannot increase
+under refinement, so $\min_{|\mathcal K|\le M}D(\phi)$ is nonincreasing in
+$M$.
 \end{proof}
 
 \begin{proposition}[Implementability of a Block-Mode Policy]
@@ -8952,9 +8971,9 @@ elementary norm monotonicity.
 \item The retention check uses the tail
 \[
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi),
+\lambda_i(\bm{\Sigma}_\pi),
 \]
-not $\sum_{i>M}\lambda_i(\Sigma_\pi)$.  A check using the latter does
+not $\sum_{i>M}\lambda_i(\bm{\Sigma}_\pi)$.  A check using the latter does
 not recover the retention converse.
 \item Numerical experiments cannot prove Hankel domination for grounding,
 cannot prove that a given KL or finite-state cost satisfies Schatten
@@ -9062,16 +9081,16 @@ requires a separate comparison theorem.
 \begin{corollary}[Retention as $p=1$ with Rank Budget $M-1$]
 \label{cor:ret-schatten}
 In the Gaussian quadratic restricted retention regime, let
-$\Sigma_\pi\succeq0$ be the stationary Fisher covariance.  For $M\ge1$,
+$\bm{\Sigma}_\pi\succeq0$ be the stationary Fisher covariance.  For $M\ge1$,
 \[
 \RetQuad(M)
 \ge
 \frac12
-\Phi^{(1)}_{M-1}(\Sigma_\pi)
+\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi)
 =
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 If the retention gap is exactly this quadratic surrogate gap, this recovers
 the retention converse.  If the retention gap is an expected KL gap in a
@@ -9085,7 +9104,7 @@ weights $\pi_s$ summing to one.  Write
 \[
 \bar y=\sum_s\pi_sy_s,
 \qquad
-\Sigma_\pi=\sum_s\pi_s(y_s-\bar y)\otimes(y_s-\bar y).
+\bm{\Sigma}_\pi=\sum_s\pi_s(y_s-\bar y)\otimes(y_s-\bar y).
 \]
 A lumpable quotient with at most $M$ blocks induces a partition into
 $K\le M$ nonempty cells $C_1,\dots,C_K$ with weights
@@ -9109,29 +9128,29 @@ E
 \ \ge\
 \frac12\sum_{k=1}^K\sum_{s\in C_k}\pi_s\norm{y_s-m_k}^2
 =
-\frac12\tr(\Sigma_\pi-B),
+\frac12\tr(\bm{\Sigma}_\pi-B),
 \]
-the last step being the ANOVA identity $\Sigma_\pi=W+B$ with $W\succeq0$ the
+the last step being the ANOVA identity $\bm{\Sigma}_\pi=W+B$ with $W\succeq0$ the
 within-cluster covariance.
 
-Because $\Sigma_\pi-B=W\succeq0$, its trace coincides with its nuclear norm,
+Because $\bm{\Sigma}_\pi-B=W\succeq0$, its trace coincides with its nuclear norm,
 \[
-\tr(\Sigma_\pi-B)=\norm{\Sigma_\pi-B}_{\Sp{1}},
+\tr(\bm{\Sigma}_\pi-B)=\norm{\bm{\Sigma}_\pi-B}_{\Sp{1}},
 \]
 which is precisely what places this instance at the Schatten exponent $p=1$.
 Since $\rank(B)\le M-1$, Theorem~\ref{thm:mirsky} gives
 \[
-\norm{\Sigma_\pi-B}_{\Sp{1}}
+\norm{\bm{\Sigma}_\pi-B}_{\Sp{1}}
 \ \ge\
-\min_{\rank P\le M-1}\norm{\Sigma_\pi-P}_{\Sp{1}}
+\min_{\rank P\le M-1}\norm{\bm{\Sigma}_\pi-P}_{\Sp{1}}
 =
-\sum_{i>M-1}\lambda_i(\Sigma_\pi)
+\sum_{i>M-1}\lambda_i(\bm{\Sigma}_\pi)
 =
-\sum_{i\ge M}\lambda_i(\Sigma_\pi).
+\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi).
 \]
-Hence $E\ge\frac12\sum_{i\ge M}\lambda_i(\Sigma_\pi)$, and taking the infimum
+Hence $E\ge\frac12\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi)$, and taking the infimum
 over feasible quotients gives the stated converse, with effective rank $M-1$
-and $\Phi^{(1)}_{M-1}(\Sigma_\pi)=\sum_{i\ge M}\lambda_i(\Sigma_\pi)$.
+and $\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi)=\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi)$.
 \end{proof}
 
 \begin{remark}[Why the Exponent Is $1$]
@@ -9258,7 +9277,7 @@ of them.  Their response operators are
 \[
 H_\nu,
 \qquad
-\Sigma_\pi,
+\bm{\Sigma}_\pi,
 \qquad
 N_\Lambda,
 \]
@@ -9408,8 +9427,10 @@ $R\mapsto D_{\mathbb T}(R)$ is not convex on $\{\log M:1\le M\le|\Splus|\}$.
 Take $|\Splus|=5$, $\mathcal O=\{1,2,3\}$, the reset transition
 $\tau(s_i,\ell)=s_\ell$ of Theorem~\ref{thm:retention-reset-np}, so that every
 partition is lumpable, stationary weights proportional to
-$(0.0344,0.3506,0.1906,0.2176,0.2068)$, and predictive laws the row
-normalizations of
+\[
+(0.0344,\ 0.3506,\ 0.1906,\ 0.2176,\ 0.2068),
+\]
+and predictive laws the row normalizations of
 \[
 (0.4805,0.4113,0.1082),\ (0.2746,0.4018,0.3236),\ (0.2960,0.5426,0.1614),
 \]
@@ -10004,9 +10025,9 @@ For quadratic retention,
 \[
 S^{\mathrm{ret}}(M)
 =
-\sum_{i\ge M}\lambda_i(\Sigma_\pi)
+\sum_{i\ge M}\lambda_i(\bm{\Sigma}_\pi)
 =
-\Phi^{(1)}_{M-1}(\Sigma_\pi).
+\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi).
 \]
 
 %----------------------------------------------------------------------
@@ -10388,7 +10409,7 @@ retention regime, the discrete tail is
 =
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi),
+\lambda_i(\bm{\Sigma}_\pi),
 \]
 with effective rank $M-1$.
 
@@ -11172,7 +11193,7 @@ D_\pi=\operatorname{diag}(\pi_s)
 \]
 and let $X$ be the matrix with rows $x_s^\top$.  The feature covariance is
 \[
-\Sigma_\pi
+\bm{\Sigma}_\pi
 =
 X^\top D_\pi X.
 \]
@@ -11527,13 +11548,14 @@ supplies no unconditional comparison between $\PoSquad$ and $\PoSlin$.
 \begin{proof}
 The identity is immediate from the definitions:
 \[
+\begin{aligned}
 \PoSlin+\rho_{\mathrm{safe}}-\rho_{\mathrm{free}}
-=
-(\mathrm{Free}_{\mathrm{lin}}-\mathrm{Safe}_{\mathrm{lin}}^{\mathrm{loc}})+(\mathrm{Safe}_{\mathrm{lin}}^{\mathrm{loc}}-\mathrm{Safe}_{\mathrm{quad}})-(\mathrm{Free}_{\mathrm{lin}}-\mathrm{Free}_{\mathrm{quad}})
-=
-\mathrm{Free}_{\mathrm{quad}}-\mathrm{Safe}_{\mathrm{quad}}
-=
-\PoSquad .
+&=(\mathrm{Free}_{\mathrm{lin}}-\mathrm{Safe}_{\mathrm{lin}}^{\mathrm{loc}})
++(\mathrm{Safe}_{\mathrm{lin}}^{\mathrm{loc}}-\mathrm{Safe}_{\mathrm{quad}})\\
+&\quad-(\mathrm{Free}_{\mathrm{lin}}-\mathrm{Free}_{\mathrm{quad}})
+=\mathrm{Free}_{\mathrm{quad}}-\mathrm{Safe}_{\mathrm{quad}}
+=\PoSquad .
+\end{aligned}
 \]
 Claims~(i) and~(ii) are immediate from the identity, since
 $\PoSquad-\PoSlin=\rho_{\mathrm{safe}}-\rho_{\mathrm{free}}$.
@@ -11815,20 +11837,20 @@ so that
 \[
 I_{\mathrm{quad}}(\mathcal C;Z)=\tfrac12\tr(B_{\mathcal C}).
 \]
-The ANOVA decomposition gives $\Sigma_\pi=W_{\mathcal C}+B_{\mathcal C}$ with
+The ANOVA decomposition gives $\bm{\Sigma}_\pi=W_{\mathcal C}+B_{\mathcal C}$ with
 $W_{\mathcal C}\succeq0$ the within-cluster covariance, whence
 \[
-0\preceq B_{\mathcal C}\preceq\Sigma_\pi .
+0\preceq B_{\mathcal C}\preceq\bm{\Sigma}_\pi .
 \]
 Because $\sum_k\Pi_k(c_k-\bar y)=0$, the centred centroids satisfy one linear
 relation, so $\rank(B_{\mathcal C})\le K-1\le M-1$.  Ky Fan's maximum
 principle \cite{kyfan1951} therefore gives
 \[
-\tr(B_{\mathcal C})\ \le\ \KyF{\Sigma_\pi}{M-1}.
+\tr(B_{\mathcal C})\ \le\ \KyF{\bm{\Sigma}_\pi}{M-1}.
 \]
-The nonzero spectra of $\Sigma_\pi$ and $G$ coincide, since $G$ is the Gram
+The nonzero spectra of $\bm{\Sigma}_\pi$ and $G$ coincide, since $G$ is the Gram
 matrix of the same weighted centred vectors, so
-$\KyF{\Sigma_\pi}{M-1}=\KyF{G}{M-1}$ and
+$\KyF{\bm{\Sigma}_\pi}{M-1}=\KyF{G}{M-1}$ and
 \[
 I_{\mathrm{quad}}(\mathcal C;Z)\ \le\ \tfrac12\KyF{G}{M-1}.
 \]
@@ -11941,12 +11963,12 @@ right-congruence Price of Safety.
 For the full KL objective, the surrogate is a second-order local model.
 
 \item \textbf{Right-congruence constraint.}
-The linear surrogate drops the right-congruence/lumpability constraint.
+The linear surrogate drops the right-congruence and lumpability constraints.
 
 \item \textbf{State-indexed covariance is canonical.}
 The state-indexed Gram matrix $G$ is the object for safety pinching.  The
-feature covariance $\Sigma_\pi$ has the same nonzero spectrum and may be used
-for the free term, but pinching $\Sigma_\pi$ by feature-coordinate blocks is
+feature covariance $\bm{\Sigma}_\pi$ has the same nonzero spectrum and may be used
+for the free term, but pinching $\bm{\Sigma}_\pi$ by feature-coordinate blocks is
 not invariant under orthogonal reparameterization and is not canonically
 induced by a safety partition of states.
 \end{itemize}
@@ -12187,11 +12209,37 @@ $D_\alpha\to Z'(1)/Z(1)=\KL(p\Vert q)$.  The corresponding statement for the
 sandwiched quantum family is Umegaki's relative entropy limit, for which we
 refer to the literature rather than reproduce the argument.
 
-For $\alpha\to\infty$, the Schatten quasi-norms of a fixed positive operator
-converge to the operator norm,
+For $\alpha\to\infty$, the operator
+$K_\alpha=\sigma^{\frac{1-\alpha}{2\alpha}}\rho\,
+\sigma^{\frac{1-\alpha}{2\alpha}}$ itself depends on $\alpha$, so the
+monotone-convergence argument for a fixed singular-value sequence does not
+apply to it directly; the limit holds by a two-step continuity argument.
+First, on the support of $\sigma$ --- where $\sigma$ is positive definite,
+and $\supp\rho\subseteq\supp\sigma$ is assumed for finite divergence ---
+the map $\alpha\mapsto K_\alpha$ is continuous, by continuity of the matrix
+power in the functional calculus, so
+$K_\alpha\to K_\infty=\sigma^{-1/2}\rho\,\sigma^{-1/2}$ and
+$\norm{K_\alpha-K_\infty}_{\Sp{1}}\to0$; for $\alpha\ge1$ the Schatten
+norms obey the triangle inequality and decrease in the exponent, so
+\[
+\bigl|
+\norm{K_\alpha}_{\Sp{\alpha}}-\norm{K_\infty}_{\Sp{\alpha}}
+\bigr|
+\le
+\norm{K_\alpha-K_\infty}_{\Sp{\alpha}}
+\le
+\norm{K_\alpha-K_\infty}_{\Sp{1}}
+\to
+0 .
+\]
+Second, for the \emph{fixed} positive operator $K_\infty$, monotone
+convergence of $\ell^\alpha$ norms of its singular-value sequence gives
+$\norm{K_\infty}_{\Sp{\alpha}}\to\norm{K_\infty}_\infty$.  Combining the
+two steps gives
 $\norm{K_\alpha}_{\Sp{\alpha}}\to\norm{\sigma^{-1/2}\rho\sigma^{-1/2}}_\infty$,
-by monotone convergence of $\ell^\alpha$ norms of the singular-value sequence,
-and $\alpha/(\alpha-1)\to1$; combining the two gives $\Dmax$.
+and $\alpha/(\alpha-1)\to1$, whence $\Dmax$; this is the standard
+sandwiched-R\'enyi $\alpha\to\infty$ limit
+\cite{mullerlennert2013,franklieb2013}.
 
 For $\alpha\to0$ in the classical case, $p_i^\alpha\to\mathbf 1\{p_i>0\}$, so
 $Z(\alpha)\to q(\supp p)$ and
@@ -12236,10 +12284,10 @@ in the Schatten template uses a trace-norm / Schatten-$1$ tail:
 \ge
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi)
+\lambda_i(\bm{\Sigma}_\pi)
 =
 \frac12
-\Phi^{(1)}_{M-1}(\Sigma_\pi),
+\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi),
 \]
 with the effective rank $M-1$.  The trace norm appears in the converse, not as
 the retention cost itself.
@@ -12589,7 +12637,7 @@ Schatten exponent selecting the tail agree at the three vertices.  What remains
 unavailable, and what clause~(e) of
 Meta-Theorem~\ref{meta:typed-rate-distortion} and
 Theorem~\ref{thm:schatten-nogo} record, is any transfer between regimes: the
-operators $H_\nu$, $\Sigma_\pi$, $N_\Lambda$, the rank budgets $M$, $M-1$, $M$
+operators $H_\nu$, $\bm{\Sigma}_\pi$, $N_\Lambda$, the rank budgets $M$, $M-1$, $M$
 and the moduli are unrelated, so the shared form yields no shared value.
 \end{remark}
 
@@ -12993,11 +13041,14 @@ deterministic symbolic grounding.
 
 \medskip
 \noindent\textbf{Finite and tunable complexity.}
-Replacing $L_{\mathrm{sq}}$ by the modular language
+Replacing $L_{\mathrm{sq}}$ by the delimiter-free modular language
 \[
-L_N=\{\#1^n:n\equiv0\pmod N\}
+L_N=\{1^n:n\equiv0\pmod N\}
 \]
-gives commitment complexity exactly $N$.  Varying the predictive separation in
+over the unary alphabet gives commitment complexity exactly $N$: the
+Myhill--Nerode classes of $L_N$ are the $N$ residue classes, since the
+residual after $1^n$ is $\{1^k:n+k\equiv0\pmod N\}$, which distinguishes
+the $N$ residues of $n$.  Varying the predictive separation in
 a two-state retention process varies the retention gap continuously from $0$
 to its maximum.  Varying the Bernoulli bias $p$ in a memoryless grounding
 coordinate varies the stochasticity floor as
@@ -13823,7 +13874,7 @@ Writing $M'=3M$ for the state count of the binary machine,
 \xrightarrow[L\to\infty]{}
 \frac13 ,
 \]
-and the ratio is increasing in $L$, exceeding $0.23$ already at $L=3$.  Thus
+and the ratio is increasing in $L$, exceeding $0.23$ already at $L=4$.  Thus
 the forced mistake count is at least $c\,M'\log_2M'$ for any $c<\tfrac13$ once
 $M'$ is large, which is $\Omega(M'\log M')$.  The randomized statement follows
 exactly as in Theorem~\ref{thm:stream-lower-bound}(ii).
@@ -14652,15 +14703,23 @@ $|U|\le M$.  We exhibit a strategy, fixable in advance, that drives $U$ to a
 single observational class.
 
 \emph{Step: one separation episode.}  Suppose $U$ contains two states $s\ne t$
-that are not observationally equivalent.  Consider the pair automaton on
-unordered pairs of states of $A$: from $\{u,v\}$ and input $x$ there is an edge
-to $\{\tau(u,x),\tau(v,x)\}$, and $\{u,v\}$ is \emph{immediately separated} by
+that are not observationally equivalent, so their continuation functions in
+$A$ differ.  Lemma~\ref{lem:tension} with $U=\{s,t\}$ bounds the length of
+the shortest word separating them by
+\[
+d(\{s,t\})\ \le\ M-|\{s,t\}|+1\ =\ M-1,
+\]
+via Moore partition refinement; Lemma~\ref{lem:moore-separation} is the
+cross-machine form of the same bound.  Let $w$ be such a separating word,
+$|w|\le M-1$.
+
+In pair-automaton terms: from $\{u,v\}$ and input $x$ there is an edge to
+$\{\tau(u,x),\tau(v,x)\}$, and $\{u,v\}$ is \emph{immediately separated} by
 $x$ when $\lambda(u,x)\ne\lambda(v,x)$.  Breadth-first search from $\{s,t\}$
-reaches an immediately separated pair, since $s\not\sim t$; the pair automaton
-has at most $\binom{M}{2}$ nodes, but the standard argument bounds the distance
-by $M-1$, because a shortest such path visits pairwise distinct pairs whose
-underlying state sets are nested along the search and cannot repeat.  Let $w$
-be the corresponding word, $|w|\le M-1$.
+reaches an immediately separated pair, since $s\not\sim t$; but the distance
+bound is the Moore bound $M-1$ above, not a distinctness-of-pair-nodes
+argument --- distinct pair nodes number at most $\binom{M}{2}$, which would
+bound the path by $\binom{M}{2}$, not by $M-1$.
 
 Feed $w$.  Transitions are deterministic, so applying an input maps $U$ forward
 and $|U|$ never increases.  At the final letter of $w$ the two survivors
@@ -15855,8 +15914,10 @@ O\bigl(\sqrt{T\,M\log M}\bigr).
 \]
 For the lower bound, the minimax theorem for online learning
 \cite{bendavid2009,daniely2014} gives
-$R_T^{\mathrm{agn}}=\Omega(\sqrt{T\,\Ldim(\mathcal H_M)})$ whenever the
-Littlestone dimension is witnessed by a mistake tree realizable in the
+\[
+R_T^{\mathrm{agn}}=\Omega\bigl(\sqrt{T\,\Ldim(\mathcal H_M)}\bigr)
+\]
+whenever the Littlestone dimension is witnessed by a mistake tree realizable in the
 protocol at hand.  Theorem~\ref{thm:stream-lower-bound} supplies exactly such
 a tree: at each of its $M\log_2M$ readout rounds \emph{both} output values
 remain consistent with some member of $\mathcal G_M\subseteq\mathcal H_M$,
@@ -16035,10 +16096,10 @@ nuclear norm, so the lower bound is a trace tail:
 \ge
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi)
+\lambda_i(\bm{\Sigma}_\pi)
 =
 \frac12
-\Phi^{(1)}_{M-1}(\Sigma_\pi).
+\Phi^{(1)}_{M-1}(\bm{\Sigma}_\pi).
 \]
 The exponent $1$ appears because the residual covariance is positive
 semidefinite, not because the original cost is an $\ell^1$ aggregation.
@@ -16105,7 +16166,7 @@ $H_\delta-H_{\widehat\delta}$.
 \Delta_{\mathrm{ret}}^{L^\infty}(M)
 \gtrsim
 \frac12
-\lambda_M(\Sigma_\pi)
+\lambda_M(\bm{\Sigma}_\pi)
 \]
 requires a worst-case quadratic surrogate or additional geometric
 assumptions aligning the worst-case state with the top Fisher
@@ -16557,8 +16618,10 @@ $(\dagger)$ is $5.5\times10^{-40}$ in $40$-digit arithmetic for the forward
 generator, while for reverse Kullback--Leibler, $\chi^2$, Hellinger, the
 Jensen--Shannon generator and total variation it is $12.6$, $2.0\times10^4$,
 $3.1$, $3.2$ and $4.5$ respectively.  Sweeping the $\alpha$-divergence family
-$g_\alpha(t)=(t^\alpha-1-\alpha(t-1))/(\alpha(\alpha-1))$ through
-$\alpha\in\{-1,0,\tfrac12,0.9,0.99,1,1.01,\tfrac32,2,3\}$, the defect in
+\[
+g_\alpha(t)=\frac{t^\alpha-1-\alpha(t-1)}{\alpha(\alpha-1)}
+\]
+through $\alpha\in\{-1,0,\tfrac12,0.9,0.99,1,1.01,\tfrac32,2,3\}$, the defect in
 $(\dagger)$ vanishes only at $\alpha=1$ and is bounded away from zero on either
 side, so no neighbouring member of the family survives the conditional chain
 rule.  The subsequent symmetry step is equally decisive: the quotient
@@ -16858,15 +16921,33 @@ with admissible values
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
 \item $\mathsf R\in\{\text{commitment},\text{retention},\text{grounding},
 \text{joint}\}$;
-\item $\mathsf M\in\{\text{deterministic Mealy},\text{stochastic lumped
-predictor},\text{unifilar controlled }\epsilon\text{-machine},
-\text{linear finite-rank realization}\}$;
-\item $\mathsf F\in\{\text{right congruences},
-\text{support-relative right congruences},\text{lumpable quotients},
-\text{unifilar-lumpable quotients},\text{history factors},
-\text{unrestricted rank-}M,\text{Hankel-restricted}\}$;
-\item $\mathsf A\in\{\text{worst case},\text{stationary Ces\`aro},
-\text{discounted prefix},\text{finite-horizon cumulative}\}$;
+\item the machine type
+\[
+\begin{aligned}
+\mathsf M\in\bigl\{&\text{deterministic Mealy},\ \text{stochastic lumped
+predictor},\\
+&\text{unifilar controlled }\epsilon\text{-machine},\
+\text{linear finite-rank realization}\bigr\};
+\end{aligned}
+\]
+\item the feasible set
+\[
+\begin{aligned}
+\mathsf F\in\bigl\{&\text{right congruences},\
+\text{support-relative right congruences},\\
+&\text{lumpable quotients},\ \text{unifilar-lumpable quotients},\
+\text{history factors},\\
+&\text{unrestricted rank-}M,\ \text{Hankel-restricted}\bigr\};
+\end{aligned}
+\]
+\item the aggregation
+\[
+\begin{aligned}
+\mathsf A\in\bigl\{&\text{worst case},\ \text{stationary Ces\`aro},\
+\text{discounted prefix},\\
+&\text{finite-horizon cumulative}\bigr\};
+\end{aligned}
+\]
 \item $\mathsf S\in\{\text{all histories},\text{stationary support }\Splus,
 \text{positive-mass reachable}\}$;
 \item $\mathsf P\in\{\text{none},\text{reset word},\text{persistent stream},
@@ -17128,7 +17209,7 @@ I(S;Z)-I(K_\phi;Z).
 \ge
 \frac12
 \sum_{i\ge M}
-\lambda_i(\Sigma_\pi).
+\lambda_i(\bm{\Sigma}_\pi).
 \]
 \item Unifilar retention: the controlled information-bottleneck identity
 (Theorem~\ref{thm:controlled-ib}), the zero-retention threshold at the index of
@@ -17163,7 +17244,7 @@ M\ge\kappa_{\det}(F).
 \item Stochasticity floor for deterministic Mealy grounding, and its exact
 observable refinement: $\sigma_\gamma(\nu)\le F_\gamma(\nu)$ with
 $F_\gamma(\nu)$ the exact input-only deterministic floor and
-$\lim_{M\to\infty}\Delta_{\mathrm{grd}}(M;\gamma)=F_\gamma(\nu)$
+$\Delta_{\mathrm{grd}}(M;\gamma)\to F_\gamma(\nu)$ as $M\to\infty$
 (Theorem~\ref{thm:observable-floor}).
 \item Finite-section operator certificates for linear grounding: computable
 two-sided bounds on $\sigma_{M+1}(H_\nu)=\Dunres(M)$ from finite Hankel
@@ -17180,8 +17261,7 @@ rational under rational finite-state and rational-$\gamma$ hypotheses
 (Proposition~\ref{prop:symbolic-finite-horizon}).
 \item Refinement monotonicity of the tracking deficit: $\phi$ refining $\psi$
 implies $D(\phi)\le D(\psi)$, so $\min_{|\mathcal K|\le M}D(\phi)$ is
-nonincreasing in $M$ (Correction to item (iii) of
-Proposition~\ref{prop:grounding-tracking}).
+nonincreasing in $M$ (Proposition~\ref{prop:grounding-tracking}).
 \item Joint zero-error memory theorem via meet of right congruences.
 \item Comparative state-complexity sandwich.
 \item Independence of regime obstructions.
@@ -17691,7 +17771,10 @@ not from ordinary Littlestone dimension, which does not transfer to a protocol
 in which the learner chooses its own inputs.
 
 A direct-sum instance forces its two components on disjoint rounds, giving
-$\MistRI(M)\ge S_M+C_M$, but no non-degenerate two-term decomposition of the
+\[
+\MistRI(M)\ \ge\ S_M+C_M,
+\]
+but no non-degenerate two-term decomposition of the
 active complexity is available in the mistake currency: state identification in
 a known minimal skeleton costs only $O(\log M)$ mistakes
 (Proposition~\ref{prop:esyncsi-log}).  Whether a genuine decomposition exists
@@ -17820,6 +17903,18 @@ S.-I. Amari,
 ``$\alpha$-divergence is unique, belonging to both $f$-divergence and
 Bregman divergence classes,''
 \emph{IEEE Trans. Inform. Theory}, vol.~55, no.~11, pp.~4925--4931, 2009.
+
+\bibitem{mullerlennert2013}
+M.~M\"uller-Lennert, F.~Dupuis, O.~Fawzi, S.~Wehner, and H.~M.~Wiseman,
+``On quantum R\'enyi entropies: a new definition and limitations,''
+\emph{IEEE Transactions on Information Theory}, vol.~60, no.~12,
+pp.~7801--7807, 2014.
+
+\bibitem{franklieb2013}
+R.~L.~Frank and E.~H.~Lieb,
+``Monotonicity properties and relative entropy bounds for quantum
+R\'enyi entropies,''
+\emph{Journal of Mathematical Physics}, vol.~54, no.~12, 122203, 2013.
 
 \bibitem{tsybakov2009}
 A.~B.~Tsybakov,

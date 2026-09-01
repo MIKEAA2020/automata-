@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.4c00449",
+    "name": "Information Bottleneck Approach for Markov Model Construction",
+    "snippet": "Jun 10, 2024 — In this work, we demonstrate a robust protocol for MSM construction through the use of an information bottleneck approach called state ... Read more",
+    "host_name": "pubs.acs.org",
+    "rank": 0,
+    "date": "Jun 10, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2404.02856v1",
+    "name": "An Information Bottleneck Approach for Markov Model",
+    "snippet": "Apr 3, 2024 — This work introduces a continuous embedding approach for molecular conformations using the state predictive information bottleneck (SPIB), a ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "Apr 3, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1099-4300/21/10/976",
+    "name": "Markov Information Bottleneck to Improve Information Flow",
+    "snippet": "by T Tang Nguyen · 2019 · Cited by 19 — Markov bottlenecks cannot simultaneously achieve their information optimality in a non-collapse MIB, and thus devise an optimality compromise.",
+    "host_name": "www.mdpi.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s44443-026-00531-x",
+    "name": "Causal Semantics Refinement Model for Event Causality",
+    "snippet": "by R Zhao · 2026 — We have designed a causal information training strategy driven by information bottlenecks . This strategy guides the model to learn more ... Read more",
+    "host_name": "link.springer.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S1574013725000784",
+    "name": "Information-theoretic reduction of Markov chains",
+    "snippet": "by BC Geiger · 2026 · Cited by 3 — We survey information -theoretic approaches to the reduction of Markov chains . Markov chains have an extremely large state space, thus preventing us to fully ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://researchwith.njit.edu/en/publications/markov-information-bottleneck-to-improve-information-flow-in-stoc",
+    "name": "Markov information bottleneck to improve information flow",
+    "snippet": "by TT Nguyen · 2019 · Cited by 19 — Markov bottlenecks cannot simultaneously achieve their information optimality in a non-collapse MIB, and thus devise an optimality compromise.",
+    "host_name": "researchwith.njit.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevLett.132.197201",
+    "name": "Machine-Learning Optimized Measurements of Chaotic",
+    "snippet": "by KA Murphy · 2024 · Cited by 18 — We establish an equivalence between a perfect measurement and a variant of the information bottleneck . As a consequence, we can employ machine learning to ... Read more",
+    "host_name": "link.aps.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/326264339_Causal_Deep_Information_Bottleneck",
+    "name": "(PDF) Causal Deep Information Bottleneck",
+    "snippet": "In this work, we propose estimating the causal effect from the perspective of the information bottleneck principle by explicitly identifying a low-dimensional. ...",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

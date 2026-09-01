@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/abs/cond-mat/9907176",
+    "name": "Computational Mechanics: Pattern and Prediction",
+    "snippet": "by CR Shalizi · 1999 · Cited by 782 — Computational mechanics, an approach to structural complexity, defines a process's causal states and gives a procedure for finding them.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://csc.ucdavis.edu/~dynlearn/dynlearn/pubs/ibcssrb.htm",
+    "name": "Information Bottlenecks, Causal States, and Statistical",
+    "snippet": "This brief note explains the connections between three approaches to this problem: the recently introduced information - bottleneck method, the computational ... Read more",
+    "host_name": "csc.ucdavis.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bactra.org/notebooks/computational-mechanics.html",
+    "name": "Computational Mechanics",
+    "snippet": "Jul 12, 1999 — This procedure identifies causal states , and also identifies the structure of connections or succession in causal states , and so automatically ... Read more",
+    "host_name": "bactra.org",
+    "rank": 2,
+    "date": "Jul 12, 1999",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.lesswrong.com/posts/X4R7vhLCuwGfGkRyg/what-is-computational-mechanics-an-explainer",
+    "name": "What is computational mechanics? An explainer",
+    "snippet": "Feb 23, 2026 — Computational mechanics is a formalism (originating with ε- machines / causal states ) for building minimal, maximally predictive models of ...",
+    "host_name": "www.lesswrong.com",
+    "rank": 3,
+    "date": "Feb 23, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/MachineLearning/comments/elmgsz/r_on_the_information_bottleneck_theory_of_deep",
+    "name": "[R] On the information bottleneck theory of deep learning",
+    "snippet": "the compression phase is causally related to the excellent generalization performance of deep networks; the compression phase occurs due to the ...",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eeb.msu.edu/news/the-puzzle-of-how-large-scale-order-emerges-in-complex-systems.aspx",
+    "name": "The Puzzle of How Large-Scale Order Emerges in Complex",
+    "snippet": "Jul 29, 2024 — Computational mechanics allows the web of interactions between a complex system's components to be reduced to the simplest description, called ... Read more",
+    "host_name": "eeb.msu.edu",
+    "rank": 5,
+    "date": "Jul 29, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevE.109.014132",
+    "name": "Machine learning at the mesoscale: A computation-dissipation",
+    "snippet": "by A Ingrosso · 2024 · Cited by 5 — Here we formulate and study a computation -dissipation bottleneck in mesoscopic systems used as input-output devices. Using both real data sets ... Read more",
+    "host_name": "link.aps.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.santafe.edu/research/results/working-papers/computational-mechanics-pattern-and-prediction-str",
+    "name": "Computational Mechanics: Pattern and Prediction",
+    "snippet": "Computational mechanics, an approach to structural complexity, defines a process's causal states and gives a procedure for finding them. Read more",
+    "host_name": "www.santafe.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/html/1412.2859v1",
+    "name": "Causal Rate-Distortion forInfinite-Order Markov Processes",
+    "snippet": "Aug 11, 2026 — Examples demonstrate that the resulting causal rate - distortion theory substantially improves current predictive rate - distortion analyses. Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "Aug 11, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s10208-021-09546-4",
+    "name": "Phase Transitions in Rate Distortion Theory and Deep Learning",
+    "snippet": "by P Grohs · 2023 · Cited by 17 — In this appendix, we establish a connection between rate distortion theory and approximation by neural networks.",
+    "host_name": "link.springer.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maxim.ece.illinois.edu/pubs/shafiee_raginsky_CDC16.pdf",
+    "name": "Sequential Empirical Coordination Under an Output",
+    "snippet": "by E Shafieepoorfard · Cited by 4 — Rate-dis tortion theory [1] is a branch of information theory concerned with fundamental limits of compressed representa- tions of stochastic processes subject ... Read more",
+    "host_name": "maxim.ece.illinois.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12025864",
+    "name": "Rate–Distortion–Perception Trade-Off in Information Theory",
+    "snippet": "by X Niu · 2025 · Cited by 23 — Traditional rate – distortion (RD) theory examines the trade-off between the average length of the compressed representation of a source and the ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Rate%E2%80%93distortion_theory",
+    "name": "Rate–distortion theory",
+    "snippet": "Rate–distortion theory is a major branch of information theory which provides the theoretical foundations for lossy data compression ;",
+    "host_name": "en.wikipedia.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v178/sefidgaran22a/sefidgaran22a.pdf",
+    "name": "Rate-Distortion Theoretic Generalization Bounds for",
+    "snippet": "by M Sefidgaran · 2022 · Cited by 37 — In this study, we prove novel generalization bounds through the lens of rate - distortion theory , and explicitly relate the concepts of mutual infor- mation, ... Read more 48 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dit.readthedocs.io/en/latest/rate_distortion.html",
+    "name": "Rate Distortion Theory — dit 1.5 documentation",
+    "snippet": "Rate-distortion theory [CT06] is a framework for studying optimal lossy compression. Given a distribution p ( x ) , we wish to find q ( x ^ | x ) which ... Read more",
+    "host_name": "dit.readthedocs.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://kiranvodrahalli.github.io/notes/rate-distortion_presentation.pdf",
+    "name": "Contents 1 Introduction",
+    "snippet": "In rate distortion theory , despite the independence of separate random variables, it is advantageous to represent a whole sequence at once. The second ... Read more 11 pages",
+    "host_name": "kiranvodrahalli.github.io",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

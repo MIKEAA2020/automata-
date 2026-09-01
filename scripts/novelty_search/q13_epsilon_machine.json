@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.researchgate.net/publication/13248757_Inferring_statistical_complexity",
+    "name": "(PDF) Inferring statistical complexity",
+    "snippet": "Jul 17, 2026 — Predictive - state and ( Crutchfield and Young 1989; complexity science merges histories into equivalence classes, the minimal predictive states ...",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "Jul 17, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://csc.ucdavis.edu/~cmg/compmech/pubs/cmppss.htm",
+    "name": "Computational Mechanics: Pattern and Prediction",
+    "snippet": "We show that the causal- state representation---an epsilon - machine ---is the minimal one consistent with accurate prediction .",
+    "host_name": "csc.ucdavis.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1704.04707v1",
+    "name": "Structure and Randomness of Continuous-time, Discrete",
+    "snippet": "Aug 11, 2026 — Young and Crutchfield identified statistical complexity C μ as the entropy of causal states [2] , which are the minimal sufficient statistics ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "Aug 11, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevE.95.051301",
+    "name": "Nearly maximally predictive features and their dimensions",
+    "snippet": "by SE Marzen · 2017 · Cited by 45 — The minimal such features are called causal states , their coding cost is the statistical complexity [10] , and the implied unifilar HMM is the - machine [10 ... Read more",
+    "host_name": "link.aps.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pypi.org/project/emic",
+    "name": "emic",
+    "snippet": "An epsilon-machine (ε-machine) is the minimal, optimal predictor of a stochastic process . Introduced by James Crutchfield and collaborators, ε-machines capture ... Read more",
+    "host_name": "pypi.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://danmackinlay.name/notebook/computational_mechanics.html",
+    "name": "Computational mechanics - Dan MacKinlay",
+    "snippet": "Dec 1, 2010 — The ε- machine is a probabilistic, minimal predictive automaton: states are equivalence classes of pasts, transitions are labeled by symbols.  ...",
+    "host_name": "danmackinlay.name",
+    "rank": 5,
+    "date": "Dec 1, 2010",
+    "favicon": ""
+  },
+  {
+    "url": "https://nicolas.brodu.net/common/recherche/publications/decisional_states.pdf",
+    "name": "Reconstruction of Epsilon-Machines in Predictive Frameworks",
+    "snippet": "by N Brodu · 2011 · Cited by 29 — This article introduces both a new algorithm for recon- structing epsilon - machines from data, as well as the de- cisional states .",
+    "host_name": "nicolas.brodu.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Computational-Mechanics%3A-Pattern-and-Prediction%2C-Shalizi-Crutchfield/009368accf9d7521a69f04cc3c3227c77622b035",
+    "name": "[PDF] Computational Mechanics: Pattern and Prediction",
+    "snippet": "It is shown that the causal- state representation—an ∈- machine —is the minimal one consistent with accurate prediction , and several results are established ...",
+    "host_name": "www.semanticscholar.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

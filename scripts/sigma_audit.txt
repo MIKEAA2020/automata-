@@ -1,0 +1,158 @@
+159:\lambda_i(\Sigma_\pi).
+178:alphabet, $|\Sigma|=1$, the shift-intertwining Hardy-space unitary of
+183:For $|\Sigma|>1$ the free monoid carries no shift of multiplicity one, the
+189:coordinates: $\RetKL(M)\ge\sum_{i\ge M}\lambda_i(\Sigma_p)$, where
+190:$\Sigma_p$ is the covariance of the predictive probability vectors, with no
+490:alphabet $\Sigma=\mathcal I\times\mathcal O$.  For the commitment regime, and
+1113:grounding & $\Sigma^*$, $\Sigma=\mathcal I\times\mathcal O$ & $\Sigma$ & total \\
+1581:\Sigma=\mathcal I\times\mathcal O
+1592:h:\Sigma^*\to\mathbb C
+1600:H_\delta:\ell^2(\Sigma^*)\to\ell^2(\Sigma^*)
+1607:$\ell^2(\Sigma^*)$.  Boundedness is not automatic: for general $h$ the vector
+1710:\sup_{w\in\Sigma^*}
+1726:0<\rho<\frac1{|\Sigma|}.
+1732:\frac{1}{1-|\Sigma|\rho}
+1745:\frac{1}{1-|\Sigma|\rho}
+1770:\sum_{v\in\Sigma^*}
+1774:$|\Sigma|^n$,
+1776:\sum_{v\in\Sigma^*}\rho^{|v|}
+1779:|\Sigma|^n\rho^n
+1781:\frac{1}{1-|\Sigma|\rho}.
+1787:\frac{\varepsilon}{1-|\Sigma|\rho}.
+1793:\frac{\varepsilon}{1-|\Sigma|\rho}.
+1816:$|h(u)|\le C\rho^{|u|}$ with $0<\rho<1/|\Sigma|$ define bounded Hankel-type
+2933:with $0<\rho<1/|\Sigma|$.  Then for every linear $M$-rank approximation
+2938:(1-|\Sigma|\rho)
+2948:\frac{1}{1-|\Sigma|\rho}
+2962:\frac{1}{1-|\Sigma|\rho}
+2969:\frac{1}{1-|\Sigma|\rho}
+3210:--- $H_\nu$, $\Sigma_\pi$, $N_\Lambda$ --- with different effective rank
+3565:\Sigma_\pi
+3587:$\Sigma_\pi$.
+3597:\lambda_i(\Sigma_\pi),
+3604:\Phi^{(1)}_{M-1}(\Sigma_\pi).
+3673:\Sigma_\pi=W+B.
+3685:\frac12\tr(\Sigma_\pi-B).
+3701:\lambda_i(\Sigma_\pi).
+3707:\frac12\tr(\Sigma_\pi)
+3711:\lambda_i(\Sigma_\pi)
+3715:\lambda_i(\Sigma_\pi).
+3725:\frac12\tr(\Sigma_\pi)
+3747:\frac12\tr(\Sigma_\pi)
+3763:\lambda_i(\Sigma_\pi).
+3790:$\Sigma_\pi$.  No tightness claim is made for full KL.
+3943:\operatorname{tr}(\Sigma_\pi-B_\phi)
+3958:\operatorname{tr}(\Sigma_\pi-B_\phi)
+4004:\Sigma_\pi
+4021:\operatorname{tr}(\Sigma_\pi-B_\phi)
+4045:\lambda_i(\Sigma_\pi)
+4056:\lambda_i(\Sigma_\pi)
+4084:\operatorname{tr}(\Sigma_\pi-B_\phi)
+4093:\lambda_i(\Sigma_\pi),
+4097:\operatorname{tr}(\Sigma_\pi-B_\phi)
+4100:\lambda_i(\Sigma_\pi).
+4120:\Sigma_p
+4128:\sum_{i\ge M}\lambda_i(\Sigma_p),
+4134:\sum_{i\ge M}\lambda_i(\Sigma_p).
+4137:hypothesis is used, and $\Sigma_p$ is the covariance of the predictive
+4212:The usual variance decomposition gives $\Sigma_p=W_\phi+B_\phi$ with
+4216:$\Sigma_p$ and $B_\phi$ are positive semidefinite and symmetric, so Ky Fan's
+4219:\tr(B_\phi)\ \le\ \sum_{i=1}^{M-1}\lambda_i(\Sigma_p).
+4223:\tr(W_\phi)=\tr(\Sigma_p)-\tr(B_\phi)\ \ge\ \sum_{i\ge M}\lambda_i(\Sigma_p),
+4241:\sum_{i\ge1}\lambda_i(\Sigma_p)=\tr(\Sigma_p)=2\varepsilon^2,
+4247:\frac{\RetKL(1)}{\sum_{i\ge1}\lambda_i(\Sigma_p)}
+4252:$\RetKL(M)\ge c\sum_{i\ge M}\lambda_i(\Sigma_p)$ for all instances.
+4259:\Sigma_p
+4300:Theorem~\ref{thm:global-kl-simplex} is stated in the covariance $\Sigma_p$ of
+4302:$\Sigma_\pi$ of Theorem~\ref{thm:local-full-kl} is a different object, computed
+4317:$\Sigma_F=I(\eta_{\bar p})^{1/2}\Sigma_\eta I(\eta_{\bar p})^{1/2}$ is one such
+4338:\Sigma_\eta=\sum_s\pi_s(\eta_s-\bar\eta)(\eta_s-\bar\eta)^{\!\top}.
+4342:\RetKL(M)\ \ge\ \frac{m_K}{2}\sum_{i\ge M}\lambda_i(\Sigma_\eta).
+4375:$\Sigma_\eta=W_\phi+B_\phi$ with $\rank(B_\phi)\le M-1$ and Ky Fan's principle
+4376:\cite{kyfan1951} give $\tr(W_\phi)\ge\sum_{i\ge M}\lambda_i(\Sigma_\eta)$,
+4400:Then, with $\Sigma_\pi$ the Fisher covariance of
+4405:\tr(\Sigma_\pi)=\Theta(\varepsilon),
+4407:\frac{\RetKL(1)}{\tr(\Sigma_\pi)}
+4447:\tr(\Sigma_\pi)
+4455:\tr(\Sigma_\pi)
+4468:and let $\Sigma_\eta$ be their $\pi$-covariance in that chart; for the
+4471:$\Sigma_F=I(\eta_{\bar p})^{1/2}\Sigma_\eta I(\eta_{\bar p})^{1/2}$.
+4475:\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\Sigma_\eta)
+4477:\RetKL(M)\ \ge\ c\sum_{i\ge M}\lambda_i(\Sigma_F)
+4517:\Sigma_\eta=L_\varepsilon^2\ \longrightarrow\ \infty
+4523:\frac{\RetKL(1)}{\lambda_1(\Sigma_\eta)}
+4534:Hence $\Sigma_F=\tfrac14L_\varepsilon^2\to\infty$ as well, and
+4535:$\RetKL(1)/\lambda_1(\Sigma_F)\le 4\log2/L_\varepsilon^2\to0$.  Weighting by the
+4547:\lambda_i(\Sigma_\eta)$ with $m_K=\inf_{\eta\in K}\lambda_{\min}(\nabla^2A(\eta))$
+4653:$\Sigma_p=W_\phi+B_\phi$, $1.7\times10^{-16}$ for the Ky Fan bound
+4655:composite conclusion $\RetKL(\phi)\ge\sum_{i\ge M}\lambda_i(\Sigma_p)$.  The
+4922:For finite $\mathcal O$, let $\Sigma_p^{x}$ denote the covariance of the
+4928:\sum_xp(x)\sum_{i\ge M}\lambda_i\bigl(\Sigma_p^{x}\bigr).
+5240:\Sigma_\pi^x=\sum_s\pi_s(y_s^x-\bar y^x)(y_s^x-\bar y^x)^{\!\top},
+5248:\frac12\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_\pi^x).
+5257:$\tfrac12\sum_{i\ge M}\lambda_i(\Sigma_\pi^x)$, the effective rank of the
+5266:$\Sigma_p^x$ their $\pi$-covariance on fiber $x$.  Then, globally and with no
+5271:\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_p^x),
+5294:\frac12\Bigl(\min_xm_{K}^{x}\Bigr)\sum_xp(x)\sum_{i\ge M}\lambda_i(\Sigma_\eta^x),
+5296:where $\Sigma_\eta^x$ is the $\pi$-covariance of the natural parameters on
+7055:r_u:\Sigma^*\to\{0,1\}.
+7061:\{w\in\Sigma^*:r_u(w)=1\}.
+7352:Let $H$ be a compact Hankel operator on $\ell^2(\Sigma^*)$, and let $P_N$
+7423:We treat the scalar case first.  Suppose $|\Sigma|=1$, so that
+7424:$\ell^2(\Sigma^*)\cong\ell^2(\mathbb N)$ carries a single unilateral shift $S$
+7427:$|\Sigma|>1$ see Theorem~\ref{thm:aak-multiletter} and
+7428:Remark~\ref{rem:aak-multialphabet-scope}: the free monoid $\Sigma^*$ does
+7431:$U:\ell^2(\Sigma^*)\to H^2$ such that
+7549:Let $|\Sigma|>1$.  The free monoid $\Sigma^*$ carries $|\Sigma|$ prefix
+7550:shifts $S_a$, $a\in\Sigma$, jointly an isometry of multiplicity $|\Sigma|$,
+7555:$U:\ell^2(\Sigma^*)\to\mathcal K$ intertwining the respective shift systems and
+7558:\{B:\operatorname{rank}B\le M,\ B\ \text{Hankel on }\ell^2(\Sigma^*)\}
+7585:uses the joint alphabet $\Sigma=\mathcal I\times\mathcal O$, for which
+7586:$|\Sigma|>1$ in every nondegenerate case, the scalar AAK theorem should not be
+7596:For $|\Sigma|>1$, characterize intrinsically -- in terms of the channel $\nu$
+7597:-- when the Hankel operator on $\ell^2(\Sigma^*)$ admits a structure-preserving
+7601:Theorem~\ref{thm:aak-equality} settles the scalar case $|\Sigma|=1$
+7629:scalar shift model of Theorem~\ref{thm:aak-equality}, i.e.\ $|\Sigma|=1$.  In
+7630:the multi-letter setting $|\Sigma|>1$, Theorem~\ref{thm:aak-multiletter}
+7669:with $0<\gamma<1/|\Sigma|$ defines a bounded Hankel-type operator by the
+8955:\lambda_i(\Sigma_\pi),
+8957:not $\sum_{i>M}\lambda_i(\Sigma_\pi)$.  A check using the latter does
+9065:$\Sigma_\pi\succeq0$ be the stationary Fisher covariance.  For $M\ge1$,
+9070:\Phi^{(1)}_{M-1}(\Sigma_\pi)
+9074:\lambda_i(\Sigma_\pi).
+9088:\Sigma_\pi=\sum_s\pi_s(y_s-\bar y)\otimes(y_s-\bar y).
+9112:\frac12\tr(\Sigma_\pi-B),
+9114:the last step being the ANOVA identity $\Sigma_\pi=W+B$ with $W\succeq0$ the
+9117:Because $\Sigma_\pi-B=W\succeq0$, its trace coincides with its nuclear norm,
+9119:\tr(\Sigma_\pi-B)=\norm{\Sigma_\pi-B}_{\Sp{1}},
+9124:\norm{\Sigma_\pi-B}_{\Sp{1}}
+9126:\min_{\rank P\le M-1}\norm{\Sigma_\pi-P}_{\Sp{1}}
+9128:\sum_{i>M-1}\lambda_i(\Sigma_\pi)
+9130:\sum_{i\ge M}\lambda_i(\Sigma_\pi).
+9132:Hence $E\ge\frac12\sum_{i\ge M}\lambda_i(\Sigma_\pi)$, and taking the infimum
+9134:and $\Phi^{(1)}_{M-1}(\Sigma_\pi)=\sum_{i\ge M}\lambda_i(\Sigma_\pi)$.
+9180:Let $\Lambda\subseteq\Sigma^*$ be a language.  Its Boolean Hankel matrix is
+9261:\Sigma_\pi,
+10007:\sum_{i\ge M}\lambda_i(\Sigma_\pi)
+10009:\Phi^{(1)}_{M-1}(\Sigma_\pi).
+10391:\lambda_i(\Sigma_\pi),
+11175:\Sigma_\pi
+11818:The ANOVA decomposition gives $\Sigma_\pi=W_{\mathcal C}+B_{\mathcal C}$ with
+11821:0\preceq B_{\mathcal C}\preceq\Sigma_\pi .
+11827:\tr(B_{\mathcal C})\ \le\ \KyF{\Sigma_\pi}{M-1}.
+11829:The nonzero spectra of $\Sigma_\pi$ and $G$ coincide, since $G$ is the Gram
+11831:$\KyF{\Sigma_\pi}{M-1}=\KyF{G}{M-1}$ and
+11948:feature covariance $\Sigma_\pi$ has the same nonzero spectrum and may be used
+11949:for the free term, but pinching $\Sigma_\pi$ by feature-coordinate blocks is
+12239:\lambda_i(\Sigma_\pi)
+12242:\Phi^{(1)}_{M-1}(\Sigma_\pi),
+12319:r_x:\Sigma^*\to\{0,1\}.
+12323:\supp r_x=\{w\in\Sigma^*:r_x(w)=1\}.
+12592:operators $H_\nu$, $\Sigma_\pi$, $N_\Lambda$, the rank budgets $M$, $M-1$, $M$
+12815:rank in $\ell^2(\Sigma^*)$, not about a right congruence on input histories;
+16038:\lambda_i(\Sigma_\pi)
+16041:\Phi^{(1)}_{M-1}(\Sigma_\pi).
+16108:\lambda_M(\Sigma_\pi)
+16913:for $|\Sigma|>1$ the equality $\DHankstr(M)=\sigma_{M+1}(H_\nu)$ is
+16969:& grounding & Hankel-restricted, $|\Sigma|=1$ & worst case, all histories
+17131:\lambda_i(\Sigma_\pi).

@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://cstheory.stackexchange.com/questions/36992/hysteresis-in-finite-automata",
+    "name": "Hysteresis in finite automata",
+    "snippet": "Nov 16, 2016 — But: The Nerode index is defined rather abstractly, as the number of equivalence classes of a language with respect to the Nerode equivalence ... Read more",
+    "host_name": "cstheory.stackexchange.com",
+    "rank": 0,
+    "date": "Nov 16, 2016",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2507.15316",
+    "name": "A Myhill-Nerode Type Characterization of 2detLIN",
+    "snippet": "by B Nagy · 2025 · Cited by 2 — It is a kind of analogous property of the deterministic finite automata that when it does the computation on an input w, then the initial part ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0304397523000221",
+    "name": "Ordering regular languages and automata: Complexity",
+    "snippet": "by G D'Agostino · 2023 · Cited by 14 — The (classic) Myhill - Nerode Theorem, among many other things, establishes a bijection between equivalence classes of ≡ L and the states of the ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem",
+    "name": "Myhill–Nerode theorem",
+    "snippet": "In the theory of formal languages, the Myhill–Nerode theorem provides a necessary and sufficient condition for a language to be regular. Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.computationalcomplexity.org/2013/09/myhill-nerode-versus-pumping-lemma.html",
+    "name": "Myhill Nerode versus Pumping Lemma",
+    "snippet": "Sep 6, 2013 — The Myhill – Nerode theorem states that L is regular if and only if RL has a finite number of equivalence classes, and moreover that the number of ... Read more",
+    "host_name": "blog.computationalcomplexity.org",
+    "rank": 4,
+    "date": "Sep 6, 2013",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.STACS.2024.26",
+    "name": "A Myhill-Nerode Theorem for Generalized Automata  - DROPS",
+    "snippet": "by N Cotumaccio · 2024 · Cited by 10 — The model of generalized automata , introduced by Eilenberg in 1974, allows representing a regular language more concisely than conventional ... Read more",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://userpages.umbc.edu/~squire/cs451_l12.html",
+    "name": "CMSC 451 Lecture 12, Myhill-Nerode minimization",
+    "snippet": "The Myhill - Nerode Theorem says the following three statements are equivalent: 1) The set L, a subset of Sigma star, is accepted by a DFA. (We know this means L ... Read more",
+    "host_name": "userpages.umbc.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drmaciver.com/2016/05/myhill-nerode-theorem",
+    "name": "The Myhill–Nerode theorem and the Minimal Deterministic",
+    "snippet": "May 28, 2016 — A gentle tour of the Myhill-Nerode theorem and why it gives you the minimal deterministic automaton for free.",
+    "host_name": "drmaciver.com",
+    "rank": 7,
+    "date": "May 28, 2016",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/851540339/Example-Project-4-2",
+    "name": "Myhill-Nerode Theorem Explained | PDF | Automata Theory",
+    "snippet": "The Myhill - Nerode theorem ensures that these patterns are regular and can be matched efficiently using finite state automata . 7. Formal Grammar Analysis The ... Read more",
+    "host_name": "www.scribd.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

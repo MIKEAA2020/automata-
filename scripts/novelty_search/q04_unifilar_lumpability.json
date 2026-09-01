@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevLett.127.078301",
+    "name": "State Aggregations in Markov Chains and Block Models of",
+    "snippet": "by M Faccin · 2021 · Cited by 12 — We consider state - aggregation schemes for Markov chains from an information-theoretic perspective. Specifically, we consider aggregating the ... Read more",
+    "host_name": "link.aps.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/29616761_On_weak_lumpability_in_Markov_chains",
+    "name": "(PDF) On weak lumpability in Markov chains",
+    "snippet": "Jul 15, 2026 — We analyse the conditions under which the aggregated process constructed from an homogeneous Markov chain over a given partition of the state ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "Jul 15, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://ejournals.eu/en/journal_article_files/full_text/018eced5-a0a5-7354-8f4b-71f3839774e9/download",
+    "name": "Markov State Space Aggregation via the Information",
+    "snippet": "by BC Geiger · Cited by 3 — The state space aggregation problem can be sub-optimally solved by using the information bottleneck method. Keywords: Markov chains , state space aggregation , ... Read more",
+    "host_name": "ejournals.eu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.lib.purdue.edu/dissertations/AAI3263659",
+    "name": "Lumpability approximation methods for Markov models",
+    "snippet": "by L Zhang · 2006 · Cited by 2 — In this thesis, the theory of lumpability (strong lumpability and weak lumpability ) of irreducible finite Markov chains was studied.",
+    "host_name": "docs.lib.purdue.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5869541",
+    "name": "Aggregation of Markov flows I: theory - PMC - NIH",
+    "snippet": "by RS MacKay · 2018 · Cited by 27 — The idea of aggregation of a Markov process is to cluster selected nodes into groups and devise an effective Markov process between the groups ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-04840226v1/file/Springer___Computational_Statistic___KL-3.pdf",
+    "name": "Deterministic and Heuristic Criteria for Optimized Markov",
+    "snippet": "by L Capocchi · 2024 · Cited by 1 — This paper investigates new Markov chain ag- gregation algorithms defined by deterministic (mathematically proven) and heuristic criteria using ... Read more 29 pages",
+    "host_name": "hal.science",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://deepblue.lib.umich.edu/items/42f263b1-dbaf-44da-a199-529d40ba591c",
+    "name": "Aggregation in large-scale Markov chains.",
+    "snippet": "by DS Kim · 1990 · Cited by 1 — In this thesis certain probability transition matrix structures, encountered in the Markov chain aggregation /disaggregation literature, are identified. Read more",
+    "host_name": "deepblue.lib.umich.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Lumpability-and-time-reversibility-in-the-method-Sumita-Rieders/36160a6bd8710e924befee89ca3b683e78421dae",
+    "name": "Lumpability and time reversibility in the aggregation",
+    "snippet": "It is shown that ordinary lumpability eliminates the aggregation procedure and a new algorithm is developed which produces the ergodic probability vector in ...",
+    "host_name": "www.semanticscholar.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ora.ox.ac.uk/objects/uuid:871a6557-b0d3-49c3-b7be-6ced8bad84db/files/s5138jf59n",
+    "name": "Lumpability for Uncertain Continuous-Time Markov Chains",
+    "snippet": "by L Cardelli · 2021 · Cited by 12 — We develop a notion of lumpability which identifies a partition of states where each block preserves the reachable set of the sum of its probabilities, ... Read more",
+    "host_name": "ora.ox.ac.uk",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

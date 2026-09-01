@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://proceedings.mlr.press/v201/chewi23b/chewi23b.pdf",
+    "name": "Fisher information lower bounds for sampling",
+    "snippet": "by S Chewi · 2023 · Cited by 21 — Abstract. We prove two lower bounds for the complexity of non-log-concave sampling within the framework of Balasubramanian et al. (2022), who introduced the ... Read more",
+    "host_name": "proceedings.mlr.press",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence",
+    "name": "Kullback–Leibler divergence",
+    "snippet": "A simple interpretation of the KL divergence of P from Q is the expected excess surprisal from using the approximation Q instead of P when the actual is P. Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mathoverflow.net/questions/36130/using-fisher-information-to-bound-kl-divergence",
+    "name": "Using Fisher Information to bound KL divergence",
+    "snippet": "Aug 19, 2010 — Is it possible to use Fisher Information at p to get a useful upper bound on KL(q,p)? KL(q,p) is known as Kullback-Liebler divergence and is defined ...",
+    "host_name": "mathoverflow.net",
+    "rank": 2,
+    "date": "Aug 19, 2010",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2303.07673",
+    "name": "kullback-leibler divergence and akaike information criterion",
+    "snippet": "by CD Fuh · 2023 · Cited by 12 — Moreover, we show that Kullback - Leibler divergence can be locally approximated by a quadratic function determined by the Fisher information . Read more",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/fisher-information-matrices",
+    "name": "Fisher Information Matrix Insights",
+    "snippet": "Jul 25, 2025 — Fisher Information Matrices are fundamental constructs in statistics that quantify the amount of information data carries about parameters, ... Read more",
+    "host_name": "www.emergentmind.com",
+    "rank": 4,
+    "date": "Jul 25, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0166218X14004211",
+    "name": "Fisher information distance: A geometrical reading",
+    "snippet": "by SIR Costa · 2015 · Cited by 203 — This paper presents a geometrical approach to the Fisher distance, which is a measure of dissimilarity between two probability distribution ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://infoscience.epfl.ch/bitstreams/5c148a58-c173-469d-a2de-74442a44db23/download",
+    "name": "lower and upper bounds for approximation of the kullback-leibler",
+    "snippet": "by JL Durrieu · 2012 · Cited by 134 — We propose lower and upper bounds for the KL divergence, which lead to a new approximation and interesting insights into previously proposed ap- proximations. Read more",
+    "host_name": "infoscience.epfl.ch",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/2600747_Relations_between_Kullback-Leibler_distance_and_Fisher_information",
+    "name": "(PDF) Relations between Kullback-Leibler distance and",
+    "snippet": "Aug 14, 2015 — This study focuses on the relationship betweenestimation precision ( Fisher information ) and model selection( Kullback — Leibler or KL information). Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "Aug 14, 2015",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2207.05495v1",
+    "name": "An Improved Algorithm for Finding the Shortest Synchronizing Words",
+    "snippet": "Abstract. A synchronizing word of a deterministic finite complete automaton is a word whose action maps every state to a single one.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2017arXiv170804864R/abstract",
+    "name": "Synchronizing automata and the language of minimal reset words",
+    "snippet": "We study a connection between synchronizing automata and its set $M$ of minimal reset words, i.e., such that no proper factor is a reset word.",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scispace.com/pdf/synchronizing-automata-and-the-cerny-conjecture-1lprq8wxe3.pdf",
+    "name": "[PDF] Synchronizing Automata and the Černý Conjecture - SciSpace",
+    "snippet": "Again, the problem of establishing a precise bound for the minimum length of reset words for synchronizing automata in this class still remains open.",
+    "host_name": "scispace.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/31a2c6ef9b5a309bd623fe52dc5d9ad802d9f5c9",
+    "name": "Recognizing Synchronizing Automata with Finitely Many Minimal",
+    "snippet": "Here it is proved that recognizing synchronizing automata whose language of synchronizing words is finitely generated as a two-sided ideal in Σ*.",
+    "host_name": "www.semanticscholar.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Synchronizing_word",
+    "name": "Synchronizing word - Wikipedia",
+    "snippet": "In computer science, more precisely, in the theory of deterministic finite automata (DFA), a synchronizing word or reset sequence is a word in the input ...",
+    "host_name": "en.wikipedia.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://people.irisa.fr/Nicolas.Markey/PDF/Papers/csr2010-Mar.pdf",
+    "name": "[PDF] Complexity of Problems Concerning Carefully Synchronizing Words",
+    "snippet": "Given a DFA A and an integer L, is there a word of length ≤ L resetting the automaton A ? This problem remains NP-complete even if the input automaton has a 2- ...",
+    "host_name": "people.irisa.fr",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/51938676_Modifying_the_Upper_Bound_on_the_Length_of_Minimal_Synchronizing_Word",
+    "name": "Modifying the Upper Bound on the Length of Minimal Synchronizing",
+    "snippet": "An implemented algorithm for finding synchronizing word with restricted upper bound is described. The work presents the distribution of all synchronizing ...",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.hal.science/tel-03157297v1/document",
+    "name": "[PDF] Synchronizing automata and coding theory - HAL theses",
+    "snippet": "Mar 3, 2021 · The minimum length of a synchronizing word for A is called the reset threshold of A and is denoted rt(A). Example 1. Figure 2.1 provides an ...",
+    "host_name": "theses.hal.science",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://upcommons.upc.edu/bitstreams/483a6ac3-a5d5-4834-8c92-50c734a203fe/download",
+    "name": "[PDF] Short Synchronizing Words for Random Automata - UPCommons",
+    "snippet": "([KKS13]) A random automaton of size n has a reset word of length Op(. √ n), where Op is a big-O in probability. Our main result is a proof of this ...",
+    "host_name": "upcommons.upc.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://u.cs.biu.ac.il/~trakhta/readme.html",
+    "name": "TESTAS",
+    "snippet": "A synchronizing word of a deterministic automaton is a word in the alphabet of colors (considered as letters) of its edges that maps the automaton to a single ...",
+    "host_name": "u.cs.biu.ac.il",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

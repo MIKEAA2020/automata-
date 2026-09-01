@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/html/2404.07277v1",
+    "name": "Bounds and guarantees for learning and entanglement",
+    "snippet": "Apr 10, 2024 — This technique has been applied to establish lower bounds on the error of learning algorithms involving sparse vectors (e.g. compressed sensing ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "Apr 10, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v217/kruger23a/kruger23a.pdf",
+    "name": "Lower Bounds for Active Automata Learning",
+    "snippet": "by L Kruger · 2023 · Cited by 7 — We study lower bounds for the number of output and equivalence queries required for active learning of finite state machines, with a focus on L#, a new  ... 24 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12919221",
+    "name": "Universal Approximation Theorems for Dynamical Systems",
+    "snippet": "by Á Ságodi · 2026 · Cited by 1 — Universal approximation results provide rigorous guarantees about the expressive capacity of neural networks. ories fail to address the very dynamical regimes ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.stat.berkeley.edu/~bartlett/publications/pubs-93_bib.html",
+    "name": "Peter Bartlett's Publications (1993-2024)",
+    "snippet": "Our method provides upper bounds without the need to construct a learning algorithm; the lower bounds provide explicit optimal strategies for the adversary.}, ...",
+    "host_name": "www.stat.berkeley.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/chapter/10.1007/978-3-031-98685-7_5",
+    "name": "Automata Learning from Preference and Equivalence Queries",
+    "snippet": "by E Hsiung · 2025 · Cited by 1 — Remap is the first exact learner with formal guarantees of minimalism, correctness, and query complexity. By using unificationFootnote",
+    "host_name": "link.springer.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/full/10.1145/3605360",
+    "name": "Benchmarking Combinations of Learning and Testing",
+    "snippet": "by BK Aichernig · 2024 · Cited by 24 — Automata learning enables model-based analysis of black-box systems by automatically constructing models from system observations, which are often collected ...",
+    "host_name": "dl.acm.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://borjaballe.github.io/slides/icgi16.pdf",
+    "name": "Theoretical Guarantees for Learning Weighted Automata",
+    "snippet": "The minimum consistent dfa problem cannot be approximated within any polynomial. Journal of the ACM (JACM), 40(1):95–142. Quattoni, A., Balle ... Read more",
+    "host_name": "borjaballe.github.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.jeremymmcmahan.com/Research",
+    "name": "Research",
+    "snippet": "Matching lower bounds imply our approximation guarantees are optimal so long as P ≠NP. The generality of our approach results in answers to several long ... Read more",
+    "host_name": "www.jeremymmcmahan.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

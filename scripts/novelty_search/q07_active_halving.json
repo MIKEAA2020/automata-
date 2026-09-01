@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://proceedings.mlr.press/v247/vasilis24a/vasilis24a.pdf",
+    "name": "Active Learning with Simple Questions",
+    "snippet": "by K Vasilis · 2024 · Cited by 4 — If there is a self-directed learner A with mistake bound M = M (A, S, h∗) that labels S, then there is an active learner A′ that makes. O( M log n) queries ... Read more 35 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2602.16427v2",
+    "name": "Formalized Run-Time Analysis of Active Learning",
+    "snippet": "Jul 20, 2026 — Abstract. The objective of automata learning is to reconstruct the implementation of a hidden automaton , to which only a teacher has access. Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "Jul 20, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.academia.edu/31421181/Mistake_Bound_Model_Halving_Algorithm_Linear_Classifiers",
+    "name": "Mistake Bound Model, Halving Algorithm, Linear Classifiers",
+    "snippet": "The findings demonstrate that the Halving algorithm achieves mistake bounds proportional to the logarithm of the hypothesis space size for finite concept ...",
+    "host_name": "www.academia.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://machine-learning-upenn.github.io/assets/notes/Lec23.pdf",
+    "name": "Lecture 23: Online Learning",
+    "snippet": "Apr 11, 2023 — The Halving algorithm enjoys the mistake bound . MHalving(F) ≤ log (|F|). Proof. Observe that whenever the algorithm makes an error we have ... Read more 6 pages",
+    "host_name": "machine-learning-upenn.github.io",
+    "rank": 3,
+    "date": "Apr 11, 2023",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.schapire.net/papers/typical-automata.pdf",
+    "name": "Efficient Learning of Typical Finite Automata from Random",
+    "snippet": "by Y Freund · 1997 · Cited by 106 — This paper describes new and efficient algorithms for learning deter- ministic finite automata . mistake - bound models. actively learning finite automata . the ...",
+    "host_name": "www.schapire.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cs.princeton.edu/courses/archive/spring19/cos511/scribe_notes/0401.pdf",
+    "name": "1 Recap 2 Online Learning vs. PAC Learning",
+    "snippet": "Apr 1, 2019 — By the nature of the halving algorithm , when the learner makes one mistake , the number of surviving experts is reduced at least by half,",
+    "host_name": "www.cs.princeton.edu",
+    "rank": 5,
+    "date": "Apr 1, 2019",
+    "favicon": ""
+  },
+  {
+    "url": "https://par.nsf.gov/servlets/purl/10435409",
+    "name": "An Improved Online Reduction from PAC Learning to",
+    "snippet": "by L Gretta · 2023 · Cited by 1 — The mistake - bound model describes online learning algorithms , which are given a series of examples that the learner must classify as it receives.",
+    "host_name": "par.nsf.gov",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/wcventure/Active-Automata-Learning",
+    "name": "A Quick Survey of Active Automata Learning",
+    "snippet": "This is a survey on active automata learning . Automata learning , or model learning , aims to construct black-box state diagram models of software and ... Read more",
+    "host_name": "github.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

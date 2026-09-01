@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/optimal-approximate-minimization-of-oneletter-weighted-finite-automata/9733CA9F3079F9186103F8515DE86D96",
+    "name": "Optimal approximate minimization of one-letter weighted finite",
+    "snippet": "Nov 8, 2024 · In this section, we introduce the theory of optimal approximation for Hankel operators and complex functions known as AAK theory (Adamyan et al.",
+    "host_name": "www.cambridge.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://claralacroce.github.io/static/LacroceClara_PhDthesis.pdf",
+    "name": "[PDF] The approximate minimization problem of weighted finite automata",
+    "snippet": "We reformulate the problem in terms of low-rank approximation of infinite Hankel matrices and apply Adamyan-Arov-Krein (AAK) approximation theory to solve it.",
+    "host_name": "claralacroce.github.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ICALP.2021.118",
+    "name": "Optimal Spectral-Norm Approximate Minimization of Weighted Finite",
+    "snippet": "This work is grounded in Adamyan-Arov-Krein approximation theory, a remarkable collection of results on the approximation of Hankel operators.",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv210206860B/abstract",
+    "name": "Optimal Spectral-Norm Approximate Minimization of Weighted Finite",
+    "snippet": "This work is grounded in Adamyan-Arov-Krein Approximation theory, a remarkable collection of results on the approximation of Hankel operators.",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pure.iiasa.ac.at/id/file/229659",
+    "name": "[PDF] A Tutorial on Hankel-Norm Approximations | IIASA PURE",
+    "snippet": "Now let us consider the Hankel-norm approximation, that is, approximating rc by re of rank k < n. The main result of Adamjan, Arov and Krein (1971) is that inf ...",
+    "host_name": "pure.iiasa.ac.at",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://escholarship.mcgill.ca/concern/theses/08612t777",
+    "name": "Thesis | The approximate minimization problem of weighted finite",
+    "snippet": "Dec 12, 2022 · In this thesis, we leverage classical results from the theory of Hankel operators to tackle the approximate minimization problem and its ...",
+    "host_name": "escholarship.mcgill.ca",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2306.00135",
+    "name": "[PDF] Optimal Approximate Minimization of One-Letter Weighted Finite",
+    "snippet": "May 31, 2023 · In this section, we introduce the theory of optimal approximation for Hankel operators and complex functions known as AAK theory (Adamyan et al.",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/BF01192150",
+    "name": "Optimal Hankel norm approximation for the Pritchard-Salamon class",
+    "snippet": "The optimal Hankel norm approximation problem is solved under the assumptions that the system Σ(A, B, C) is an exponentially stable, regular Pritchard.",
+    "host_name": "link.springer.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://conservancy.umn.edu/bitstreams/27d2f688-7c51-4c24-b59f-f9720dc2183c/download",
+    "name": "[PDF] approximation of hankel operators: - truncation error in an h* design",
+    "snippet": "such that the L norm [IG Ĝll is minimized. One of the Adamyan-Arov-Krein theorems gives the solution in terms of the Hankel operator HG : H² → L² ✪ H2.",
+    "host_name": "conservancy.umn.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mathnet.ru/eng/sm3284",
+    "name": "V. M. Adamyan, D. Z. Arov, M. G. Krein, “Analytic  - Math-Net.Ru",
+    "snippet": "Abstract: This article is a study of infinite Hankel matrices and approximation problems connected with them. Bibliography: 22 titles. Received: 15.09.1970.",
+    "host_name": "www.mathnet.ru",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

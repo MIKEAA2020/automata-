@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://arxiv.org/html/cs/0411014v4",
+    "name": "Rate Distortion and Denoising of Individual Data Using",
+    "snippet": "I Introduction. Rate distortion theory analyzes the transmission and storage of information at insufficient bit rates. The aim is to minimize the resulting ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/228922827_Algorithmic_rate-distortion_theory",
+    "name": "(PDF) Algorithmic rate-distortion theory",
+    "snippet": "Jan 18, 2026 — We propose and develop rate-distortion theory in the Kolmogorov complexity setting. This gives the ultimate limits of lossy compression of ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "Jan 18, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://homepages.cwi.nl/~paulv/papers/ccc06.pdf",
+    "name": "Algorithmic Rate-Distortion Theory",
+    "snippet": "by N Vereshchagin · 2005 · Cited by 11 — We propose and develop rate-distortion theory in the Kolmogorov complexity setting. This gives the ultimate limits of lossy compression of ... Read more 17 pages",
+    "host_name": "homepages.cwi.nl",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://epubs.siam.org/doi/10.1137/0806023",
+    "name": "An Interior Trust Region Approach for Nonlinear Minimization",
+    "snippet": "by TF Coleman · 1996 · Cited by 4667 — Decoding-Energy- Rate-Distortion Optimization for Video Coding. IEEE Transactions on Circuits and Systems for Video Technology, Vol. 29, No. 1 | 1 Jan 2019. Read more",
+    "host_name": "epubs.siam.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sarahmarzen.com/uploads/2/5/5/9/25590538/siamchapter_discrete_nat_imgs.pdf",
+    "name": "Neural network coding of natural images with applications",
+    "snippet": "by CJ Hillar · Cited by 5 — Even given this theory , rate-distortion functions are hard to compute when the input is a continuous variable. Naive implementation of the iteration (17) would ... Read more 19 pages",
+    "host_name": "www.sarahmarzen.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://royalsocietypublishing.org/rsfs/article/15/5/20240062/364116/Resource-rational-reinforcement-learning-and",
+    "name": "Resource-rational reinforcement learning and sensorimotor",
+    "snippet": "Dec 12, 2025 — The rate-distortion theorem does extend to stationary, ergodic processes. However, memoryful processes have much harder-to-calculate objectives ... Read more",
+    "host_name": "royalsocietypublishing.org",
+    "rank": 5,
+    "date": "Dec 12, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1568494617304799",
+    "name": "Convergence analysis of BP neural networks via sparse",
+    "snippet": "by J Wang · 2017 · Cited by 61 — Ji et al. A sparse-response deep belief network based on rate distortion theory . Pattern Recogn. (2014). N. Ji et al. Enhancing performance of restricted ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.hutter1.net/dagstuhl/kcdagabs.pdf",
+    "name": "Kolmogorov Complexity and Applications - of Marcus Hutter",
+    "snippet": "by M Hutter · Cited by 1 — We propose and develop rate-distortion theory in the Kolmogorov complexity setting. ... using a small program incorporating an approximation algorithm that ... Read more",
+    "host_name": "www.hutter1.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://human-factors.arc.nasa.gov/publications/Liu-2006-ieeetip-15-1763.pdf",
+    "name": "JPEG2000 Encoding With Perceptual Distortion Control",
+    "snippet": "by Z Liu · 2006 · Cited by 204 — In this work, we take a dif- ferent perspective to this rate-distortion optimization problem. The goal is to reach the lowest bit rate for a desired percep ... Read more",
+    "host_name": "human-factors.arc.nasa.gov",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

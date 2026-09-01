@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.nationalacademies.org/read/27970/chapter/4",
+    "name": "Read \"Machine Learning for Safety-Critical Applications",
+    "snippet": "Machine Learning for Safety -Critical Applications: deep learning has reduced the error rate from 26 percent to less than 3 percent.",
+    "host_name": "www.nationalacademies.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2504-4990/2/4/31",
+    "name": "Challenges of Machine Learning Applied to Safety-Critical",
+    "snippet": "by A Pereira · 2020 · Cited by 128 — Machine Learning (ML) is increasingly applied for the control of safety -critical Cyber-Physical Systems (CPS) in application areas that cannot easily be ...",
+    "host_name": "www.mdpi.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2023.1132580/full",
+    "name": "Addressing uncertainty in the safety assurance of machine-",
+    "snippet": "by S Burton · 2023 · Cited by 79 — the authors discussed the notion of the semantic gap and its impact on the safety assurance of ML-based autonomous systems,",
+    "host_name": "www.frontiersin.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0925753523003053",
+    "name": "Machine learning and deep learning for safety applications",
+    "snippet": "by L Leoni · 2024 · Cited by 58 — This paper investigates ML and DL applications for safety purposes. Machine Learning (ML) All the individual review studies allow defining research gaps , ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://course.mlsafety.org/about",
+    "name": "About | Intro to ML Safety",
+    "snippet": "Introduction to ML Safety . ML systems are rapidly increasing in size, are acquiring new capabilities, and are increasingly deployed in high-stakes settings. Read more",
+    "host_name": "course.mlsafety.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/320567319_Machine_Learning_Safety_An_Overview",
+    "name": "(PDF) Machine Learning Safety: An Overview",
+    "snippet": "The benefits of machine learning include efficiency improvement, reduced costs , improved decision-making, and increased innovation to study the future of risk ...",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2412.06869v1",
+    "name": "Safety Monitoring of Machine Learning Perception Functions",
+    "snippet": "Dec 9, 2024 — This paper focuses on safety mechanisms for critical physical systems relying on ML to process sensor signals.",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "Dec 9, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13416633",
+    "name": "The backfiring effect of weak AI safety regulation - PMC",
+    "snippet": "by B Laufer · 2026 · Cited by 7 — The work demonstrates an application of game theory to reasoning about incentives in AI development and the possible effects of alternative regulatory ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

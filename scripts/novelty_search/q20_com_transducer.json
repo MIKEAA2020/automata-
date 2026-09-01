@@ -1,0 +1,65 @@
+[
+  {
+    "url": "https://userpages.umbc.edu/~squire/cs451_l12.html",
+    "name": "CMSC 451 Lecture 12, Myhill-Nerode minimization",
+    "snippet": "The Myhill - Nerode Theorem says the following three statements are equivalent: 1) The set L, a subset of Sigma star, is accepted by a DFA. (We know this means L ... Read more",
+    "host_name": "userpages.umbc.edu",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/60497944/My-Hill-Nerode-Theorem",
+    "name": "Myhill-Nerode Theorem Explained | PDF",
+    "snippet": "The Myhill - Nerode theorem states that a language is regular if and only if it has a finite index. It also discusses how nondeterministic finite automata (NFAs) ... Read more",
+    "host_name": "www.scribd.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/0902.1048v1",
+    "name": "On the average complexity of Moore's state minimization",
+    "snippet": "Starting from a partition of the set of states, of size n n , into two parts, successive refinements lead to a partition whose elements are the subsets of ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.geeksforgeeks.org/theory-of-computation/minimization-of-dfa-using-myhill-nerode-theorem",
+    "name": "Minimization of DFA using Myhill-Nerode Theorem",
+    "snippet": "Jul 23, 2025 — This theorem forms the core of efficient algorithms for DFA minimization . It helps in two main ways: Identifying whether a language is ... Read more",
+    "host_name": "www.geeksforgeeks.org",
+    "rank": 3,
+    "date": "Jul 23, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://cs.stackexchange.com/questions/89223/myhill-nerode-theorem-dfa-minimization",
+    "name": "Myhill-Nerode Theorem DFA Minimization",
+    "snippet": "Mar 12, 2018 — I am learning how to minimize a DFA. One helpful approach is the Myhill-Nerode Theorem, which explains:  Draw a table for all pairs of states (P,Q) ...",
+    "host_name": "cs.stackexchange.com",
+    "rank": 4,
+    "date": "Mar 12, 2018",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem",
+    "name": "Myhill–Nerode theorem",
+    "snippet": "In the theory of formal languages, the Myhill–Nerode theorem provides a necessary and sufficient condition for a language to be regular. Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://web.stanford.edu/class/archive/cs/cs103/cs103.1252/guide_to_myhill_nerode",
+    "name": "CS103 Guide to the Myhill-Nerode Theorem",
+    "snippet": "Dec 4, 2024 — The Myhill - Nerode theorem is our go-to tool for proving that languages are not regular. This guide recaps the major definitions needed for ... Read more",
+    "host_name": "web.stanford.edu",
+    "rank": 6,
+    "date": "Dec 4, 2024",
+    "favicon": ""
+  }
+]

@@ -50,3 +50,27 @@ Stage Summary:
 - Pre-fix backup: scripts/pre_fix_backup.tex. Diff stat: 186 inserted / 149 deleted lines.
 - Scripts kept for iteration: apply_fixes.py (idempotent via anchors), verify_fixes.py, latex_checks.py.
 - Remaining known items (not in scope of this pass): A2-A6, C1-C3 (151->52-overfull typesetting pass incl. the two page-overflowing lines in def:type-signature), D1-D3, E1-E5, and the deferred B7 covariance renaming.
+
+---
+Task ID: 3
+Agent: Super Z (main agent)
+Task: Freeze v2, create v3 revision applying A2-A6 + C1 + global bold-Sigma (user instruction), conduct deep web search to assess novelty, commit and push all documents to GitHub (MIKEAA2020/automata-).
+
+Work Log:
+- Froze the current latest version (v2 = automata_unified_revised_fixed.tex/.pdf, chmod 444, md5 287b28e535dfd4b5f9c34ac1e029bc08 verified unchanged); created v3 as download/automata_unified_revised_v3.tex.
+- Recovered A2-A6/C1 findings from scripts/gen_review.js; located every site in v3 by content search (v1 line numbers had shifted).
+- Wrote scripts/apply_v3_fixes.py (18 anchored edits, abort-before-write) + scripts/apply_v3_fixes_pass2.py (8 more C1 edits).
+- A2: delimiter-free unary modular language L_N={1^n:n=0 mod N} + N-residual-class justification. A3: L=3 -> L=4 (ratio 0.2387 at L=4). A4: two-step continuity argument + \cite{mullerlennert2013,franklieb2013} + two new bibitems. A5: self-contained rewrite of the nesting/monotonicity argument; 'Correction' label dropped. A6: Moore re-anchoring via lem:tension (U={s,t}) and lem:moore-separation; honest binomial note.
+- C1: def:type-signature M/F/A items converted to aligned displays; PoS identity, RationalExpCompare, variational schema formula, weights tuple, minimax bound, divergence family, direct-sum bound displayed; regime table narrowed (\small + p-columns); slash compound reworded; microtype + \emergencystretch{2em} loaded. Overfull boxes 52 -> 8, none > 12.4pt (v1 baseline was 151).
+- Bold Sigma: 113 covariance Sigmas (72 pi + 23 p + 13 eta + 5 F) -> \bm{\Sigma} (bm package added); alphabet Sigma (22 Sigma^*, 29 |Sigma|) untouched; census identical to v2.
+- Verification: scripts/verify_v3.py = 51/51 PASS; latex_checks_v3.py: 503 labels/0 dup, 834 refs/0 undefined, environments matched, braces 0; tectonic compile exit 0, 234 pages, 1.09 MiB PDF.
+- Deep web search (web-search skill, 20 queries, 200 results, stored scripts/novelty_search/q01-q20): no prior art for the unified comparative rate-distortion framework; per-regime prior art mapped (computational mechanics/IB for retention, Balle-Giraud-Lacroce AAK for grounding, Myhill-Nerode/halving for commitment/protocols); 3 citation gaps identified (Still-Crutchfield, Geiger, Balle-Giraud-Lacroce).
+- Generated download/novelty_assessment_automata_unified.docx via scripts/gen_novelty.js (docx skill: R1 cover, 3-section numbering, TOC, verdict table); postprocessed footers (scripts/fix_footers_novelty.py); postcheck.py 0 errors; VLM visual check: no defects; LibreOffice render 11 pages.
+- Updated download/README.md as version manifest (v1/v2-frozen/v3 + changelog).
+
+Stage Summary:
+- New frozen policy: v2 read-only forever; every future revision = new version file (v4, ...).
+- Deliverables: download/automata_unified_revised_v3.tex + .pdf, download/novelty_assessment_automata_unified.docx, updated README.md.
+- Novelty verdict: framework-level High (comparative syntax, type discipline, kappa ladder, protocol stratification have no found prior art); 3 citation gaps to close before submission.
+- Remaining known items: C2 (font shape warning), C3 (abstract length), D1-D3, E1-E5.
+- Next: git commit + push to https://github.com/MIKEAA2020/automata- with user PAT.

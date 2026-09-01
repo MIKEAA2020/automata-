@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S089054012600088X",
+    "name": "Streaming word problems",
+    "snippet": "by M Lohrey · 2026 · Cited by 2 — We study deterministic and randomized streaming algorithms . We contrast these results with several lower bounds . streaming algorithms are randomized and have a ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/abs/10.1145/3406325.3451038",
+    "name": "Almost optimal super-constant-pass streaming lower",
+    "snippet": "by L Chen · 2021 · Cited by 27 — We give an almost quadratic n2−o(1) lower bound on the space consumption of any o(√logn)-pass streaming algorithm solving the (directed) s-t ...",
+    "host_name": "dl.acm.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2211.05170",
+    "name": "Streaming algorithms for the missing item finding problem",
+    "snippet": "by M Stoeckl · 2022 · Cited by 13 — Here we find a conditional lower bound on the space usage, not predict its future random decisions. Our conditional lower bound proof for the “ ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/fb71332951af4ae27fbd457daadc5341-Abstract-Conference.html",
+    "name": "On Robust Streaming for Learning with Experts: Algorithms",
+    "snippet": "by D Woodruff · 2023 · Cited by 11 — In this paper, we study robust algorithms for the experts problem under memory constraints. We first give a randomized algorithm that is robust to adaptive ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol339-ccc2025/html/LIPIcs.CCC.2025.13/LIPIcs.CCC.2025.13.html",
+    "name": "Tight Bounds for Stream Decodable Error-Correcting Codes",
+    "snippet": "by M Gupta · 2025 · Cited by 1 — We investigate the setting where Bob is restricted to be a low -space streaming algorithm . Our lower bound , which rather surprisingly demonstrates a strong ...",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://par.nsf.gov/servlets/purl/10394025",
+    "name": "Towards Multi-Pass Streaming Lower Bounds for Optimal",
+    "snippet": "by L Chen · 2023 · Cited by 17 — This problem has been extensively studied over the last decade, and we now have a near-optimal lower bound for one-pass streaming algorithms , showing that they.",
+    "host_name": "par.nsf.gov",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v201/saad23a/saad23a.pdf",
+    "name": "Constant regret for sequence prediction with limited advice",
+    "snippet": "by EM Saad · 2023 · Cited by 1 — We investigate the problem of cumulative regret minimization for individual sequence prediction with respect to the best expert in a finite family of size …  ... 44 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9783260",
+    "name": "Streaming Quantiles Algorithms with Small Space and Update",
+    "snippet": "by N Ivkin · 2022 · Cited by 16 — For a given sketch size, our techniques provably reduce the upper bound on the sketch error by a factor of two. These improvements are verified ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

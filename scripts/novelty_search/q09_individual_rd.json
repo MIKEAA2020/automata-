@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10887498",
+    "name": "Lossy Compression of Individual Sequences Revisited - PMC",
+    "snippet": "by N Merhav · 2024 · Cited by 4 — We extend Ziv and Lempel's model of finite - state encoders to the realm of lossy compression of individual sequences .",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2401.01779v1",
+    "name": "Lossy Compression of Individual Sequences Revisited",
+    "snippet": "In this paper, we revisited the paradigm of lossy compression of individual sequences using finite - state machines, as a natural extension to the same paradigm ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Compression-of-individual-sequences-via-coding-Ziv-Lempel/5be4e0eccca2892d31406a03b0c485f7a395fe5a",
+    "name": "Compression of individual sequences via variable-rate",
+    "snippet": "We consider the problem of lossless compression of individual sequences using finite - state (FS) machines,",
+    "host_name": "www.semanticscholar.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1099-4300/25/8/1199",
+    "name": "A Universal Random Coding Ensemble for Sample-Wise",
+    "snippet": "by N Merhav · 2023 · Cited by 8 — We propose a universal ensemble for the random selection of rate – distortion codes which is asymptotically optimal in a sample-wise sense.",
+    "host_name": "www.mdpi.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scienceon.kisti.re.kr/srch/selectPORSrchArticle.do?cn=NART128250781",
+    "name": "[논문]Lossy Compression of Individual Sequences Revisited",
+    "snippet": "We extend Ziv and Lempel's model of finite - state encoders to the realm of lossy compression of individual sequences . In particular, the model of the encoder ... Read more",
+    "host_name": "scienceon.kisti.re.kr",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://web.stanford.edu/~tsachy/pdf_files/A%20Universal%20Scheme%20for%20Wyner-Ziv%20Coding%20of%20Discrete%20Sources.pdf",
+    "name": "A Universal Scheme for Wyner–Ziv Coding of Discrete",
+    "snippet": "by S Jalali · 2010 · Cited by 26 — The goal is to minimize the distortion between. This is the problem of rate - distortion coding - distortion theory, Ziv and A. Lempel, “ Compression of individual ... 14 pages",
+    "host_name": "web.stanford.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38392371",
+    "name": "Lossy Compression of Individual Sequences Revisited",
+    "snippet": "by N Merhav · 2024 · Cited by 4 — We extend Ziv and Lempel's model of finite - state encoders to the realm of lossy compression of individual sequences .",
+    "host_name": "pubmed.ncbi.nlm.nih.gov",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1995/2820.html",
+    "name": "Lossy Compression of Individual Signals Based on One Pass",
+    "snippet": "In a sense, bits are \"traded\" for a reduction in distortion by modifying the codebook. Hence, the technique is called rate - distortion Lempel- Ziv (RDLZ). Read more",
+    "host_name": "www2.eecs.berkeley.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://ieeexplore.ieee.org/document/1603758",
+    "name": "On the Wyner-Ziv problem for individual sequences",
+    "snippet": "We consider a variation of the Wyner- Ziv (W-Z) problem pertaining to lossy compression of individual sequences using finite - state encoders and decoders.",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

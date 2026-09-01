@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/topics/computer-science/communication-complexity",
+    "name": "Communication Complexity - an overview",
+    "snippet": "Communication complexity in computer science refers to the study of the efficiency and complexity of communication between computers. Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1099-4300/26/11/896",
+    "name": "Communication Complexity of Entanglement-Assisted Multi",
+    "snippet": "by R Meng · 2024 · Cited by 1 — The communication complexity of a given protocol is the total number of classical bits that need to be communicated . When n is prime, and for our chosen ... Read more",
+    "host_name": "www.mdpi.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevLett.109.110501",
+    "name": "Epistemic View of Quantum States and Communication",
+    "snippet": "by A Montina · 2012 · Cited by 40 — We define the communication complexity of a quantum channel as the minimal amount of classical communication required by an exact classical one-shot simulation ... Read more",
+    "host_name": "link.aps.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/DagSemProc.08381.3",
+    "name": "Approximation norms and duality for communication  - DROPS",
+    "snippet": "by T Lee · 2008 — Abstract: We will discuss a general norm based framework for showing lower bounds on communication complexity . An advantage of this approach is that one can use ... Read more",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cstheory.stackexchange.com/questions/41086/communication-complexity-of-approximating-the-size-of-set-intersection",
+    "name": "Communication complexity of approximating the size of set",
+    "snippet": "Jun 26, 2018 — Consider the set-intersection problem: Alice and Bob each get a subset of {1,…,n}, and they would like to know whether their sets intersect. This ...",
+    "host_name": "cstheory.stackexchange.com",
+    "rank": 4,
+    "date": "Jun 26, 2018",
+    "favicon": ""
+  },
+  {
+    "url": "https://academiccommons.columbia.edu/doi/10.7916/D8VT215G",
+    "name": "The Communication Complexity of Atomic Commitment and of",
+    "snippet": "by O Wolfson · 1989 · Cited by 45 — The Communication Complexity of Atomic Commitment and of Gossiping ... We consider the problem of atomic commitment of a transaction in a distributed database. Read more",
+    "host_name": "academiccommons.columbia.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mbraverm.princeton.edu/research/information-complexity",
+    "name": "Information complexity | Mark Braverman's Home Page",
+    "snippet": "It turns out that the amortized (per-copy) communication complexity of a task T T T is equal to its information complexity , at least when a vanishing amount of ... Read more",
+    "host_name": "mbraverm.princeton.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2410.20094",
+    "name": "The Communication Complexity of Approximating Matrix",
+    "snippet": "by AA Sherstov · 2024 · Cited by 8 — Abstract:We fully determine the communication complexity of approximating matrix rank, over any finite field \\mathbb{F}. Read more",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]
