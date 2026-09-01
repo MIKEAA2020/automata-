@@ -72,7 +72,7 @@
 \newcommand{\Fbudget}{\mathsf F}
 \newcommand{\PsiAgg}{\Psi}
 
-\newcommand{\EA}{\operatorname{Pinch}_{\mathcal A}}
+\newcommand{\EA}{\mathcal E_{\mathcal A}}
 \newcommand{\KyF}[2]{\left\|#1\right\|_{(#2)}}
 \newcommand{\PoSlin}{\PoS_{\mathrm{lin}}^{\mathrm{loc}}}
 \newcommand{\PoSquad}{\PoS_{\mathrm{quad}}}
@@ -246,7 +246,7 @@ with no synchronizability or operational-equivalence hypothesis.  This is a
 statement about active residual identification, not about unrestricted active
 prediction.
 State identification in a known minimal skeleton costs
-$\Theta(\log M)$ mistakes --- the halving upper bound is matched
+$\Theta_{|\mathcal O|}(\log M)$ mistakes --- the halving upper bound is matched
 by a cyclic-shift family on which each round exposes one fresh bit of the
 initial state --- so a decomposition whose second term is a
 state-identification mistake complexity is degenerate for every subclass; a
@@ -776,8 +776,6 @@ Section~\ref{sec:temporal} develops the temporal axis.
 Section~\ref{sec:spectral-heuristic} states the spectral-tail heuristic.
 Section~\ref{sec:conditional-rep} states the Conditional Representation
 Theorem.
-Section~\ref{sec:type-discipline} fixes the type signature that every
-approximation statement carries.
 Section~\ref{sec:epistemic} records epistemic boundaries.
 Section~\ref{sec:conclusion} concludes.
 
@@ -1148,7 +1146,7 @@ Lemma~\ref{lem:cofiltered}, with the feasible-set clause carried along.
 
 %----------------------------------------------------------------------
 \subsection{Right Congruences and Quotients}
-\label{subsec:right-cong}
+\label{sec:right-cong}
 %----------------------------------------------------------------------
 
 \begin{definition}[Right Congruence]
@@ -1868,59 +1866,6 @@ The stationary support is
 \]
 \end{definition}
 
-\begin{definition}[Stationary Controlled Unifilar Causal Machine]
-\label{def:unifilar-machine}
-A \textbf{stationary controlled unifilar causal machine} consists of a finite
-input alphabet $\mathcal I$, a standard Borel output space $\mathcal O$, a
-finite state set $\mathcal S$, emission kernels
-\[
-P_s^x=\mathcal L\bigl(Y_t\mid S_t=s,\ X_t=x\bigr),
-\]
-a measurable \emph{unifilar} update
-\[
-\tau:\mathcal S\times\mathcal I\times\mathcal O\to\mathcal S,
-\qquad
-S_{t+1}=\tau(S_t,X_t,Y_t)\quad\text{a.s.},
-\]
-defined on jointly feasible triples, together with a stationary ergodic input
-process, a stationary distribution $\pi$, and a declared predictive target
-$Z_t$.
-
-An update with $\tau(s,x,y)=\tau_0(s,x)$ for every feasible $y$ is called
-\emph{output-independent}; in that case the recursion collapses to
-$S_{t+1}=\tau_0(S_t,X_t)$ and, after an index shift, the machine is exactly a
-stationary controlled causal machine in the sense of
-Definition~\ref{def:controlled-markov}.
-\end{definition}
-
-\begin{remark}[The Input-Driven Model Is a Proper Subclass]
-\label{rem:unifilar-proper-subclass}
-The containment is strict, and the witness is standard.  Take
-$|\mathcal I|=1$, $\mathcal O=\{0,1\}$, two states $A,B$, with $A$ emitting
-$0$ or $1$ with equal probability and $B$ emitting $1$ almost surely, and
-\[
-\tau(A,\cdot,0)=A,\qquad \tau(A,\cdot,1)=B,\qquad \tau(B,\cdot,1)=A .
-\]
-Since the input alphabet is a singleton, the input history of length $t$ is
-the unique word of that length, yet the state after two steps is $A$ on the
-output history $00$ and $B$ on $01$.  The state is therefore not a function of
-the input history, and no map $\tau_0:\mathcal S\times\mathcal I\to\mathcal S$
-reproduces this machine.
-
-Consequently Definition~\ref{def:controlled-markov} describes an
-\emph{input-driven} transducer, and the descriptions of it as a lumped
-$\epsilon$-machine refer to this output-independent subclass rather than to
-general controlled $\epsilon$-machines, whose causal states are functions of
-joint input--output histories
-(Remark~\ref{rem:epsilon-machine-relation}).  The retention theory is developed
-for the full unifilar class in
-Section~\ref{subsec:unifilar-retention}, with the input-driven model as the
-output-independent specialization; the complexity constructions of
-Section~\ref{subsec:retention-complexity} are stated for the input-driven model
-and transfer to the unifilar class by
-Remark~\ref{rem:complexity-transfer}.
-\end{remark}
-
 \begin{definition}[$Z$-predictive equivalence]
 \label{def:z-predictive-equivalence}
 Fix the predictive target $Z_t$.  On the stationary support define
@@ -2018,74 +1963,6 @@ The quotient process is
 K_t=\phi(S_t).
 \]
 \end{definition}
-
-\begin{definition}[Unifilar Lumpability]
-\label{def:unifilar-lumpable}
-A quotient $\phi:\mathcal S\to\mathcal K$ of a unifilar machine is
-\textbf{unifilar-lumpable} if there is
-$\tau_{\mathcal K}:\mathcal K\times\mathcal I\times\mathcal O\to\mathcal K$
-with
-\[
-\phi\bigl(\tau(s,x,y)\bigr)=\tau_{\mathcal K}\bigl(\phi(s),x,y\bigr)
-\]
-for every \emph{jointly feasible} triple $(s,x,y)$, that is, every triple with
-$P_s^x(\{y\})>0$ in the discrete case and, in general, every triple in the
-support of the joint law.  The singleton quotient is always
-unifilar-lumpable.
-
-The quotient has \textbf{block-uniform support} if
-\[
-\phi(s)=\phi(s')
-\implies
-\supp P_s^x=\supp P_{s'}^x
-\qquad\text{for every }x
-\]
-in the input support.  More generally, say that $\phi$ has \textbf{connected
-support} if for every block $C$ and every input $x$ the graph on $C$ joining
-$s$ to $s'$ when $\supp P_s^x\cap\supp P_{s'}^x\neq\varnothing$ is connected;
-block-uniform support is the special case in which that graph is complete.
-\end{definition}
-
-\begin{remark}[Unifilar Lumpability Does Not Reduce to
-Definition~\ref{def:lumpable-quotient}]
-\label{rem:unifilar-support-not-automatic}
-For an output-independent update Definition~\ref{def:unifilar-lumpable} is
-strictly weaker than Definition~\ref{def:lumpable-quotient}, and the two do not
-collapse onto each other.  Writing
-$\tau(s,x,y)=\tau_0(s,x)$, unifilar lumpability requires
-$\phi(\tau_0(s,x))=\phi(\tau_0(s',x))$ only for $s,s'$ in a common block that
-share a feasible output $y$ at input $x$; ordinary lumpability requires it for
-\emph{all} $s,s'$ in the block.  When within-block emission supports are
-disjoint the requirement is vacuous and the unifilar notion is strictly weaker.
-
-An explicit witness has $\mathcal I=\{0,1\}$, $\mathcal O=\{0,1\}$, three
-states, and
-\[
-\tau_0(s_0,0)=s_0,\quad \tau_0(s_0,1)=s_1,\qquad
-\tau_0(s_1,0)=s_0,\quad \tau_0(s_1,1)=s_2,
-\]
-\[
-\tau_0(s_2,0)=s_0,\quad \tau_0(s_2,1)=s_0,
-\]
-with $s_0,s_1$ emitting $0$ almost surely and $s_2$ emitting $1$ almost surely.
-The chain is irreducible with strictly positive stationary distribution.  The
-partition $\{\{s_0,s_2\},\{s_1\}\}$ is unifilar-lumpable --- $s_0$ and $s_2$
-never share a feasible output, so no intertwining is demanded of them --- yet
-it is not lumpable, since $\tau_0(s_0,1)=s_1$ and $\tau_0(s_2,1)=s_0$ lie in
-different blocks.
-
-Consequently the two feasible sets differ, and the associated retention values
-can differ as well: on a three-state machine with
-$\tau_0(s_0,\cdot)=(s_1,s_2)$, $\tau_0(s_1,\cdot)=(s_2,s_0)$,
-$\tau_0(s_2,\cdot)=(s_0,s_0)$, predictive laws
-$P_{s_0}=\delta_2$, $P_{s_2}=\delta_1$, and $P_{s_1}$ interior, the minimum of
-the retention cost over unifilar-lumpable quotients with two blocks is strictly
-below the minimum over lumpable quotients with two blocks.  The reduction is
-therefore genuinely conditional, and the correct statement is
-Proposition~\ref{prop:input-driven-specialization}: the two notions agree under
-connected support, in particular under block-uniform support, and in particular
-whenever all emission laws have full support.
-\end{remark}
 
 \begin{proposition}[Right-Congruence Correspondence in Synchronized Machines]
 \label{prop:lumpability}
@@ -2534,8 +2411,8 @@ stated for the worst-case/uniform gap unless such assumptions are supplied.
 \label{def:observable-support-index}
 Let $\mu$ be an average-case history law on $\mathcal I^*$ and let
 $S=\operatorname{supp}\mu$.  Such a $\mu$ exists for discounted-prefix
-aggregation (Definition~\ref{def:discounted-agg}), where
-$\mu(u)=(1-\gamma)\gamma^{|u|}\Pr[\text{prefix }u]$ is a probability measure on
+aggregation, where
+$\mu(u)=(1-\beta)\beta^{|u|}\Pr[\text{prefix }u]$ is a probability measure on
 finite histories.  Stationary Ces\`aro aggregation does \emph{not} in general
 supply one: Definition~\ref{def:cesaro-agg} averages a cost process along a
 stationary trajectory and, when the process has infinite support, the Ces\`aro
@@ -6320,8 +6197,8 @@ formula and its own support-sensitive zero threshold.
 
 Fix a discounted-prefix history law $\mu$ on $\mathcal I^*$,
 \[
-\mu(u)=(1-\gamma)\gamma^{|u|}\Pr[\text{prefix }u],
-\qquad \gamma\in(0,1),
+\mu(u)=(1-\beta)\beta^{|u|}\Pr[\text{prefix }u],
+\qquad \beta\in(0,1),
 \]
 as in Definition~\ref{def:observable-support-index}; this is a genuine
 probability measure on all of $\mathcal I^*$, since finite-length prefix
@@ -6386,20 +6263,6 @@ q_{k,a}(o)
 the $\mu$-conditional law, given class $k$ and next symbol $a$, of the true
 next output demanded by $F$.
 
-\begin{definition}[One-Step Determination Index]
-\label{def:pair-determination-index}
-The \textbf{one-step determination index} $\kappa_{\mathrm{pair}}(F,\mu)$ is
-the minimum index of a right congruence $\sim$ on $\mathcal I^*$ for which
-$F(u)_{|u|}$ is $\mu$-almost-surely determined by the pair
-$\bigl([u_{1:|u|-1}]_\sim,\,u_{|u|}\bigr)$: explicitly, there exists a map
-$\rho:\bigl(\mathcal I^*/\!\sim\bigr)\times\mathcal I\to\mathcal O$ with
-$\rho\bigl([u_{1:|u|-1}]_\sim,u_{|u|}\bigr)=F(u)_{|u|}$ for $\mu$-almost
-every nonempty $u$.  Only nonempty $u$ carry a one-step output, so the empty
-word --- which has positive mass, $\mu(\varepsilon)=1-\gamma$, under a
-discounted law (Definition~\ref{def:discounted-agg}) --- does not enter the
-condition; the index depends on $\mu$ only through its support.
-\end{definition}
-
 \begin{theorem}[Exact Fixed-Budget Commitment Rate--Distortion Formula]
 \label{thm:com-rd-formula}
 For every right congruence $\sim$,
@@ -6421,13 +6284,13 @@ attained by the greedy rule $\rho(k,a)\in\arg\max_oq_{k,a}(o)$.  Consequently
 \mu(k,a)
 \Bigl(1-\max_{o}q_{k,a}(o)\Bigr).
 \]
-Moreover $\ComRD(M)=0$ if and only if
-$M\ge\kappa_{\mathrm{pair}}(F,\mu)$, the one-step determination index of
-Definition~\ref{def:pair-determination-index}.  In particular
-$\kappa_{\mathrm{pair}}(F,\mu)\le\kappa_{\det}(F)$, the threshold of
-Theorem~\ref{thm:commitment-spec}: the two indices coincide when $\mu$ has
-full support, and the inequality is strict under restricted supports
-(Remark~\ref{rem:pair-vs-class}).
+Moreover $\ComRD(M)=0$ if and only if $M\ge\kappa_{\mathrm{obs}}(F^{(1)},\mu)$,
+where $F^{(1)}(u)=F(u)_{|u|}$ for $u\ne\varepsilon$ and
+$\kappa_{\mathrm{obs}}$ is the observable support index of
+Definition~\ref{def:observable-support-index} instantiated at the one-step
+output object $F^{(1)}$ with the $\{0,\infty\}$-valued equality cost; this
+threshold depends on $\mu$ only through its support and is in general
+strictly smaller than $\kappa_{\det}(F)$ of Theorem~\ref{thm:commitment-spec}.
 \end{theorem}
 
 \begin{proof}
@@ -6451,42 +6314,18 @@ gives $\ComRD(M)$.
 
 For the zero threshold: $\ComRD(M)=0$ for a given $\sim$ if and only if every
 visited pair $(k,a)$ has $q_{k,a}$ a point mass, i.e.\ $F(u)_{|u|}$ is
-$\mu$-almost surely determined by $([u_{1:|u|-1}]_\sim,u_{|u|})$, which is
-precisely the determination condition of Definition~\ref{def:pair-determination-index};
-hence $\ComRD(M)=0$ exactly for $M\ge\kappa_{\mathrm{pair}}(F,\mu)$.  The
-inequality $\kappa_{\mathrm{pair}}(F,\mu)\le\kappa_{\det}(F)$ holds because
-the full Myhill--Nerode congruence $\sim_F$ determines the one-step output
-through the pair: $[u_{1:|u|-1}]_{\sim_F}$ determines the residual
-$F_{u_{1:|u|-1}}$, whose value on the one-letter continuation $u_{|u|}$ is
-$F(u)_{|u|}$, so the residual automaton of Theorem~\ref{thm:commitment-spec}
-is one-step exact on all of $\mathcal I^*$.  When $\mu$ has full support the
-reverse inequality holds as well: a pair-determining right congruence then
-forces $u\sim v$ to imply $F_u=F_v$, because each continuation output
-$F(uw)_{|u|+j}$ is a function of $([uw_{1:j-1}]_\sim,w_j)$ and right
-invariance identifies the two arguments along $u$ and $v$.  The two indices
-then coincide, and strictness of the inequality is a support phenomenon, as
-in Remark~\ref{rem:pair-vs-class}.
+$\mu$-almost surely determined by $([u_{1:|u|-1}]_\sim,u_{|u|})$; this is
+exactly the condition, in Definition~\ref{def:observable-support-index}, that
+$\sim$ admits a representative exact for $F^{(1)}$ on a set of full
+$\mu$-measure.  Hence the minimum index of such a $\sim$ is
+$\kappa_{\mathrm{obs}}(F^{(1)},\mu)$ by definition, and $\ComRD(M)=0$ exactly
+for $M\ge\kappa_{\mathrm{obs}}(F^{(1)},\mu)$.  The inequality
+$\kappa_{\mathrm{obs}}(F^{(1)},\mu)\le\kappa_{\det}(F)$ holds because the full
+Myhill--Nerode congruence $\sim_F$ is in particular exact for the coarser
+one-step object $F^{(1)}$ on all of $\mathcal I^*$; strictness occurs
+whenever distinct residuals $F_u\ne F_v$ nonetheless agree on their very next
+symbol for $\mu$-almost every continuation.
 \end{proof}
-
-\begin{remark}[Why the Pair, Not the Class]
-\label{rem:pair-vs-class}
-Determination by the pair $([u_{1:|u|-1}]_\sim,u_{|u|})$ is strictly weaker
-than determination by the class $[u]_\sim$ alone: the pair refines the
-class, since $[u]_\sim=[u_{1:|u|-1}]_\sim\cdot u_{|u|}$, but a single class
-is reached by many distinct pairs, so a class-level representative is a
-stronger requirement than a pair-level output rule.  For the identity
-transduction $F(u)=u$ over a binary alphabet under a full-support $\mu$,
-every residual coincides, so $\kappa_{\det}(F)=1$: the one-state rule
-$\rho(*,x)=x$ is one-step exact, $\ComRD(1)=0$, and
-$\kappa_{\mathrm{pair}}(F,\mu)=1$, whereas determining $u_{|u|}$ from the
-class $[u]_\sim$ alone requires two classes.  The gap between
-$\kappa_{\mathrm{pair}}$ and $\kappa_{\det}$, by contrast, is a support
-phenomenon: for the transduction $F(u)_t=u_t\oplus u_{t-1}$ (with $u_0=0$)
-the two indices coincide at $2$ under a full-support law, but if the input
-process is supported on strictly alternating words, then $u_{t-1}=1-u_t$ on
-the support, the one-step output is constant there, and
-$\kappa_{\mathrm{pair}}(F,\mu)=1$.
-\end{remark}
 
 \begin{remark}[Relation to the Three Commitment Notions]
 \label{rem:com-rd-scope}
@@ -6955,7 +6794,7 @@ m_1-m_2,
 which is $\alpha$ and is independent of $t$.  The lower bound of
 Theorem~\ref{thm:strategic-spread} gives
 \[
-\ComGame(M)
+\Com(M)
 \ge
 \sum_{t=0}^\infty
 \gamma^t\alpha
@@ -9465,10 +9304,130 @@ rather than of the axis, no rescaling of the rate can supply a convexity
 guarantee.
 \end{remark}
 
+\begin{definition}[Stationary Controlled Unifilar Causal Machine]
+\label{def:unifilar-machine}
+A \textbf{stationary controlled unifilar causal machine} consists of a finite
+input alphabet $\mathcal I$, a standard Borel output space $\mathcal O$, a
+finite state set $\mathcal S$, emission kernels
+\[
+P_s^x=\mathcal L\bigl(Y_t\mid S_t=s,\ X_t=x\bigr),
+\]
+a measurable \emph{unifilar} update
+\[
+\tau:\mathcal S\times\mathcal I\times\mathcal O\to\mathcal S,
+\qquad
+S_{t+1}=\tau(S_t,X_t,Y_t)\quad\text{a.s.},
+\]
+defined on jointly feasible triples, together with a stationary ergodic input
+process, a stationary distribution $\pi$, and a declared predictive target
+$Z_t$.
+
+An update with $\tau(s,x,y)=\tau_0(s,x)$ for every feasible $y$ is called
+\emph{output-independent}; in that case the recursion collapses to
+$S_{t+1}=\tau_0(S_t,X_t)$ and, after an index shift, the machine is exactly a
+stationary controlled causal machine in the sense of
+Definition~\ref{def:controlled-markov}.
+\end{definition}
+
+\begin{remark}[The Input-Driven Model Is a Proper Subclass]
+\label{rem:unifilar-proper-subclass}
+The containment is strict, and the witness is standard.  Take
+$|\mathcal I|=1$, $\mathcal O=\{0,1\}$, two states $A,B$, with $A$ emitting
+$0$ or $1$ with equal probability and $B$ emitting $1$ almost surely, and
+\[
+\tau(A,\cdot,0)=A,\qquad \tau(A,\cdot,1)=B,\qquad \tau(B,\cdot,1)=A .
+\]
+Since the input alphabet is a singleton, the input history of length $t$ is
+the unique word of that length, yet the state after two steps is $A$ on the
+output history $00$ and $B$ on $01$.  The state is therefore not a function of
+the input history, and no map $\tau_0:\mathcal S\times\mathcal I\to\mathcal S$
+reproduces this machine.
+
+Consequently Definition~\ref{def:controlled-markov} describes an
+\emph{input-driven} transducer, and the descriptions of it as a lumped
+$\epsilon$-machine refer to this output-independent subclass rather than to
+general controlled $\epsilon$-machines, whose causal states are functions of
+joint input--output histories
+(Remark~\ref{rem:epsilon-machine-relation}).  The retention theory is developed
+for the full unifilar class in
+Section~\ref{subsec:unifilar-retention}, with the input-driven model as the
+output-independent specialization; the complexity constructions of
+Section~\ref{subsec:retention-complexity} are stated for the input-driven model
+and transfer to the unifilar class by
+Remark~\ref{rem:complexity-transfer}.
+\end{remark}
+
+\begin{definition}[Unifilar Lumpability]
+\label{def:unifilar-lumpable}
+A quotient $\phi:\mathcal S\to\mathcal K$ of a unifilar machine is
+\textbf{unifilar-lumpable} if there is
+$\tau_{\mathcal K}:\mathcal K\times\mathcal I\times\mathcal O\to\mathcal K$
+with
+\[
+\phi\bigl(\tau(s,x,y)\bigr)=\tau_{\mathcal K}\bigl(\phi(s),x,y\bigr)
+\]
+for every \emph{jointly feasible} triple $(s,x,y)$, that is, every triple with
+$P_s^x(\{y\})>0$ in the discrete case and, in general, every triple in the
+support of the joint law.  The singleton quotient is always
+unifilar-lumpable.
+
+The quotient has \textbf{block-uniform support} if
+\[
+\phi(s)=\phi(s')
+\implies
+\supp P_s^x=\supp P_{s'}^x
+\qquad\text{for every }x
+\]
+in the input support.  More generally, say that $\phi$ has \textbf{connected
+support} if for every block $C$ and every input $x$ the graph on $C$ joining
+$s$ to $s'$ when $\supp P_s^x\cap\supp P_{s'}^x\neq\varnothing$ is connected;
+block-uniform support is the special case in which that graph is complete.
+\end{definition}
+
+\begin{remark}[Unifilar Lumpability Does Not Reduce to
+Definition~\ref{def:lumpable-quotient}]
+\label{rem:unifilar-support-not-automatic}
+For an output-independent update Definition~\ref{def:unifilar-lumpable} is
+strictly weaker than Definition~\ref{def:lumpable-quotient}, and the two do not
+collapse onto each other.  Writing
+$\tau(s,x,y)=\tau_0(s,x)$, unifilar lumpability requires
+$\phi(\tau_0(s,x))=\phi(\tau_0(s',x))$ only for $s,s'$ in a common block that
+share a feasible output $y$ at input $x$; ordinary lumpability requires it for
+\emph{all} $s,s'$ in the block.  When within-block emission supports are
+disjoint the requirement is vacuous and the unifilar notion is strictly weaker.
+
+An explicit witness has $\mathcal I=\{0,1\}$, $\mathcal O=\{0,1\}$, three
+states, and
+\[
+\tau_0(s_0,0)=s_0,\quad \tau_0(s_0,1)=s_1,\qquad
+\tau_0(s_1,0)=s_0,\quad \tau_0(s_1,1)=s_2,
+\]
+\[
+\tau_0(s_2,0)=s_0,\quad \tau_0(s_2,1)=s_0,
+\]
+with $s_0,s_1$ emitting $0$ almost surely and $s_2$ emitting $1$ almost surely.
+The chain is irreducible with strictly positive stationary distribution.  The
+partition $\{\{s_0,s_2\},\{s_1\}\}$ is unifilar-lumpable --- $s_0$ and $s_2$
+never share a feasible output, so no intertwining is demanded of them --- yet
+it is not lumpable, since $\tau_0(s_0,1)=s_1$ and $\tau_0(s_2,1)=s_0$ lie in
+different blocks.
+
+Consequently the two feasible sets differ, and the associated retention values
+can differ as well: on a three-state machine with
+$\tau_0(s_0,\cdot)=(s_1,s_2)$, $\tau_0(s_1,\cdot)=(s_2,s_0)$,
+$\tau_0(s_2,\cdot)=(s_0,s_0)$, predictive laws
+$P_{s_0}=\delta_2$, $P_{s_2}=\delta_1$, and $P_{s_1}$ interior, the minimum of
+the retention cost over unifilar-lumpable quotients with two blocks is strictly
+below the minimum over lumpable quotients with two blocks.  The reduction is
+therefore genuinely conditional, and the correct statement is
+Proposition~\ref{prop:input-driven-specialization}: the two notions agree under
+connected support, in particular under block-uniform support, and in particular
+whenever all emission laws have full support.
+\end{remark}
+
 \begin{remark}[Necessity of the Feasibility Restriction]
 \label{rem:unifilar-feasibility}
-The restriction to feasible triples in Definition~\ref{def:unifilar-lumpable}
-is not dispensable.  If
+The restriction to feasible triples is not dispensable.  If
 $(s,x,y)$ has emission probability zero the update $\tau(s,x,y)$ is
 unconstrained by the process, so requiring the intertwining there would reject
 quotients that are lumpable in every realizable sense.  Over randomly generated unifilar machines with $|\mathcal S|\le4$,
@@ -10881,7 +10840,7 @@ Consequently the floor in a stochastic regime should be read with an explicit
 horizon hypothesis, and $\Delta_M$ taken as the information actually available
 at that horizon rather than as $\log m$.  Constructing packings that are
 efficient in $T$ for the retention, grounding, and commitment regimes is open
-(Section~\ref{subsec:open-problems}).
+(Section~\ref{sec:openproblems}).
 \end{remark}
 
 \begin{proposition}[The Packing Floor Is Satisfied in the Realizable Stream Regime]
@@ -10959,7 +10918,7 @@ constant.
 
 Second, the corresponding constructions for the retention, grounding, and
 commitment regimes are not carried out here and remain open
-(Section~\ref{subsec:open-problems}).  Those regimes are stochastic, and by
+(Section~\ref{sec:openproblems}).  Those regimes are stochastic, and by
 Remark~\ref{rem:packing-per-regime} a packing there must additionally be
 efficient in the horizon.
 
@@ -13913,6 +13872,7 @@ learner is not required to track the machine's internal state label.
 \end{remark}
 
 %----------------------------------------------------------------------
+%----------------------------------------------------------------------
 \subsection{Active Realizable Setting}
 \label{subsec:active-realizable}
 %----------------------------------------------------------------------
@@ -15576,7 +15536,7 @@ instance and not a general additive equality.
 \begin{openproblem}[A Non-Degenerate Two-Term Active Decomposition]
 \label{open:si-hard-family}
 Theorem~\ref{thm:esyncsi-theta} shows that state identification in a known
-minimal skeleton costs $\Theta(\log M)$ mistakes, so no
+minimal skeleton costs $\Theta_{|\mathcal O|}(\log M)$ mistakes, so no
 decomposition of the active complexity whose second term is a
 state-identification \emph{mistake} complexity can be non-degenerate.  This
 settles the mistake currency negatively and leaves the question of currency
@@ -15674,7 +15634,7 @@ disjointness of the two round sets together with rectangular hardness.
 No two-sided statement follows.  Converting the lower bound into an equality
 would require an explicit composite learner attaining $S_M+C_M$, which is not
 constructed here.  Moreover, by Proposition~\ref{prop:esyncsi-log} the
-state-identification mistake complexity is $O(\log M)$, so a
+state-identification mistake complexity is $O_{|\mathcal O|}(\log M)$, so a
 decomposition in which one component is a state-identification cost is
 necessarily degenerate (Remark~\ref{rem:additive-collapses}); the components of
 Theorem~\ref{thm:active-two-phase} are both model-identification components,
@@ -17277,6 +17237,7 @@ the latent block label.
 
 %----------------------------------------------------------------------
 \subsection{Open Problems}
+\label{sec:openproblems}
 \label{subsec:open-problems}
 %----------------------------------------------------------------------
 
@@ -17435,7 +17396,7 @@ causal length-preserving specification $F$ (Definition~\ref{def:causal-lp-spec})
 \emph{Established baseline.} Theorem~\ref{thm:com-rd-formula} gives the exact
 fixed-budget value of $\ComRD(M)$ over right-congruence quotients of a
 one-step observable, and its zero threshold at
-$M=\kappa_{\mathrm{pair}}(F,\mu)$, the one-step determination index; Remark~\ref{rem:com-rd-scope} shows
+$M=\kappa_{\mathrm{obs}}(F^{(1)},\mu)$; Remark~\ref{rem:com-rd-scope} shows
 this is generically distinct from, and no more than, the worst-case Boolean
 gap $\Comex(M)$.  What is open is the \emph{full multi-step} rate-distortion
 law: the exact value of the $M$-state quotient loss for approximating the
@@ -17630,7 +17591,7 @@ discharged case is realizable, so it certifies the estimation axis only; by
 Remark~\ref{rem:floors-two-axes} the sum-form envelope follows from the minimum
 form through the discrete sandwich, and by Lemma~\ref{lem:kappa-bounded} the
 resulting constant $(1+\kappa)^{-1}$ is absolute rather than
-instance-dependent.  See Section~\ref{subsec:open-problems}.
+instance-dependent.  See Section~\ref{sec:openproblems}.
 
 \item \textbf{The matching minimax lower bound is conditional on explicit
 floors.}
@@ -17693,7 +17654,7 @@ in which the learner chooses its own inputs.
 A direct-sum instance forces its two components on disjoint rounds, giving
 $\MistRI(M)\ge S_M+C_M$, but no non-degenerate two-term decomposition of the
 active complexity is available in the mistake currency: state identification in
-a known minimal skeleton costs only $O(\log M)$ mistakes
+a known minimal skeleton costs only $O_{|\mathcal O|}(\log M)$ mistakes
 (Proposition~\ref{prop:esyncsi-log}).  Whether a genuine decomposition exists
 in the experiment-length currency is
 Open Problem~\ref{open:si-hard-family}.

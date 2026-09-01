@@ -21,3 +21,32 @@ Stage Summary:
 - Full findings recorded in the docx; fix-priority order in its Section 10.
 - Scripts kept for iteration: /home/z/my-project/scripts/latex_checks.py, /home/z/my-project/scripts/gen_review.js.
 - Compile artifacts (PDF + log of the reviewed .tex) under /home/z/my-project/scripts/.
+
+---
+Task ID: 2
+Agent: Super Z (main agent)
+Task: Apply fix A1 and all B-items (B1-B7) directly to /home/z/my-project/upload/automata_unified_revised.tex, in one pass, per user instruction.
+
+Work Log:
+- Recovered full findings A1/B1-B7 from scripts/gen_review.js (the docx report generator); re-read every affected region in the .tex before editing.
+- Wrote scripts/apply_fixes.py: single-pass rewrite keyed by original line numbers, with 47 anchor assertions (abort-before-write protects against double application).
+- A1: inserted def:pair-determination-index (kappa_pair = one-step determination index; explicit empty-word/typing resolution; support-only dependence); rewrote thm:com-rd-formula "Moreover" clause and zero-threshold proof (pair-based determination; kappa_pair <= kappa_det witnessed by residual congruence; equality under full support, strictness = support phenomenon); added rem:pair-vs-class (identity transduction shows pair < class determination; XOR-with-alternating-support shows kappa_pair < kappa_det); updated Open Problem 8 (kappa_pair). Verified during rewrite: full-support mu forces pair-determining congruence to refine ~_F, so the honest strictness mechanism is support restriction, not one-step-ness.
+- B1: moved def:unifilar-machine + rem:unifilar-proper-subclass to Section 3 after def:controlled-markov (before def:z-predictive-equivalence which cites them); moved def:unifilar-lumpable + rem:unifilar-support-not-automatic after def:lumpable-quotient; cut the 121-line block from subsec:oracle-setup; touched up rem:unifilar-feasibility opening to cite the (now distant) definition.
+- B2: deleted |O| subscripts at 4 sites (abstract, open:si-hard-family, thm:active-direct-sum, conclusion).
+- B3: added roadmap sentence for sec:type-discipline (between conditional-rep and epistemic).
+- B4: Com -> ComGame in cor:stateless proof.
+- B5: renamed discount beta -> gamma at def:observable-support-index and subsec:commitment-rd (gamma free in both regions; beta heavily overloaded elsewhere so global direction avoided); added cross-ref to def:discounted-agg.
+- B6: sec:right-cong -> subsec:right-cong (0 refs existed); removed duplicate label sec:openproblems keeping subsec:open-problems (3 refs updated); deleted one duplicated %--- separator.
+- B7: renamed pinching map via macro body \EA: \mathcal E_{\mathcal A} -> \operatorname{Pinch}_{\mathcal A} (document-wide, one edit). Covariance Sigma->C renaming deliberately NOT done: the suggested target C is already taken by the domination constant C_p (lines ~8577-8645), so the review's suggested rename would create a new collision; needs a dedicated symbol-audit pass.
+- Fixed a range-consumption bug in the first apply run (old tail lines of replaced ranges were re-emitted: 20 duplicated lines); restored from scripts/pre_fix_backup.tex and re-ran the patched script cleanly.
+- Verified with scripts/verify_fixes.py: 29/29 boolean checks PASS.
+- Re-ran scripts/latex_checks.py: 503 labels / 0 duplicates; 832 refs / 0 undefined; environments matched; brace balance 0.
+- Recompiled with tectonic (scripts/build/): exit 0, 1.08 MiB PDF, 233 pages (+1), 52 overfull boxes (51 pre-existing baseline; +1 from new inserted text), no errors, no undefined references.
+- Investigated a suspected preamble corruption at line 7 (\usepackageargin...): proved via raw byte dump it is a display-layer artifact (the console eats the "[m" in "\usepackage[margin=1in]"); the file was never corrupted.
+- Copied deliverables to download/: automata_unified_revised_fixed.tex and automata_unified_revised_fixed.pdf.
+
+Stage Summary:
+- Fixed manuscript: /home/z/my-project/upload/automata_unified_revised.tex (canonical), mirrored to download/automata_unified_revised_fixed.tex + _fixed.pdf.
+- Pre-fix backup: scripts/pre_fix_backup.tex. Diff stat: 186 inserted / 149 deleted lines.
+- Scripts kept for iteration: apply_fixes.py (idempotent via anchors), verify_fixes.py, latex_checks.py.
+- Remaining known items (not in scope of this pass): A2-A6, C1-C3 (151->52-overfull typesetting pass incl. the two page-overflowing lines in def:type-signature), D1-D3, E1-E5, and the deferred B7 covariance renaming.
