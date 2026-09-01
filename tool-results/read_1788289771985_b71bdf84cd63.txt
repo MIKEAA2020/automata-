@@ -1,0 +1,602 @@
+ 13501→\end{theorem}
+ 13502→
+ 13503→\begin{proof}
+ 13504→For known initial state, the optimal mistake bound is the Littlestone dimension
+ 13505→of $\mathcal H_M$ by Littlestone's theorem \cite{littlestone1988}.  By
+ 13506→Lemma~\ref{lem:littlestone}, this is $O(M\log M)$.  The matching lower bound
+ 13507→is Theorem~\ref{thm:stream-lower-bound}, proved below; its proof is
+ 13508→independent of the present theorem, so there is no circularity.
+ 13509→
+ 13510→For unknown initial state, the effective hypothesis class is enlarged by at
+ 13511→most a factor $M$, because each $M$-state machine has at most $M$ possible
+ 13512→initial states.  The logarithm of the enlarged class size increases by at most
+ 13513→$\log M$, which is lower order relative to $M\log M$.  More formally, the
+ 13514→Littlestone dimension of a finite union of $M$ classes of Littlestone dimension
+ 13515→$O(M\log M)$ remains $O(M\log M)$, while the lower bound remains
+ 13516→$\Omega(M\log M)$ because the known-initial-state subclass is contained in the
+ 13517→unknown-initial-state class.  Hence the upper bound $O(M\log M)$ holds in
+ 13518→general, and it is tight in the reset-word protocol.
+ 13519→\end{proof}
+ 13520→
+ 13521→\begin{theorem}[Persistent-Stream Mistake Lower Bound]
+ 13522→\label{thm:stream-lower-bound}
+ 13523→Fix $\mathcal I=\{\mathtt r,\mathtt e,\mathtt d,\mathtt c\}$, so
+ 13524→$|\mathcal I|=4$, and $\mathcal O=\{0,1\}$.  For every $L\ge1$ and $M=2^L$
+ 13525→there is an adversary strategy on a \emph{single persistent input stream},
+ 13526→never reset by any external mechanism, and a target
+ 13527→$f^\star\in\mathcal H_M$ consistent with all revealed outputs, such that:
+ 13528→\begin{enumerate}[label=(\roman*)]
+ 13529→\item every \emph{deterministic} learner makes at least
+ 13530→\[
+ 13531→M\log_2M=\Omega(M\log M)
+ 13532→\]
+ 13533→mistakes;
+ 13534→\item for every \emph{randomized} learner there is a fixed target in the
+ 13535→family with
+ 13536→\[
+ 13537→\mathbb E[\text{mistakes}]
+ 13538→\ \ge\
+ 13539→\tfrac12 M\log_2M
+ 13540→=
+ 13541→\Omega(M\log M),
+ 13542→\]
+ 13543→the expectation being over the learner's internal randomness alone.  This
+ 13544→follows from the bound $\mathbb E_{g}\mathbb E[\text{mistakes}]\ge\tfrac12
+ 13545→M\log_2M$ under the uniform target distribution on $Q^Q$, since an average is
+ 13546→attained by some target.  Under that same uniform distribution, for every
+ 13547→$\eta\in(0,1)$
+ 13548→\[
+ 13549→\Pr\left[
+ 13550→\text{mistakes}\ \ge\ \bigl(\tfrac12-\eta\bigr)M\log_2M
+ 13551→\right]
+ 13552→\ \ge\
+ 13553→1-\exp\!\left(-\tfrac12\eta^2M\log_2M\right).
+ 13554→\]
+ 13555→\end{enumerate}
+ 13556→The forcing stream has length $O(M\log M)$.  The construction is stated for
+ 13557→$|\mathcal I|=4$; Theorem~\ref{thm:stream-lb-binary} extends it to binary
+ 13558→input by block encoding, so the bound holds for all
+ 13559→$|\mathcal I|\ge2$, $|\mathcal O|\ge2$.
+ 13560→\end{theorem}
+ 13561→
+ 13562→\begin{proof}
+ 13563→\textbf{The machine class.}
+ 13564→Let $Q=\{0,1\}^L$, so $|Q|=M=2^L$.  We exhibit a subfamily of $\mathcal H_M$
+ 13565→indexed by an arbitrary function $g:Q\to Q$.  Write a state as a bit string
+ 13566→$v=v_1\cdots v_L$.  Transitions and Mealy outputs are
+ 13567→\[
+ 13568→\begin{array}{llll}
+ 13569→\mathtt r:&\tau(v,\mathtt r)=0^L, &\lambda(v,\mathtt r)=0
+ 13570→&\text{(return to a fixed state)},\\[2pt]
+ 13571→\mathtt e:&\tau(v,\mathtt e)=v\oplus 0^{L-1}1, &\lambda(v,\mathtt e)=0
+ 13572→&\text{(flip the last bit)},\\[2pt]
+ 13573→\mathtt d:&\tau(v,\mathtt d)=v_2\cdots v_Lv_1, &\lambda(v,\mathtt d)=v_1
+ 13574→&\text{(cyclic shift, emit the bit shifted out)},\\[2pt]
+ 13575→\mathtt c:&\tau(v,\mathtt c)=g(v), &\lambda(v,\mathtt c)=0
+ 13576→&\text{(the unknown map)}.
+ 13577→\end{array}
+ 13578→\]
+ 13579→Only $\mathtt c$ depends on $g$; the letters $\mathtt r,\mathtt e,\mathtt d$
+ 13580→are the same in every member of the family.  Each such machine has exactly $M$
+ 13581→states, so the family is a subset of $\mathcal H_M$, and it has $M^M$ members.
+ 13582→
+ 13583→\textbf{Two elementary facts.}
+ 13584→First, the word $\mathtt d^L$ acts as the identity on states, since $L$ cyclic
+ 13585→shifts restore $v$, and its output sequence is exactly $v_1v_2\cdots v_L$.
+ 13586→Thus $\mathtt d^L$ \emph{reads out} the current state without changing it.
+ 13587→Second, from any state the word
+ 13588→\[
+ 13589→w_v
+ 13590→=
+ 13591→\mathtt r\,
+ 13592→\prod_{i=1}^{L}\bigl(\mathtt d\,\mathtt e^{\,v_i}\bigr)
+ 13593→\]
+ 13594→drives the machine to $v$: starting from $0^L$, each round shifts left and
+ 13595→optionally sets the new last bit, so after $L$ rounds the state is
+ 13596→$v_1\cdots v_L$.  All outputs along $w_v$ are determined by
+ 13597→$\mathtt r,\mathtt e,\mathtt d$ alone, hence known to the learner; they are not
+ 13598→counted as forced mistakes.  Note $|w_v|\le 2L+1$.
+ 13599→
+ 13600→\textbf{The adversary.}
+ 13601→Enumerate $Q=\{v^{(1)},\dots,v^{(M)}\}$.  The adversary maintains a partial
+ 13602→function $g$, initially empty, and processes the states in order.  For each
+ 13603→$v=v^{(k)}$ it plays the block
+ 13604→\[
+ 13605→w_v\;\mathtt c\;\mathtt d^L .
+ 13606→\]
+ 13607→The prefix $w_v$ drives the machine to $v$; the letter $\mathtt c$ moves it to
+ 13608→the still-unspecified state $g(v)$; the suffix $\mathtt d^L$ reads out the $L$
+ 13609→bits of $g(v)$ one per round, returning to $g(v)$.
+ 13610→
+ 13611→During those $L$ readout rounds the learner must predict a bit before seeing
+ 13612→it.  The adversary answers with the \emph{opposite} bit each time, and records
+ 13613→those $L$ answers as the bits of $g(v)$.  Every answer is legal: at the moment
+ 13614→of answering, the corresponding bit of $g(v)$ has not been constrained by any
+ 13615→earlier round, because $g(v)$ is queried only in this block and $g$ is an
+ 13616→arbitrary function.  Hence the learner is forced into $L$ mistakes per block.
+ 13617→
+ 13618→After the block the machine sits at $g(v)$; the next block begins with
+ 13619→$\mathtt r$, which returns it to $0^L$.
+ 13620→
+ 13621→The precise content of the ``no reset'' claim should be stated carefully, since
+ 13622→the letter $\mathtt r$ is a synchronizing word for the family.  What is
+ 13623→excluded is an \emph{external} restart: there is no mechanism outside the
+ 13624→interaction that reinitializes the machine, no episode boundary, and no point
+ 13625→at which the learner's state or the mistake count is cleared.  The stream is
+ 13626→one uninterrupted sequence of rounds, every round is scored, and the learner's
+ 13627→knowledge carries across block boundaries.  What is \emph{not} claimed is that
+ 13628→the input alphabet lacks a synchronizing letter: $\mathtt r$ is an ordinary
+ 13629→input symbol that happens to send every state to $0^L$, and the learner may
+ 13630→play it or observe it like any other.  The lower bound is therefore a statement
+ 13631→about the persistent-stream protocol with a synchronizing input available, not
+ 13632→about families in which no synchronizing word exists.  This is the stronger
+ 13633→reading for the purpose at hand, since the adversary's power is not derived
+ 13634→from resets: the $M\log_2M$ forced mistakes occur in the readout rounds
+ 13635→$\mathtt d^{L}$, and the $\mathtt r$ letters cost nothing and reveal nothing.
+ 13636→
+ 13637→\textbf{Consistency.}
+ 13638→After all $M$ blocks the adversary has defined $g$ on all of $Q$, and every
+ 13639→$g(v)\in Q$.  The resulting machine $f^\star$ lies in the family, hence in
+ 13640→$\mathcal H_M$, and by construction reproduces every output revealed during the
+ 13641→stream: the $\mathtt r,\mathtt e,\mathtt d$ outputs are forced by the fixed
+ 13642→part of the transition table, and the $\mathtt d^L$ readouts are exactly the
+ 13643→bits of $g(v)$ as recorded.  The interaction is therefore realizable, and the
+ 13644→protocol is realizable rather than agnostic.
+ 13645→
+ 13646→\textbf{Count.}
+ 13647→Each of the $M$ blocks forces $L$ mistakes, giving
+ 13648→\[
+ 13649→M\cdot L
+ 13650→=
+ 13651→M\log_2 M
+ 13652→\]
+ 13653→mistakes in total.  The stream length is
+ 13654→$M(|w_v|+1+L)\le M(3L+2)=O(M\log M)$.
+ 13655→
+ 13656→For randomized learners we use Yao's minimax principle rather than an adaptive
+ 13657→adversary, which avoids any independence assumption about the learner's
+ 13658→predictions.  Draw the target map $g:Q\to Q$ uniformly at random from the
+ 13659→$M^M$ possibilities and fix in advance the deterministic input stream
+ 13660→consisting of the blocks $w_v\,\mathtt c\,\mathtt d^L$ in a fixed enumeration
+ 13661→of $Q$.  This stream does not depend on the learner.
+ 13662→
+ 13663→Enumerate the readout rounds $i=1,\dots,N$ with $N=M\log_2M$, and let
+ 13664→$\mathcal F_{i-1}$ be the $\sigma$-algebra generated by the transcript before
+ 13665→round $i$ together with the learner's internal randomness.  The bit revealed
+ 13666→at round $i$ is a specific bit of $g(v)$ for the block currently being
+ 13667→processed, and each such bit is queried exactly once along the stream.  Under
+ 13668→the uniform law on $Q^Q$ the bits of $g$ are i.i.d.\ fair bits, so the bit
+ 13669→revealed at round $i$ is a fair bit \emph{independent of} $\mathcal F_{i-1}$.
+ 13670→The learner's prediction at round $i$ is $\mathcal F_{i-1}$-measurable, hence
+ 13671→independent of that bit, so writing $X_i$ for the mistake indicator,
+ 13672→\[
+ 13673→\mathbb E\bigl[X_i\mid\mathcal F_{i-1}\bigr]=\tfrac12
+ 13674→\qquad\text{almost surely.}
+ 13675→\]
+ 13676→Note that this conditional statement is all that is required; the $X_i$
+ 13677→themselves need not be independent.  Summing,
+ 13678→\[
+ 13679→\mathbb E\Bigl[\sum_{i=1}^NX_i\Bigr]=\frac N2 ,
+ 13680→\]
+ 13681→and since the average over $g$ is at most the worst case over $g$, some fixed
+ 13682→$g\in Q^Q$ forces expected mistakes at least $N/2$ for the given learner.
+ 13683→
+ 13684→For concentration, set $Y_i=X_i-\mathbb E[X_i\mid\mathcal F_{i-1}]$.  Then
+ 13685→$(Y_i)$ is a martingale difference sequence with $|Y_i|\le1$, so
+ 13686→Azuma--Hoeffding \cite[Ch.~2]{boucheron2013} gives, for $\eta\in(0,1)$,
+ 13687→\[
+ 13688→\Pr\Bigl[\sum_{i=1}^NX_i\le\bigl(\tfrac12-\eta\bigr)N\Bigr]
+ 13689→=
+ 13690→\Pr\Bigl[\sum_{i=1}^NY_i\le-\eta N\Bigr]
+ 13691→\le
+ 13692→\exp\!\left(-\frac{\eta^2N}{2}\right).
+ 13693→\]
+ 13694→This is the stated high-probability bound, with no independence assumption on
+ 13695→the rounds.
+ 13696→
+ 13697→No deterministic per-run bound is available for randomized learners: a learner
+ 13698→that happens to guess every bit correctly makes no mistakes on that run, an
+ 13699→event of probability $2^{-N}>0$.  Claim~(i) is therefore restricted to
+ 13700→deterministic learners, and~(ii) is the correct randomized statement.
+ 13701→
+ 13702→Finally, for $M$ not a power of two, apply the construction with
+ 13703→$L=\lfloor\log_2M\rfloor$ and leave the remaining fewer than $M/2$ states
+ 13704→unreachable; the bound changes only by a constant factor.
+ 13705→\end{proof}
+ 13706→
+ 13707→\begin{remark}[What the Construction Supplies]
+ 13708→\label{rem:stream-lb-mechanism}
+ 13709→The obstruction identified in Remark~\ref{rem:ldim-protocol-scope} is that a
+ 13710→reset-word shattering argument does not embed into one persistent stream
+ 13711→without a mechanism for changing state, since the learner cannot be
+ 13712→repositioned between instances.  The
+ 13713→construction above removes that obstruction by making navigation part of the
+ 13714→input alphabet: $\mathtt r$ and $\mathtt e,\mathtt d$ furnish an explicit
+ 13715→\emph{transport system} that reaches any state from any state using only
+ 13716→outputs the learner can already predict, so the transport rounds are free.  The
+ 13717→$\Omega(M\log M)$ information is then extracted by the readout word
+ 13718→$\mathtt d^L$, which is output-revealing and state-preserving.  In effect the
+ 13719→persistent stream simulates the reset protocol at no mistake cost, which is
+ 13720→exactly what the transfer required.
+ 13721→\end{remark}
+ 13722→
+ 13723→\begin{remark}[Alphabet Size]
+ 13724→\label{rem:stream-lb-alphabet}
+ 13725→The construction uses $|\mathcal I|=4$ and $|\mathcal O|=2$, and is unchanged
+ 13726→for any larger alphabets, so the bound holds whenever $|\mathcal I|\ge4$ and
+ 13727→$|\mathcal O|\ge2$.  The binary-input case is handled separately in
+ 13728→Theorem~\ref{thm:stream-lb-binary} by block encoding, at the cost of a
+ 13729→constant factor.
+ 13730→\end{remark}
+ 13731→
+ 13732→\begin{theorem}[Binary-Input Persistent-Stream Lower Bound]
+ 13733→\label{thm:stream-lb-binary}
+ 13734→Let $\mathcal I=\{0,1\}$ and $\mathcal O=\{0,1\}$.  There is a constant
+ 13735→$c>0$ such that for infinitely many $M'$ there is an adversary on a single
+ 13736→persistent, never-reset binary input stream forcing every deterministic
+ 13737→learner to make at least
+ 13738→\[
+ 13739→c\,M'\log_2M'
+ 13740→=
+ 13741→\Omega(M'\log M')
+ 13742→\]
+ 13743→mistakes, and every randomized learner to make that many in expectation up to
+ 13744→a factor $\tfrac12$.  One may take any $c<\tfrac13$ for $M'$ large.
+ 13745→\end{theorem}
+ 13746→
+ 13747→\begin{proof}
+ 13748→Encode the four letters of Theorem~\ref{thm:stream-lower-bound} as two-bit
+ 13749→blocks
+ 13750→\[
+ 13751→\mathtt r\mapsto00,\qquad
+ 13752→\mathtt e\mapsto01,\qquad
+ 13753→\mathtt d\mapsto10,\qquad
+ 13754→\mathtt c\mapsto11 .
+ 13755→\]
+ 13756→Let $A$ be an $M$-state machine of the family $\mathcal G_M$, $M=2^L$.  Define
+ 13757→a binary-input Mealy machine $A'$ with state set
+ 13758→\[
+ 13759→Q'=Q\times\{-,0,1\},
+ 13760→\]
+ 13761→where the second coordinate buffers the first bit of the current block.  On
+ 13762→reading the first bit $b$ of a block, $A'$ moves from $(q,-)$ to $(q,b)$ and
+ 13763→emits $0$; on reading the second bit $b'$, it applies the letter encoded by
+ 13764→$(b,b')$, moves to $(\tau(q,a),-)$, and emits $\lambda(q,a)$.  Then
+ 13765→$|Q'|=3M$, and $A'$ reproduces exactly the output of $A$ on the second bit of
+ 13766→each block, emitting the uninformative symbol $0$ on every first bit.
+ 13767→
+ 13768→The adversary runs the strategy of Theorem~\ref{thm:stream-lower-bound}
+ 13769→through this encoding.  First bits are perfectly predictable, so they force no
+ 13770→mistakes and cost nothing; each readout of $A$ still occurs on exactly one
+ 13771→round of the binary stream, namely the second bit of a $\mathtt d$ block, and
+ 13772→is still a forced mistake by the same lazy-adversary argument.  Hence the
+ 13773→number of forced mistakes is unchanged at $M\log_2M$.
+ 13774→
+ 13775→Writing $M'=3M$ for the state count of the binary machine,
+ 13776→\[
+ 13777→\frac{M\log_2M}{M'\log_2M'}
+ 13778→=
+ 13779→\frac{M\log_2M}{3M(\log_2M+\log_23)}
+ 13780→=
+ 13781→\frac13\cdot\frac{L}{L+\log_23}
+ 13782→\xrightarrow[L\to\infty]{}
+ 13783→\frac13 ,
+ 13784→\]
+ 13785→and the ratio is increasing in $L$, exceeding $0.23$ already at $L=3$.  Thus
+ 13786→the forced mistake count is at least $c\,M'\log_2M'$ for any $c<\tfrac13$ once
+ 13787→$M'$ is large, which is $\Omega(M'\log M')$.  The randomized statement follows
+ 13788→exactly as in Theorem~\ref{thm:stream-lower-bound}(ii).
+ 13789→\end{proof}
+ 13790→
+ 13791→\begin{lemma}[Subsequence-to-All-$M$ Extension]
+ 13792→\label{lem:subsequence-allM}
+ 13793→Let $C:\mathbb N\to[0,\infty)$ be nondecreasing.  Suppose there are
+ 13794→$M_1<M_2<\cdots$ with $M_{j+1}\le\alpha M_j$ for a constant $\alpha>1$, and
+ 13795→$C(M_j)\ge\beta M_j\log M_j$ for all $j$.  Then there is $\beta'>0$ with
+ 13796→\[
+ 13797→C(M)\ \ge\ \beta'M\log M
+ 13798→\]
+ 13799→for all sufficiently large $M$.
+ 13800→\end{lemma}
+ 13801→
+ 13802→\begin{proof}
+ 13803→Given large $M$, pick $j$ with $M_j\le M<M_{j+1}$; then $M_j\ge M/\alpha$.
+ 13804→Monotonicity gives
+ 13805→\[
+ 13806→C(M)\ \ge\ C(M_j)\ \ge\ \beta M_j\log M_j
+ 13807→\ \ge\ \frac{\beta}{\alpha}M\bigl(\log M-\log\alpha\bigr).
+ 13808→\]
+ 13809→For $M\ge\alpha^2$ we have $\log M-\log\alpha\ge\tfrac12\log M$, so
+ 13810→$C(M)\ge\frac{\beta}{2\alpha}M\log M$.
+ 13811→\end{proof}
+ 13812→
+ 13813→\begin{corollary}[Persistent-Stream Bound for All $M$]
+ 13814→\label{cor:stream-all-M}
+ 13815→The minimax realizable mistake complexity on a persistent stream is
+ 13816→nondecreasing in $M$, since $\mathcal H_M\subseteq\mathcal H_{M+1}$.  The
+ 13817→constructions of Theorems~\ref{thm:stream-lower-bound}
+ 13818→and~\ref{thm:stream-lb-binary} give lower bounds along the subsequences
+ 13819→$M=2^L$ and $M'=3\cdot2^L$ respectively, each with ratio $\alpha=2$.  By
+ 13820→Lemma~\ref{lem:subsequence-allM}, therefore,
+ 13821→\[
+ 13822→\operatorname{Mistakes}^{\mathrm{stream}}_{\mathrm{realizable}}(M)
+ 13823→=
+ 13824→\Omega(M\log M)
+ 13825→\]
+ 13826→for \emph{all} sufficiently large $M$, and hence, with the counting upper
+ 13827→bound, $\Theta(M\log M)$ for all sufficiently large $M$ and every fixed
+ 13828→alphabet pair with $|\mathcal I|\ge2$, $|\mathcal O|\ge2$.
+ 13829→\end{corollary}
+ 13830→
+ 13831→\begin{remark}[Binary Input Closes the Alphabet Gap]
+ 13832→\label{rem:stream-lb-binary}
+ 13833→Theorems~\ref{thm:stream-lower-bound} and~\ref{thm:stream-lb-binary} together
+ 13834→give $\Omega(M\log M)$ on a persistent stream for \emph{every} fixed alphabet
+ 13835→pair with $|\mathcal I|\ge2$ and $|\mathcal O|\ge2$, matching the finite-class
+ 13836→upper bound.  The block encoding costs only the constant factor $3$ in state
+ 13837→count and nothing in forced mistakes, because the padding rounds are
+ 13838→perfectly predictable and therefore free.
+ 13839→\end{remark}
+ 13840→
+ 13841→\begin{remark}[Scope of the Streaming Lower Bound]
+ 13842→\label{rem:streaming-lower-scope}
+ 13843→The upper bound above is a finite-class bound and is unconditional.  The
+ 13844→lower bound is inherited from $\Ldim(\mathcal H_M)$, and standard
+ 13845→VC-dimension lower bounds for automata are stated for classification of
+ 13846→independently presented words with resets.  A single persistent transducer
+ 13847→stream is a different protocol: the learner cannot reset the machine, and
+ 13848→successive rounds are dependent.  Transferring the lower bound therefore
+ 13849→requires a shattering or mistake-tree construction realized \emph{within one
+ 13850→input stream}.  Absent such a construction,
+ 13851→Theorem~\ref{thm:passive-realizable} yields an unconditional $O(M\log M)$
+ 13852→upper bound together with an $\Omega(M\log M)$ lower bound for the reset-word
+ 13853→protocol only.
+ 13854→\end{remark}
+ 13855→
+ 13856→\begin{remark}[No Passive Synchronization Assumption]
+ 13857→\label{rem:passive-no-sync}
+ 13858→The unknown-initial-state proof does not assume that the learner can force
+ 13859→synchronization.  In the passive model, inputs are adversarial, and the learner
+ 13860→cannot in general apply a synchronizing word.  The bound follows from the size
+ 13861→and Littlestone dimension of the enlarged hypothesis class, not from active
+ 13862→state identification.
+ 13863→\end{remark}
+ 13864→
+ 13865→\begin{remark}[Identification versus State Tracking]
+ 13866→\label{rem:identification-vs-tracking}
+ 13867→What is identified or predicted is the correct input-output function, not
+ 13868→necessarily the future internal state trajectory.  In deterministic realizable
+ 13869→prediction, correct output prediction over all continuations may require
+ 13870→identifying the residual equivalence class of the current history, but the
+ 13871→learner is not required to track the machine's internal state label.
+ 13872→\end{remark}
+ 13873→
+ 13874→%----------------------------------------------------------------------
+ 13875→%----------------------------------------------------------------------
+ 13876→\subsection{Active Realizable Setting}
+ 13877→\label{subsec:active-realizable}
+ 13878→%----------------------------------------------------------------------
+ 13879→
+ 13880→In the active realizable setting, the learner chooses inputs.  This can reduce
+ 13881→or eliminate the unknown-initial-state obstruction if the machine admits an
+ 13882→output-aware synchronizing or distinguishing experiment.
+ 13883→
+ 13884→\begin{definition}[Active Identification Objectives]
+ 13885→\label{def:residual-knowledge}
+ 13886→Three objectives must be separated, because they carry different costs and are
+ 13887→achieved against different prior knowledge.  In each case the learner is said
+ 13888→to \emph{attain} the objective at the first time $\tau$ at which the stated
+ 13889→quantity is determined by the transcript up to $\tau$, uniformly over all
+ 13890→targets in the class consistent with that transcript.
+ 13891→
+ 13892→\textbf{(SI) State identification in a known skeleton.}  The transition and
+ 13893→output tables are given; only the initial state is unknown.  The learner
+ 13894→attains~(SI) when it can name the current state \emph{up to observational
+ 13895→equivalence}, that is, when all states consistent with the transcript have the
+ 13896→same continuation function.  The qualification is needed because a nonminimal
+ 13897→skeleton may contain distinct states with identical behaviour, which no
+ 13898→input-output experiment can separate; for a minimal skeleton it is the same as
+ 13899→naming the state.
+ 13900→
+ 13901→\textbf{(RI) Residual identification.}  The machine is unknown.  The learner
+ 13902→attains~(RI) when it can identify the current Myhill--Nerode residual class,
+ 13903→equivalently the full continuation function from the current history.
+ 13904→
+ 13905→\textbf{(MI) Model identification from a known initial state.}  The initial
+ 13906→state is given; the tables are unknown.  The learner attains~(MI) when it can
+ 13907→name the residual class of every reachable history, not merely of the current
+ 13908→one.
+ 13909→
+ 13910→Each objective is \emph{prediction-closing}: once attained, the continuation
+ 13911→function from the current history is determined, so under the realizable
+ 13912→assumption every subsequent output is predictable with no further mistakes.
+ 13913→For~(SI) this holds because the tables are given and the state is now known;
+ 13914→for~(RI) and~(MI) it is immediate from the definition.  Consequently no
+ 13915→objective admits a nontrivial post-attainment continuation term, and the total
+ 13916→cost of a learner meeting the objective is exactly the cost of attaining it.
+ 13917→
+ 13918→Throughout,
+ 13919→\[
+ 13920→\MistRI(M)
+ 13921→=
+ 13922→\inf_{\mathcal A\in\mathcal R}\
+ 13923→\sup_{A\in\mathcal H_M,\ q\in Q_A}\
+ 13924→\operatorname{tot}(\mathcal A,A,q),
+ 13925→\]
+ 13926→where $\operatorname{tot}$ counts \emph{all} prediction mistakes over the whole
+ 13927→interaction and $\mathcal R$ is the set of active learners that attain
+ 13928→objective~(RI) at some finite time on every instance.  Both $\MistRI$ and
+ 13929→$\Esync$ are minimax over the same learner set; they differ in what they count.
+ 13930→$\Esync(M)$ of Definition~\ref{def:sync-mistake-complexity} counts only the
+ 13931→mistakes made \emph{before} attainment, so
+ 13932→\[
+ 13933→\MistRI(M)\ \ge\ \Esync(M)
+ 13934→\]
+ 13935→holds by definition, a learner being free a priori to err after attaining~(RI).
+ 13936→The reverse inequality is not definitional: it is
+ 13937→Theorem~\ref{thm:active-certified}(I), and its proof turns on the
+ 13938→prediction-closing property of Definition~\ref{def:residual-knowledge}, which
+ 13939→forbids post-attainment mistakes.  Were~(RI) replaced by an objective that is
+ 13940→not prediction-closing, the two quantities would separate.
+ 13941→
+ 13942→The requirement is not vacuous: as Remark~\ref{rem:active-objective-needed}
+ 13943→observes, a learner that repeatedly plays an input with known constant output
+ 13944→makes no mistakes and learns nothing, so without an identification requirement
+ 13945→the unconstrained quantity is $0$.  All active lower bounds in this subsection
+ 13946→are therefore identification complexities.
+ 13947→
+ 13948→The objectives differ in what must be paid \emph{before} attainment, and are
+ 13949→not ordered by inclusion: (SI) presupposes the tables and asks only for the
+ 13950→state, whereas~(MI) presupposes the state and asks for the tables.  (RI)
+ 13951→presupposes neither, and is the objective against which
+ 13952→Definition~\ref{def:sync-mistake-complexity} and all lower bounds of this
+ 13953→subsection are stated.
+ 13954→\end{definition}
+ 13955→
+ 13956→\begin{remark}[Which Objective Each Bound Uses]
+ 13957→\label{rem:objective-bookkeeping}
+ 13958→Because all three objectives of Definition~\ref{def:residual-knowledge} are
+ 13959→prediction-closing, a mistake bound in this subsection is always a bound on
+ 13960→the cost of \emph{attainment}, never a sum of an attainment cost and a
+ 13961→subsequent learning cost.  In particular no $O(M\log M)$ continuation term is
+ 13962→appended after attainment under any of the three objectives; where such a term
+ 13963→appears it is part of the attainment cost itself.
+ 13964→
+ 13965→The complexity $\Esync(M)$ of Definition~\ref{def:sync-mistake-complexity} is
+ 13966→defined against~(RI), and the upper bound it yields is $O(\Esync(M))$
+ 13967→(Theorem~\ref{thm:active-certified}(I)).  The length-form bound of
+ 13968→Proposition~\ref{prop:active-length-upper} is also stated against~(RI); the
+ 13969→$M\log M$ term there arises because the universal experiment realising
+ 13970→$\Lsyncu(M)$ certifies the residual class only after a further model-search
+ 13971→phase, and is therefore part of the attainment cost, not a continuation term.
+ 13972→The lower-bound constructions of
+ 13973→Theorems~\ref{thm:active-explicit-directsum} and~\ref{thm:active-two-phase}
+ 13974→are likewise stated against~(RI); their additive content lies in the two
+ 13975→\emph{independent unknown maps}, not in a synchronization-plus-Littlestone
+ 13976→split.
+ 13977→\end{remark}
+ 13978→
+ 13979→\begin{definition}[Adaptive Output-Aware Synchronization Length]
+ 13980→\label{def:output-aware-sync}
+ 13981→For a deterministic Mealy machine $A$ with unknown initial state, an adaptive
+ 13982→output-aware synchronization experiment is a finite decision tree.  Each
+ 13983→internal node is labeled by an input $x\in\mathcal I$; each outgoing edge is
+ 13984→labeled by an observed output $y\in\mathcal O$.  A leaf is reached after
+ 13985→observing the corresponding input-output transcript.
+ 13986→
+ 13987→The experiment identifies the residual class if every leaf corresponds to a
+ 13988→single Myhill--Nerode residual class of $A$.  Let
+ 13989→\[
+ 13990→L_{\mathrm{sync}}^{\mathrm{adapt}}(A)
+ 13991→\]
+ 13992→be the minimum worst-case depth of such an experiment \emph{for the machine
+ 13993→$A$}.  Define
+ 13994→\[
+ 13995→\Lsync(M)
+ 13996→=
+ 13997→\sup_{A\in\mathcal H_M}
+ 13998→L_{\mathrm{sync}}^{\mathrm{adapt}}(A),
+ 13999→\]
+ 14000→with value $\infty$ if some $M$-state machine admits no finite adaptive
+ 14001→synchronization experiment.
+ 14002→
+ 14003→This quantity is \emph{machine-specific}: the experiment realizing
+ 14004→$L_{\mathrm{sync}}^{\mathrm{adapt}}(A)$ may depend on $A$.  A learner that does
+ 14005→not know $A$ cannot in general run it.  For such a learner define instead the
+ 14006→\textbf{universal adaptive synchronization depth}
+ 14007→\[
+ 14008→\Lsyncu(M)
+ 14009→=
+ 14010→\min_{\mathcal T}\ \sup_{A\in\mathcal H_M}\ \operatorname{depth}_A(\mathcal T),
+ 14011→\]
+ 14012→the minimum over \emph{single} decision trees $\mathcal T$, implementable
+ 14013→without knowledge of $A$, of the worst-case depth at which the transcript
+ 14014→produced by $\mathcal T$ determines the \emph{current state} of $A$ within each
+ 14015→machine still consistent with it.
+ 14016→
+ 14017→The two quantities certify different things, and the distinction is what makes
+ 14018→the length-form bound of Proposition~\ref{prop:active-length-upper} come out as
+ 14019→it does.  $L_{\mathrm{sync}}^{\mathrm{adapt}}(A)$ is defined for a known
+ 14020→machine $A$ and certifies its residual class, which for known tables is the
+ 14021→same as certifying the state.  A universal tree faces an unknown machine, so
+ 14022→the strongest thing it can certify from an output transcript is the state
+ 14023→within each consistent candidate; the tables, and hence the residual class,
+ 14024→remain to be resolved.  This is objective~(SI) of
+ 14025→Definition~\ref{def:residual-knowledge} relativized to the consistent set, not
+ 14026→objective~(RI), and it is why a subsequent model-search phase appears in the
+ 14027→proof.
+ 14028→
+ 14029→Always
+ 14030→\[
+ 14031→\Lsync(M)\ \le\ \Lsyncu(M),
+ 14032→\]
+ 14033→and the inequality may be strict, since the left side optimizes the experiment
+ 14034→per machine while the right side must fix one experiment in advance.
+ 14035→
+ 14036→\emph{Identification is up to observational equivalence.}  The phrase
+ 14037→``determines the current state'' must be read modulo Myhill--Nerode
+ 14038→equivalence.  The class $\mathcal H_M$ contains
+ 14039→non-minimal machines carrying distinct states $s\ne s'$ with
+ 14040→$\lambda(s,w)=\lambda(s',w)$ for every input word $w$.  No experiment whatsoever
+ 14041→can separate such a pair, since separation would require an observable
+ 14042→difference and there is none.  Under a literal state-identification reading one
+ 14043→would therefore have $\Lsyncu(M)=\infty$ for trivial reasons, and the quantity
+ 14044→would carry no content.
+ 14045→
+ 14046→Accordingly, a transcript is said to determine the current state when it
+ 14047→determines its class under the observational equivalence
+ 14048→\[
+ 14049→s\sim s'
+ 14050→\iff
+ 14051→\lambda(s,w)=\lambda(s',w)\ \text{for all }w\in\mathcal I^*,
+ 14052→\]
+ 14053→equivalently when it determines the state of the minimal machine equivalent to
+ 14054→$A$.  On minimal machines the two readings agree, since there $\sim$ is the
+ 14055→identity; the same convention applies to $\Lsync$, to objective~(SI) of
+ 14056→Definition~\ref{def:residual-knowledge}, and to $\EsyncSI$.  With this reading
+ 14057→$\Lsyncu(M)$ is finite whenever some universal experiment exists, and
+ 14058→Lemma~\ref{lem:moore-separation} supplies the separating words that make it so.
+ 14059→\end{definition}
+ 14060→
+ 14061→\begin{definition}[Synchronization Mistake Complexity]
+ 14062→\label{def:sync-mistake-complexity}
+ 14063→For an active learner $\mathcal A$, a machine $A\in\mathcal H_M$ and an initial
+ 14064→state $q$, let $\mistk(\mathcal A,A,q)$ denote the number of prediction
+ 14065→mistakes $\mathcal A$ incurs before it attains objective~(RI) of
+ 14066→Definition~\ref{def:residual-knowledge}, with the value $+\infty$ if it never
+ 14067→does.  Define the \emph{synchronization mistake complexity}
+ 14068→\[
+ 14069→\Esync(M)
+ 14070→=
+ 14071→\inf_{\mathcal A}\
+ 14072→\sup_{A\in\mathcal H_M,\ q\in Q_A}\
+ 14073→\mistk(\mathcal A,A,q),
+ 14074→\]
+ 14075→the infimum being over all active learners, deterministic or randomized, with
+ 14076→$\mistk$ replaced by its expectation in the randomized case.
+ 14077→
+ 14078→The order of the operators is the substance of the definition.  The infimum
+ 14079→comes first, so $\Esync(M)$ is the cost incurred by the \emph{best} learner
+ 14080→against the worst instance: it is simultaneously an upper bound achievable by
+ 14081→some learner and a lower bound valid for every learner.  This two-sided
+ 14082→reading is what licenses its use on both sides of the bounds below.  Reversing
+ 14083→the operators would define a different and much larger quantity.
+ 14084→
+ 14085→Despite the subscript, $\Esync(M)$ is the cost of attaining
+ 14086→objective~(RI), which on an unknown machine includes identifying the
+ 14087→continuation function and not merely synchronizing the state.  It reduces to a
+ 14088→state-synchronization cost exactly when the tables are known, as in
+ 14089→objective~(SI).
+ 14090→
+ 14091→For a subclass $\mathcal C_M\subseteq\mathcal H_M$ write
+ 14092→\[
+ 14093→\Esync(\mathcal C_M)
+ 14094→=
+ 14095→\inf_{\mathcal A}\
+ 14096→\sup_{A\in\mathcal C_M,\ q\in Q_A}\
+ 14097→\mistk(\mathcal A,A,q),
+ 14098→\]
+ 14099→so that $\Esync(M)=\Esync(\mathcal H_M)$.
+ 14100→
+
+[showing lines 13501-14100 of 17893; use offset=14101 with limit to continue reading]

@@ -1,0 +1,602 @@
+ 14101→Two distinct complexities are in play and must not be conflated.  Alongside the
+ 14102→residual-identification quantity above, define the
+ 14103→\emph{state-identification complexity}
+ 14104→\[
+ 14105→\EsyncSI(\mathcal C_M)
+ 14106→=
+ 14107→\inf_{\mathcal A}\
+ 14108→\sup_{A\in\mathcal C_M,\ q\in Q_A}\
+ 14109→\mistk^{\mathrm{SI}}(\mathcal A,A,q),
+ 14110→\]
+ 14111→where $\mistk^{\mathrm{SI}}$ counts mistakes before objective~(SI) is attained,
+ 14112→the tables being given.  Since attaining~(RI) on an unknown machine requires
+ 14113→resolving the tables as well as the state,
+ 14114→\[
+ 14115→\EsyncSI(\mathcal C_M)\ \le\ \Esync(\mathcal C_M),
+ 14116→\]
+ 14117→and the two may differ by the cost of model search.  The additive statements
+ 14118→below decompose $\Esync$ into a state-identification part and a continuation
+ 14119→part, so it is $\EsyncSI$ that pairs additively with the continuation cost.
+ 14120→The distinction matters because on
+ 14121→the full class the complexity is pinned down outright
+ 14122→(Corollary~\ref{cor:active-theta}), so the additive form
+ 14123→$M\log M+\Esync(M)$ collapses to $\Theta(\Esync(M))$ there; it is on
+ 14124→subclasses, where the counting bound $\log_2|\mathcal C_M|$ need not be
+ 14125→$O(M\log M)$, that the two terms can genuinely separate.  Statements below
+ 14126→carrying a direct-sum or operational-equivalence hypothesis are to be read with
+ 14127→$\Esync$ evaluated on the relevant subclass.
+ 14128→\end{definition}
+ 14129→
+ 14130→\begin{proposition}[State Identification Costs Only Logarithmically Many Mistakes]
+ 14131→\label{prop:esyncsi-log}
+ 14132→Let the transition and output tables of a \emph{minimal} $M$-state machine be
+ 14133→given and only the initial state unknown, as in objective~(SI).  Then
+ 14134→\[
+ 14135→\EsyncSI(M)\ \le\ \bigl\lfloor\log_2M\bigr\rfloor ,
+ 14136→\]
+ 14137→for \emph{every} output alphabet with $|\mathcal O|\ge2$.  In particular the
+ 14138→bound carries no dependence on $|\mathcal O|$.
+ 14139→\end{proposition}
+ 14140→
+ 14141→\begin{proof}
+ 14142→Maintain the version space $V\subseteq Q$ of states consistent with the
+ 14143→transcript, initially $V=Q$, so $|V|\le M$.  While $|V|>1$, minimality
+ 14144→guarantees that some input word separates two survivors; let $x$ be the first
+ 14145→letter of such a word on which the survivors do not all agree in output, which
+ 14146→exists after advancing $V$ along finitely many letters with agreed output.
+ 14147→Predict the output symbol receiving a plurality of votes among $\{\lambda(s,x):
+ 14148→s\in V\}$ and play $x$.
+ 14149→
+ 14150→Partition $V$ by the value of $\lambda(\cdot,x)$ into output classes of sizes
+ 14151→$c_1\ge c_2\ge\dots\ge c_r$, where $r\le|\mathcal O|$ and $\sum_ic_i=|V|$, and
+ 14152→let the learner predict the plurality symbol, the one realizing $c_1$.
+ 14153→
+ 14154→If the prediction is wrong, the observed symbol realizes some class $c_j$ with
+ 14155→$j\ge2$, and the survivors are exactly that one class, of size
+ 14156→$c_j\le c_2$.  The key point is that the survivors form a \emph{single} class
+ 14157→rather than the union of all non-predicted classes.  Since $c_1\ge c_2$ and
+ 14158→$c_1+c_2\le|V|$,
+ 14159→\[
+ 14160→2c_2\ \le\ c_1+c_2\ \le\ |V|,
+ 14161→\qquad\text{so}\qquad
+ 14162→c_2\ \le\ \tfrac12|V| .
+ 14163→\]
+ 14164→Every mistake therefore at least halves the version space, whatever the size of
+ 14165→the output alphabet.  If the prediction is right, $V$ can only shrink.
+ 14166→Advancing every survivor along $x$ preserves $|V|$ or decreases it, since
+ 14167→$\tau(\cdot,x)$ is a function.
+ 14168→
+ 14169→Starting from $|V|\le M$ and halving at each mistake, with $|V|\ge1$
+ 14170→throughout, the number of mistakes is at most $\lfloor\log_2M\rfloor$.  When
+ 14171→$|V|=1$ the current state is determined, which is objective~(SI); since
+ 14172→$\EsyncSI$ is an infimum over learners, the bound follows.
+ 14173→\end{proof}
+ 14174→
+ 14175→\begin{remark}[Why the Alphabet Drops Out]
+ 14176→\label{rem:halving-alphabet-free}
+ 14177→A coarser count replaces ``the survivors are one class of size $c_2$'' by
+ 14178→``the survivors are everything not predicted'', giving the weaker factor
+ 14179→$1-1/|\mathcal O|$ and the bound
+ 14180→$\log_{|\mathcal O|/(|\mathcal O|-1)}M$, which degrades as the alphabet grows:
+ 14181→at $M=1024$ it reads $10.0$, $17.1$, $24.1$ and $51.9$ for
+ 14182→$|\mathcal O|=2,3,4,8$.  That is an artefact of the counting, not of the
+ 14183→problem.  Because a deterministic machine sends each surviving state to exactly
+ 14184→one output symbol, an erring learner is left with a single class, and the
+ 14185→plurality rule forces that class to be no larger than half the version space.
+ 14186→
+ 14187→The same counting applies wherever the version space consists of candidates
+ 14188→each of which predicts a single deterministic symbol.  In particular it applies
+ 14189→to the machine--state pairs of Theorem~\ref{thm:active-halving}, since a
+ 14190→deterministic machine paired with a state emits one symbol under a given input;
+ 14191→the alphabet-dependent factor is unnecessary there as well.
+ 14192→Enumerating all integer class profiles with $|V|\le25$ and $r\le5$ confirms
+ 14193→$c_2\le|V|/2$ without exception, with equality exactly when $c_1=c_2=|V|/2$ and
+ 14194→$r=2$; larger alphabets only fragment the complement further and cannot help
+ 14195→the adversary.
+ 14196→\end{remark}
+ 14197→
+ 14198→\begin{theorem}[State Identification Costs Logarithmically Many Mistakes, Exactly]
+ 14199→\label{thm:esyncsi-theta}
+ 14200→For every output alphabet with $|\mathcal O|\ge2$ and every input alphabet
+ 14201→with $|\mathcal I|\ge1$,
+ 14202→\[
+ 14203→\EsyncSI(M)\ =\ \bigl\lfloor\log_2M\bigr\rfloor ,
+ 14204→\]
+ 14205→with \emph{no} dependence on $|\mathcal O|$ or $|\mathcal I|$ beyond the
+ 14206→requirement $|\mathcal O|\ge2$.  In particular $\EsyncSI(2^L)=L$.
+ 14207→
+ 14208→The lower bound is witnessed by a minimal $M$-state machine on which every
+ 14209→deterministic learner is forced to make $\lfloor\log_2M\rfloor$ mistakes before
+ 14210→identifying the current state; every randomized learner makes at least
+ 14211→$\tfrac12\lfloor\log_2M\rfloor$ mistakes in expectation against a fixed initial
+ 14212→state.
+ 14213→\end{theorem}
+ 14214→
+ 14215→\begin{proof}
+ 14216→The upper bound is Proposition~\ref{prop:esyncsi-log}, which gives
+ 14217→$\lfloor\log_2M\rfloor$ for every $|\mathcal O|\ge2$.  For the lower bound fix
+ 14218→$L\ge1$, put $M=2^L$, and let
+ 14219→\[
+ 14220→Q=\{0,1\}^L,
+ 14221→\qquad
+ 14222→\mathcal O=\{0,1\}.
+ 14223→\]
+ 14224→Use a single input letter $\mathtt d$ acting as the left cyclic shift,
+ 14225→\[
+ 14226→\tau(v_1v_2\cdots v_L,\mathtt d)=v_2\cdots v_Lv_1,
+ 14227→\qquad
+ 14228→\lambda(v_1v_2\cdots v_L,\mathtt d)=v_1 ,
+ 14229→\]
+ 14230→adjoining a second letter acting as the identity with constant output if
+ 14231→$|\mathcal I|\ge2$ is required; that letter reveals nothing and can be ignored.
+ 14232→The tables are known to the learner and only the initial state is unknown, as
+ 14233→objective~(SI) requires.  The construction uses only two of the available
+ 14234→output symbols, so it is available verbatim for every $|\mathcal O|\ge2$; a
+ 14235→larger alphabet neither helps the learner nor the adversary here.
+ 14236→
+ 14237→\emph{Minimality.}  Two distinct states $v\ne w$ differ in some coordinate $j$,
+ 14238→and the word $\mathtt d^{\,j-1}$ drives them to states whose first coordinates
+ 14239→are $v_j\ne w_j$, so the next output separates them.  Hence all $M$ states are
+ 14240→pairwise distinguishable and the machine is minimal.
+ 14241→
+ 14242→\emph{The transcript is exactly the initial state.}  Applying $\mathtt d$
+ 14243→repeatedly from $v$ emits $v_1,v_2,\dots,v_L$ in order and returns to $v$.
+ 14244→Thus after $L$ rounds the state is determined, and before round $t\le L$ the
+ 14245→transcript constrains only $v_1,\dots,v_{t-1}$: the remaining $2^{L-t+1}$
+ 14246→states consistent with the transcript are exactly those with the observed
+ 14247→prefix, and every completion is a legal initial state.
+ 14248→
+ 14249→\emph{Deterministic lower bound.}  Run the adversary argument on the version
+ 14250→space.  At round $t\le L$ the learner must commit to a prediction
+ 14251→$\widehat y_t\in\{0,1\}$ for the bit $v_t$.  Both completions $v_t=0$ and
+ 14252→$v_t=1$ remain consistent, so the adversary sets $v_t=1-\widehat y_t$, forcing
+ 14253→a mistake, and records the bit.  After $L$ rounds the adversary has specified
+ 14254→an initial state $v^\star\in Q$ consistent with every revealed output, and the
+ 14255→learner has made $L=\log_2M$ mistakes.  Until round $L$ the version space has
+ 14256→size at least $2$, so the learner has not attained~(SI); the mistakes are
+ 14257→therefore all incurred before identification.
+ 14258→
+ 14259→\emph{Randomized lower bound.}  Let the initial state be uniform on $Q$.
+ 14260→Conditioned on the transcript through round $t-1$, the bit $v_t$ is a fair coin
+ 14261→independent of the learner's internal randomness, so any prediction errs with
+ 14262→probability exactly $\tfrac12$ and the expected number of mistakes over the
+ 14263→first $L$ rounds is $L/2$.  Averaging over the prior, some fixed
+ 14264→$v^\star\in Q$ forces at least $\tfrac12\log_2M$ expected mistakes against the
+ 14265→learner's own randomness.
+ 14266→
+ 14267→For general $M$ no padding is required, because $\mathcal H_M$ consists of the
+ 14268→machines with \emph{at most} $M$ states.  Put $L=\lfloor\log_2M\rfloor$, so
+ 14269→$2^L\le M$.  The cyclic-shift machine above has exactly $2^L$ states and is
+ 14270→minimal, hence belongs to $\mathcal H_M$, and against it every deterministic
+ 14271→learner is forced into $L$ mistakes.  Since $\EsyncSI(M)$ is a supremum over
+ 14272→$\mathcal H_M$, this gives $\EsyncSI(M)\ge L=\lfloor\log_2M\rfloor$, matching
+ 14273→the upper bound.
+ 14274→\end{proof}
+ 14275→
+ 14276→\begin{remark}[Why No Padding Is Needed]
+ 14277→\label{rem:esyncsi-intermediate}
+ 14278→Equality at intermediate budgets is a consequence of the ``at most $M$
+ 14279→states'' convention for $\mathcal H_M$, not of an interpolating construction.
+ 14280→The witness is built at $2^L$ states, and for any $M$ with $2^L\le M$ that same
+ 14281→machine is already a member of $\mathcal H_M$; no padding to exactly $M$ states
+ 14282→is required, and none is available, since adjoining duplicate states destroys
+ 14283→minimality while adjoining fresh reachable ones destroys the fair-bit property.
+ 14284→
+ 14285→Were $\mathcal H_M$ instead read as machines with \emph{exactly} $M$ states,
+ 14286→the argument would give only $\EsyncSI(M)=\Theta(\log M)$, with the constant
+ 14287→lost to monotonicity.  The two readings agree on the powers of two.
+ 14288→\end{remark}
+ 14289→
+ 14290→\begin{remark}[Both Bounds Are Attained by the Same Mechanism]
+ 14291→\label{rem:esyncsi-tight}
+ 14292→The matching bounds have a common explanation.  The halving argument of
+ 14293→Proposition~\ref{prop:esyncsi-log} shows that each mistake removes at least
+ 14294→half of the version space, so $\lfloor\log_2M\rfloor$ mistakes suffice; the
+ 14295→cyclic-shift family of Theorem~\ref{thm:esyncsi-theta} is the case in which
+ 14296→each mistake removes exactly half and no more, because each round exposes one
+ 14297→fresh, unconstrained bit of the initial state.  The family is thus extremal for
+ 14298→the halving bound, and the two sides meet exactly rather than up to a
+ 14299→constant.
+ 14300→
+ 14301→Solving the associated games exactly confirms both sides.  For
+ 14302→$L=1,\dots,10$ the deterministic minimax mistake count on the cyclic-shift
+ 14303→family is exactly $L=\log_2M$ and the Bayes-optimal expected count under the
+ 14304→uniform prior is exactly $L/2$, with all $M$ states pairwise separated so that
+ 14305→the family is minimal.  In the opposite direction, exhausting all minimal Mealy
+ 14306→machines across nine signatures with $|\Splus|\le4$, $|\mathcal I|\le2$ and
+ 14307→$|\mathcal O|\le4$ --- $46{,}656$ table pairs in the largest, of which
+ 14308→$35{,}640$ are minimal --- the worst-case state-identification cost never
+ 14309→exceeds $\lfloor\log_2M\rfloor$, and attains it at $M=2$ and $M=4$.  Holding
+ 14310→$|\Splus|$ fixed and enlarging $|\mathcal O|$ from $2$ to $4$ leaves the worst
+ 14311→case unchanged, as Remark~\ref{rem:halving-alphabet-free} predicts.
+ 14312→
+ 14313→Two consequences follow for the structure of the theory.  First, the collapse
+ 14314→recorded in Remark~\ref{rem:additive-collapses} is now unconditional: it rests
+ 14315→on a two-sided estimate rather than on an upper bound alone, so no choice of
+ 14316→subclass can rescue a mistake-currency additive decomposition.  Second, there
+ 14317→is no dependence on $|\mathcal O|$ at all.  Both bounds equal
+ 14318→$\lfloor\log_2M\rfloor$: the upper bound because an erring learner is left with
+ 14319→a single output class of size at most half the version space
+ 14320→(Remark~\ref{rem:halving-alphabet-free}), the lower bound because the
+ 14321→cyclic-shift witness needs only two output symbols.  Enlarging the alphabet
+ 14322→neither speeds up identification nor slows it down, and the base of the
+ 14323→logarithm is $2$ irrespective of $|\mathcal O|$.
+ 14324→\end{remark}
+ 14325→
+ 14326→\begin{remark}[The Additive Form Collapses]
+ 14327→\label{rem:additive-collapses}
+ 14328→Proposition~\ref{prop:esyncsi-log}, sharpened to an equality by
+ 14329→Theorem~\ref{thm:esyncsi-theta}, has a structural consequence for the
+ 14330→additive decomposition.  Since $\EsyncSI(\mathcal C_M)=O(\log M)$ for every
+ 14331→subclass of minimal machines,
+ 14332→\[
+ 14333→M\log M+\EsyncSI(\mathcal C_M)=\Theta(M\log M),
+ 14334→\]
+ 14335→so the two terms never separate and the additive form carries no information
+ 14336→beyond $\Theta(M\log M)$.  Accordingly no additive theorem is asserted with a
+ 14337→state-identification second term.
+ 14338→
+ 14339→A genuine two-term decomposition would require measuring the synchronization
+ 14340→component in a currency other than mistakes --- experiment \emph{length}, as in
+ 14341→$\Lsyncu$ of Definition~\ref{def:output-aware-sync}, is the natural candidate,
+ 14342→and Proposition~\ref{prop:active-length-upper} is stated in that currency.  The
+ 14343→mistake-counting decomposition is degenerate.
+ 14344→\end{remark}
+ 14345→
+ 14346→\begin{lemma}[Operational Equivalence]
+ 14347→\label{lem:operational-equivalence}
+ 14348→Let the class be a set of deterministic machines and let the protocol be
+ 14349→realizable.  Then a learner guarantees zero future mistakes on all
+ 14350→continuations from a given history if and only if it has attained
+ 14351→objective~(RI) of Definition~\ref{def:residual-knowledge} at that history.
+ 14352→
+ 14353→For deterministic realizable classes this is therefore a theorem, not a
+ 14354→hypothesis; it is stated separately because the results below that invoke it
+ 14355→are also meaningful for stochastic classes, where it must be assumed.
+ 14356→\end{lemma}
+ 14357→
+ 14358→\begin{proof}
+ 14359→\emph{(RI) implies zero future mistakes.}  This is the prediction-closing
+ 14360→property recorded in Definition~\ref{def:residual-knowledge}: the continuation
+ 14361→function from the current history is determined by the transcript, uniformly
+ 14362→over consistent targets, and realizability places the true target among them,
+ 14363→so predicting by that common function is correct on every subsequent round.
+ 14364→
+ 14365→\emph{Zero future mistakes implies (RI).}  Suppose~(RI) has not been attained,
+ 14366→so two machines $A,A'$ in the class are consistent with the transcript and
+ 14367→their continuation functions from the current histories differ.  Let $w$ be a
+ 14368→shortest word on which the two continuation functions disagree, which exists by
+ 14369→Lemma~\ref{lem:moore-separation}, and let $j$ be the first position at which
+ 14370→the emitted symbols differ.  The learner's prediction at that round is a
+ 14371→function of the transcript alone, hence identical in the run against $A$ and in
+ 14372→the run against $A'$, while the two true symbols differ.  Both runs are
+ 14373→realizable, since $A$ and $A'$ both lie in the class and both are consistent
+ 14374→with everything observed.  The learner therefore errs in at least one of them,
+ 14375→contradicting the guarantee of zero future mistakes on all continuations.
+ 14376→\end{proof}
+ 14377→
+ 14378→\begin{definition}[Direct-Sum Active Instance]
+ 14379→\label{def:direct-sum-active}
+ 14380→A \textbf{direct-sum active instance} of budget $M$ consists of an
+ 14381→$O(M)$-state machine family together with a decomposition of the learning task
+ 14382→into two components satisfying:
+ 14383→\begin{enumerate}[label=(\roman*)]
+ 14384→\item a synchronization component whose minimax mistake complexity is $S_M$,
+ 14385→measuring \emph{state identification only} and so comparable to
+ 14386→$\EsyncSI$ rather than to $\Esync$;
+ 14387→\item a continuation component whose active realizable mistake complexity is
+ 14388→$C_M$, measuring the residual model search that remains once the state is
+ 14389→known;
+ 14390→\item \textbf{disjoint accounting}: the rounds on which the two components can
+ 14391→force mistakes are disjoint;
+ 14392→\item \textbf{unavoidability}: the objective cannot be met without meeting it
+ 14393→for \emph{both} components, and this is a property of the machine family
+ 14394→rather than an external restriction on the protocol;
+ 14395→\item \textbf{product structure}: the family is parameterized by a pair
+ 14396→$(\theta_1,\theta_2)$ of unknowns, one per component, and \emph{every}
+ 14397→combination occurs, so the family is the full product of its two coordinate
+ 14398→ranges;
+ 14399→\item \textbf{coordinate locality}: the outputs on the rounds of $R_j$ are
+ 14400→determined by $\theta_j$ alone, independently of $\theta_{3-j}$.
+ 14401→\end{enumerate}
+ 14402→Conditions~(iii)--(vi) together constitute the \emph{component-restriction
+ 14403→property}.  It is exactly what the reduction in
+ 14404→Theorem~\ref{thm:active-direct-sum} consumes: (vi) makes a component's
+ 14405→observations well defined once its own parameter is fixed, (v) guarantees that
+ 14406→an arbitrary dummy value of the other parameter yields a legitimate composite
+ 14407→target, (iii) keeps the two mistake counts from overlapping, and (iv) forces
+ 14408→both components to be paid for.
+ 14409→Condition~(iv) is essential in the active protocol, where the learner chooses
+ 14410→its own inputs.  A family in which one component can be bypassed -- for
+ 14411→example by an irreversible transition into the other component -- does not
+ 14412→satisfy~(iv), and for such a family the additive bound fails.
+ 14413→Theorem~\ref{thm:active-two-phase} constructs a family satisfying~(iv) by
+ 14414→making the two components mutually reachable.
+ 14415→\end{definition}
+ 14416→
+ 14417→\begin{theorem}[Active Realizable Certified Bounds]
+ 14418→\label{thm:active-certified}
+ 14419→For active realizable learning over $M$-state deterministic machines, the
+ 14420→following three statements hold under \emph{separate} hypotheses, which are
+ 14421→not to be combined implicitly.
+ 14422→
+ 14423→\medskip
+ 14424→\noindent\textbf{(I) Upper bound (unconditional).}
+ 14425→Under objective~(RI) of Definition~\ref{def:residual-knowledge},
+ 14426→\[
+ 14427→\MistRI(M)
+ 14428→\ \le\
+ 14429→O\bigl(\Esync(M)\bigr),
+ 14430→\]
+ 14431→and this is sharp: by Definition~\ref{def:sync-mistake-complexity} some
+ 14432→learner attains~(RI) within $\Esync(M)$ mistakes, and~(RI) is
+ 14433→prediction-closing, so no mistake occurs afterwards.  No continuation term is
+ 14434→appended.
+ 14435→
+ 14436→\noindent\textbf{(II) Synchronization lower bound (needs
+ 14437→Lemma~\ref{lem:operational-equivalence} alone).}
+ 14438→If any learner guaranteeing zero future mistakes must first acquire
+ 14439→guaranteed residual-class knowledge, then
+ 14440→\[
+ 14441→\MistRI(M)
+ 14442→\ge
+ 14443→\Omega\bigl(\Esync(M)\bigr).
+ 14444→\]
+ 14445→This gives \emph{only} the $\Esync$ term; it does not by itself supply the
+ 14446→$M\log M$ term.
+ 14447→
+ 14448→\noindent\textbf{(III) Disjoint-component lower bound (needs direct-sum
+ 14449→saturation, Definition~\ref{def:direct-sum-active}).}
+ 14450→On a subclass $\mathcal C_M$ carrying a direct-sum instance with component
+ 14451→complexities $S_M$ and $C_M$,
+ 14452→\[
+ 14453→\MistRI(M)\ \ge\ S_M+C_M .
+ 14454→\]
+ 14455→This is a lower bound only; no matching upper bound is asserted, and no
+ 14456→identification of $S_M$ with a state-identification complexity is made.  By
+ 14457→Proposition~\ref{prop:esyncsi-log} the state-identification complexity is
+ 14458→$O(\log M)$, so a decomposition with $\EsyncSI$ as its second term would be
+ 14459→degenerate (Remark~\ref{rem:additive-collapses}); the components realized by
+ 14460→the explicit construction of Theorem~\ref{thm:active-two-phase} are both
+ 14461→model-identification components.
+ 14462→
+ 14463→\medskip
+ 14464→Parts~(II) and~(III) are stated in terms of the abstract complexity $\Esync$
+ 14465→and are the form that remains informative on \emph{subclasses}
+ 14466→$\mathcal C_M\subseteq\mathcal H_M$, where the two terms of the additive form
+ 14467→can separate.  On the full class $\mathcal H_M$ no hypothesis is needed at all:
+ 14468→Corollary~\ref{cor:active-theta} gives
+ 14469→$\MistRI(M)=\Theta(M\log M)$ outright, and
+ 14470→$M\log M+\Esync(M)=\Theta(\Esync(M))$ there.  An explicit family satisfying the
+ 14471→hypothesis of~(III) is constructed in
+ 14472→Theorem~\ref{thm:active-two-phase}, so~(III) is nonvacuous.
+ 14473→\end{theorem}
+ 14474→
+ 14475→\begin{proof}
+ 14476→\emph{Part~(I).}  Fix $\varepsilon>0$.  By
+ 14477→Definition~\ref{def:sync-mistake-complexity} the infimum over learners is
+ 14478→attained to within $\varepsilon$, so there is an active learner
+ 14479→$\mathcal A_\varepsilon$ which, on every $A\in\mathcal H_M$ and every initial
+ 14480→state, attains objective~(RI) after at most $\Esync(M)+\varepsilon$ mistakes.
+ 14481→Run $\mathcal A_\varepsilon$.  At the moment of attainment the continuation
+ 14482→function from the current history is determined by the transcript, uniformly
+ 14483→over all targets still consistent with it; since the protocol is realizable,
+ 14484→the true target is among them, and predicting according to that common
+ 14485→continuation function is correct on every subsequent round.  Hence the total
+ 14486→number of mistakes is at most $\Esync(M)+\varepsilon$.  As $\varepsilon>0$ was
+ 14487→arbitrary and the mistake count is integer valued, the bound
+ 14488→$O(\Esync(M))$ follows.
+ 14489→
+ 14490→No continuation term appears, since objective~(RI) already fixes the
+ 14491→continuation function from the current history.
+ 14492→
+ 14493→\emph{Part~(II).}  By Lemma~\ref{lem:operational-equivalence}, any
+ 14494→learner that eventually guarantees correct prediction on all continuations must
+ 14495→first attain objective~(RI).  By
+ 14496→Definition~\ref{def:sync-mistake-complexity} the infimum over learners of the
+ 14497→worst-case number of mistakes before that point is $\Esync(M)$, so every
+ 14498→learner incurs at least $\Esync(M)$ mistakes in the worst case:
+ 14499→\[
+ 14500→\MistRI(M)\ \ge\ \Omega(\Esync(M)).
+ 14501→\]
+ 14502→This uses no direct-sum hypothesis and yields \emph{only} the $\Esync$ term.
+ 14503→
+ 14504→\emph{Part~(III).}  Assume the direct-sum saturation condition of
+ 14505→Definition~\ref{def:direct-sum-active}.  The Littlestone lower bound is proved
+ 14506→against adversarial inputs and does not transfer automatically to the active
+ 14507→protocol (Remark~\ref{rem:no-automatic-active-lower}), so each component's
+ 14508→cost must be supplied by that hypothesis rather than by counting.
+ 14509→
+ 14510→The bound is $S_M+C_M$, not $\max\{S_M,C_M\}$, and the additivity comes from
+ 14511→disjointness rather than from any inequality between maxima and sums.  By
+ 14512→condition~(iv) the objective forces both components; by condition~(iii) the
+ 14513→rounds on which they force mistakes are disjoint; and by
+ 14514→Theorem~\ref{thm:active-direct-sum}, whose restriction argument uses
+ 14515→conditions~(v) and~(vi), each component contributes at least its own minimax
+ 14516→complexity on those rounds.  Summing over the two disjoint round sets gives
+ 14517→\[
+ 14518→\MistRI(M)\ \ge\ S_M+C_M .
+ 14519→\]
+ 14520→No matching upper bound is claimed: Part~(I) bounds $\MistRI(M)$ by
+ 14521→$O(\Esync(\mathcal C_M))$, and identifying $\Esync(\mathcal C_M)$ with
+ 14522→$S_M+C_M$ would require an explicit composite learner, which is not
+ 14523→constructed here.
+ 14524→\end{proof}
+ 14525→
+ 14526→\begin{proposition}[Length-Based Active Upper Bound]
+ 14527→\label{prop:active-length-upper}
+ 14528→For fixed finite alphabets --- the hypothesis $\Lsyncu(M)<\infty$ being
+ 14529→automatic by Proposition~\ref{prop:lsyncu-version-space} ---
+ 14530→\[
+ 14531→\MistRI(M)
+ 14532→\le
+ 14533→O\bigl(M\log M+\Lsyncu(M)\bigr),
+ 14534→\]
+ 14535→and in particular
+ 14536→\[
+ 14537→\Esync(M)\ \le\ O\bigl(M\log M+\Lsyncu(M)\bigr).
+ 14538→\]
+ 14539→The universal depth, not the machine-specific $\Lsync(M)$, is the correct
+ 14540→quantity here: a learner facing an unknown machine must fix its experiment in
+ 14541→advance, so it cannot in general realize $L_{\mathrm{sync}}^{\mathrm{adapt}}(A)$
+ 14542→for the particular $A$ it faces.  The two terms are not redundant: $\Lsyncu(M)$
+ 14543→pays for state identification and the $M\log M$ term for the subsequent model
+ 14544→search, these being the two things a universal experiment cannot deliver at
+ 14545→once (Definition~\ref{def:output-aware-sync}).  If the machine is known except
+ 14546→for its initial state, the model-search phase is vacuous and the bound reads
+ 14547→$O(\Lsync(M))$.
+ 14548→
+ 14549→In order of magnitude this bound is subsumed by
+ 14550→Theorem~\ref{thm:active-halving}, which attains the same objective in
+ 14551→$O(M\log M)$ mistakes without any synchronization experiment; even for
+ 14552→$\Lsyncu(M)=o(M\log M)$ the total here remains $O(M\log M)$.  Its interest is
+ 14553→structural.  It separates the contribution of the synchronization experiment
+ 14554→from that of the model search, and its first phase is governed by an experiment
+ 14555→fixable in advance, which is the operative quantity when the model-search phase
+ 14556→is externally curtailed.
+ 14557→No lower bound is asserted here; see
+ 14558→Remark~\ref{rem:no-automatic-active-lower}.
+ 14559→\end{proposition}
+ 14560→
+ 14561→\begin{proof}
+ 14562→For the upper bound, the learner fixes in advance a universal adaptive
+ 14563→synchronization tree of worst-case depth $\Lsyncu(M)$, as in
+ 14564→Definition~\ref{def:output-aware-sync}; this requires no knowledge of the
+ 14565→target machine.  During this phase it makes at most $\Lsyncu(M)$ prediction
+ 14566→mistakes, one per step in the worst case.  By
+ 14567→Definition~\ref{def:output-aware-sync} the observed transcript then determines
+ 14568→the current state of the target within each machine still consistent with it;
+ 14569→the tables, and hence the residual class, are not yet determined, so
+ 14570→objective~(RI) has not been attained and a second phase is required.
+ 14571→
+ 14572→The learner then runs the standard halving algorithm over the set of machines
+ 14573→in $\mathcal H_M$ consistent with the transcript so far, of cardinality at
+ 14574→most $|\mathcal H_M|$.  Each mistake halves that set, so at most
+ 14575→$\log_2|\mathcal H_M|=O(M\log M)$ further mistakes occur before a single
+ 14576→residual class remains, at which point objective~(RI) is attained and, being
+ 14577→prediction-closing, no mistake occurs afterwards.  The two phases together
+ 14578→give
+ 14579→\[
+ 14580→O(M\log M+\Lsyncu(M)).
+ 14581→\]
+ 14582→Here the $M\log M$ term is part of the cost of \emph{attaining}~(RI), not a
+ 14583→continuation term appended after attainment; this is the distinction drawn in
+ 14584→Remark~\ref{rem:objective-bookkeeping}.
+ 14585→
+ 14586→For the second display, the composite strategy just described is one
+ 14587→admissible learner attaining~(RI), and it is implementable without knowing the
+ 14588→target.  Since $\Esync(M)$ is an infimum over such learners
+ 14589→(Definition~\ref{def:sync-mistake-complexity}), the bound
+ 14590→$\Esync(M)\le O(M\log M+\Lsyncu(M))$ follows; when
+ 14591→$\Lsyncu(M)=\Omega(M\log M)$ this reads $\Esync(M)=O(\Lsyncu(M))$.
+ 14592→
+ 14593→\end{proof}
+ 14594→
+ 14595→\begin{proposition}[Machine-Specific Synchronization Depth Is Quadratic]
+ 14596→\label{prop:lsyncu-quadratic}
+ 14597→For fixed finite alphabets and every $M\ge2$,
+ 14598→\[
+ 14599→\Lsync(M)\ \le\ (M-1)^2\ =\ O(M^2).
+ 14600→\]
+ 14601→The bound is on the \emph{machine-specific} depth $\Lsync$, in which the
+ 14602→experiment may depend on the target; see
+ 14603→Remark~\ref{rem:lsync-not-lsyncu} for why it does not transfer to the
+ 14604→universal depth $\Lsyncu$.
+ 14605→\end{proposition}
+ 14606→
+ 14607→\begin{proof}
+ 14608→Fix $A\in\mathcal H_M$, minimal without loss of generality by the convention of
+ 14609→Definition~\ref{def:output-aware-sync}, and let $U\subseteq Q_A$ be the set of
+ 14610→states consistent with the transcript so far, initially $U=Q_A$ with
+ 14611→$|U|\le M$.  We exhibit a strategy, fixable in advance, that drives $U$ to a
+ 14612→single observational class.
+ 14613→
+ 14614→\emph{Step: one separation episode.}  Suppose $U$ contains two states $s\ne t$
+ 14615→that are not observationally equivalent.  Consider the pair automaton on
+ 14616→unordered pairs of states of $A$: from $\{u,v\}$ and input $x$ there is an edge
+ 14617→to $\{\tau(u,x),\tau(v,x)\}$, and $\{u,v\}$ is \emph{immediately separated} by
+ 14618→$x$ when $\lambda(u,x)\ne\lambda(v,x)$.  Breadth-first search from $\{s,t\}$
+ 14619→reaches an immediately separated pair, since $s\not\sim t$; the pair automaton
+ 14620→has at most $\binom{M}{2}$ nodes, but the standard argument bounds the distance
+ 14621→by $M-1$, because a shortest such path visits pairwise distinct pairs whose
+ 14622→underlying state sets are nested along the search and cannot repeat.  Let $w$
+ 14623→be the corresponding word, $|w|\le M-1$.
+ 14624→
+ 14625→Feed $w$.  Transitions are deterministic, so applying an input maps $U$ forward
+ 14626→and $|U|$ never increases.  At the final letter of $w$ the two survivors
+ 14627→descended from $s$ and $t$ emit different outputs, so whichever output is
+ 14628→observed at least one of the two branches is eliminated and $|U|$ strictly
+ 14629→decreases.
+ 14630→
+ 14631→\emph{Aggregation.}  Each episode costs at most $M-1$ inputs and strictly
+ 14632→decreases $|U|$.  Since $|U|$ starts at most $M$ and terminates when all
+ 14633→surviving states are observationally equivalent, at most $M-1$ episodes occur,
+ 14634→giving total depth at most $(M-1)^2$.
+ 14635→
+ 14636→The strategy runs breadth-first search on the pair automaton \emph{of the
+ 14637→target $A$}, so it presupposes knowledge of $A$ and is admissible for
+ 14638→$\Lsync(A)$.  Taking the supremum over $A\in\mathcal H_M$ gives the stated
+ 14639→bound on $\Lsync(M)$.
+ 14640→\end{proof}
+ 14641→
+ 14642→\begin{proposition}[Universal Synchronization Depth, Version-Space Form]
+ 14643→\label{prop:lsyncu-version-space}
+ 14644→Let
+ 14645→\[
+ 14646→N_M=\bigl|\{(A,q):A\in\mathcal H_M,\ q\in Q_A\}\bigr|\ \le\ M\,|\mathcal H_M| .
+ 14647→\]
+ 14648→Then
+ 14649→\[
+ 14650→\Lsync(M)\ \le\ \Lsyncu(M)\ \le\ (M-1)(N_M-1)\ <\ \infty .
+ 14651→\]
+ 14652→In particular $\Lsyncu(M)$ is finite for fixed finite alphabets and fixed $M$,
+ 14653→so the hypothesis $\Lsyncu(M)<\infty$ of
+ 14654→Proposition~\ref{prop:active-length-upper} is automatic.
+ 14655→\end{proposition}
+ 14656→
+ 14657→\begin{proof}
+ 14658→Maintain the version space $V\subseteq\{(A,q):A\in\mathcal H_M,\ q\in Q_A\}$ of
+ 14659→machine--state pairs consistent with the transcript so far, initially all of
+ 14660→them.  The whole strategy is a function of the transcript, since $V$ is, and it
+ 14661→is therefore a single decision tree in the sense of
+ 14662→Definition~\ref{def:output-aware-sync}; this is the point on which the
+ 14663→machine-specific bounds of Proposition~\ref{prop:lsyncu-quadratic} fail and
+ 14664→this one does not.
+ 14665→
+ 14666→While some machine $A$ occurring in $V$ carries two candidates $(A,q)$ and
+ 14667→$(A,q')$ in $V$ whose states are not observationally equivalent in $A$, select
+ 14668→one such triple.  The learner may compute inside $A$ because $A$ is a
+ 14669→\emph{candidate}, named by the version space, not the unknown target.  Both $q$
+ 14670→and $q'$ are states of the same $M$-state machine, so
+ 14671→Lemma~\ref{lem:moore-separation} applied within $A$ --- rather than to a
+ 14672→disjoint union of two machines --- supplies a word $w$ with
+ 14673→$\lambda_A(q,w)\ne\lambda_A(q',w)$ and $|w|\le M-1$.
+ 14674→
+ 14675→Feed $w$ and delete from $V$ every candidate whose predicted output sequence
+ 14676→disagrees with the observation, advancing the survivors along $w$.  At least
+ 14677→one of $(A,q)$, $(A,q')$ is deleted: their predicted sequences differ, so at
+ 14678→most one can agree with whatever is observed.  Hence $|V|$ strictly decreases
+ 14679→in each episode.  Starting from $|V|=N_M$ and terminating when no consistent
+ 14680→machine carries two observationally distinct candidate states, at most
+ 14681→$N_M-1$ episodes occur, each of length at most $M-1$.
+ 14682→
+ 14683→At termination the transcript determines the current state of the target within
+ 14684→every machine still consistent with it, which is precisely the objective of
+ 14685→Definition~\ref{def:output-aware-sync}.
+ 14686→\end{proof}
+ 14687→
+ 14688→\begin{remark}[Finiteness Is Now Unconditional; the Rate Is Not]
+ 14689→\label{rem:lsyncu-finite-not-rate}
+ 14690→Proposition~\ref{prop:lsyncu-version-space} settles finiteness, which
+ 14691→Remark~\ref{rem:lsync-not-lsyncu} had left open once $|\mathcal I|\ge2$, but it
+ 14692→does not settle the rate.  The bound is polynomial in the number of candidates
+ 14693→$N_M\le M|\mathcal H_M|$ and hence exponential in $M$, since
+ 14694→$|\mathcal H_M|$ is itself exponential; it is therefore far weaker in $M$ than
+ 14695→the machine-specific $\binom{M}{2}$.  Whether $\Lsyncu(M)$ is polynomial in $M$
+ 14696→is Conjecture~\ref{conj:lsyncu-poly}, and whether it is $O(M\log M)$ is the
+ 14697→surviving branch of Open Problem~\ref{open:si-hard-family}.
+ 14698→\end{remark}
+ 14699→
+ 14700→\begin{conjecture}[Polynomial Universal Depth]
+
+[showing lines 14101-14700 of 17893; use offset=14701 with limit to continue reading]

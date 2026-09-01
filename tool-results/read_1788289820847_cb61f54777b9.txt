@@ -1,0 +1,602 @@
+ 15301→$\mathcal G_1\subseteq\cdots\subseteq\mathcal G_m$ form a filtration by the
+ 15302→optional stopping theorem for discrete filtrations.  Put
+ 15303→\[
+ 15304→Y_k
+ 15305→=
+ 15306→\ind{\hat y_{\sigma_k}\ne g(v)_j\text{ at round }\sigma_k}-\tfrac12 ,
+ 15307→\qquad k=1,\dots,m .
+ 15308→\]
+ 15309→By the display above, $\mathbb E[Y_k\mid\mathcal G_k]=0$ and $|Y_k|\le\tfrac12$,
+ 15310→so $(Y_k)_{k\le m}$ is a bounded martingale difference sequence indexed by a
+ 15311→\emph{deterministic} range $1,\dots,m$.  The total number of mistakes is at
+ 15312→least $\sum_{k=1}^mY_k+\tfrac m2$, so taking expectations gives
+ 15313→$\mathbb E[\text{mistakes}]\ge\tfrac m2=\tfrac12M\log_2M$.  Azuma--Hoeffding
+ 15314→applied to $\sum_{k=1}^mY_k$ \cite[Ch.~6]{boucheron2013} gives, for every
+ 15315→$\eta\in(0,1)$,
+ 15316→\[
+ 15317→\Pr\left[\text{mistakes}<\bigl(\tfrac12-\eta\bigr)M\log_2M\right]
+ 15318→\le
+ 15319→\exp\!\left(-\tfrac12\eta^2M\log_2M\right),
+ 15320→\]
+ 15321→which is the stated high-probability form.  No independence among rounds is
+ 15322→assumed, and no input stream is fixed in advance.
+ 15323→
+ 15324→\textbf{Step 5: disjoint accounting.}
+ 15325→The readout rounds carrying $g$-information occur in read mode, and the
+ 15326→transport rounds $w_v$ occur in free mode, so the two sets of rounds are
+ 15327→disjoint.  This is condition~(iii) of
+ 15328→Definition~\ref{def:direct-sum-active}.
+ 15329→\end{proof}
+ 15330→
+ 15331→\begin{remark}[Why the Passive Family Must Be Gated]
+ 15332→\label{rem:gating-needed}
+ 15333→Gating is what separates the active setting from the passive one.  In the
+ 15334→passive protocol the adversary fixes the input stream, and in the stream of
+ 15335→Theorem~\ref{thm:stream-lower-bound} the letter $\mathtt c$ is always issued
+ 15336→from a state $v$ that the transport word $w_v$ has just established, so every
+ 15337→readout reports $g$ at a known argument.  An active learner is under no such
+ 15338→discipline: playing $\mathtt c$ twice in succession moves the machine to
+ 15339→$g(g(v))$, and a readout there constrains $g$ at an argument that is itself
+ 15340→undetermined.
+ 15341→
+ 15342→Under such chaining the set of maps consistent with a transcript is not a
+ 15343→product of independent per-argument constraints.  For $L=2$ a single chained
+ 15344→readout $g(g(0^L))=u$ leaves $48$ of the $256$ maps consistent, whereas the
+ 15345→product of the per-argument projections has $3\cdot4\cdot4\cdot4=192$
+ 15346→elements.  Both the per-bit adversary, which fixes one bit of one $g(v)$ per
+ 15347→readout round and requires every completion to remain available, and the
+ 15348→conditional-uniformity step of the Yao argument, which requires each queried
+ 15349→bit to be fair given the transcript, depend on that product structure.
+ 15350→
+ 15351→Making $\mathtt c$ a no-op in read mode, as in
+ 15352→Definition~\ref{def:gated-active-family}, confines every readout argument to
+ 15353→the free-mode state the learner transported to, at the cost of doubling the
+ 15354→state count.  The product structure holds throughout, and with it both
+ 15355→arguments.
+ 15356→\end{remark}
+ 15357→
+ 15358→\begin{corollary}[Active Realizable Mistake Complexity, Unconditionally]
+ 15359→\label{cor:active-theta}
+ 15360→For fixed alphabets with $|\mathcal I|\ge4$ and $|\mathcal O|\ge2$, and for
+ 15361→\emph{all} sufficiently large $M$,
+ 15362→\[
+ 15363→\Esync(M)=\Theta(M\log M)
+ 15364→\qquad\text{and}\qquad
+ 15365→\MistRI(M)=\Theta(M\log M),
+ 15366→\]
+ 15367→with no auxiliary hypothesis.  The same holds for every
+ 15368→$|\mathcal I|\ge2$ by the block encoding of
+ 15369→Theorem~\ref{thm:stream-lb-binary}.
+ 15370→\end{corollary}
+ 15371→
+ 15372→\begin{proof}
+ 15373→The upper bound $\Esync(M)=O(M\log M)$ is Theorem~\ref{thm:active-halving},
+ 15374→and it holds for every $M$.
+ 15375→
+ 15376→For the lower bound, first note that the gated family is defined only for
+ 15377→$M'=2^L$ and occupies $2M'$ states, so it yields a bound along the subsequence
+ 15378→\[
+ 15379→N_L=2^{L+1},
+ 15380→\qquad L=1,2,\dots,
+ 15381→\]
+ 15382→and not immediately at every budget.  Along that subsequence,
+ 15383→$\Gact_{2^L}\subseteq\mathcal H_{N_L}$ forces every active learner
+ 15384→attaining~(RI) to make at least
+ 15385→$2^L\log_22^L=\tfrac12N_L(\log_2N_L-1)$ mistakes by
+ 15386→Theorem~\ref{thm:active-explicit-directsum}.  Since $\Esync$ is an infimum over
+ 15387→learners of a supremum over the whole class, and $\Gact_{2^L}$ is one
+ 15388→subfamily, $\Esync(N_L)\ge\tfrac14N_L\log_2N_L$ for $N_L\ge4$.
+ 15389→
+ 15390→To pass from the subsequence to all budgets, observe that
+ 15391→$\mathcal H_M\subseteq\mathcal H_{M+1}$, so $\Esync$ is nondecreasing in $M$,
+ 15392→and that $N_{L+1}/N_L=2$, a bounded ratio.  Lemma~\ref{lem:subsequence-allM},
+ 15393→applied with $\alpha=2$, therefore gives a constant $\beta'>0$ with
+ 15394→\[
+ 15395→\Esync(M)\ \ge\ \beta'M\log M
+ 15396→\]
+ 15397→for all sufficiently large $M$.  Combined with the upper bound,
+ 15398→$\Esync(M)=\Theta(M\log M)$ for all sufficiently large $M$.
+ 15399→
+ 15400→For the mistake complexity, Theorem~\ref{thm:active-certified}(I) gives
+ 15401→$\MistRI(M)\le O(\Esync(M))=O(M\log M)$, and
+ 15402→the same family, extended by the identical monotonicity argument, gives the
+ 15403→matching lower bound, since attaining~(RI) is the objective.
+ 15404→\end{proof}
+ 15405→
+ 15406→
+ 15407→\begin{theorem}[Explicit Two-Phase Direct-Sum Instance]
+ 15408→\label{thm:active-two-phase}
+ 15409→There is a family of $O(M)$-state machines over fixed finite alphabets, and a
+ 15410→pair of switch letters $\mathtt s_1,\mathtt s_2$, realizing a direct-sum active
+ 15411→instance in the sense of Definition~\ref{def:direct-sum-active}: both
+ 15412→\[
+ 15413→S_M=\Omega(M\log M)
+ 15414→\qquad\text{and}\qquad
+ 15415→C_M=\Omega(M\log M)
+ 15416→\]
+ 15417→are forced, on disjoint sets of rounds.  Consequently
+ 15418→\[
+ 15419→\MistRI(M)
+ 15420→\ \ge\
+ 15421→S_M+C_M
+ 15422→=
+ 15423→\Omega(M\log M),
+ 15424→\]
+ 15425→Both components are model-identification components, each of complexity
+ 15426→$\Theta(M\log M)$, so their sum is again $\Theta(M\log M)$ and this family does
+ 15427→\emph{not} exhibit a separation between the two terms of the additive form.
+ 15428→What it establishes is that two independent unknown maps must each be paid for
+ 15429→on disjoint rounds.
+ 15430→\end{theorem}
+ 15431→
+ 15432→\begin{proof}
+ 15433→Split the budget as $M=M_1+M_2+O(1)$ with $M_1\asymp M_2\asymp M$.
+ 15434→
+ 15435→\emph{Component one.}  On the state block of size $M_1$, install the gated
+ 15436→transport-readout family $\Gact_{M_1}$ of
+ 15437→Definition~\ref{def:gated-active-family}, whose unknown datum is a map
+ 15438→$g:Q_1\to Q_1$.  Determining $g$ in full forces
+ 15439→$S_M=\Omega(M_1\log M_1)=\Omega(M\log M)$ mistakes, by
+ 15440→Theorem~\ref{thm:active-explicit-directsum}.
+ 15441→
+ 15442→\emph{Switch.}  Adjoin \emph{two} letters $\mathtt s_1,\mathtt s_2$, where
+ 15443→$\mathtt s_j$ forces entry into block $j$ from anywhere:
+ 15444→\[
+ 15445→\tau(q,\mathtt s_j)=\iota_j
+ 15446→\quad\text{for every state }q,
+ 15447→\qquad
+ 15448→\lambda(q,\mathtt s_j)=0,
+ 15449→\]
+ 15450→$\iota_j$ being the distinguished initial state of block $j$.  Tag the output
+ 15451→alphabet so the learner can see which block is active; this only helps the
+ 15452→learner and does not weaken the bound.
+ 15453→
+ 15454→Both letters are idempotent and total, so for each $j$ and each word $u$ the
+ 15455→composite $\mathtt s_j\,u$ reaches block $j$ and executes $u$ from $\iota_j$
+ 15456→irrespective of the current state.  The forcing argument below uses exactly
+ 15457→this: a single word, valid from every configuration, that drives the machine
+ 15458→into a prescribed block.  Totality is also what removes any evasion, since in
+ 15459→the active protocol the learner chooses its own inputs and block one remains
+ 15460→reachable at every time.
+ 15461→
+ 15462→\emph{Component two.}  On the state block of size $M_2$, install a second
+ 15463→independent copy of the gated transport-readout family, with its own unknown
+ 15464→map $g':Q_2\to Q_2$.  Restricted to inputs that keep the machine in $Q_2$, the
+ 15465→interaction is exactly a fresh instance of
+ 15466→Theorem~\ref{thm:active-explicit-directsum} on $M_2$ states, forcing
+ 15467→$C_M=\Omega(M_2\log M_2)=\Omega(M\log M)$ mistakes.
+ 15468→
+ 15469→\emph{Both components are forced.}  Suppose the learner has attained
+ 15470→objective~(RI) at some time $t$, so that it can predict every continuation with
+ 15471→no further mistakes.  Let $b$ be a bit of $g$, say the $j$-th bit of $g(v)$ for
+ 15472→some $v\in Q_1$, that is not determined by the transcript.  From the current
+ 15473→state -- \emph{whatever} it is, and in particular whichever block it lies in --
+ 15474→the learner may play
+ 15475→\[
+ 15476→\mathtt s_1\,w_v\,\mathtt c\,\mathtt d^{\,L_1},
+ 15477→\]
+ 15478→which reaches $\iota_1$ by the first letter, transports to $(\free,v)$ within
+ 15479→block one by $w_v$, enters read mode, and reads out all $L_1$ bits of $g(v)$,
+ 15480→among them $b$.  Every letter of this word is available at every state, so no
+ 15481→case distinction on the current block is needed.  Since $b$ is unconstrained
+ 15482→by the transcript, two members of the family agree on everything observed so
+ 15483→far and disagree on that continuation, so the continuation function is not
+ 15484→determined and~(RI) has not been attained -- a contradiction.  Hence every one
+ 15485→of the $M_1\log_2M_1$ bits of $g$ is determined by the transcript, and,
+ 15486→by the same argument with $\mathtt s_2$ and $g'$, every one of the
+ 15487→$M_2\log_2M_2$ bits of $g'$.  By
+ 15488→Theorem~\ref{thm:active-explicit-directsum}, Step~3, each such bit was
+ 15489→determined on a round that was a forced mistake.
+ 15490→
+ 15491→\emph{Disjointness and additivity.}  A readout of $g$ occurs only while the
+ 15492→machine is in $Q_1$, and a readout of $g'$ only while it is in $Q_2$; the two
+ 15493→blocks are disjoint, so the two sets of forced-mistake rounds are disjoint.
+ 15494→Moreover no observation in one block constrains the unknown map of the other,
+ 15495→the two maps being independent coordinates of the target.  Therefore the total
+ 15496→is at least $S_M+C_M$.
+ 15497→
+ 15498→\emph{Conditions~(iv) and~(v).}  The construction satisfies the unavoidability
+ 15499→requirement of Definition~\ref{def:direct-sum-active}: because $\mathtt s_1$
+ 15500→and $\mathtt s_2$ are total, both blocks are reachable from every state at
+ 15501→every time, so neither component can be bypassed, and the argument of the
+ 15502→previous paragraph shows the objective forces both.  Unavoidability is here a
+ 15503→property of the transition structure rather than a restriction imposed on the
+ 15504→protocol, as condition~(iv) requires.
+ 15505→
+ 15506→Product structure, condition~(v), also holds: the family is indexed by the pair
+ 15507→$(g,g')\in Q_1^{Q_1}\times Q_2^{Q_2}$, the two maps are chosen independently,
+ 15508→and every combination yields a machine of the family.  The parameter set is
+ 15509→therefore the full Cartesian product of its two coordinate ranges, as
+ 15510→condition~(v) of Definition~\ref{def:direct-sum-active} requires.
+ 15511→
+ 15512→The state count is $M_1+M_2+O(1)=O(M)$, so this is a direct-sum active
+ 15513→instance.
+ 15514→
+ 15515→The additive conclusion here does \emph{not} route through
+ 15516→Theorem~\ref{thm:active-direct-sum} and so does not need its rectangular
+ 15517→hardness hypothesis.  The adversary above is lazy on each component
+ 15518→independently: every coordinate of $g$ and of $g'$ must be emitted before the
+ 15519→objective is attained, and each coordinate's first emission is a forced mistake
+ 15520→whatever the learner has seen on the other component, because the two maps are
+ 15521→independent and the answering rule commits nothing about one while responding
+ 15522→about the other.  Summing the forced mistakes over the two disjoint coordinate
+ 15523→sets gives $S_M+C_M$ directly.
+ 15524→
+ 15525→No matching upper bound of the form $O(S_M+C_M)$ is claimed, and none is
+ 15526→proved here.  The available upper bound is
+ 15527→$\MistRI(M)\le O(\Esync(M))$ from Theorem~\ref{thm:active-certified}(I), stated
+ 15528→in terms of the aggregate synchronization complexity; it is not an upper bound
+ 15529→in the two components separately, and no composite learner is exhibited whose
+ 15530→mistake count is $O(S_M+C_M)$.  For the family constructed here both
+ 15531→quantities happen to be $\Theta(M\log M)$, so the lower and upper bounds do
+ 15532→coincide in order for this family, but that coincidence is a property of the
+ 15533→instance and not a general additive equality.
+ 15534→\end{proof}
+ 15535→
+ 15536→\begin{openproblem}[A Non-Degenerate Two-Term Active Decomposition]
+ 15537→\label{open:si-hard-family}
+ 15538→Theorem~\ref{thm:esyncsi-theta} shows that state identification in a known
+ 15539→minimal skeleton costs $\Theta_{|\mathcal O|}(\log M)$ mistakes, so no
+ 15540→decomposition of the active complexity whose second term is a
+ 15541→state-identification \emph{mistake} complexity can be non-degenerate.  This
+ 15542→settles the mistake currency negatively and leaves the question of currency
+ 15543→itself.
+ 15544→
+ 15545→Is there a currency in which a genuine two-term decomposition holds?
+ 15546→The natural candidate is experiment \emph{length}: exhibit a family for which
+ 15547→$\Lsyncu(\mathcal C_M)=\omega(M\log M)$, so that
+ 15548→Proposition~\ref{prop:active-length-upper} is not dominated by the halving
+ 15549→bound of Theorem~\ref{thm:active-halving}, or prove that
+ 15550→$\Lsyncu(M)=O(M\log M)$ always.
+ 15551→
+ 15552→Propositions~\ref{prop:lsyncu-quadratic} and~\ref{prop:lsyncu-binomial}
+ 15553→localize the \emph{machine-specific} quantity,
+ 15554→\[
+ 15555→M-1\ \le\ \Lsync(M)\ \le\ \binom{M}{2},
+ 15556→\]
+ 15557→the upper bound attained at $M=3,4$ but apparently not beyond and the lower
+ 15558→bound from the counter family, both in
+ 15559→Remark~\ref{rem:attainment-sporadic}, whose evidence in fact favours
+ 15560→$\Lsync(M)=\Theta(M)$.
+ 15561→
+ 15562→For the universal quantity $\Lsyncu$, which is the one appearing in
+ 15563→Proposition~\ref{prop:active-length-upper}, none of this transfers: by
+ 15564→Remark~\ref{rem:lsync-not-lsyncu} a universal tree cannot search the target's
+ 15565→pair automaton, and the two quantities already differ at $M=2$.  Finiteness holds in general by
+ 15566→Proposition~\ref{prop:lsyncu-version-space}, but with a bound exponential in
+ 15567→$M$; for unary alphabets Proposition~\ref{prop:lsyncu-single-input} gives
+ 15568→$M-1$.  What is open is the rate: whether $\Lsyncu(M)$ is polynomial in $M$
+ 15569→(Conjecture~\ref{conj:lsyncu-poly}), and if so whether it exceeds
+ 15570→$M\log M$.
+ 15571→
+ 15572→Proposition~\ref{prop:lsyncu-single-input} narrows the search: any witness
+ 15573→must use $|\mathcal I|\ge2$, since unary input alphabets give
+ 15574→$\Lsyncu(M)\le M-1$ --- the one regime where the universal and machine-specific
+ 15575→depths coincide.
+ 15576→
+ 15577→The tension between the two effects a witness must combine --- many separation
+ 15578→episodes, and a long word within an episode --- is now precise rather than
+ 15579→heuristic.  Lemma~\ref{lem:tension} states it as
+ 15580→$d(U)\le M-|U|+1$: a set that resists splitting for many rounds must be
+ 15581→\emph{small}, because each round that fails to split it still splits something
+ 15582→else, and there are only $M$ states to divide.  Summing the trade-off over
+ 15583→episodes yields $\binom{M}{2}$.  The remaining question is whether the worst
+ 15584→case over a \emph{family} can be pushed past $M\log M$, which is a statement
+ 15585→about lower bounds and not about the counting above.  The natural extremal
+ 15586→mechanism --- a single probe state with the other candidates rotated past it
+ 15587→--- realizes only $2M-2$, and searches at $M\le8$ find nothing quadratic
+ 15588→(Remark~\ref{rem:attainment-sporadic}), so the likely answer is that no such
+ 15589→family exists and $\Lsyncu(M)=O(M)$.
+ 15590→\end{openproblem}
+ 15591→
+ 15592→\begin{remark}[Necessity of the Identification Objective]
+ 15593→\label{rem:active-objective-needed}
+ 15594→Some objective of this kind is unavoidable.  In the bare active protocol, where
+ 15595→the learner chooses every input and is scored only on the rounds it chooses, the
+ 15596→learner may play $\mathtt r$ forever and make no mistakes at all while learning
+ 15597→nothing.  A nontrivial active lower bound therefore requires an identification,
+ 15598→coverage, or guaranteed-future-prediction requirement, and
+ 15599→Theorem~\ref{thm:active-explicit-directsum} supplies the bound relative to the
+ 15600→guaranteed-prediction objective already fixed in
+ 15601→Definition~\ref{def:residual-knowledge}.
+ 15602→\end{remark}
+ 15603→
+ 15604→\begin{remark}[Direct-Sum Saturation Alternative]
+ 15605→\label{rem:direct-sum-saturation}
+ 15606→Instead of Lemma~\ref{lem:operational-equivalence}, which requires
+ 15607→determinism, one may assume an
+ 15608→explicit direct-sum saturation condition: there exists a family of
+ 15609→synchronization-hard machines and Littlestone-hard continuation machines whose
+ 15610→sequential composition uses $O(M)$ states and forces any active learner to pay
+ 15611→both costs.  Under that hypothesis, the same additive lower bound follows.
+ 15612→This alternative is made precise in
+ 15613→Definition~\ref{def:direct-sum-active} and
+ 15614→Theorem~\ref{thm:active-direct-sum}, which do not rely on
+ 15615→Lemma~\ref{lem:operational-equivalence}.
+ 15616→\end{remark}
+ 15617→
+ 15618→\begin{theorem}[Direct-Sum Additive Lower Bound]
+ 15619→\label{thm:active-direct-sum}
+ 15620→Let a direct-sum active instance of budget $M$ have component complexities
+ 15621→$S_M$ and $C_M$, and assume in addition \emph{rectangular hardness}: there are
+ 15622→distributions $\Pi_1,\Pi_2$ on the two coordinate families such that, for every
+ 15623→composite learner run under the product law $\Pi_1\otimes\Pi_2$, the expected
+ 15624→number of mistakes on component $j$, conditioned on the entire transcript of
+ 15625→the other component, is at least the component bound.  Then
+ 15626→\[
+ 15627→\MistRI(M)
+ 15628→\ge
+ 15629→S_M+C_M.
+ 15630→\]
+ 15631→The bound is a sum, not a maximum, and the additivity comes from the
+ 15632→disjointness of the two round sets together with rectangular hardness.
+ 15633→
+ 15634→No two-sided statement follows.  Converting the lower bound into an equality
+ 15635→would require an explicit composite learner attaining $S_M+C_M$, which is not
+ 15636→constructed here.  Moreover, by Proposition~\ref{prop:esyncsi-log} the
+ 15637→state-identification mistake complexity is $O_{|\mathcal O|}(\log M)$, so a
+ 15638→decomposition in which one component is a state-identification cost is
+ 15639→necessarily degenerate (Remark~\ref{rem:additive-collapses}); the components of
+ 15640→Theorem~\ref{thm:active-two-phase} are both model-identification components,
+ 15641→each of complexity $\Theta(M\log M)$.
+ 15642→\end{theorem}
+ 15643→
+ 15644→\begin{proof}
+ 15645→No temporal ordering of the two components is assumed; in the active protocol
+ 15646→the learner may interleave them freely.
+ 15647→
+ 15648→Rectangular hardness is what converts two separate lower bounds into a sum, and
+ 15649→it cannot be dispensed with.  Conditions~(iii)--(v) of
+ 15650→Definition~\ref{def:direct-sum-active} give, for each component separately, a
+ 15651→target forcing that component's bound; but those are targets of \emph{different}
+ 15652→runs, and a supremum over each coordinate separately yields
+ 15653→$\max\{S_M,C_M\}$, not $S_M+C_M$.  Under the product law the two conditional
+ 15654→expectations add, by linearity of expectation applied to the conditional
+ 15655→counts, which is the step performed below.
+ 15656→
+ 15657→Let $\mathcal A$ be any learner attaining the objective on the composite
+ 15658→instance.  By condition~(iv), unavoidability, $\mathcal A$ must determine the
+ 15659→unknown datum of each component, and this is a property of the machine family
+ 15660→rather than a restriction on the protocol, so it holds however $\mathcal A$
+ 15661→chooses its inputs.
+ 15662→
+ 15663→\emph{Restriction.}  For $j=1,2$ let $R_j$ be the set of rounds on which
+ 15664→component $j$ forces a mistake.  We build a learner $\mathcal A_1$ for
+ 15665→component~1 in isolation; the construction for $\mathcal A_2$ is symmetric.
+ 15666→
+ 15667→Since $\mathcal A$ chooses its inputs adaptively using outputs from
+ 15668→\emph{both} components, while the outputs of component~2 are not determined by
+ 15669→anything $\mathcal A_1$ observes, the simulation must supply those outputs from
+ 15670→data available to $\mathcal A_1$.  Condition~(v), product structure, is what
+ 15671→makes this possible.  Fix once and for all an arbitrary value $\theta_2^{0}$
+ 15672→of the second unknown.  Define $\mathcal A_1$ on a component-1 instance $\theta_1$ as
+ 15673→follows: run $\mathcal A$ internally; whenever $\mathcal A$ issues an input
+ 15674→whose round belongs to component~2, answer it from $\theta_2^{0}$, which
+ 15675→$\mathcal A_1$ knows; whenever the round belongs to component~1, forward it to
+ 15676→the real interaction and return the observed output.
+ 15677→
+ 15678→By condition~(v) the composite target $(\theta_1,\theta_2^{0})$ lies in the
+ 15679→family, so the internal run of $\mathcal A$ is a genuine run against a genuine
+ 15680→target; by condition~(vi) the outputs $\mathcal A_1$ must supply on
+ 15681→component-2 rounds are determined by $\theta_2^{0}$ alone, so it can supply
+ 15682→them, and the outputs on component-1 rounds are determined by $\theta_1$ alone,
+ 15683→so they agree with its own interaction.  The component-1 rounds of the internal
+ 15684→run therefore coincide exactly with the interaction $\mathcal A_1$ has with its
+ 15685→own instance.  Hence $\mathcal A_1$ is
+ 15686→a well-defined component-1 learner making precisely $|R_1|$ mistakes on
+ 15687→$\theta_1$.  Since $\mathcal A$ attains the objective, by condition~(iv) it
+ 15688→determines $\theta_1$, and therefore so does $\mathcal A_1$.  By the definition
+ 15689→of $S_M$ and $C_M$ as the minimax mistake complexities of the components,
+ 15690→\[
+ 15691→|R_1|\ \ge\ S_M,
+ 15692→\qquad
+ 15693→|R_2|\ \ge\ C_M
+ 15694→\]
+ 15695→in the worst case over the composite family.
+ 15696→
+ 15697→\emph{Summation.}  By condition~(iii), disjoint accounting,
+ 15698→$R_1\cap R_2=\emptyset$, so the total number of forced-mistake rounds is
+ 15699→$|R_1|+|R_2|$ regardless of the order in which they occur.  Hence
+ 15700→\[
+ 15701→\MistRI(M)
+ 15702→\ge
+ 15703→S_M+C_M.
+ 15704→\]
+ 15705→This is the stated bound.  No upper bound is derived: the unconditional upper bound bounds $\MistRI$ by
+ 15706→$O(\Esync(\mathcal C_M))$, and identifying $\Esync(\mathcal C_M)$ with
+ 15707→$S_M+C_M$ would require exhibiting a learner that attains the sum, which the
+ 15708→restriction argument does not provide.
+ 15709→\end{proof}
+ 15710→
+ 15711→\begin{remark}[When Length Gives a Lower Bound]
+ 15712→\label{rem:active-length-lower}
+ 15713→If every step of every optimal synchronization experiment has constant output
+ 15714→ambiguity, then a synchronization-length lower bound may be converted into a
+ 15715→mistake lower bound.  In that case, if
+ 15716→\[
+ 15717→\Esync(M)=\Omega(\Lsync(M)),
+ 15718→\]
+ 15719→then the additive theorem may be written in terms of $\Lsync(M)$:
+ 15720→\[
+ 15721→\MistRI(M)
+ 15722→=
+ 15723→\Theta(M\log M+\Lsync(M)).
+ 15724→\]
+ 15725→Without such an ambiguity hypothesis, synchronization length alone does not
+ 15726→lower-bound prediction mistakes.
+ 15727→\end{remark}
+ 15728→
+ 15729→\begin{remark}[Additive Synchronization Cost]
+ 15730→\label{rem:active-additive}
+ 15731→On a subclass for which a direct-sum instance exists, the attainment cost is
+ 15732→additive: it does not replace the $\Theta(M\log M)$ term, and active
+ 15733→synchronization removes the unknown-initial-state penalty only by paying the
+ 15734→cost of the experiment.  On the full class $\mathcal H_M$ the two terms are of
+ 15735→the same order by Corollary~\ref{cor:active-theta}, so additivity carries no
+ 15736→extra information there.
+ 15737→\end{remark}
+ 15738→
+ 15739→\begin{remark}[Oracle Integration]
+ 15740→\label{rem:active-oracle}
+ 15741→In the oracle bridge of Section~\ref{sec:oracle}, the passive realizable
+ 15742→estimation rate is
+ 15743→\[
+ 15744→\Est_M^{\mathrm{passive}}(T)
+ 15745→=
+ 15746→\Theta(M\log M),
+ 15747→\]
+ 15748→while on the full class the active realizable estimation rate is, by
+ 15749→Corollary~\ref{cor:active-theta},
+ 15750→\[
+ 15751→\Est_M^{\mathrm{active}}(T)
+ 15752→=
+ 15753→\Theta(M\log M)
+ 15754→\]
+ 15755→unconditionally, so the two protocols enter the oracle bridge with rates of the
+ 15756→same order.  On a subclass the rate is $\Theta(\Esync(\mathcal C_M))$ by
+ 15757→Theorem~\ref{thm:active-certified}(I).  In either case the oracle inequality
+ 15758→itself is unchanged; only the estimation rate input is modified.
+ 15759→\end{remark}
+ 15760→
+ 15761→%----------------------------------------------------------------------
+ 15762→\subsection{Agnostic Setting}
+ 15763→\label{subsec:agnostic}
+ 15764→%----------------------------------------------------------------------
+ 15765→
+ 15766→In the agnostic setting, the target sequence need not be realized by any
+ 15767→$M$-state Mealy machine.  The learner competes against the best function in
+ 15768→$\mathcal H_M$.
+ 15769→
+ 15770→\begin{theorem}[Agnostic Regret]
+ 15771→\label{thm:agnostic}
+ 15772→For the agnostic setting,
+ 15773→\[
+ 15774→\inf_{\mathcal A}
+ 15775→\sup_{(x_t,Y_t)}
+ 15776→R_T^{\mathrm{agn}}(\mathcal A)
+ 15777→=
+ 15778→O\bigl(\sqrt{T\,M\log M}\bigr),
+ 15779→\]
+ 15780→up to constants depending on the alphabets and possible logarithmic
+ 15781→refinements.  The matching lower bound also holds, in the persistent-stream
+ 15782→protocol as well as the reset-word protocol, so
+ 15783→\[
+ 15784→\inf_{\mathcal A}
+ 15785→\sup_{(x_t,Y_t)}
+ 15786→R_T^{\mathrm{agn}}(\mathcal A)
+ 15787→=
+ 15788→\Theta\bigl(\sqrt{T\,M\log M}\bigr).
+ 15789→\]
+ 15790→
+ 15791→The two-sided statement is asserted in the regime
+ 15792→\[
+ 15793→T\ \gtrsim\ M\log M ,
+ 15794→\]
+ 15795→that is, for horizons at least of the order of the Littlestone dimension.  For
+ 15796→shorter horizons the lower bound saturates: the adversary cannot force more
+ 15797→than one mistake per round, so the minimax regret is $\Theta(T)$ when
+ 15798→$T=O(M\log M)$, and the correct uniform statement is
+ 15799→$\Theta\bigl(\min\{T,\sqrt{T\,M\log M}\}\bigr)$.
+ 15800→\end{theorem}
+ 15801→
+ 15802→\begin{proof}
+ 15803→By Lemma~\ref{lem:littlestone},
+ 15804→\[
+ 15805→\Ldim(\mathcal H_M)=\Theta(M\log M).
+ 15806→\]
+ 15807→Since $\log|\mathcal H_M|=O(M\log M)$, finite-expert aggregation over the
+ 15808→labeled machines gives the unconditional upper bound
+ 15809→\[
+ 15810→R_T^{\mathrm{agn}}
+ 15811→\le
+ 15812→\sqrt{2T\log|\mathcal H_M|}
+ 15813→=
+ 15814→O\bigl(\sqrt{T\,M\log M}\bigr).
+ 15815→\]
+ 15816→For the lower bound, the minimax theorem for online learning
+ 15817→\cite{bendavid2009,daniely2014} gives
+ 15818→$R_T^{\mathrm{agn}}=\Omega(\sqrt{T\,\Ldim(\mathcal H_M)})$ whenever the
+ 15819→Littlestone dimension is witnessed by a mistake tree realizable in the
+ 15820→protocol at hand.  Theorem~\ref{thm:stream-lower-bound} supplies exactly such
+ 15821→a tree: at each of its $M\log_2M$ readout rounds \emph{both} output values
+ 15822→remain consistent with some member of $\mathcal G_M\subseteq\mathcal H_M$,
+ 15823→because the corresponding bit of $g$ is unconstrained at that moment.  The
+ 15824→adversary's decision tree is therefore a complete shattered mistake tree of
+ 15825→depth $M\log_2M$ embedded in a single never-reset stream, whence
+ 15826→\[
+ 15827→\Ldim^{\mathrm{stream}}(\mathcal H_M)\ \ge\ M\log_2M,
+ 15828→\]
+ 15829→and the reverse inequality $\Ldim\le\log_2|\mathcal H_M|=O(M\log M)$ is the
+ 15830→counting bound.  Substituting
+ 15831→$\Ldim^{\mathrm{stream}}(\mathcal H_M)=\Theta(M\log M)$ gives the claim.
+ 15832→\end{proof}
+ 15833→
+ 15834→\begin{corollary}[Stream Littlestone Dimension]
+ 15835→\label{cor:stream-ldim}
+ 15836→For fixed alphabets with $|\mathcal I|\ge4$ and $|\mathcal O|\ge2$, the
+ 15837→Littlestone dimension of $\mathcal H_M$ witnessed by mistake trees realizable
+ 15838→inside a single persistent stream satisfies
+ 15839→\[
+ 15840→\Ldim^{\mathrm{stream}}(\mathcal H_M)
+ 15841→=
+ 15842→\Theta(M\log M),
+ 15843→\]
+ 15844→matching the reset-word value.  Thus the two protocols have the same
+ 15845→sequential complexity up to constants.
+ 15846→\end{corollary}
+ 15847→
+ 15848→\begin{proof}
+ 15849→The upper bound is the counting bound of Lemma~\ref{lem:littlestone}, since
+ 15850→$\Ldim\le\log_2|\mathcal H_M|=O(M\log M)$.
+ 15851→
+ 15852→For the lower bound we exhibit the mistake tree explicitly rather than appeal
+ 15853→to the forcing argument as a black box.  Recall from
+ 15854→Theorem~\ref{thm:stream-lower-bound} that the adversary processes the states
+ 15855→$v^{(1)},\dots,v^{(M)}$ in order, playing the block
+ 15856→$w_{v^{(k)}}\,\mathtt c\,\mathtt d^{L}$ for each, and that the $L$ readout
+ 15857→rounds of block $k$ reveal the $L$ bits of $g(v^{(k)})$.
+ 15858→
+ 15859→Build a binary tree of depth $M\log_2M$ whose levels are indexed by the pairs
+ 15860→$(k,j)$ with $1\le k\le M$ and $1\le j\le L$, ordered lexicographically.  The
+ 15861→node at level $(k,j)$ reached by a path $\sigma\in\{0,1\}^{<M\log_2M}$ is
+ 15862→labelled by the input letter that the adversary plays at that round, namely the
+ 15863→$j$-th $\mathtt d$ of block $k$; the transport letters of $w_{v^{(k)}}$ and the
+ 15864→letter $\mathtt c$ are inserted as forced unary segments between levels, since
+ 15865→their outputs are determined by the fixed part of the table and branch nowhere.
+ 15866→The two outgoing edges of the node correspond to the two possible answers for
+ 15867→the bit $g(v^{(k)})_j$.
+ 15868→
+ 15869→Each root-to-leaf path $\sigma$ determines a full assignment of all
+ 15870→$M\log_2M$ bits, hence a unique $g_\sigma:Q\to Q$ and a unique member
+ 15871→$f_\sigma$ of the family, which by the consistency step of
+ 15872→Theorem~\ref{thm:stream-lower-bound} realizes every label along $\sigma$.  The
+ 15873→tree is therefore shattered by $\mathcal H_M$, and the whole labelled sequence
+ 15874→occurs inside one persistent stream with no external reset.  Its depth is
+ 15875→$M\log_2M=\Omega(M\log M)$, giving
+ 15876→$\Ldim^{\mathrm{stream}}(\mathcal H_M)=\Omega(M\log M)$.
+ 15877→\end{proof}
+ 15878→
+ 15879→\begin{remark}[Logarithmic Refinements]
+ 15880→\label{rem:agnostic-log-factors}
+ 15881→If a refined theorem introduces additional logarithmic factors in $T$, those
+ 15882→factors should be stated explicitly.  The $M$-scaling
+ 15883→\[
+ 15884→\sqrt{M\log M}
+ 15885→\]
+ 15886→is robust.  In the notation of Section~\ref{sec:oracle}, the agnostic
+ 15887→estimation rate is
+ 15888→\[
+ 15889→\Est_M^{\mathrm{agn}}(T)
+ 15890→=
+ 15891→\widetilde\Theta\!\left(\sqrt{T\,M}\right),
+ 15892→\]
+ 15893→with the $\widetilde\Theta$ hiding logarithmic factors such as $\log M$ and
+ 15894→possible $\log T$ refinements.
+ 15895→\end{remark}
+ 15896→
+ 15897→\begin{remark}[Log-Loss Bridge for Retention]
+ 15898→\label{rem:logloss-retention}
+ 15899→For retention the compatible online bridge is log-loss.  The approximation term
+ 15900→$\Aapp^{\mathrm{ret}}(M)$ is then a cumulative excess KL relative to the best
+
+[showing lines 15301-15900 of 17893; use offset=15901 with limit to continue reading]

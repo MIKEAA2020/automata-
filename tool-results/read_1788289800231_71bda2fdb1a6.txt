@@ -1,0 +1,602 @@
+ 14701→\label{conj:lsyncu-poly}
+ 14702→$\Lsyncu(M)=O(M^2)$ for fixed finite alphabets.
+ 14703→\end{conjecture}
+ 14704→
+ 14705→\begin{remark}[The Machine-Specific Bounds Are on $\Lsync$, Not on $\Lsyncu$]
+ 14706→\label{rem:lsync-not-lsyncu}
+ 14707→Propositions~\ref{prop:lsyncu-quadratic} and~\ref{prop:lsyncu-binomial} bound
+ 14708→the machine-specific depth, in which the separating word is chosen by searching
+ 14709→the pair automaton of the target.  A learner realizing $\Lsyncu$ must fix
+ 14710→\emph{one} decision tree in advance and run it against every member of
+ 14711→$\mathcal H_M$, so it cannot perform that search, and the bounds do not
+ 14712→transfer.
+ 14713→
+ 14714→The two quantities genuinely differ, already at $M=2$.  Over
+ 14715→$\mathcal I=\{0,1\}$ and $\mathcal O=\{0,1\}$ take
+ 14716→\[
+ 14717→A_1:\ \lambda(s,0)=s,\ \lambda(s,1)=0,
+ 14718→\qquad
+ 14719→A_2:\ \lambda(s,0)=0,\ \lambda(s,1)=s,
+ 14720→\]
+ 14721→both with $\tau(s,x)=s$.  Each is minimal and each is synchronized by a single
+ 14722→input --- input $0$ for $A_1$, input $1$ for $A_2$ --- so
+ 14723→$\Lsync=1$ on the pair.  A universal tree must commit to its first input before
+ 14724→learning which machine it faces; whichever it plays, the other machine emits
+ 14725→the constant output $0$ and nothing is learned, so a second input is required
+ 14726→and $\Lsyncu=2$ on the same pair.
+ 14727→
+ 14728→Consequently the finiteness of $\Lsyncu(M)$, and its rate, are \emph{not}
+ 14729→settled by these propositions.  Finiteness is settled separately, by the
+ 14730→version-space strategy of Proposition~\ref{prop:lsyncu-version-space}, whose
+ 14731→input choices depend on the transcript alone; the rate remains open.
+ 14732→\end{remark}
+ 14733→
+ 14734→\begin{lemma}[Separation--Size Tension]
+ 14735→\label{lem:tension}
+ 14736→Let $A$ be a minimal machine with $M$ states and let $U\subseteq Q_A$ with
+ 14737→$|U|\ge2$.  Write
+ 14738→\[
+ 14739→d(U)=\min_{s\ne t\in U}\ \min\{|w| : \lambda(s,w)\ne\lambda(t,w)\}
+ 14740→\]
+ 14741→for the length of the shortest word separating some pair inside $U$.  Then
+ 14742→\[
+ 14743→d(U)\ \le\ M-|U|+1 .
+ 14744→\]
+ 14745→\end{lemma}
+ 14746→
+ 14747→\begin{proof}
+ 14748→Write $\sim_k$ for the Moore partition after $k$ rounds, so $\sim_0$ is the
+ 14749→single block $Q_A$ and $\sim_{k+1}$ refines $\sim_k$ by the value of
+ 14750→$\lambda(\cdot,x)$ together with the $\sim_k$-class of $\tau(\cdot,x)$, over
+ 14751→all $x\in\mathcal I$.  By construction $s\sim_k t$ exactly when no word of
+ 14752→length at most $k$ separates $s$ from $t$.
+ 14753→
+ 14754→Put $k=d(U)$.  No word of length $k-1$ separates any pair inside $U$, so all
+ 14755→of $U$ lies in a single block of $\sim_{k-1}$.
+ 14756→
+ 14757→The refinement is strictly increasing until it stabilizes: if a round fails to
+ 14758→split then the partition is fixed forever, and minimality forces the stable
+ 14759→partition to be discrete.  Since $k-1$ rounds have been taken and the process
+ 14760→has not yet stabilized --- some pair inside $U$ is still unseparated, while
+ 14761→minimality guarantees it will be --- the block count satisfies
+ 14762→\[
+ 14763→\bigl|Q_A/{\sim_{k-1}}\bigr|\ \ge\ k .
+ 14764→\]
+ 14765→
+ 14766→On the other hand $U$ occupies one block and the remaining $M-|U|$ states
+ 14767→occupy at most $M-|U|$ further blocks, so
+ 14768→\[
+ 14769→\bigl|Q_A/{\sim_{k-1}}\bigr|\ \le\ 1+\bigl(M-|U|\bigr).
+ 14770→\]
+ 14771→Combining the two displays gives $k\le M-|U|+1$.
+ 14772→\end{proof}
+ 14773→
+ 14774→\begin{proposition}[Machine-Specific Depth Is at Most $\binom{M}{2}$]
+ 14775→\label{prop:lsyncu-binomial}
+ 14776→For fixed finite alphabets and every $M\ge2$,
+ 14777→\[
+ 14778→\Lsync(M)\ \le\ \frac{M(M-1)}{2},
+ 14779→\]
+ 14780→The bound is attained at $M=3$ and $M=4$ --- there is a minimal $4$-state
+ 14781→machine over binary alphabets with $\Lsync(A)=6=\binom{4}{2}$ --- but not
+ 14782→beyond: see Remark~\ref{rem:attainment-sporadic}.
+ 14783→\end{proposition}
+ 14784→
+ 14785→\begin{proof}
+ 14786→Run the strategy of Proposition~\ref{prop:lsyncu-quadratic}, but account for
+ 14787→each episode with Lemma~\ref{lem:tension} rather than with the crude bound
+ 14788→$M-1$.
+ 14789→
+ 14790→Let $U$ be the current uncertainty set.  While $U$ contains two states that
+ 14791→are not observationally equivalent, feed a shortest word realizing $d(U)$.  As
+ 14792→in Proposition~\ref{prop:lsyncu-quadratic}, deterministic transitions never
+ 14793→increase $|U|$, and at the final letter of that word the observed output
+ 14794→eliminates at least one branch, so $|U|$ strictly decreases.  The episode costs
+ 14795→$d(U)\le M-|U|+1$ inputs by Lemma~\ref{lem:tension}.
+ 14796→
+ 14797→The successive sizes are therefore at worst $M,M-1,\dots,2$, and the total is
+ 14798→at most
+ 14799→\[
+ 14800→\sum_{m=2}^{M}\bigl(M-m+1\bigr)
+ 14801→=
+ 14802→\sum_{j=1}^{M-1}j
+ 14803→=
+ 14804→\frac{M(M-1)}{2}.
+ 14805→\]
+ 14806→As in Proposition~\ref{prop:lsyncu-quadratic} the separating word is found by
+ 14807→searching the pair automaton of the target, so the bound is on $\Lsync$
+ 14808→(Remark~\ref{rem:lsync-not-lsyncu}).
+ 14809→
+ 14810→Attainment at $M=3,4$ is a computational observation rather than a proved
+ 14811→lower bound: exhaustive search over all minimal machines with
+ 14812→$|\mathcal I|=|\mathcal O|=2$ returns maximum adaptive depth exactly $3$ and
+ 14813→$6$ respectively, the latter realized by $3072$ machines.  An explicit witness
+ 14814→at $M=4$ is
+ 14815→\[
+ 14816→\tau(\cdot,0)=(0,0,3,2),\quad
+ 14817→\tau(\cdot,1)=(0,2,3,1),\quad
+ 14818→\lambda(\cdot,0)=(0,1,0,0),\quad
+ 14819→\lambda(\cdot,1)\equiv0 ,
+ 14820→\]
+ 14821→on state set $\{0,1,2,3\}$; the accompanying search program reports its optimal
+ 14822→adaptive depth as $6$.  No hand proof of that lower bound is given here.
+ 14823→\end{proof}
+ 14824→
+ 14825→\begin{remark}[Attainment Is Sporadic, and the Extremal Structure Is Linear]
+ 14826→\label{rem:attainment-sporadic}
+ 14827→The bound $\binom{M}{2}$ is attained at $M=3,4$ and, on the evidence, at no
+ 14828→larger $M$.  The distinction matters for
+ 14829→Open Problem~\ref{open:si-hard-family}, because attainment for all $M$ would
+ 14830→give $\Lsyncu(M)=\Theta(M^2)=\omega(M\log M)$ and settle it affirmatively.
+ 14831→
+ 14832→Every machine realizing the bound at $M=3,4$ has the same shape.  One input is
+ 14833→a permutation fixing a sink state and cycling the others; the second input is
+ 14834→collapsing and carries the \emph{only} informative output, emitted from a
+ 14835→single \emph{probe} state.  The learner can therefore ask just one question ---
+ 14836→``is the true state at the probe now?'' --- and must rotate candidates past the
+ 14837→probe between questions.  Tracing the optimal play at $M=4$ makes the cost
+ 14838→explicit: the uncertainty set moves
+ 14839→$\{0,1,2,3\}\to\{0,2,3\}\to\{0,1,3\}\to\{0,2\}\to\{0,3\}\to\{0,1\}\to\{0\}$,
+ 14840→alternating probe and rotate.
+ 14841→
+ 14842→That mechanism does not scale quadratically.  Generalizing it to arbitrary $M$
+ 14843→--- sink, an $(M-1)$-cycle, and a single probe --- gives adaptive depth exactly
+ 14844→$2M-2$, since each elimination costs one rotation step plus one probe step, and
+ 14845→the ratio to $M\log_2M$ \emph{decreases} in $M$.  Exhaustive search at $M=5$
+ 14846→over the $2{,}839{,}200$ minimal machines whose first input is a permutation
+ 14847→and whose output function has a single probe returns maximum depth $9$, short
+ 14848→of $\binom{5}{2}=10$; hill-climbing over unrestricted minimal machines returns
+ 14849→$9$, $14$ and $14$ at $M=6,7,8$ against $\binom{M}{2}=15$, $21$, $28$, a gap
+ 14850→that widens.
+ 14851→
+ 14852→The evidence therefore points away from a quadratic family and towards
+ 14853→$\Lsyncu(M)=O(M)$ for the worst case, which would collapse the length currency
+ 14854→exactly as the mistake currency collapsed in
+ 14855→Remark~\ref{rem:additive-collapses}.  This is evidence, not proof: the search
+ 14856→at $M\ge6$ is heuristic, and the exhaustive $M=5$ search covers a structured
+ 14857→subclass rather than all minimal machines.
+ 14858→\end{remark}
+ 14859→
+ 14860→\begin{proposition}[Single-Input Machines Are Linear]
+ 14861→\label{prop:lsyncu-single-input}
+ 14862→Let $|\mathcal I|=1$.  Then for every minimal $A\in\mathcal H_M$ the adaptive
+ 14863→synchronization depth satisfies
+ 14864→\[
+ 14865→L_{\mathrm{sync}}^{\mathrm{adapt}}(A)\ \le\ M-1 ,
+ 14866→\]
+ 14867→and consequently $\Lsync(M)=\Lsyncu(M)\le M-1$ for unary input alphabets.  In
+ 14868→particular $\Lsyncu(M)=O(M)=o(M\log M)$ there.
+ 14869→\end{proposition}
+ 14870→
+ 14871→\begin{proof}
+ 14872→With a single input letter the learner has no choice of experiment: the only
+ 14873→strategy is to feed that letter repeatedly, so the adaptive tree degenerates to
+ 14874→a path and $\Lsync$ and $\Lsyncu$ coincide.  This is the one case in which the
+ 14875→distinction of Remark~\ref{rem:lsync-not-lsyncu} is vacuous, because there is
+ 14876→only one universal tree.
+ 14877→
+ 14878→Write $a$ for the letter and define the equivalence relations
+ 14879→\[
+ 14880→s\sim_t u
+ 14881→\iff
+ 14882→\lambda(s,a^k)=\lambda(u,a^k)\ \text{ for all } k\le t ,
+ 14883→\]
+ 14884→so that $\sim_1$ is the partition of $Q_A$ by the value of $\lambda(\cdot,a)$
+ 14885→and $\sim_{t+1}$ refines $\sim_t$.  This is exactly Moore's partition
+ 14886→refinement for the unary automaton.
+ 14887→
+ 14888→Two observations finish the argument.  First, the refinement is monotone and
+ 14889→\emph{stabilizes at the first round that fails to split}: if
+ 14890→$\sim_{t+1}=\sim_t$ then $\sim_{t'}=\sim_t$ for all $t'\ge t$, since the
+ 14891→refinement step is a function of the current partition alone.  Second,
+ 14892→minimality of $A$ means the stable partition is discrete, with $M$ blocks.
+ 14893→
+ 14894→Let $R$ be the number of rounds until stabilization.  The block count is at
+ 14895→least $1$ initially, strictly increases at each of the first $R-1$ rounds by
+ 14896→the stabilization property, and equals $M$ at the end; hence $R\le M-1$.  After
+ 14897→$R$ applications of $a$ the observed output prefix determines the block of
+ 14898→$\sim_R$ containing the initial state, and that block is a singleton, so the
+ 14899→current state is determined.  Therefore
+ 14900→$L_{\mathrm{sync}}^{\mathrm{adapt}}(A)\le R\le M-1$.
+ 14901→\end{proof}
+ 14902→
+ 14903→\begin{remark}[The Search for a Witness Needs a Nontrivial Input Alphabet]
+ 14904→\label{rem:witness-needs-two-inputs}
+ 14905→Proposition~\ref{prop:lsyncu-single-input} removes an entire alphabet class
+ 14906→from consideration: any family witnessing
+ 14907→$\Lsyncu(\mathcal C_M)=\omega(M\log M)$ must have $|\mathcal I|\ge2$.  The
+ 14908→reason is structural rather than quantitative.  With one letter there is no
+ 14909→adaptivity to exploit --- the transcript is a fixed function of the initial
+ 14910→state --- so the process is pure partition refinement, and refinement can
+ 14911→happen at most $M-1$ times because each effective round splits at least one
+ 14912→block of a partition of an $M$-element set.  Adaptive depth beyond $M-1$
+ 14913→therefore requires the learner's \emph{choice} of next input to matter, which
+ 14914→needs at least two letters.
+ 14915→
+ 14916→Exhaustive computation supports this and locates the extremal behaviour
+ 14917→precisely.  Over all minimal single-input machines with $M\le6$ and binary
+ 14918→output --- $8$, $72$, $960$, $16{,}800$ and $362{,}880$ machines for
+ 14919→$M=2,\dots,6$ --- the depth equals the number of refinement rounds in every
+ 14920→instance, and the maximum is exactly $M-1$; the block count increases strictly
+ 14921→at each round, verified over $9{,}313{,}920$ minimal machines at $M=7$.
+ 14922→\end{remark}
+ 14923→
+ 14924→\begin{remark}[Consequences, and What Remains Open]
+ 14925→\label{rem:lsyncu-consequences}
+ 14926→Two consequences follow, and one question is sharpened rather than settled.
+ 14927→
+ 14928→First, the finiteness hypothesis in
+ 14929→Proposition~\ref{prop:active-length-upper} is not discharged by \emph{these}
+ 14930→bounds, since they concern $\Lsync$ rather than $\Lsyncu$
+ 14931→(Remark~\ref{rem:lsync-not-lsyncu}); it is discharged in general by
+ 14932→Proposition~\ref{prop:lsyncu-version-space}, and with a bound polynomial in
+ 14933→$M$ rather than in $N_M$ for unary input alphabets by
+ 14934→Proposition~\ref{prop:lsyncu-single-input}.
+ 14935→
+ 14936→Second, the quadratic bound does \emph{not} by itself decide whether the
+ 14937→length-form bound is dominated by the halving bound of
+ 14938→Theorem~\ref{thm:active-halving}.  The two rates cross: even the sharpened
+ 14939→$\binom{M}{2}$ of Proposition~\ref{prop:lsyncu-binomial} exceeds $M\log_2M$ for
+ 14940→$M\ge7$, so an upper bound of order $M^2$ leaves room for a family with
+ 14941→$\Lsyncu(\mathcal C_M)=\omega(M\log M)$.  Proposition~\ref{prop:lsyncu-binomial} fixes the constant at $\tfrac12$ for
+ 14942→$\Lsync$, and the bound is achieved at $M=3,4$.  It is not achieved beyond
+ 14943→(Remark~\ref{rem:attainment-sporadic}), and the extremal mechanism at those two
+ 14944→values generalizes to a family of depth $2M-2$ rather than to a quadratic one,
+ 14945→so the evidence favours $\Lsync(M)=\Theta(M)$.  None of this bounds $\Lsyncu$,
+ 14946→by Remark~\ref{rem:lsync-not-lsyncu}.
+ 14947→
+ 14948→What the evidence suggests is that no such family exists.  Exhaustive
+ 14949→computation over all minimal machines with $M\le5$ states and
+ 14950→$|\mathcal I|,|\mathcal O|\le3$ gives maximum adaptive depth
+ 14951→$M-1$ for single-input machines and never more than $\binom{M}{2}$; the natural
+ 14952→candidates --- cyclic counters with a single marked state, and the cyclic-shift
+ 14953→family of Theorem~\ref{thm:esyncsi-theta} --- realize $M-1$ and $\log_2M$
+ 14954→respectively, both $o(M\log M)$.  Hill-climbing on the ratio
+ 14955→$\Lsync(A)/(M\log_2M)$ over minimal machines up to $M=20$ never exceeds
+ 14956→$0.78$ and trends downward.  Whether $\Lsyncu(M)=O(M\log M)$ holds in general
+ 14957→remains open (Open Problem~\ref{open:si-hard-family}); what is now settled is
+ 14958→that the answer lies between $M-1$ and $(M-1)^2$, so the question is a
+ 14959→question about the exponent and not about finiteness.
+ 14960→\end{remark}
+ 14961→
+ 14962→\begin{lemma}[Separation Across Two Mealy Machines]
+ 14963→\label{lem:moore-separation}
+ 14964→Let $A_1,A_2$ be deterministic Mealy machines over the same alphabets, with
+ 14965→$N$ states in total, and let $q_1,q_2$ be states of $A_1,A_2$ respectively
+ 14966→whose continuation functions differ.  Then some word of length at most $N-1$
+ 14967→produces different output sequences from $q_1$ and $q_2$.
+ 14968→\end{lemma}
+ 14969→
+ 14970→\begin{proof}
+ 14971→Work in the disjoint union $A_1\sqcup A_2$, a single Mealy machine with $N$
+ 14972→states.  For $k\ge0$ let $\equiv_k$ identify two states when their output
+ 14973→sequences agree on every input word of length at most $k$.  Each $\equiv_k$ is
+ 14974→an equivalence relation, $\equiv_{k+1}$ refines $\equiv_k$, and the
+ 14975→refinement is the standard Moore construction
+ 14976→\cite[Ch.~II]{sakarovitch2009}.
+ 14977→
+ 14978→If $\equiv_{k+1}=\equiv_k$ for some $k$, then the sequence is stationary from
+ 14979→$k$ onwards, since $\equiv_{k+2}$ is determined by $\equiv_{k+1}$ together with
+ 14980→the one-step transition and output maps.  Hence the relations strictly refine
+ 14981→until they stabilize, and $\equiv_0$ has at least one block, so stabilization
+ 14982→occurs at some $k^\ast\le N-1$: each strict refinement increases the block
+ 14983→count by at least one, and the count cannot exceed $N$.
+ 14984→
+ 14985→By hypothesis $q_1\not\equiv_\infty q_2$, so $q_1\not\equiv_{k^\ast}q_2$, and a
+ 14986→word of length at most $k^\ast\le N-1$ witnesses the difference.
+ 14987→\end{proof}
+ 14988→
+ 14989→\begin{theorem}[Unconditional Active Attainment Bound]
+ 14990→\label{thm:active-halving}
+ 14991→Fix finite alphabets $\mathcal I,\mathcal O$ with $|\mathcal I|,|\mathcal O|\ge2$.
+ 14992→There is an active learner that, on every $A\in\mathcal H_M$ and every initial
+ 14993→state, attains objective~(RI) of Definition~\ref{def:residual-knowledge} after
+ 14994→at most
+ 14995→\[
+ 14996→\log_2\bigl|\mathcal H_M\times Q\bigr|
+ 14997→=
+ 14998→O(M\log M)
+ 14999→\]
+ 15000→prediction mistakes, the implied constant depending only on the alphabets.
+ 15001→Consequently
+ 15002→\[
+ 15003→\Esync(M)\ =\ O(M\log M),
+ 15004→\]
+ 15005→with no synchronizability, operational-equivalence, or direct-sum hypothesis.
+ 15006→\end{theorem}
+ 15007→
+ 15008→\begin{proof}
+ 15009→Let $V$ be the version space: the set of pairs $(A,q)$ with
+ 15010→$A\in\mathcal H_M$ and $q$ a state of $A$, consistent with the transcript so
+ 15011→far, where the second coordinate is advanced along the observed inputs.
+ 15012→Initially $|V|=|\mathcal H_M\times Q|$, which is finite.
+ 15013→
+ 15014→Call two elements of $V$ \emph{residually distinct} if their continuation
+ 15015→functions differ, i.e.\ if some input word separates their output sequences.
+ 15016→Two residually distinct elements $(A,q)$ and $(B,p)$ of $V$ are separated by a
+ 15017→word of length at most $2M-1$, by Lemma~\ref{lem:moore-separation} applied to
+ 15018→the disjoint union of $A$ and $B$, which has at most $2M$ states.  The familiar
+ 15019→$M-1$ figure is not available here, since it separates two states of a
+ 15020→\emph{single} $M$-state machine whereas the two elements of $V$ may come from
+ 15021→different machines; the disjoint-union bound $2M-1$ is the correct one.  The
+ 15022→exact length is in any case immaterial to the mistake count, which is driven by
+ 15023→halving and not by word length; only finiteness is used.
+ 15024→
+ 15025→The learner repeats the following until all elements of $V$ share one
+ 15026→continuation function.  Choose two residually distinct elements of $V$ and a
+ 15027→shortest word $w$ separating them.  Play $w$ one letter at a time; before each
+ 15028→letter, predict the output symbol receiving a plurality of votes among the
+ 15029→elements of $V$; after observing the true symbol, delete from $V$ every element
+ 15030→predicting a different symbol, and advance the states of the survivors.
+ 15031→
+ 15032→Two facts complete the argument.  First, each mistake at least halves $|V|$.
+ 15033→Fix the input $x$ played at the current step.  Every element $(A,q)$ of the
+ 15034→version space is a \emph{deterministic} machine together with a state, so it
+ 15035→emits the single symbol $\lambda_A(q,x)$; the version space therefore
+ 15036→partitions into output classes of sizes $c_1\ge c_2\ge\dots$, and the learner
+ 15037→predicts the plurality symbol.  If the prediction is wrong, the observed symbol
+ 15038→identifies one class other than the plurality class, and the survivors are
+ 15039→\emph{that single class}, of size at most $c_2$ --- not the union of all
+ 15040→non-predicted classes.  Since $c_1\ge c_2$ and $c_1+c_2\le|V|$,
+ 15041→\[
+ 15042→2c_2\ \le\ c_1+c_2\ \le\ |V|,
+ 15043→\qquad\text{so}\qquad
+ 15044→c_2\ \le\ \tfrac12|V| .
+ 15045→\]
+ 15046→This is the same counting as in Proposition~\ref{prop:esyncsi-log}, and it
+ 15047→applies verbatim here: what it needs is that each surviving candidate predicts
+ 15048→one deterministic symbol, which holds for machine--state pairs exactly as it
+ 15049→does for states of a known machine.  Consequently the number of mistakes is at
+ 15050→most $\bigl\lfloor\log_2|\mathcal H_M\times Q|\bigr\rfloor$, with no dependence
+ 15051→on $|\mathcal O|$.  Second, the procedure terminates:
+ 15052→playing a separating word $w$ deletes at least one of the two chosen elements,
+ 15053→so $|V|$ strictly decreases on each iteration, and $V$ is finite and never
+ 15054→empty since the realizable target is always retained.
+ 15055→
+ 15056→At termination all surviving elements have the same continuation function, and
+ 15057→the target is among them, so the continuation function from the current history
+ 15058→is determined by the transcript: objective~(RI) is attained.  Being
+ 15059→prediction-closing, it incurs no further mistakes.  Finally
+ 15060→$\log_2|\mathcal H_M\times Q|=O\bigl(M|\mathcal I|\log(M|\mathcal O|)\bigr)
+ 15061→=O(M\log M)$ for fixed alphabets, and $\Esync(M)$ is an infimum over learners
+ 15062→by Definition~\ref{def:sync-mistake-complexity}, so
+ 15063→$\Esync(M)\le\log_2|\mathcal H_M\times Q|=O(M\log M)$.
+ 15064→\end{proof}
+ 15065→
+ 15066→\begin{remark}[What Becomes Unconditional, and What Does Not]
+ 15067→\label{rem:active-unconditional}
+ 15068→Corollary~\ref{cor:active-theta} settles the \emph{order} of the active
+ 15069→realizable mistake complexity without any of the auxiliary hypotheses used
+ 15070→earlier in this subsection.  In particular
+ 15071→Lemma~\ref{lem:operational-equivalence} and the direct-sum saturation
+ 15072→condition are not needed for the $\Theta(M\log M)$ statement, and the
+ 15073→finiteness of $\Lsyncu(M)$ is not needed either: the halving learner of
+ 15074→Theorem~\ref{thm:active-halving} never performs a synchronization experiment
+ 15075→and is well defined even when no machine in $\mathcal H_M$ admits one.
+ 15076→
+ 15077→What those hypotheses still buy is finer information.  Parts~(II) and~(III) of
+ 15078→Theorem~\ref{thm:active-certified} are statements about $\Esync(M)$ as an
+ 15079→abstract complexity, and remain the right form when $\Esync$ is replaced by the
+ 15080→corresponding quantity for a \emph{subclass} of $\mathcal H_M$, where the
+ 15081→counting bound $\log_2|\mathcal H_M|$ need not be $O(M\log M)$ and the two
+ 15082→terms of the additive form can separate.  The additive form is therefore not
+ 15083→vacuous, but on the full class $\mathcal H_M$ it collapses:
+ 15084→$M\log M+\Esync(M)=\Theta(\Esync(M))$.
+ 15085→\end{remark}
+ 15086→
+ 15087→\begin{remark}[No Automatic Active Lower Bound]
+ 15088→\label{rem:no-automatic-active-lower}
+ 15089→An active lower bound does not follow from the passive theory, and must be
+ 15090→established by an explicit adversarial construction.  Two standard arguments
+ 15091→fail here.  First, ordinary Littlestone lower bounds are proved against an
+ 15092→\emph{adversarial} input sequence; when the learner chooses the inputs, the
+ 15093→adversary no longer controls the instance selection game, so those
+ 15094→constructions do not transfer.  Second, a counting argument of the form ``each
+ 15095→mistake conveys at most a constant amount of information'' is invalid, because
+ 15096→a \emph{correctly predicted} output also reveals information about the target
+ 15097→and costs the learner nothing.
+ 15098→
+ 15099→The obstruction is to those two methods, not to the conclusion.  The gated
+ 15100→family of Definition~\ref{def:gated-active-family} supplies an explicit
+ 15101→construction and yields the unconditional bound $\Omega(M\log M)$ of
+ 15102→Corollary~\ref{cor:active-theta}.  What requires a further hypothesis is the
+ 15103→\emph{separation} of the two terms in the additive form, which uses the
+ 15104→direct-sum saturation condition of Definition~\ref{def:direct-sum-active}.
+ 15105→\end{remark}
+ 15106→
+ 15107→\begin{definition}[Gated Active Family $\Gact_M$]
+ 15108→\label{def:gated-active-family}
+ 15109→Let $Q=\{0,1\}^L$, $M=2^L$, and let the state set be $Q\times\{\free,\rd\}$, of
+ 15110→size $2M$.  Write $\rot(v)=v_2\cdots v_Lv_1$ and let $\flipl(v)$ flip the last
+ 15111→bit of $v$.  For an arbitrary map $g:Q\to Q$ the machine $A_g\in\Gact_M$ has
+ 15112→transitions and Mealy outputs
+ 15113→\[
+ 15114→\begin{array}{lll}
+ 15115→(\free,v): &
+ 15116→\mathtt r\mapsto(\free,0^L)/0, \quad
+ 15117→\mathtt e\mapsto(\free,\flipl(v))/0, &
+ 15118→\mathtt d\mapsto(\free,\rot(v))/v_1, \quad
+ 15119→\mathtt c\mapsto(\rd,g(v))/0,\\[3pt]
+ 15120→(\rd,u): &
+ 15121→\mathtt r\mapsto(\free,0^L)/0, \quad
+ 15122→\mathtt e\mapsto(\rd,u)/0, &
+ 15123→\mathtt d\mapsto(\rd,\rot(u))/u_1, \quad
+ 15124→\mathtt c\mapsto(\rd,u)/0 .
+ 15125→\end{array}
+ 15126→\]
+ 15127→The single structural change from the family of
+ 15128→Theorem~\ref{thm:stream-lower-bound} is the last entry: in read mode
+ 15129→$\mathtt c$ is a \emph{no-op}.  The mode is visible in the output alphabet if
+ 15130→desired; this only helps the learner.  Only $\mathtt c$ from free mode depends
+ 15131→on $g$, so $|\Gact_M|=M^M$ and $\Gact_M\subseteq\mathcal H_{2M}$.
+ 15132→
+ 15133→The \emph{gating property} is the following.  Since read mode is entered only
+ 15134→by playing $\mathtt c$ from free mode, and $\mathtt c$ does nothing thereafter,
+ 15135→the register in read mode is always a cyclic rotation of $g(v)$ for the single
+ 15136→argument $v$ that was the free-mode state when $\mathtt c$ was played.  That
+ 15137→argument was reached by the learner's own inputs from the fixed state $0^L$
+ 15138→using only the $g$-independent letters $\mathtt r,\mathtt e,\mathtt d$, and is
+ 15139→therefore known to the learner.  Consequently every $g$-dependent output round
+ 15140→reports a bit of $g$ at a learner-known argument, and the set of maps
+ 15141→consistent with any transcript is exactly a product
+ 15142→\[
+ 15143→\prod_{v\in Q}\ S_v,
+ 15144→\qquad
+ 15145→S_v\subseteq Q,
+ 15146→\]
+ 15147→of independent per-argument constraints.
+ 15148→\end{definition}
+ 15149→
+ 15150→\begin{theorem}[Gated Family and Unconditional Active Lower Bound]
+ 15151→\label{thm:active-explicit-directsum}
+ 15152→Let $\mathcal I=\{\mathtt r,\mathtt e,\mathtt d,\mathtt c\}$ and
+ 15153→$\mathcal O=\{0,1\}$, and let $\Gact_{M}$ be the \emph{gated} family of
+ 15154→Definition~\ref{def:gated-active-family} on $2M$ states, $M=2^L$.  Consider an
+ 15155→active learner that chooses all inputs and is required to attain
+ 15156→objective~(RI) of Definition~\ref{def:residual-knowledge}.  Then
+ 15157→every \emph{deterministic} such learner incurs at least
+ 15158→\[
+ 15159→M\log_2M
+ 15160→=
+ 15161→\Omega(M\log M)
+ 15162→\]
+ 15163→mistakes in the worst case over $\Gact_M$.  For every \emph{randomized} such
+ 15164→learner there is a fixed target in $\Gact_M$ attaining the bound below, by
+ 15165→averaging over the uniform target distribution; explicitly, every randomized
+ 15166→learner satisfies
+ 15167→\[
+ 15168→\mathbb E[\text{mistakes}]
+ 15169→\ \ge\
+ 15170→\tfrac12M\log_2M
+ 15171→=
+ 15172→\Omega(M\log M),
+ 15173→\]
+ 15174→and, under the uniform target distribution on $Q^Q$, for every
+ 15175→$\eta\in(0,1)$,
+ 15176→\[
+ 15177→\Pr\left[
+ 15178→\text{mistakes}\ \ge\ \bigl(\tfrac12-\eta\bigr)M\log_2M
+ 15179→\right]
+ 15180→\ \ge\
+ 15181→1-\exp\!\left(-\tfrac12\eta^2M\log_2M\right).
+ 15182→\]
+ 15183→This family supplies \emph{one} component; the two-component direct-sum
+ 15184→instance required by Definition~\ref{def:direct-sum-active} is assembled from
+ 15185→two independent copies in Theorem~\ref{thm:active-two-phase}.  The unknown
+ 15186→datum here is the map $g:Q\to Q$, so what is forced is \emph{model}
+ 15187→identification, not state identification within a known skeleton; accordingly
+ 15188→$\Gact_M$ realizes a component of complexity
+ 15189→\[
+ 15190→S_M=\Omega(M\log M)
+ 15191→\]
+ 15192→against objective~(RI), and not the state-identification quantity $\EsyncSI$
+ 15193→of Definition~\ref{def:sync-mistake-complexity},
+ 15194→and $\Esync(M)=\Omega(M\log M)$ on this family.  A two-phase instance,
+ 15195→exhibiting a separate continuation cost $C_M$, is constructed in
+ 15196→Theorem~\ref{thm:active-two-phase}.
+ 15197→
+ 15198→Gating doubles the state count, so $\Gact_M$ lies in $\mathcal H_{N}$ with
+ 15199→$N=2M$.  The bound is unaffected in order: writing it against the true budget
+ 15200→$N$ gives
+ 15201→\[
+ 15202→\tfrac{N}{2}\log_2\tfrac{N}{2}
+ 15203→=
+ 15204→\Omega(N\log N),
+ 15205→\]
+ 15206→since $\log_2(N/2)=\log_2N-1\ge\tfrac12\log_2N$ for $N\ge4$.  All statements
+ 15207→below are therefore valid verbatim with $M$ read as the state budget, at the
+ 15208→cost of absolute constants only.
+ 15209→\end{theorem}
+ 15210→
+ 15211→\begin{proof}
+ 15212→Throughout, the learner chooses every input; the adversary answers.
+ 15213→
+ 15214→\textbf{Step 1: attaining~(RI) requires knowing $g$ everywhere.}
+ 15215→Suppose $g(v)$ is undetermined by the transcript for some $v\in Q$.  From the
+ 15216→current state the learner may play $\mathtt r\,w_v\,\mathtt c\,\mathtt d^{L}$,
+ 15217→where $w_v$ is the transport word of Theorem~\ref{thm:stream-lower-bound};
+ 15218→this reaches $(\free,v)$ using only $g$-independent letters, enters read mode
+ 15219→at $(\rd,g(v))$, and reads out all $L$ bits of $g(v)$.  Two members of
+ 15220→$\Gact_M$ consistent with the transcript disagree on that continuation, so the
+ 15221→continuation function is not determined and~(RI) has not been attained.  Since
+ 15222→$|\Gact_M|=M^M$, attaining~(RI) requires fixing all $M\log_2M$ bits of $g$.
+ 15223→
+ 15224→\textbf{Step 2: every $g$-dependent round is a readout at a known argument.}
+ 15225→The letters $\mathtt r,\mathtt e,\mathtt d$ have $g$-independent transitions
+ 15226→and outputs in both modes, and $\mathtt c$ emits the constant $0$ in both
+ 15227→modes, so no round using them at a $g$-independent state reveals anything
+ 15228→about $g$.  The only $g$-dependent outputs are the $\mathtt d$ rounds in read
+ 15229→mode, each emitting one bit of the register.  By the gating property of
+ 15230→Definition~\ref{def:gated-active-family} the register is a rotation of $g(v)$
+ 15231→for a single argument $v$ determined by the learner's own inputs, hence known
+ 15232→to it.  This is the only step at which gating is used, and
+ 15233→Remark~\ref{rem:gating-needed} shows it fails without it.
+ 15234→
+ 15235→\textbf{Step 3: the lazy adversary is well defined.}
+ 15236→Maintain a partial assignment recording, for each $v\in Q$ and each
+ 15237→coordinate $j\le L$, either a fixed bit or the symbol $\ast$.  When the learner
+ 15238→plays $\mathtt d$ in read mode with register $\rot^{\,o}(g(v))$ and coordinate
+ 15239→$j=o\bmod L$ still $\ast$, the adversary answers with the complement of the
+ 15240→learner's prediction and records that bit.  The answer is legal precisely
+ 15241→because, by Step~2, the consistent set is at every moment the product
+ 15242→$\prod_{v}S_v$ of per-argument constraints, so fixing one coordinate of $g(v)$
+ 15243→leaves every completion at every other argument available; no earlier round
+ 15244→constrained it.  Each of the $M\log_2M$ bits is therefore revealed on a round
+ 15245→that is a forced mistake, and no bit is ever revealed on a correctly predicted
+ 15246→round.  Rounds where the coordinate is already recorded are predicted
+ 15247→correctly and cost nothing, so no bit is paid for twice.
+ 15248→
+ 15249→By Step~1 the learner must reach the all-recorded assignment, so it incurs at
+ 15250→least $M\log_2M$ mistakes.  The learner's control of the input sequence
+ 15251→determines only \emph{when} each bit is paid for, not \emph{whether}.
+ 15252→
+ 15253→The argument does not proceed by counting information per mistake, which would
+ 15254→be invalid in the active protocol because correctly predicted rounds may also
+ 15255→be informative (Remark~\ref{rem:no-automatic-active-lower}).  It rests instead
+ 15256→on the structural property of Step~2: in this family every
+ 15257→information-bearing round is a forced mistake.
+ 15258→
+ 15259→\textbf{Step 4: randomized learners.}
+ 15260→Here the fixed-stream form of Yao's principle used in
+ 15261→Theorem~\ref{thm:stream-lower-bound}(ii) is \emph{not} available, since an
+ 15262→active learner chooses its own inputs and a fixed stream lower-bounds only
+ 15263→those learners that happen to follow it.  We argue directly on the adaptive
+ 15264→transcript.
+ 15265→
+ 15266→We first fix the accounting convention for learners that fail.  By
+ 15267→Definition~\ref{def:sync-mistake-complexity} a learner that never attains~(RI)
+ 15268→is charged $\mistk=+\infty$, so such learners cannot lower the infimum and may
+ 15269→be excluded; equivalently, the bound below is asserted for learners attaining
+ 15270→the objective almost surely, and is vacuously true otherwise.  Without such a
+ 15271→convention no unconditional expectation bound could hold, since a learner could
+ 15272→attain~(RI) only on an event of small probability and idle otherwise.
+ 15273→
+ 15274→Draw $g$ uniformly from $Q^Q$; equivalently the $M$ values $g(v)$ are
+ 15275→independent and uniform on $Q$, so the $M\log_2M$ bits of $g$ are
+ 15276→i.i.d.\ fair.  Fix any randomized active learner attaining~(RI) almost surely,
+ 15277→and let $\mathcal F_{t-1}$ be
+ 15278→the $\sigma$-field generated by the transcript through round $t-1$ together
+ 15279→with the learner's internal randomness.  Call round $t$ a \emph{first
+ 15280→emission} if it is a read-mode $\mathtt d$ round whose coordinate $(v,j)$ has
+ 15281→not been emitted at any earlier round, and let $N$ be the set of
+ 15282→first-emission rounds.
+ 15283→
+ 15284→By Step~2 the coordinate $(v,j)$ read at round $t$ is
+ 15285→$\mathcal F_{t-1}$-measurable, since the argument $v$ is determined by the
+ 15286→learner's own inputs and $j$ by the number of read-mode shifts since
+ 15287→$\mathtt c$.  By the product structure of Step~2, the transcript through round
+ 15288→$t-1$ constrains only coordinates already emitted, and $(v,j)$ is not among
+ 15289→them; hence $g(v)_j$ is independent of $\mathcal F_{t-1}$ and uniform on
+ 15290→$\{0,1\}$.  The prediction $\hat y_t$ is $\mathcal F_{t-1}$-measurable, so on
+ 15291→the event $\{t\in N\}$,
+ 15292→\[
+ 15293→\Pr\bigl[\hat y_t\ne g(v)_j \,\big|\, \mathcal F_{t-1}\bigr]=\tfrac12 .
+ 15294→\]
+ 15295→By Step~1, attaining~(RI) forces every one of the $m=M\log_2M$ coordinates to
+ 15296→be emitted, so $N$ has exactly $m$ elements.  The rounds of $N$ occur at random
+ 15297→times, so we index them in order of occurrence rather than by $t$: let
+ 15298→$\sigma_1<\sigma_2<\cdots<\sigma_m$ enumerate $N$, each $\sigma_k$ being a
+ 15299→stopping time with respect to $(\mathcal F_t)$, and set
+ 15300→$\mathcal G_k=\mathcal F_{\sigma_k-1}$.  The $\sigma$-fields
+
+[showing lines 14701-15300 of 17893; use offset=15301 with limit to continue reading]

@@ -1,0 +1,602 @@
+ 17101→\item Tagged depth-two NP-hardness in the same regime.
+ 17102→\item Commitment exact threshold
+ 17103→\[
+ 17104→\Com(M)=0
+ 17105→\iff
+ 17106→M\ge\kappa_{\det}(F).
+ 17107→\]
+ 17108→\item Safety controller complexity $\kappa_{\mathrm{ctrl}}(\Lambda)$.
+ 17109→\item Strategic-spread lower bound with explicit myopic adversary.
+ 17110→\item Stateless-game exact corollary $\ComGame(M)=\alpha/(1-\gamma)$.
+ 17111→\item Booleanized symmetrized $\alpha=0$ commitment vertex.
+ 17112→\item Unrestricted linear Hankel relaxation converse
+ 17113→\[
+ 17114→\Dunres(M)
+ 17115→=
+ 17116→\sigma_{M+1}(H_\nu).
+ 17117→\]
+ 17118→\item Hankel-structured lower bound
+ 17119→\[
+ 17120→\DHankstr(M)\ge\sigma_{M+1}(H_\nu).
+ 17121→\]
+ 17122→
+ 17123→\item Stochasticity floor for deterministic Mealy grounding, and its exact
+ 17124→observable refinement: $\sigma_\gamma(\nu)\le F_\gamma(\nu)$ with
+ 17125→$F_\gamma(\nu)$ the exact input-only deterministic floor and
+ 17126→$\lim_{M\to\infty}\Delta_{\mathrm{grd}}(M;\gamma)=F_\gamma(\nu)$
+ 17127→(Theorem~\ref{thm:observable-floor}).
+ 17128→\item Finite-section operator certificates for linear grounding: computable
+ 17129→two-sided bounds on $\sigma_{M+1}(H_\nu)=\Dunres(M)$ from finite Hankel
+ 17130→truncations $H_N$, with an explicit lower certificate
+ 17131→$\DHankstr(M)\ge\sigma_{M+1}(H_N)$ for the structured problem
+ 17132→(Proposition~\ref{prop:grounding-finite-section}).
+ 17133→\item Exact zero threshold for the Hankel-structured linear problem:
+ 17134→$\DHankstr(M)=0\iff\rank(H)\le M$
+ 17135→(Proposition~\ref{prop:grounding-structured-zero}).
+ 17136→\item Finite-horizon symbolic certificates: a two-sided sandwich
+ 17137→$\Delta^{(T)}_{\mathrm{grd}}(M;\gamma)\le\Delta_{\mathrm{grd}}(M;\gamma)\le
+ 17138→\Delta^{(T)}_{\mathrm{grd}}(M;\gamma)+\gamma^T/(1-\gamma)$, decidable and
+ 17139→rational under rational finite-state and rational-$\gamma$ hypotheses
+ 17140→(Proposition~\ref{prop:symbolic-finite-horizon}).
+ 17141→\item Refinement monotonicity of the tracking deficit: $\phi$ refining $\psi$
+ 17142→implies $D(\phi)\le D(\psi)$, so $\min_{|\mathcal K|\le M}D(\phi)$ is
+ 17143→nonincreasing in $M$ (Correction to item (iii) of
+ 17144→Proposition~\ref{prop:grounding-tracking}).
+ 17145→\item Joint zero-error memory theorem via meet of right congruences.
+ 17146→\item Comparative state-complexity sandwich.
+ 17147→\item Independence of regime obstructions.
+ 17148→\item Interaction theorem for exact commitment and approximate retention.
+ 17149→\item Price of Safety in mutual-information form.
+ 17150→\item Reset-word realizable mistake complexity $\Theta(M\log M)$.
+ 17151→\item \textbf{Persistent-stream realizable mistake complexity
+ 17152→$\Theta(M\log M)$}, with the lower bound proved by an explicit transport-plus-
+ 17153→readout adversary on a single never-reset stream
+ 17154→(Theorem~\ref{thm:stream-lower-bound}).
+ 17155→\item Active upper bound $O(\Esync(M))$ under objective~(RI)
+ 17156→(Theorem~\ref{thm:active-certified}(I)), and
+ 17157→$O(M\log M+\Lsyncu(M))$ in universal length form
+ 17158→(Proposition~\ref{prop:active-length-upper}).
+ 17159→\item \textbf{Active realizable mistake complexity
+ 17160→$\Theta(M\log M)$, unconditionally}: an active halving learner attains
+ 17161→objective~(RI) within $\log_2|\mathcal H_M\times Q|=O(M\log M)$ mistakes
+ 17162→(Theorem~\ref{thm:active-halving}), matching the gated-family lower bound, so
+ 17163→$\Esync(M)=\Theta(M\log M)$ with no synchronizability,
+ 17164→operational-equivalence, or direct-sum hypothesis
+ 17165→(Corollary~\ref{cor:active-theta}).
+ 17166→\item \textbf{Explicit gated family} $\Gact_M$ with
+ 17167→$\Esync(M)=\Omega(M\log M)$, giving an active lower bound
+ 17168→$\Omega(M\log M)$ relative to the residual-identification objective
+ 17169→(Theorem~\ref{thm:active-explicit-directsum}).  The unknown datum is a
+ 17170→transition map, so the bound is for model identification; it does not witness a
+ 17171→state-identification component.
+ 17172→\item Conditional additive active lower bound under direct-sum saturation
+ 17173→(Theorem~\ref{thm:active-direct-sum}), which separates the two terms; the
+ 17174→unconditional active lower bound itself is
+ 17175→Corollary~\ref{cor:active-theta}.
+ 17176→\item \textbf{Agnostic minimax regret $\Theta(\sqrt{T M\log M})$} in both the
+ 17177→reset-word and persistent-stream protocols
+ 17178→(Theorem~\ref{thm:agnostic}, Corollary~\ref{cor:stream-ldim}).
+ 17179→\item Fixed-budget bias--variance decomposition.
+ 17180→\item Adaptive agnostic oracle inequality under bounded losses.
+ 17181→\item Realizable $0/1$ and mixable log-loss oracle inequalities under stated
+ 17182→conditions.
+ 17183→\item Linear pinching Price-of-Safety surrogate nonnegativity and Ky Fan
+ 17184→majorization.
+ 17185→\item Retention as exact $\alpha=1$ vertex.
+ 17186→\item Commitment as Booleanized symmetrized $\alpha=0$ vertex.
+ 17187→\item Grounding as $\alpha=\infty$ supremum/operator-norm face, related but
+ 17188→not identical to max-divergence.
+ 17189→\end{itemize}
+ 17190→
+ 17191→%----------------------------------------------------------------------
+ 17192→\subsection{Conditional, Local, and Surrogate Results}
+ 17193→\label{subsec:conditional-results}
+ 17194→%----------------------------------------------------------------------
+ 17195→
+ 17196→The following results are conditional, local, or surrogate statements.
+ 17197→
+ 17198→\begin{itemize}[leftmargin=1.6em]
+ 17199→\item Local Fisher asymptotic lower bound for full KL under regularity
+ 17200→assumptions.
+ 17201→\item Conditional unified Schatten converse under response representation and
+ 17202→domination.
+ 17203→\item Frobenius / Schatten-$2$ converse under explicit Schatten-$2$
+ 17204→domination.
+ 17205→\item Stable-decay residual-norm spectral bound.
+ 17206→\item Max-divergence / operator-norm local equivalence under bounded-overlap
+ 17207→hypotheses.
+ 17208→\item Superpolynomial determinism gap for formal Hankel rank: the reduction is
+ 17209→exact, but the statement is conditional on the external bounded-error
+ 17210→succinctness family (Theorem~\ref{thm:exp-gap}).
+ 17211→\item Budget laws under spectral-rate assumptions.
+ 17212→\item Linear block-local Price-of-Safety surrogate.  It is unconditionally
+ 17213→nonnegative and bounded by the Ky Fan coupling term, but its identification
+ 17214→with the discrete Price of Safety requires a two-sided bound on the signed
+ 17215→discrepancy $\rho_{\mathrm{safe}}-\rho_{\mathrm{free}}$, neither term of which
+ 17216→has a determined sign (Section~\ref{subsec:pos-discrete}).
+ 17217→\item Spectral-tail behaviour, which is a heuristic organizing principle
+ 17218→requiring a regime-specific response operator and domination bridge rather
+ 17219→than following from aggregation
+ 17220→(Heuristic~\ref{heur:spectral}).
+ 17221→\item The vertex correspondence $\alpha=p$, which is a labelling consistency
+ 17222→between R\'enyi order and Schatten exponent and carries no derivation of the
+ 17223→Mirsky converses (Section~\ref{sec:exponent}).
+ 17224→\item The commitment vertex, which is a Boolean-rank and Myhill--Nerode
+ 17225→threshold rather than an ordinary Schatten $p\to0$ limit
+ 17226→(Theorem~\ref{thm:commitment-alpha0}).
+ 17227→\item The Hankel-structured converse, which attains the Eckart--Young--Mirsky
+ 17228→value only under a Hardy-space embedding
+ 17229→(Theorems~\ref{thm:aak-equality} and~\ref{thm:aak-multiletter}).
+ 17230→\item The block-mode tracking construction, which realizes a deterministic
+ 17231→Mealy machine of the claimed stationary error only under the explicit
+ 17232→input-driven synchronization and right-congruence implementability
+ 17233→hypothesis of Proposition~\ref{prop:block-mode-implementability}; absent that
+ 17234→hypothesis the same error formula is only the loss of a genie that observes
+ 17235→the latent block label.
+ 17236→\end{itemize}
+ 17237→
+ 17238→%----------------------------------------------------------------------
+ 17239→\subsection{Open Problems}
+ 17240→\label{sec:openproblems}
+ 17241→\label{subsec:open-problems}
+ 17242→%----------------------------------------------------------------------
+ 17243→
+ 17244→The following open problems remain.
+ 17245→
+ 17246→\begin{enumerate}[leftmargin=2.0em]
+ 17247→\item \textbf{Exact symbolic deterministic grounding gap (partially resolved).}
+ 17248→\emph{Hypotheses.} $0<\gamma<1$, finite input alphabet, target channel $\nu$.
+ 17249→\emph{Established baseline.} Theorem~\ref{thm:observable-floor} identifies
+ 17250→the exact input-only deterministic floor $F_\gamma(\nu)$ and proves
+ 17251→$\lim_{M\to\infty}\Delta_{\mathrm{grd}}(M;\gamma)=F_\gamma(\nu)$, with
+ 17252→$\sigma_\gamma(\nu)\le F_\gamma(\nu)$ possibly strict.
+ 17253→Proposition~\ref{prop:symbolic-finite-horizon} supplies, for every finite
+ 17254→horizon $T$, a two-sided certified interval for
+ 17255→$\Delta_{\mathrm{grd}}^{\mathrm{symb}}(M)=\Delta_{\mathrm{grd}}(M;\gamma)$ of
+ 17256→width at most $\gamma^T/(1-\gamma)$, decidable and rational for rational
+ 17257→finite-state channels and rational $\gamma$.  What remains open is a
+ 17258→\emph{closed-form value at finite $M$}, not merely a limit or a certified
+ 17259→interval, and its relation to the unrestricted linear finite-rank Hankel gap
+ 17260→$\Dunres(M)=\sigma_{M+1}(H_\nu)$, to the stochasticity floor $\sigma_\gamma$,
+ 17261→and to the superpolynomial determinism gap of
+ 17262→Theorem~\ref{thm:exp-gap} (see Open Problem~\ref{open:symbolic-grounding}).
+ 17263→\emph{Success criterion.} A formula or algorithm computing
+ 17264→$\Delta_{\mathrm{grd}}^{\mathrm{symb}}(M)$ exactly for every finite $M$ (not
+ 17265→just $M\to\infty$ or a fixed horizon $T$), together with either a proof or a
+ 17266→counterexample to $\Delta_{\mathrm{grd}}^{\mathrm{symb}}(M)\ge\sigma_{M+1}(H_\nu)$
+ 17267→for all $M$.
+ 17268→
+ 17269→\item \textbf{Hankel-structured equality conditions.}
+ 17270→Characterize necessary and sufficient conditions under which
+ 17271→\[
+ 17272→\DHankstr(M)
+ 17273→=
+ 17274→\sigma_{M+1}(H_\nu).
+ 17275→\]
+ 17276→Theorem~\ref{thm:aak-equality} settles the sufficient direction: a Hardy-space
+ 17277→symbol with $\varphi\in H^\infty+C(\mathbb T)$ forces equality for
+ 17278→\emph{every} $M$, with an attained optimum of rational symbol degree at most
+ 17279→$M$.  Corollary~\ref{cor:hankel-strict} converts this into a necessary
+ 17280→condition on the operator: a strict gap at any $M$ rules out Hardy-space
+ 17281→representability.  What remains open is the intrinsic characterization -- an
+ 17282→$\ell^2((\mathcal I\times\mathcal O)^*)$-side criterion, stated directly in
+ 17283→terms of $\nu$, deciding when such a symbol exists.
+ 17284→
+ 17285→\item \textbf{Relaxation gaps for the Price of Safety.}
+ 17286→Prove explicit bounds relating the linear block-local Price-of-Safety
+ 17287→surrogate
+ 17288→\[
+ 17289→\PoSlin(M)
+ 17290→\]
+ 17291→to the discrete right-congruence Price of Safety
+ 17292→\[
+ 17293→\PoSquad(M)
+ 17294→\]
+ 17295→or the full-KL Price of Safety.
+ 17296→
+ 17297→\item \textbf{Exact and fixed-alphabet complexity of full-KL retention.}
+ 17298→The unrestricted full-KL decision problem is: given $\{P_s\}$, $\{\pi_s\}$, a
+ 17299→budget $M\in\mathbb N$, lumpability constraints, and $\tau$, decide whether
+ 17300→\[
+ 17301→\min_{\substack{\phi\ \text{lumpable}\\|\mathcal K|\le M}}
+ 17302→\sum_k\sum_{s:\phi(s)=k}\pi_s\KL\bigl(P_s\|\bar P_k\bigr)
+ 17303→\le\tau .
+ 17304→\]
+ 17305→The budget $M$ is present because it is what makes the problem a genuine
+ 17306→finite-state compression decision rather than a bare clustering feasibility
+ 17307→question at the natural number of distinct rows; the case $M\ge|\Splus|$ is
+ 17308→trivial by Theorem~\ref{thm:retention-zero}, so the decision problem is of
+ 17309→interest exactly for $M<|\Splus|$.
+ 17310→Because the optimal block representative is the mixture centroid
+ 17311→$\bar P_k$ (Lemma~\ref{lem:mixture-centroid}), the objective is exactly the
+ 17312→weighted \emph{Jensen--Shannon} clustering cost, so the problem is
+ 17313→\emph{constrained Jensen--Shannon clustering with lumpability constraints}.
+ 17314→The Gaussian quadratic regime of Theorem~\ref{thm:retention-reset-np} is its
+ 17315→second-order Fisher special case, where the centroid degenerates to a mean and
+ 17316→the cost to squared Euclidean distance, which is how the $k$-means reduction
+ 17317→applies there.  That reduction is carried out in Theorem~\ref{thm:full-kl-promise-np}: the
+ 17318→obstruction --- that KL centroids are not rational in the inputs, so the
+ 17319→promise gap cannot be produced by denominator clearing --- is met by embedding
+ 17320→$k$-means into a shrinking interior neighbourhood of the uniform law, where the
+ 17321→Jensen--Shannon cost is a controlled perturbation of the Euclidean one and the
+ 17322→gap is preserved analytically.  Four questions remain.
+ 17323→
+ 17324→\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+ 17325→\item \textbf{Membership in NP.}  The objective compares a rational threshold
+ 17326→against a sum of terms $p\log(p/q)$ with $p,q$ rational.  Deciding such
+ 17327→inequalities in polynomial time is not known, so exact NP-completeness is open
+ 17328→even though hardness is proved.
+ 17329→
+ 17330→Proposition~\ref{prop:full-kl-algebraic-form} locates the difficulty exactly.
+ 17331→For a fixed partition the whole sum collapses,
+ 17332→$\RetKL(\phi)=D^{-1}\log R$ with $D$ a positive integer and $R$ a positive
+ 17333→rational presented as a product of powers, so the comparison with $\tau$ is
+ 17334→equivalent to deciding $R\ge e^{D\tau}$.  The number of logarithmic terms is
+ 17335→therefore not the obstruction; the single rational-versus-exponential
+ 17336→comparison is.  That comparison is decidable, by
+ 17337→Lindemann--Weierstrass as recorded in
+ 17338→Remark~\ref{rem:full-kl-exp-membership}, and what is missing is a polynomial
+ 17339→bound on the precision needed to resolve it, equivalently a polynomial lower
+ 17340→bound on $|R-e^{D\tau}|$.  Remark~\ref{rem:full-kl-slp} shows that $R$ must be
+ 17341→kept in factored form for this to be a meaningful question, its expanded
+ 17342→numerator and denominator being of exponential bit size.  Consequently the
+ 17343→problem lies in NP as soon as this $\textsc{PosSLP}$-type comparison admits
+ 17344→polynomial-time verifiable certificates.
+ 17345→\item \textbf{Fixed output alphabet.}  The embedding of
+ 17346→Theorem~\ref{thm:full-kl-promise-np} uses $|\mathcal O|=2d$, growing with the
+ 17347→dimension of the $k$-means instance.  Whether the problem is hard for a fixed
+ 17348→alphabet, binary in particular, is open.
+ 17349→
+ 17350→Remark~\ref{rem:output-alphabet-2d} determines how far the alphabet can be
+ 17351→reduced within this scheme, and the answer is arithmetic rather than a
+ 17352→universal constant: $|\mathcal O|$ may be taken as small as the least
+ 17353→$n\ge d+1$ whose zero-sum subspace in $\mathbb Q^{n}$ contains $d$ pairwise
+ 17354→orthogonal rational vectors of equal norm.  The value $n=2d$ always qualifies,
+ 17355→by the doubling map; $n=d+1$ qualifies for $d=3,7,15,\dots$, by the
+ 17356→non-constant rows of a Hadamard matrix of order $d+1$; and $n=d+1$ fails for
+ 17357→$d=2$, by a discriminant obstruction.  What no choice of scheme can avoid is
+ 17358→$|\mathcal O|\ge d+1$, since the zero-sum subspace of
+ 17359→$\mathbb R^{|\mathcal O|}$ has dimension $|\mathcal O|-1$ and must accommodate
+ 17360→$d$ independent directions.  A fixed alphabet therefore caps the embeddable
+ 17361→dimension, and a fixed-alphabet hardness proof would have to start from a
+ 17362→source problem hard in bounded dimension rather than from Euclidean
+ 17363→$k$-means.
+ 17364→\item \textbf{Hardness without a promise.}  The reduction separates instances
+ 17365→whose values differ by at least the amplified gap; exact comparison against a
+ 17366→rational threshold is a different question.
+ 17367→\item \textbf{Nonvacuous lumpability.}  The reduction makes every partition
+ 17368→lumpable.  The complexity under genuinely restrictive right-congruence
+ 17369→constraints is not addressed.
+ 17370→\end{enumerate}
+ 17371→
+ 17372→\item \textbf{Domination bridges.}
+ 17373→Identify task-theoretic conditions under which contextwise aggregation
+ 17374→implies Schatten domination, or under which frame-type lower bounds hold.
+ 17375→
+ 17376→\item \textbf{Intermediate exponent regimes.}
+ 17377→Determine whether intermediate R\'enyi orders
+ 17378→\[
+ 17379→\alpha\in(0,\infty)\setminus\{1\}
+ 17380→\]
+ 17381→can be made operational as finite-state approximation regimes with matching
+ 17382→rank-control and domination structures.
+ 17383→
+ 17384→\item \textbf{Active learning without synchronization.}
+ 17385→Develop active realizable and agnostic bounds when no output-aware
+ 17386→synchronizing word exists, or when synchronization is only partial.
+ 17387→
+ 17388→\item \textbf{Hardy-space embeddings for grounding.}
+ 17389→Identify when a Hankel operator admits a Hardy-space embedding making
+ 17390→Adamjan--Arov--Krein applicable, and compare the resulting converses with
+ 17391→the default Eckart--Young--Mirsky converse.
+ 17392→
+ 17393→\item \textbf{Deterministic commitment rate-distortion.}
+ 17394→\emph{Hypotheses.} A fixed history law $\mu$ on $\mathcal I^{\mathbb N}$ and a
+ 17395→causal length-preserving specification $F$ (Definition~\ref{def:causal-lp-spec}).
+ 17396→\emph{Established baseline.} Theorem~\ref{thm:com-rd-formula} gives the exact
+ 17397→fixed-budget value of $\ComRD(M)$ over right-congruence quotients of a
+ 17398→one-step observable, and its zero threshold at
+ 17399→$M=\kappa_{\mathrm{obs}}(F^{(1)},\mu)$; Remark~\ref{rem:com-rd-scope} shows
+ 17400→this is generically distinct from, and no more than, the worst-case Boolean
+ 17401→gap $\Comex(M)$.  What is open is the \emph{full multi-step} rate-distortion
+ 17402→law: the exact value of the $M$-state quotient loss for approximating the
+ 17403→entire residual process $(F_u)_{u\in\mathcal I^*}$ under $\mu$-average loss,
+ 17404→not just its one-step marginal, together with a converse comparable in
+ 17405→strength to the Blahut--Arimoto-type characterization available for classical
+ 17406→rate-distortion.
+ 17407→\emph{Success criterion.} A formula (or a provably tight two-sided bound with
+ 17408→matching rate) for the $M$-state $\mu$-average multi-step commitment
+ 17409→distortion, together with a decidable finite-horizon certificate analogous to
+ 17410→Proposition~\ref{prop:symbolic-finite-horizon}.
+ 17411→
+ 17412→\item \textbf{Typed joint quotients across the linear/symbolic boundary.}
+ 17413→\emph{Hypotheses.} Two tasks, one governed by a right-congruence quotient
+ 17414→budget (commitment, retention, or symbolic grounding under
+ 17415→Proposition~\ref{prop:block-mode-implementability}) and one governed by the
+ 17416→unrestricted linear finite-rank Hankel relaxation of
+ 17417→Theorem~\ref{thm:spectral-grounding}.
+ 17418→\emph{Established baseline.} Theorem~\ref{thm:comparative} and
+ 17419→Remark~\ref{rem:comparative-grounding-excluded} prove the product sandwich
+ 17420→\emph{only} when every component's budget is a right-congruence index, and
+ 17421→explicitly exclude the unrestricted linear coordinate: no representative
+ 17422→map is known that combines an $M$-state quotient with a rank-$M'$ Hankel
+ 17423→truncation into one object of controlled joint budget.
+ 17424→What is open is whether \emph{any} nontrivial joint budget notion
+ 17425→$M_{\mathrm{joint}}$, mixing a quotient index and an operator rank, admits
+ 17426→even a one-sided analogue of the sandwich of Theorem~\ref{thm:comparative}.
+ 17427→\emph{Success criterion.} Either (a) a bridge construction -- a map from
+ 17428→rank-$M'$ Hankel approximants to $O(f(M'))$-state quotients (or conversely)
+ 17429→that preserves admissibility and control loss by a stated factor, from which
+ 17430→a mixed sandwich would follow by composing with Theorem~\ref{thm:comparative};
+ 17431→or (b) a proof, e.g.\ via an explicit family of channels, that no such bridge
+ 17432→with subexponential $f$ can exist.
+ 17433→
+ 17434→\item \textbf{Strategic memory versus information.}
+ 17435→\emph{Hypotheses.} A commitment task admitting both the distributional gap
+ 17436→$\ComRD(M)$ and the simultaneous-move strategic gap $\ComGame(M)$ of
+ 17437→Section~\ref{subsec:quant-simul}.
+ 17438→\emph{Established baseline.} Remark~\ref{rem:com-rd-scope} proves these two
+ 17439→quantities are posed on different protocols (averaging under a fixed law
+ 17440→versus play against an online adversary) and asserts no general inequality
+ 17441→between them; Section~\ref{subsec:quant-simul} computes $\ComGame(M)$ exactly
+ 17442→in the stateless-game case.  What is open is whether, under an explicit
+ 17443→correspondence between the adversary's input distribution and a history law
+ 17444→$\mu$ (e.g.\ the adversary's minimax-optimal mixed strategy), $\ComGame(M)$
+ 17445→and $\ComRD(M)$ become comparable -- whether strategic memory (states needed
+ 17446→to play well against an adaptive adversary) is provably bounded above or
+ 17447→below by informational memory (states needed to match a fixed one-step
+ 17448→predictive law).
+ 17449→\emph{Success criterion.} Either a proved inequality
+ 17450→$\ComGame(M)\le g(\ComRD(M'))$ or $\ComRD(M)\le g(\ComGame(M'))$ for an
+ 17451→explicit function $g$ and budget map $M\mapsto M'$, under a stated
+ 17452→correspondence between the adversary's strategy and $\mu$; or an explicit
+ 17453→task family showing the two quantities are order-independent (each can be
+ 17454→made arbitrarily larger than the other at matching budgets), closing the
+ 17455→question negatively.
+ 17456→
+ 17457→\item \textbf{Necessity of the aggregation penalty for nested classes.}
+ 17458→Proposition~\ref{prop:aggregation-necessary} settles necessity for arbitrary
+ 17459→experts; what remains is the nested case.
+ 17460→Theorem~\ref{thm:oracle-minimax-lower} proves a two-sided minimax
+ 17461→characterization of the adaptive oracle envelope under the explicit
+ 17462→approximation and estimation floors of
+ 17463→Assumption~\ref{ass:oracle-floors}, matching the adaptive upper bound up to
+ 17464→the aggregation penalty $\PsiAgg_M(T)$ and universal constants.  The floors are
+ 17465→discharged for the realizable persistent-stream regime by
+ 17466→Proposition~\ref{prop:floors-instance} and assumed in the stochastic regimes.
+ 17467→What remains open is whether $\PsiAgg_M(T)$ is itself necessary, i.e.\ whether
+ 17468→adapting to an unknown budget is strictly harder than the oracle problem, and
+ 17469→whether horizon-efficient packings exist for the retention, grounding, and
+ 17470→commitment regimes.  See Remark~\ref{rem:oracle-minimax-residual}.
+ 17471→\end{enumerate}
+ 17472→
+ 17473→%----------------------------------------------------------------------
+ 17474→\subsection{Classification of Results}
+ 17475→\label{subsec:final-epistemic}
+ 17476→%----------------------------------------------------------------------
+ 17477→
+ 17478→The schema supplies a shared finite-state syntax, while the analytical engines
+ 17479→remain regime-specific.  Results are classified as exact, conditional, local,
+ 17480→heuristic, or open according to the hypotheses under which they are proved.
+ 17481→
+ 17482→%======================================================================
+ 17483→\section{Conclusion}
+ 17484→\label{sec:conclusion}
+ 17485→%======================================================================
+ 17486→
+ 17487→Finite-index right congruences on histories provide a common combinatorial
+ 17488→resource for the three regimes, while the analytical engines governing them
+ 17489→remain regime-specific.  The principal conclusions are the following.
+ 17490→
+ 17491→\begin{itemize}[leftmargin=1.8em]
+ 17492→\item \textbf{Shared syntax, regime-specific semantics.}
+ 17493→Regime-typed histories, finite-index right-action quotients, and variational
+ 17494→gaps form a common finite-state syntax: input histories for commitment,
+ 17495→feasible joint histories for unifilar retention, the joint alphabet for
+ 17496→grounding.  Commitment, retention, and grounding attach different semantic
+ 17497→objects to states: residual functions, predictive distributions or kernels,
+ 17498→and operators or kernels.
+ 17499→
+ 17500→\item \textbf{Stationary aggregation.}
+ 17501→The average-case theory uses stationary Ces\`aro aggregation or discounted
+ 17502→prefix measures.  Finite prefixes do not define a probability measure over
+ 17503→all lengths.
+ 17504→
+ 17505→\item \textbf{Retention has two distinct gaps.}
+ 17506→The full-KL gap satisfies an exact finite-state information-bottleneck
+ 17507→decomposition over stationary lumpable quotients:
+ 17508→\[
+ 17509→\RetKL(M)
+ 17510→=
+ 17511→I(S;Z)
+ 17512→-
+ 17513→\max_{\substack{
+ 17514→\phi\ \text{lumpable}\\
+ 17515→|\mathcal K|\le M
+ 17516→}}
+ 17517→I(K_\phi;Z).
+ 17518→\]
+ 17519→Zero retention occurs exactly when $M$ is at least the stationary support size
+ 17520→of distinct predictive states.  The Gaussian quadratic restricted gap satisfies
+ 17521→a spectral lower bound with effective rank $M-1$.  Full KL has a precise local
+ 17522→Fisher asymptotic lower bound under regularity assumptions.
+ 17523→
+ 17524→The same analysis holds for general unifilar controlled machines: the
+ 17525→controlled information-bottleneck decomposition conditional on the input, and
+ 17526→fiberwise quadratic, probability-coordinate, and interior-Fisher spectral
+ 17527→converses, with the input-driven theory as the output-independent
+ 17528→specialization.  The zero-retention threshold, by contrast, does not transfer
+ 17529→verbatim: it is the index of the coarsest unifilar-lumpable refinement of the
+ 17530→predictive-kernel partition, which can strictly exceed the number of distinct
+ 17531→kernels (Theorem~\ref{thm:controlled-zero}).
+ 17532→
+ 17533→\item \textbf{Grounding spectral converses are linear finite-rank.}
+ 17534→The unrestricted linear finite-rank relaxation satisfies
+ 17535→\[
+ 17536→\Dunres(M)
+ 17537→=
+ 17538→\sigma_{M+1}(H_\nu)
+ 17539→\]
+ 17540→by Eckart--Young--Mirsky.  The Hankel-structured finite-rank realization gap
+ 17541→satisfies
+ 17542→\[
+ 17543→\DHankstr(M)
+ 17544→\ge
+ 17545→\sigma_{M+1}(H_\nu),
+ 17546→\]
+ 17547→with equality only under additional structural hypotheses, and finite
+ 17548→Hankel truncations supply computable two-sided certificates for both
+ 17549→quantities (Proposition~\ref{prop:grounding-finite-section}).  The structured
+ 17550→problem has an exact zero threshold at $\rank(H)\le M$
+ 17551→(Proposition~\ref{prop:grounding-structured-zero}).  For the symbolic
+ 17552→deterministic (Mealy-machine) grounding gap, the exact input-only
+ 17553→deterministic floor $F_\gamma(\nu)$ and its finite-state limit are now
+ 17554→theorems (Theorem~\ref{thm:observable-floor}), with decidable finite-horizon
+ 17555→certified intervals (Proposition~\ref{prop:symbolic-finite-horizon}); a
+ 17556→closed-form value at finite $M$, and its relation to the linear relaxation,
+ 17557→remain open (Open Problem~\ref{open:symbolic-grounding}).  AAK is used only
+ 17558→under separate Hardy-space embeddings.
+ 17559→
+ 17560→\item \textbf{Commitment is Boolean rank.}
+ 17561→Exact commitment is governed by Myhill--Nerode index.  The exponent
+ 17562→correspondence identifies commitment with the Booleanized symmetrized
+ 17563→$\alpha=0$ vertex, not with raw $D_0$ and not with ordinary Schatten rank.
+ 17564→
+ 17565→\item \textbf{The spectral-tail picture is a heuristic.}
+ 17566→Spectral tails arise from regime-specific response operators, effective rank
+ 17567→budgets, and domination bridges.  Aggregation alone does not determine the
+ 17568→tail.  No unconditional cross-regime ordering follows.
+ 17569→
+ 17570→\item \textbf{The Schatten template is conditional.}
+ 17571→Mirsky's theorem unifies the analytic converse form once a Schatten
+ 17572→domination bridge is supplied.  Grounding is the $p=\infty$ instance for the
+ 17573→unrestricted linear finite-rank relaxation; retention is the $p=1$ instance
+ 17574→with effective rank $M-1$; commitment is the Boolean-rank vertex.
+ 17575→
+ 17576→\item \textbf{The oracle bridge is adaptive and type-correct.}
+ 17577→Offline approximation and online estimation compose into a bias--variance
+ 17578→decomposition.  Adaptive aggregation attains a penalized minimum without
+ 17579→knowledge of the optimal budget.  Spectral tails govern online rates only
+ 17580→under explicit achievability assumptions.
+ 17581→
+ 17582→\item \textbf{The oracle floors are discharged in one regime only.}
+ 17583→Assumption~\ref{ass:oracle-floors} is a minimax separation hypothesis.  It is
+ 17584→established unconditionally for the realizable persistent-stream regime by
+ 17585→Proposition~\ref{prop:floors-instance}, where the packing is the gated family
+ 17586→$\Gact_M$ and $\Delta_M=M\log M$; there
+ 17587→Theorem~\ref{thm:oracle-minimax-lower} is a theorem rather than a reduction.
+ 17588→For the retention, grounding, and commitment regimes the floors are not
+ 17589→established, and there the theorem remains a conditional reduction.  The
+ 17590→discharged case is realizable, so it certifies the estimation axis only; by
+ 17591→Remark~\ref{rem:floors-two-axes} the sum-form envelope follows from the minimum
+ 17592→form through the discrete sandwich, and by Lemma~\ref{lem:kappa-bounded} the
+ 17593→resulting constant $(1+\kappa)^{-1}$ is absolute rather than
+ 17594→instance-dependent.  See Section~\ref{sec:openproblems}.
+ 17595→
+ 17596→\item \textbf{The matching minimax lower bound is conditional on explicit
+ 17597→floors.}
+ 17598→An adaptive oracle upper bound and a conditional continuous bias--variance
+ 17599→sandwich hold in general, and under the floors of
+ 17600→Assumption~\ref{ass:oracle-floors} a matching minimax lower bound holds as well
+ 17601→(Theorem~\ref{thm:oracle-minimax-lower}); the envelope is therefore optimal up
+ 17602→to the aggregation penalty $\PsiAgg_M(T)$.  The constant in the sum-form
+ 17603→version is absolute, since Lemma~\ref{lem:kappa-bounded} bounds the jump ratio
+ 17604→by $2^\alpha(1+\log2)^\beta$ for a regularly varying estimation envelope.  The
+ 17605→floors themselves are proved for the realizable persistent-stream regime
+ 17606→(Proposition~\ref{prop:floors-instance}) and assumed elsewhere.  Whether the
+ 17607→penalty $\PsiAgg_M(T)$ is necessary, and whether the floors hold in the
+ 17608→stochastic regimes at horizons $T$ of the order at which the envelopes cross,
+ 17609→remain open.
+ 17610→
+ 17611→\item \textbf{The linear Price-of-Safety surrogate is exact but distinct.}
+ 17612→Pinching gives an exact majorization law for a linear second-order,
+ 17613→state-indexed, block-local surrogate.  It does not compute the discrete
+ 17614→right-congruence Price of Safety without relaxation-error control.
+ 17615→
+ 17616→\item \textbf{The exponent correspondence is a vertex correspondence.}
+ 17617→R\'enyi order, Schatten exponent, and aggregation label share vertex labels
+ 17618→$\{0,1,\infty\}$, but they are distinct layers.  The equality $\alpha=p$ is
+ 17619→a formal consistency, not a derivation.
+ 17620→
+ 17621→\item \textbf{Temporal claims are protocol-specific.}
+ 17622→For the reset-word protocol, realizable finite-automaton learning has
+ 17623→$\Theta(M\log M)$ mistake complexity.  The same $\Theta(M\log M)$ holds for a
+ 17624→single \emph{persistent} Mealy stream that is never reset: the upper bound is
+ 17625→finite-class counting, and the matching lower bound is proved in
+ 17626→Theorem~\ref{thm:stream-lower-bound} by an adversary that makes state
+ 17627→navigation free and extracts $\Omega(M\log M)$ bits through forced-mistake
+ 17628→readouts.  Finite-class aggregation gives agnostic regret
+ 17629→\[
+ 17630→O\bigl(\sqrt{T M\log M}\bigr).
+ 17631→\]
+ 17632→For active learning, all bounds are stated against the residual-identification
+ 17633→objective, an identification requirement being unavoidable in a protocol where
+ 17634→the learner selects its own inputs.  The sharp upper bound is
+ 17635→\[
+ 17636→\MistRI(M)
+ 17637→\le
+ 17638→O(\Esync(M)),
+ 17639→\]
+ 17640→with the universal length form $O(M\log M+\Lsyncu(M))$ when the learner must
+ 17641→fix its synchronization experiment in advance.  On the full class
+ 17642→$\mathcal H_M$ the complexity is settled outright,
+ 17643→\[
+ 17644→\MistRI(M)
+ 17645→=
+ 17646→\Theta(M\log M),
+ 17647→\]
+ 17648→the upper bound by an active halving learner over the version space of
+ 17649→machine-state pairs, the lower bound by the gated adversarial family.  The
+ 17650→$\Omega(M\log M)$ lower bound comes from that explicit construction,
+ 17651→not from ordinary Littlestone dimension, which does not transfer to a protocol
+ 17652→in which the learner chooses its own inputs.
+ 17653→
+ 17654→A direct-sum instance forces its two components on disjoint rounds, giving
+ 17655→$\MistRI(M)\ge S_M+C_M$, but no non-degenerate two-term decomposition of the
+ 17656→active complexity is available in the mistake currency: state identification in
+ 17657→a known minimal skeleton costs only $O_{|\mathcal O|}(\log M)$ mistakes
+ 17658→(Proposition~\ref{prop:esyncsi-log}).  Whether a genuine decomposition exists
+ 17659→in the experiment-length currency is
+ 17660→Open Problem~\ref{open:si-hard-family}.
+ 17661→
+ 17662→\item \textbf{NP-hardness is regime-qualified.}
+ 17663→The Gaussian quadratic restricted retention decision problem is NP-complete
+ 17664→already for minimal reset machines of synchronization depth one, and a tagged
+ 17665→depth-two construction also gives NP-hardness.  For unrestricted full-KL
+ 17666→retention over a finite output alphabet,
+ 17667→Theorem~\ref{thm:full-kl-promise-np} gives NP-hardness under a promise and
+ 17668→Corollary~\ref{cor:full-kl-apx} upgrades this to APX-hardness, so no
+ 17669→polynomial-time approximation scheme exists unless $\mathsf P=\mathsf{NP}$.
+ 17670→Two qualifications attach to those two results, and both have been located
+ 17671→precisely.  The output alphabet produced by the embedding has size $2d$, so
+ 17672→hardness for a \emph{fixed} alphabet is not established; by
+ 17673→Remark~\ref{rem:output-alphabet-2d} the size can be reduced to $d+1$ exactly
+ 17674→when the zero-sum subspace of $\mathbb Q^{d+1}$ admits an orthogonal rational
+ 17675→basis of equal norms, which holds for $d=3,7,15,\dots$ and fails for $d=2$, but
+ 17676→it can never be taken below $d+1$, so the alphabet grows with the dimension
+ 17677→under any variant of the construction.  Membership in NP is open; by
+ 17678→Proposition~\ref{prop:full-kl-algebraic-form} the objective is $D^{-1}\log R$
+ 17679→for a factored rational $R$, so the question is the single comparison
+ 17680→$R\ge e^{D\tau}$, decidable by Lindemann--Weierstrass but lacking a polynomial
+ 17681→precision bound.
+ 17682→\end{itemize}
+ 17683→
+ 17684→Each result above is stated under the hypotheses given in the corresponding
+ 17685→section, and its type signature in the sense of
+ 17686→Definition~\ref{def:type-signature} fixes the regime, feasible set,
+ 17687→aggregation, support, protocol, and analytical bridge to which it applies.
+ 17688→
+ 17689→%======================================================================
+ 17690→\begin{thebibliography}{99}
+ 17691→%======================================================================
+ 17692→
+ 17693→\bibitem{cover}
+ 17694→T.~M.~Cover and J.~A.~Thomas,
+ 17695→\emph{Elements of Information Theory}, 2nd ed.,
+ 17696→Wiley, 2006.
+ 17697→
+ 17698→\bibitem{sakarovitch2009}
+ 17699→J.~Sakarovitch,
+ 17700→\emph{Elements of Automata Theory},
+
+[showing lines 17101-17700 of 17893; use offset=17701 with limit to continue reading]

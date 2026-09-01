@@ -1,0 +1,602 @@
+  4501→precisely when $\delta$ has exactly two nonzero coordinates of equal magnitude
+  4502→and opposite sign; direct maximization over $k=2,\dots,12$ returns
+  4503→$1.000000000000$.  For the composite, $\inf\{D_{\mathrm{KL}}(p\|q)/
+  4504→\|p-q\|_2^2\}$ over distinct $p,q\in\Delta^{k-1}$ equals $1$ and is not
+  4505→attained: over $58{,}186$ deliberately near-degenerate pairs evaluated in
+  4506→$60$-digit arithmetic the minimum observed ratio is $1.0000000053$.  Along the
+  4507→extremal family $p=(\tfrac12+t,\tfrac12-t)$, $q=(\tfrac12-t,\tfrac12+t)$ one
+  4508→has $D_{\mathrm{KL}}(p\|q)/\|p-q\|_2^2=1+\tfrac43t^2+O(t^4)$, decreasing to $1$.
+  4509→
+  4510→A caution on floating-point evaluation: at separations $\|p-q\|_2^2\sim10^{-12}$
+  4511→the ratio computed in double precision can read below $1$ purely through
+  4512→cancellation in the logarithms.  Re-evaluating the same pairs in extended
+  4513→precision restores the inequality.
+  4514→\end{remark}
+  4515→
+  4516→\begin{remark}[Numerical Verification]
+  4517→\label{rem:retention-numerical}
+  4518→The predictive-information identity of Theorem~\ref{thm:predictive-info} is an
+  4519→exact identity and can be checked numerically on finite instances: over
+  4520→stationary chains with $|\Splus|\le5$ and $|\mathcal O|\le4$, enumerating
+  4521→\emph{all} set partitions, the three quantities $\RetKL(\phi)$,
+  4522→$I(S;Z\mid K_\phi)$ and $I(S;Z)-I(K_\phi;Z)$ agree to $7.6\times10^{-16}$.
+  4523→
+  4524→Theorem~\ref{thm:global-kl-simplex} admits an end-to-end check of the same
+  4525→kind, and each step of its proof can be isolated.  Over $2{,}434$
+  4526→(instance, partition) pairs with $|\Splus|\le5$, $|\mathcal O|\le4$, again
+  4527→enumerating all set partitions, the maximum violation is
+  4528→$7.5\times10^{-17}$ for the minorant $\RetKL(\phi)\ge\tr(W_\phi)$,
+  4529→$1.1\times10^{-16}$ for the ANOVA decomposition
+  4530→$\Sigma_p=W_\phi+B_\phi$, $1.7\times10^{-16}$ for the Ky Fan bound
+  4531→$\tr(B_\phi)\le\sum_{i\le M-1}\lambda_i$, and $7.5\times10^{-17}$ for the
+  4532→composite conclusion $\RetKL(\phi)\ge\sum_{i\ge M}\lambda_i(\Sigma_p)$.  The
+  4533→smallest ratio of the two sides over those pairs is $1.0015$, so the bound is
+  4534→not vacuous on generic instances.
+  4535→
+  4536→Theorem~\ref{thm:global-interior-fisher} requires more care to test, since
+  4537→$m_K$ is the least eigenvalue of $\nabla^2A$ over a convex set containing the
+  4538→state parameters \emph{and} the centroid parameters, not a coarser proxy such
+  4539→as the least predictive probability.  Computing $m_K$ by minimizing
+  4540→$\lambda_{\min}(\nabla^2A)$ over the convex hull gives $0$ violations on
+  4541→$1{,}664$ (instance, partition) pairs, with least ratio $1.0011$; substituting
+  4542→a proxy for $m_K$ produces spurious violations and tests a different statement.
+  4543→
+  4544→The quadratic-surrogate spectral bound can be checked directly on finite
+  4545→weighted point clouds.  The local full-KL Fisher expansion can be checked on
+  4546→small-radius exponential-family instances by verifying the predicted $r^2$
+  4547→leading term and an $O(r^3)$ remainder.  These computations illustrate the
+  4548→theorems; they do not establish their hypotheses.
+  4549→\end{remark}
+  4550→
+  4551→\begin{proposition}[Relation between Full-KL and Quadratic Restricted Gaps]
+  4552→\label{prop:retkl-le-retquad}
+  4553→In the Gaussian quadratic restricted regime, for every $M\ge1$,
+  4554→\[
+  4555→\RetKL(M)\le \RetQuad(M).
+  4556→\]
+  4557→\end{proposition}
+  4558→
+  4559→\begin{proof}
+  4560→Fix a lumpable quotient $\phi$.  In the full-KL problem, the block
+  4561→representative is unrestricted, and the optimal representative is the mixture
+  4562→centroid $\bar P_k$.  In the quadratic restricted problem, the representative
+  4563→is constrained to the fixed-covariance Gaussian family
+  4564→$Q_c=\mathcal N(c,\tfrac12 I)$.  A constrained minimization problem has value
+  4565→no smaller than the corresponding unconstrained problem.  Hence, for each
+  4566→$\phi$,
+  4567→\[
+  4568→\RetKL(\phi)\le \RetQuad(\phi).
+  4569→\]
+  4570→Minimizing over lumpable quotients gives $\RetKL(M)\le \RetQuad(M)$.
+  4571→\end{proof}
+  4572→
+  4573→%----------------------------------------------------------------------
+  4574→\subsection{Unifilar Retention and the Controlled Information Bottleneck}
+  4575→\label{subsec:unifilar-retention}
+  4576→%----------------------------------------------------------------------
+  4577→
+  4578→The retention theory extends from the input-driven model to general unifilar
+  4579→machines without new analytical mechanism: the information-theoretic identities
+  4580→depend only on the sufficiency structure $K=\phi(S)$, and the spectral
+  4581→converses apply fiberwise in the input.  What does change is the feasible set,
+  4582→which is now the unifilar-lumpable quotients of
+  4583→Definition~\ref{def:unifilar-lumpable}, and with it the zero-retention
+  4584→threshold.
+  4585→
+  4586→\begin{definition}[Controlled Full-KL Retention Gap]
+  4587→\label{def:controlled-full-kl}
+  4588→Let the input process be i.i.d.\ with law $p$ and independent of the state
+  4589→process.  For a unifilar-lumpable quotient $\phi:\Splus\to\mathcal K$ with
+  4590→blocks $C_k$ and representatives $\{Q_k^x\}$, set
+  4591→\[
+  4592→\RetKLc(\phi)
+  4593→=
+  4594→\sum_xp(x)\sum_k\sum_{s\in C_k}\pi_s\,
+  4595→D_{\mathrm{KL}}\bigl(P_s^x\,\big\|\,Q_k^x\bigr),
+  4596→\]
+  4597→the representatives being optimized for each $\phi$, and
+  4598→\[
+  4599→\RetKLc(M)
+  4600→=
+  4601→\min_{\substack{\phi\ \text{unifilar-lumpable}\\ |\mathcal K|\le M}}
+  4602→\RetKLc(\phi).
+  4603→\]
+  4604→Blocks of zero stationary mass are ignored.
+  4605→\end{definition}
+  4606→
+  4607→The independence of the input from the state is a genuine hypothesis and not a
+  4608→normalization: it is what makes $\mathbb P(S_t=s\mid K_t=k,X_t=x)$ equal to
+  4609→$\pi_s/\pi(C_k)$, and hence what identifies the block centroid with a
+  4610→conditional law.  Remark~\ref{rem:controlled-ib-independence} records what
+  4611→fails without it.
+  4612→
+  4613→\begin{theorem}[Controlled Information-Bottleneck Identity]
+  4614→\label{thm:controlled-ib}
+  4615→Under the hypotheses of Definition~\ref{def:controlled-full-kl}, for every
+  4616→unifilar-lumpable $\phi$,
+  4617→\[
+  4618→\RetKLc(\phi)
+  4619→=
+  4620→I(S;Y\mid K_\phi,X)
+  4621→=
+  4622→I(S;Y\mid X)-I(K_\phi;Y\mid X),
+  4623→\]
+  4624→and consequently
+  4625→\[
+  4626→\RetKLc(M)
+  4627→=
+  4628→I(S;Y\mid X)
+  4629→-
+  4630→\max_{\substack{\phi\ \text{unifilar-lumpable}\\|\mathcal K|\le M}}
+  4631→I(K_\phi;Y\mid X).
+  4632→\]
+  4633→The optimal representative is the controlled mixture centroid
+  4634→\[
+  4635→\bar P_k^x
+  4636→=
+  4637→\frac{\sum_{s\in C_k}\pi_sP_s^x}{\sum_{s\in C_k}\pi_s}.
+  4638→\]
+  4639→All the mutual informations are finite, since $S$ is finite and
+  4640→$I(S;Y\mid X)\le H(S)$.
+  4641→\end{theorem}
+  4642→
+  4643→\begin{proof}
+  4644→Fix an input $x$.  Conditionally on $X_t=x$, the block cost
+  4645→$\sum_{s\in C_k}\pi_sD_{\mathrm{KL}}(P_s^x\|Q_k^x)$ is minimized over $Q_k^x$
+  4646→at the mixture centroid $\bar P_k^x$, by Lemma~\ref{lem:mixture-centroid}
+  4647→applied to the family $\{P_s^x:s\in C_k\}$ with weights proportional to
+  4648→$\pi_s$.  Substituting the centroids and summing against $p(x)$,
+  4649→\[
+  4650→\RetKLc(\phi)
+  4651→=
+  4652→\mathbb E\,D_{\mathrm{KL}}
+  4653→\bigl(P_{Y\mid S,X}\,\big\|\,P_{Y\mid K,X}\bigr),
+  4654→\]
+  4655→where the identification $P_{Y\mid K,X}(\cdot\mid k,x)=\bar P_k^x$ uses
+  4656→independence of $X_t$ from $S_t$: it gives
+  4657→$\mathbb P(S_t=s\mid K_t=k,X_t=x)=\pi_s/\pi(C_k)$ for $s\in C_k$, so the
+  4658→conditional law of $Y_t$ given $(K_t,X_t)=(k,x)$ is precisely the
+  4659→$\pi$-weighted mixture $\bar P_k^x$.  Since $K=\phi(S)$ is a function of $S$,
+  4660→we have $P_{Y\mid S,K,X}=P_{Y\mid S,X}$, and the displayed expectation is by
+  4661→definition $I(S;Y\mid K,X)$.
+  4662→
+  4663→The chain rule for conditional mutual information gives
+  4664→\[
+  4665→I(S;Y\mid X)=I(K;Y\mid X)+I(S;Y\mid K,X),
+  4666→\]
+  4667→valid because $K$ is a function of $S$, whence the subtracted form.  The
+  4668→rearrangement is legitimate because $I(S;Y\mid X)\le H(S)<\infty$, so no
+  4669→difference of infinities arises.  Minimizing over unifilar-lumpable quotients
+  4670→with at most $M$ blocks turns the identity into the stated variational form.
+  4671→\end{proof}
+  4672→
+  4673→\begin{remark}[Role of the Independence Hypothesis]
+  4674→\label{rem:controlled-ib-independence}
+  4675→Definition~\ref{def:unifilar-machine} requires only that the input process be
+  4676→stationary and ergodic, which permits $X_t$ to be correlated with $S_t$.  Under
+  4677→such correlation the two sides of Theorem~\ref{thm:controlled-ib} differ: the
+  4678→conditional weight of $s$ within its block given $X_t=x$ is not
+  4679→$\pi_s/\pi(C_k)$, so the centroid $\bar P_k^x$ is not a conditional law.
+  4680→Already with two states, binary inputs and a ternary output alphabet, a
+  4681→non-product stationary law of $(S,X)$ makes the quantity of
+  4682→Definition~\ref{def:controlled-full-kl} exceed $I(S;Y\mid X)-I(K;Y\mid X)$ by
+  4683→more than $0.13$ nats on the one-block quotient.
+  4684→
+  4685→The hypothesis is a property of the cost functional rather than of the
+  4686→machine, and it can be removed by measuring the cost against the fiberwise
+  4687→conditional weights.  This is carried out in
+  4688→Theorem~\ref{thm:controlled-ib-general} below, of which
+  4689→Theorem~\ref{thm:controlled-ib} is the independent case.
+  4690→\end{remark}
+  4691→
+  4692→\begin{definition}[Fiberwise Controlled Retention Gap]
+  4693→\label{def:controlled-full-kl-general}
+  4694→Let $(S_t,X_t)$ have an arbitrary stationary joint law, with input marginal
+  4695→$p(x)=\mathbb P(X_t=x)$ and fiberwise conditional state weights
+  4696→\[
+  4697→\pi_s^x=\mathbb P(S_t=s\mid X_t=x),
+  4698→\qquad
+  4699→x\in\supp p .
+  4700→\]
+  4701→For a unifilar-lumpable quotient $\phi$ with blocks $C_k$ and representatives
+  4702→$\{Q_k^x\}$, define
+  4703→\[
+  4704→\RetKLg(\phi)
+  4705→=
+  4706→\sum_xp(x)\sum_k\sum_{s\in C_k}\pi_s^x\,
+  4707→D_{\mathrm{KL}}\bigl(P_s^x\,\big\|\,Q_k^x\bigr),
+  4708→\]
+  4709→the representatives being optimized for each $\phi$, and
+  4710→\[
+  4711→\RetKLg(M)
+  4712→=
+  4713→\min_{\substack{\phi\ \text{unifilar-lumpable}\\|\mathcal K|\le M}}
+  4714→\RetKLg(\phi).
+  4715→\]
+  4716→Fibers and blocks of zero mass are ignored.  When $X_t$ is independent of
+  4717→$S_t$ one has $\pi_s^x=\pi_s$ and
+  4718→Definition~\ref{def:controlled-full-kl} is recovered.
+  4719→\end{definition}
+  4720→
+  4721→\begin{theorem}[Controlled Information-Bottleneck Identity, General Inputs]
+  4722→\label{thm:controlled-ib-general}
+  4723→Let $(S_t,X_t)$ be stationary with arbitrary dependence, and let $\phi$ be
+  4724→unifilar-lumpable.  Then
+  4725→\[
+  4726→\RetKLg(\phi)
+  4727→=
+  4728→I(S;Y\mid K_\phi,X)
+  4729→=
+  4730→I(S;Y\mid X)-I(K_\phi;Y\mid X),
+  4731→\]
+  4732→and consequently
+  4733→\[
+  4734→\RetKLg(M)
+  4735→=
+  4736→I(S;Y\mid X)
+  4737→-
+  4738→\max_{\substack{\phi\ \text{unifilar-lumpable}\\|\mathcal K|\le M}}
+  4739→I(K_\phi;Y\mid X).
+  4740→\]
+  4741→The optimal representative is the fiberwise conditional centroid
+  4742→\[
+  4743→\bar P_k^x
+  4744→=
+  4745→\frac{\sum_{s\in C_k}\pi_s^xP_s^x}{\sum_{s\in C_k}\pi_s^x}
+  4746→=
+  4747→\mathcal L\bigl(Y_t\mid K_t=k,\ X_t=x\bigr).
+  4748→\]
+  4749→\end{theorem}
+  4750→
+  4751→\begin{proof}
+  4752→Fix $x\in\supp p$ and a block $C_k$ of positive conditional mass.  Conditionally
+  4753→on $X_t=x$, the inner sum $\sum_{s\in C_k}\pi_s^xD_{\mathrm{KL}}(P_s^x\|Q_k^x)$
+  4754→is minimized over $Q_k^x$ at the $\pi^x$-weighted mixture of the $P_s^x$, by
+  4755→Lemma~\ref{lem:mixture-centroid} applied with weights proportional to
+  4756→$\pi_s^x$.  That mixture is exactly
+  4757→$\mathcal L(Y_t\mid K_t=k,X_t=x)$: conditioning on $X_t=x$ first and on the
+  4758→block second,
+  4759→\[
+  4760→\mathbb P(S_t=s\mid K_t=k,X_t=x)
+  4761→=
+  4762→\frac{\pi_s^x}{\sum_{s'\in C_k}\pi_{s'}^x}
+  4763→\qquad(s\in C_k),
+  4764→\]
+  4765→which holds for \emph{any} joint law of $(S_t,X_t)$, no independence being
+  4766→used; independence was needed in Theorem~\ref{thm:controlled-ib} only to
+  4767→replace $\pi_s^x$ by $\pi_s$.  Substituting the centroids,
+  4768→\[
+  4769→\RetKLg(\phi)
+  4770→=
+  4771→\mathbb E\,D_{\mathrm{KL}}
+  4772→\bigl(P_{Y\mid S,X}\,\big\|\,P_{Y\mid K,X}\bigr)
+  4773→=
+  4774→I(S;Y\mid K,X),
+  4775→\]
+  4776→the last equality being the definition of conditional mutual information,
+  4777→together with $P_{Y\mid S,K,X}=P_{Y\mid S,X}$ because $K=\phi(S)$.  The chain
+  4778→rule $I(S;Y\mid X)=I(K;Y\mid X)+I(S;Y\mid K,X)$ gives the subtracted form, and
+  4779→is legitimate since $I(S;Y\mid X)\le H(S)<\infty$.  Minimizing over
+  4780→unifilar-lumpable quotients with at most $M$ blocks yields the variational
+  4781→statement.
+  4782→\end{proof}
+  4783→
+  4784→\begin{corollary}[Elementary Properties, General Inputs]
+  4785→\label{cor:controlled-elementary-general}
+  4786→$0\le\RetKLg(M)\le I(S;Y\mid X)$ with $\RetKLg(1)=I(S;Y\mid X)$; the gap is
+  4787→nonincreasing in $M$; and $\RetKLg(\phi)\le\RetKLg(\psi)$ whenever the
+  4788→unifilar-lumpable $\phi$ refines $\psi$.
+  4789→\end{corollary}
+  4790→
+  4791→\begin{proof}
+  4792→As in Corollary~\ref{cor:controlled-elementary}, every step being conditional
+  4793→on $X$ and using Theorem~\ref{thm:controlled-ib-general} in place of
+  4794→Theorem~\ref{thm:controlled-ib}.
+  4795→\end{proof}
+  4796→
+  4797→\begin{corollary}[Fiberwise Spectral Converse, General Inputs]
+  4798→\label{cor:controlled-simplex-general}
+  4799→For finite $\mathcal O$, let $\Sigma_p^{x}$ denote the covariance of the
+  4800→predictive probability vectors $\{p_s^x\}$ under the \emph{conditional} weights
+  4801→$\{\pi_s^x\}$.  Then
+  4802→\[
+  4803→\RetKLg(M)
+  4804→\ \ge\
+  4805→\sum_xp(x)\sum_{i\ge M}\lambda_i\bigl(\Sigma_p^{x}\bigr).
+  4806→\]
+  4807→\end{corollary}
+  4808→
+  4809→\begin{proof}
+  4810→On each fiber the family $\{p_s^x\}$ carries the probability weights
+  4811→$\{\pi_s^x\}$ and the quotient is the same for every fiber, the lumpability
+  4812→constraint being $x$-independent.  Theorem~\ref{thm:global-kl-simplex} applies
+  4813→verbatim on the fiber with those weights; multiplying by $p(x)$ and summing
+  4814→gives the bound.
+  4815→\end{proof}
+  4816→
+  4817→\begin{remark}[The Reweighting Is Not Cosmetic]
+  4818→\label{rem:controlled-general-reweighting}
+  4819→In Corollary~\ref{cor:controlled-simplex-general} the fiber covariance must be
+  4820→formed with the conditional weights $\pi_s^x$.  Substituting the unconditional
+  4821→weights $\pi_s$, which is the form that Corollary~\ref{cor:controlled-simplex-spectral}
+  4822→inherits from the independent case, produces a quantity that is not a lower
+  4823→bound: among randomly generated instances with correlated $(S,X)$ and all
+  4824→budgets $M$, the unconditional-weight expression exceeds $\RetKLg(M)$ in
+  4825→several per cent of cases, while the conditional-weight bound of
+  4826→Corollary~\ref{cor:controlled-simplex-general} is never violated.  Dependence
+  4827→between input and state therefore changes the operative covariance, not only
+  4828→the block weights.
+  4829→\end{remark}
+  4830→
+  4831→\begin{corollary}[Range, One-State Value, and Refinement Monotonicity, Controlled]
+  4832→\label{cor:controlled-elementary}
+  4833→$0\le\RetKLc(M)\le I(S;Y\mid X)$, with
+  4834→$\RetKLc(1)=I(S;Y\mid X)$; if $\phi$ refines $\psi$ and both are
+  4835→unifilar-lumpable then
+  4836→$\RetKLc(\phi)\le\RetKLc(\psi)$; and
+  4837→$\RetKLc(M)$ is nonincreasing in $M$.
+  4838→\end{corollary}
+  4839→
+  4840→\begin{proof}
+  4841→This is Corollary~\ref{cor:retention-elementary} with every quantity
+  4842→conditioned on $X$.  A single block makes $K$ constant, so $I(K;Y\mid X)=0$;
+  4843→refinement is data processing conditional on $X$, since $K_\psi$ is then a
+  4844→function of $K_\phi$; and the feasible sets are nested in $M$.  Feasibility of
+  4845→the one-block quotient is Definition~\ref{def:unifilar-lumpable}.
+  4846→\end{proof}
+  4847→
+  4848→The zero-retention threshold does \emph{not} transfer verbatim.  In the
+  4849→input-driven theory the singleton quotient is lumpable and the predictive
+  4850→partition can always be realized, so the threshold is the number of distinct
+  4851→predictive laws (Theorem~\ref{thm:retention-zero}).  For unifilar machines the
+  4852→partition by predictive kernel need not be unifilar-lumpable, and the correct
+  4853→threshold is the index of its coarsest unifilar-lumpable refinement.
+  4854→
+  4855→Corollary~\ref{cor:controlled-elementary} is the controlled counterpart of the
+  4856→elementary facts recorded in Corollary~\ref{cor:retention-elementary}, and the
+  4857→boundary behaviour of the natural-parameter converses is unchanged under
+  4858→control, as Remark~\ref{rem:controlled-fisher-nogo} records.
+  4859→
+  4860→\begin{definition}[Kernel Partition and Its Stable Refinement]
+  4861→\label{def:kernel-refinement}
+  4862→Let $\phi_{\ker}$ be the partition of $\Splus$ by predictive kernel, so
+  4863→$\phi_{\ker}(s)=\phi_{\ker}(s')$ if and only if $P_s^x=P_{s'}^x$ for every $x$
+  4864→in the input support.  Define $\phi_{\ker}^{\,\ast}$ to be the coarsest
+  4865→unifilar-lumpable quotient refining $\phi_{\ker}$, and write
+  4866→$N^{\ast}=|\phi_{\ker}^{\,\ast}(\Splus)|$ for its index.
+  4867→\end{definition}
+  4868→
+  4869→\begin{proposition}[Existence of the Stable Refinement]
+  4870→\label{prop:kernel-refinement-exists}
+  4871→$\phi_{\ker}^{\,\ast}$ exists and is unique, and is computed by the refinement
+  4872→recursion
+  4873→\[
+  4874→\phi^{(0)}=\phi_{\ker},
+  4875→\qquad
+  4876→\phi^{(m+1)}(s)
+  4877→=
+  4878→\Bigl(\phi^{(m)}(s),\ \bigl(\phi^{(m)}(\tau(s,x,y))\bigr)_{(x,y)\ \text{feasible from }s}\Bigr),
+  4879→\]
+  4880→which stabilizes after at most $|\Splus|$ steps.
+  4881→\end{proposition}
+  4882→
+  4883→\begin{proof}
+  4884→Call a partition \emph{admissible} if it is unifilar-lumpable and refines
+  4885→$\phi_{\ker}$.  The singleton partition is admissible, so the family is
+  4886→nonempty.  The recursion produces a decreasing chain of partitions, each
+  4887→refining $\phi_{\ker}$, in a set of size $|\Splus|$; the number of blocks is
+  4888→nondecreasing and bounded by $|\Splus|$, so the chain stabilizes after at most
+  4889→$|\Splus|$ steps, at a partition $\phi^{\infty}$.  At the fixed point,
+  4890→$\phi^{\infty}(s)=\phi^{\infty}(s')$ implies
+  4891→$\phi^{\infty}(\tau(s,x,y))=\phi^{\infty}(\tau(s',x,y))$ for every commonly
+  4892→feasible $(x,y)$, which is unifilar lumpability with
+  4893→$\tau_{\mathcal K}(\phi^{\infty}(s),x,y)=\phi^{\infty}(\tau(s,x,y))$; and
+  4894→$\phi^{\infty}$ refines $\phi_{\ker}=\phi^{(0)}$ by construction.  So
+  4895→$\phi^{\infty}$ is admissible.
+  4896→
+  4897→For maximality, let $\psi$ be any admissible partition.  We show by induction
+  4898→that $\psi$ refines $\phi^{(m)}$ for every $m$.  For $m=0$ this is the
+  4899→hypothesis that $\psi$ refines $\phi_{\ker}$.  If $\psi$ refines $\phi^{(m)}$
+  4900→and $\psi(s)=\psi(s')$, then $\phi^{(m)}(s)=\phi^{(m)}(s')$, and unifilar
+  4901→lumpability of $\psi$ gives $\psi(\tau(s,x,y))=\psi(\tau(s',x,y))$ at every
+  4902→commonly feasible event, hence
+  4903→$\phi^{(m)}(\tau(s,x,y))=\phi^{(m)}(\tau(s',x,y))$ by the inductive
+  4904→hypothesis; the two defining data of $\phi^{(m+1)}$ therefore agree, so
+  4905→$\phi^{(m+1)}(s)=\phi^{(m+1)}(s')$.  Taking $m$ at the stabilization index
+  4906→shows $\psi$ refines $\phi^{\infty}$.  Thus $\phi^{\infty}$ is the coarsest
+  4907→admissible partition, and uniqueness follows.
+  4908→\end{proof}
+  4909→
+  4910→\begin{theorem}[Zero Controlled Retention]
+  4911→\label{thm:controlled-zero}
+  4912→$\RetKLc(M)=0$ if and only if $M\ge N^{\ast}$, with $N^{\ast}$
+  4913→the index of Definition~\ref{def:kernel-refinement}.
+  4914→\end{theorem}
+  4915→
+  4916→\begin{proof}
+  4917→Suppose $\RetKLc(\phi)=0$ for a unifilar-lumpable $\phi$.  The
+  4918→cost is a sum of nonnegative terms $p(x)\pi_sD_{\mathrm{KL}}(P_s^x\|\bar P_k^x)$,
+  4919→so every term vanishes; by the equality condition for KL divergence,
+  4920→$P_s^x=\bar P_{\phi(s)}^x$ for every positive-mass $s$ and every $x$ in the
+  4921→input support.  Two states in a common block therefore have equal kernels, so
+  4922→$\phi$ refines $\phi_{\ker}$, and being unifilar-lumpable it is admissible in
+  4923→the sense of Proposition~\ref{prop:kernel-refinement-exists}.  Hence $\phi$
+  4924→refines $\phi_{\ker}^{\,\ast}$ and has at least $N^{\ast}$ blocks.
+  4925→
+  4926→Conversely $\phi_{\ker}^{\,\ast}$ is itself unifilar-lumpable and refines
+  4927→$\phi_{\ker}$, so each of its blocks carries a single kernel, every block
+  4928→centroid equals that kernel, and the cost is zero.  It has $N^{\ast}$ blocks,
+  4929→so $M\ge N^{\ast}$ suffices.
+  4930→\end{proof}
+  4931→
+  4932→\begin{remark}[The Threshold Is Not the Number of Distinct Kernels]
+  4933→\label{rem:controlled-zero-not-kernels}
+  4934→In the input-driven setting of Theorem~\ref{thm:retention-zero} the threshold
+  4935→is the number of distinct predictive laws, because the predictive partition is
+  4936→automatically lumpable there.  In the unifilar class the two quantities
+  4937→separate, and the gap $N^{\ast}-|\phi_{\ker}(\Splus)|$ can be positive.  Take $\mathcal I$ a singleton, $\mathcal O=\{0,1\}$, three states
+  4938→$A,B,C$, kernels
+  4939→\[
+  4940→P_A=P_B=\mathrm{Bernoulli}(\tfrac12),
+  4941→\qquad
+  4942→P_C=\mathrm{Bernoulli}(\tfrac1{10}),
+  4943→\]
+  4944→and the unifilar update
+  4945→\[
+  4946→\tau(A,0)=A,\quad\tau(A,1)=C,\qquad
+  4947→\tau(B,0)=C,\quad\tau(B,1)=B,\qquad
+  4948→\tau(C,0)=A,\quad\tau(C,1)=B .
+  4949→\]
+  4950→The stationary distribution is strictly positive.  There are two distinct
+  4951→kernels, but the partition $\{\{A,B\},\{C\}\}$ is not unifilar-lumpable: $A$ and
+  4952→$B$ are in one block and the output $0$ is feasible from both, yet
+  4953→$\tau(A,0)=A$ and $\tau(B,0)=C$ lie in different blocks.  The refinement of
+  4954→Proposition~\ref{prop:kernel-refinement-exists} separates $A$ from $B$, so
+  4955→$N^{\ast}=3$ while $|\phi_{\ker}(\Splus)|=2$, and indeed
+  4956→$\RetKLc(2)>0$ whereas $\RetKLc(3)=0$.  The
+  4957→separation is not exceptional: over randomly generated unifilar machines with
+  4958→at most five states and at least one coincidence of predictive kernels, the
+  4959→kernel partition fails to be unifilar-lumpable in approximately fifty-five per
+  4960→cent of instances.
+  4961→
+  4962→This is exactly the distinction between predictive equivalence and causal-state
+  4963→equivalence recorded in Definition~\ref{def:z-predictive-equivalence}: the
+  4964→refinement $\phi_{\ker}^{\,\ast}$ is the causal-state partition for the full
+  4965→controlled future, and $\phi_{\ker}$ is its one-step coarsening.
+  4966→\end{remark}
+  4967→
+  4968→The separation of Remark~\ref{rem:controlled-zero-not-kernels} is as large as
+  4969→the state set permits, and the refinement recursion is essentially as slow as
+  4970→Proposition~\ref{prop:kernel-refinement-exists} allows.  Both are witnessed by
+  4971→one family.
+  4972→
+  4973→\begin{definition}[Counter Family $\mathcal C_M$]
+  4974→\label{def:counter-family}
+  4975→For $M\ge3$ and $\beta,\gamma\in(0,1)$ with $\beta\neq\gamma$, let
+  4976→$\mathcal C_M$ be the unifilar machine with a single input letter, output
+  4977→alphabet $\mathcal O=\{0,1\}$, state set $\{0,1,\dots,M-1\}$, update
+  4978→\[
+  4979→\tau(s,0)=\min\{s+1,\,M-1\},
+  4980→\qquad
+  4981→\tau(s,1)=0,
+  4982→\]
+  4983→and emission laws
+  4984→\[
+  4985→P_s=\mathrm{Bernoulli}(\beta)\ \ (0\le s\le M-2),
+  4986→\qquad
+  4987→P_{M-1}=\mathrm{Bernoulli}(\gamma).
+  4988→\]
+  4989→Output $0$ advances the counter and saturates at $M-1$; output $1$ resets it.
+  4990→The restriction to the open interval is required for
+  4991→Proposition~\ref{prop:refinement-extremal}(i): at $\gamma=0$ the state $M-1$
+  4992→emits $0$ almost surely and, being saturated, is absorbing, while at $\beta=1$
+  4993→every state below $M-1$ resets almost surely and $M-1$ is never reached.  In
+  4994→either case the chain fails to be irreducible and some state leaves the
+  4995→stationary support.  The input alphabet being a singleton, $X_t$ is
+  4996→deterministic and hence independent of $S_t$, so
+  4997→Theorem~\ref{thm:controlled-ib} applies and $\RetKLg$ coincides with
+  4998→$\RetKLc$ on this family.
+  4999→\end{definition}
+  5000→
+  5001→\begin{proposition}[The Refinement Gap Is Maximal and the Bound Is Tight]
+  5002→\label{prop:refinement-extremal}
+  5003→Let $\beta,\gamma\in(0,1)$ with $\beta\neq\gamma$.  For $\mathcal C_M$:
+  5004→\begin{enumerate}[label=(\roman*)]
+  5005→\item the chain is irreducible with strictly positive stationary
+  5006→distribution, so $\Splus$ is the whole state set;
+  5007→\item the kernel partition has exactly two blocks,
+  5008→$|\phi_{\ker}(\Splus)|=2$;
+  5009→\item the stable refinement is the discrete partition, $N^{\ast}=M$, so the
+  5010→gap $N^{\ast}-|\phi_{\ker}(\Splus)|=M-2$ is the largest possible on $M$
+  5011→states;
+  5012→\item the refinement recursion of
+  5013→Proposition~\ref{prop:kernel-refinement-exists} stabilizes after exactly
+  5014→$M-1$ steps, so its bound of $|\Splus|$ steps is tight to within one;
+  5015→\item consequently $\RetKLc(M-1)>0$ while $\RetKLc(M)=0$.
+  5016→\end{enumerate}
+  5017→\end{proposition}
+  5018→
+  5019→\begin{proof}
+  5020→\emph{(i)} Every state emits both outputs with positive probability: states
+  5021→$0,\dots,M-2$ because $\beta\in(0,1)$, and state $M-1$ because
+  5022→$\gamma\in(0,1)$.  Consequently output $1$ carries any state to $0$, and a run
+  5023→of $M-1$ outputs $0$ carries $0$ to $M-1$, so every state reaches every other.
+  5024→The chain is therefore irreducible on a finite set, and its stationary
+  5025→distribution is strictly positive, so $\Splus=\{0,\dots,M-1\}$.
+  5026→
+  5027→\emph{(ii)} States $0,\dots,M-2$ carry the law $\mathrm{Bernoulli}(\beta)$ and
+  5028→state $M-1$ carries $\mathrm{Bernoulli}(\gamma)\neq\mathrm{Bernoulli}(\beta)$,
+  5029→giving exactly two kernel classes.
+  5030→
+  5031→\emph{(iii)} and \emph{(iv)} Write $\phi^{(m)}$ for the $m$-th iterate, with
+  5032→$\phi^{(0)}=\phi_{\ker}$. We claim, by induction on $m\ge0$, that $\phi^{(m)}$
+  5033→separates exactly the top $m+1$ states, that is
+  5034→\[
+  5035→\phi^{(m)}(s)=\phi^{(m)}(s')
+  5036→\iff
+  5037→s=s'
+  5038→\ \text{ or }\
+  5039→s,s'\le M-2-m .
+  5040→\]
+  5041→For $m=0$ this is~(ii). Assume it for $m$ and let $s<s'\le M-2-m$. The
+  5042→recursion refines by the pair of successor classes
+  5043→$\bigl(\phi^{(m)}(\tau(s,0)),\phi^{(m)}(\tau(s,1))\bigr)$. Since
+  5044→$s,s'\le M-2-m\le M-2$, neither is saturated, so $\tau(s,0)=s+1$ and
+  5045→$\tau(s',0)=s'+1$, while $\tau(s,1)=\tau(s',1)=0$. By the inductive hypothesis
+  5046→$s+1$ and $s'+1$ are separated precisely when at least one of them exceeds
+  5047→$M-2-m$, that is precisely when $s'=M-2-m$. Hence $\phi^{(m+1)}$ splits
+  5048→$M-2-m$ off from the states below it and leaves $0,\dots,M-3-m$ together,
+  5049→which is the claim for $m+1$.
+  5050→
+  5051→At $m=M-2$ the block $\{s:s\le M-2-m\}=\{0\}$ is a singleton, so
+  5052→$\phi^{(M-2)}$ is the discrete partition and $N^{\ast}=M$, giving~(iii). The
+  5053→recursion detects stabilization one step later, at $m=M-1$, since
+  5054→$\phi^{(M-2)}$ and $\phi^{(M-1)}$ have the same number of blocks while
+  5055→$\phi^{(M-3)}$ has fewer; the number of iterations is therefore exactly $M-1$,
+  5056→which is~(iv). The bound $N^{\ast}\le|\Splus|$ of
+  5057→Proposition~\ref{prop:kernel-refinement-exists} is attained, and no partition
+  5058→of an $M$-element set has more than $M$ blocks, so the gap $M-2$ is maximal.
+  5059→
+  5060→\emph{(v)} Immediate from Theorem~\ref{thm:controlled-zero} and $N^{\ast}=M$.
+  5061→\end{proof}
+  5062→
+  5063→\begin{remark}[Scope of the Extremal Family]
+  5064→\label{rem:refinement-extremal-scope}
+  5065→Proposition~\ref{prop:refinement-extremal} settles the worst case, not the
+  5066→typical one. It shows that no bound of the form
+  5067→$N^{\ast}\le f(|\phi_{\ker}(\Splus)|)$ can hold, since $\mathcal C_M$ has two
+  5068→kernel classes for every $M$, and that the round count of
+  5069→Proposition~\ref{prop:kernel-refinement-exists} cannot be improved below
+  5070→$|\Splus|-1$. It uses a single input letter, so the phenomenon is driven
+  5071→entirely by the output-dependence of the update and is invisible to any
+  5072→input-driven analysis. For $M=3,\dots,7$ the values $\RetKLc(M-1)$ are
+  5073→$0.0481$, $0.0321$, $0.0192$, $0.0107$ and $0.0057$ nats at
+  5074→$\beta=\tfrac12$, $\gamma=\tfrac1{10}$, decreasing in $M$ as the extra
+  5075→resolved state carries less stationary mass.
+  5076→\end{remark}
+  5077→
+  5078→\begin{corollary}[Recovery of the Input-Driven Theory]
+  5079→\label{cor:controlled-reduces}
+  5080→Let the emissions be output-independent, $P_s^x=P_s$ for every $x$, as in every
+  5081→construction of Section~\ref{subsec:retention-complexity}.  Then
+  5082→$\RetKLc(\phi)=\RetKL(\phi)$ for every quotient $\phi$ feasible
+  5083→in both theories.  If moreover the machine is input-driven and every quotient
+  5084→under consideration has connected support --- in particular if every $P_s$ has
+  5085→full support --- the two feasible sets coincide by
+  5086→Proposition~\ref{prop:input-driven-specialization}(i), and therefore
+  5087→$\RetKLc(M)=\RetKL(M)$ for every $M$, the controlled identity
+  5088→reducing to Meta-Theorem~\ref{meta:ib}.
+  5089→\end{corollary}
+  5090→
+  5091→\begin{proof}
+  5092→The first claim is immediate: with $P_s^x=P_s$ the centroids $\bar P_k^x$ are
+  5093→independent of $x$ and $\sum_xp(x)=1$.  The second follows because equality of
+  5094→the two minima requires equality of the feasible sets over which they are
+  5095→taken; Remark~\ref{rem:controlled-reduces-sharp} shows that this hypothesis
+  5096→cannot be dropped.
+  5097→\end{proof}
+  5098→
+  5099→\begin{remark}[Why the Support Hypothesis Cannot Be Dropped Here]
+  5100→\label{rem:controlled-reduces-sharp}
+
+[showing lines 4501-5100 of 17893; use offset=5101 with limit to continue reading]
