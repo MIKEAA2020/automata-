@@ -1,0 +1,681 @@
+// Line-level review report for automata_unified_revised.tex
+// Part 1: helpers, cover, TOC
+const {
+  Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+  Header, Footer, PageNumber, NumberFormat, AlignmentType, HeadingLevel,
+  WidthType, BorderStyle, ShadingType, TableOfContents, PageBreak,
+  SectionType, TableLayoutType,
+} = require("docx");
+const fs = require("fs");
+
+// ---------------- Palette (Deep Sea Academic / report) ----------------
+const P = {
+  primary: "16324F", body: "1C2A3D", secondary: "5B6B7D",
+  accent: "8B7E5A", surface: "F5F7FA",
+  cover: {
+    bg: "16324F", titleColor: "FFFFFF", subtitleColor: "C9D4E0",
+    metaColor: "AFC0D0", accent: "C8B896", footerColor: "8FA3B8",
+  },
+};
+
+// ---------------- Border constants ----------------
+const NB = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
+const noBorders = { top: NB, bottom: NB, left: NB, right: NB };
+const allNoBorders = { top: NB, bottom: NB, left: NB, right: NB,
+                       insideHorizontal: NB, insideVertical: NB };
+
+// ---------------- Cover layout helpers (from design-system) ----------------
+function splitTitleLines(title, charsPerLine) {
+  if (title.length <= charsPerLine) return [title];
+  const breakAfter = new Set([..."，。、；：！？", ..."的与和及之在于为", ..."-_—–·/", ..." \t"]);
+  const lines = [];
+  let remaining = title;
+  while (remaining.length > charsPerLine) {
+    let breakAt = -1;
+    for (let i = charsPerLine; i >= Math.floor(charsPerLine * 0.6); i--) {
+      if (i < remaining.length && breakAfter.has(remaining[i - 1])) { breakAt = i; break; }
+    }
+    if (breakAt === -1) {
+      const limit = Math.min(remaining.length, Math.ceil(charsPerLine * 1.3));
+      for (let i = charsPerLine + 1; i < limit; i++) {
+        if (breakAfter.has(remaining[i - 1])) { breakAt = i; break; }
+      }
+    }
+    if (breakAt === -1) breakAt = charsPerLine;
+    lines.push(remaining.slice(0, breakAt).trim());
+    remaining = remaining.slice(breakAt).trim();
+  }
+  if (remaining) lines.push(remaining);
+  if (lines.length > 1 && lines[lines.length - 1].length <= 2) {
+    const last = lines.pop();
+    lines[lines.length - 1] += last;
+  }
+  return lines;
+}
+
+function calcTitleLayout(title, maxWidthTwips, preferredPt = 40, minPt = 24) {
+  // English-heavy title: Latin chars ~ pt*11 twips wide
+  const estWidth = (text, pt) => {
+    let w = 0;
+    for (const ch of text) {
+      const code = ch.codePointAt(0);
+      const isCJK = (code >= 0x4E00 && code <= 0x9FFF) || (code >= 0x3000 && code <= 0x303F);
+      w += isCJK ? pt * 20 : pt * 11;
+    }
+    return w;
+  };
+  let titlePt = preferredPt, lines;
+  while (titlePt >= minPt) {
+    const avgChar = estWidth(title, titlePt) / title.length;
+    const cpl = Math.max(2, Math.floor(maxWidthTwips / avgChar));
+    lines = splitTitleLines(title, cpl);
+    if (lines.length <= 3) break;
+    titlePt -= 2;
+  }
+  if (!lines || lines.length > 3) {
+    const avgChar = estWidth(title, minPt) / title.length;
+    lines = splitTitleLines(title, Math.max(2, Math.floor(maxWidthTwips / avgChar)));
+    titlePt = minPt;
+  }
+  return { titlePt, titleLines: lines };
+}
+
+function calcCoverSpacing(params) {
+  const { titleLineCount = 1, titlePt = 36, hasSubtitle = false, hasEnglishLabel = false,
+    metaLineCount = 0, fixedHeight = 800, pageHeight = 16838 } = params;
+  const SAFETY = 1200;
+  const usableHeight = pageHeight - SAFETY;
+  const titleHeight = titleLineCount * (titlePt * 23 + 200);
+  const subtitleHeight = hasSubtitle ? (12 * 23 + 600) : 0;
+  const englishLabelHeight = hasEnglishLabel ? (9 * 23 + 600) : 0;
+  const metaHeight = metaLineCount * (10 * 23 + 100);
+  const implicitParaHeight = 3 * 300;
+  const contentHeight = titleHeight + subtitleHeight + englishLabelHeight + metaHeight + fixedHeight + implicitParaHeight;
+  const safeRemaining = Math.max(usableHeight - contentHeight, 400);
+  const FOOTER_MIN = 800;
+  const rawTop = Math.floor(safeRemaining * 0.45);
+  const rawBottom = Math.floor(safeRemaining * 0.45);
+  const bottomSpacing = Math.max(rawBottom, FOOTER_MIN);
+  const topSpacing = Math.max(rawTop - Math.max(0, FOOTER_MIN - rawBottom), 400);
+  return { topSpacing, midSpacing: Math.max(safeRemaining - topSpacing - bottomSpacing, 0), bottomSpacing };
+}
+
+// ---------------- Cover Recipe R1 (Pure Paragraph Left) ----------------
+function buildCoverR1(config) {
+  const PC = config.palette;
+  const padL = 1200, padR = 800;
+  const availableWidth = 11906 - padL - padR - 300;
+  const { titlePt, titleLines } = calcTitleLayout(config.title, availableWidth, 40, 24);
+  const titleSize = titlePt * 2;
+  const spacing = calcCoverSpacing({
+    titleLineCount: titleLines.length, titlePt,
+    hasSubtitle: !!config.subtitle, hasEnglishLabel: !!config.englishLabel,
+    metaLineCount: (config.metaLines || []).length, fixedHeight: 400,
+  });
+  const accentLeft = { style: BorderStyle.SINGLE, size: 8, color: PC.accent, space: 12 };
+  const children = [];
+  children.push(new Paragraph({ spacing: { before: spacing.topSpacing } }));
+  if (config.englishLabel) {
+    children.push(new Paragraph({
+      indent: { left: padL, right: padR }, spacing: { after: 500 },
+      border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: PC.accent, space: 8 } },
+      children: [new TextRun({ text: config.englishLabel.split("").join("  "),
+        size: 18, color: PC.accent, font: { ascii: "Calibri", eastAsia: "SimHei" }, characterSpacing: 40 })],
+    }));
+  }
+  for (let i = 0; i < titleLines.length; i++) {
+    children.push(new Paragraph({
+      indent: { left: padL },
+      spacing: { after: i < titleLines.length - 1 ? 100 : 300, line: Math.ceil(titlePt * 23), lineRule: "atLeast" },
+      children: [new TextRun({ text: titleLines[i], size: titleSize, bold: true,
+        color: PC.titleColor, font: { eastAsia: "SimHei", ascii: "Arial" } })],
+    }));
+  }
+  if (config.subtitle) {
+    children.push(new Paragraph({
+      indent: { left: padL, right: padR }, spacing: { after: 800 },
+      children: [new TextRun({ text: config.subtitle, size: 24, color: PC.subtitleColor,
+        font: { eastAsia: "Microsoft YaHei", ascii: "Arial" } })],
+    }));
+  }
+  for (const line of (config.metaLines || [])) {
+    children.push(new Paragraph({
+      indent: { left: padL + 200 }, spacing: { after: 80 },
+      border: { left: accentLeft },
+      children: [new TextRun({ text: line, size: 24, color: PC.metaColor,
+        font: { eastAsia: "Microsoft YaHei", ascii: "Arial" } })],
+    }));
+  }
+  children.push(new Paragraph({ spacing: { before: spacing.bottomSpacing } }));
+  children.push(new Paragraph({
+    indent: { left: padL, right: padR },
+    border: { top: { style: BorderStyle.SINGLE, size: 2, color: PC.accent, space: 8 } },
+    spacing: { before: 200 },
+    children: [
+      new TextRun({ text: config.footerLeft || "", size: 16, color: PC.footerColor, font: { ascii: "Arial" } }),
+      new TextRun({ text: "                                        " }),
+      new TextRun({ text: config.footerRight || "", size: 16, color: PC.footerColor, font: { ascii: "Arial" } }),
+    ],
+  }));
+  return [new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    layout: TableLayoutType.FIXED,
+    borders: allNoBorders,
+    rows: [new TableRow({
+      height: { value: 16838, rule: "exact" },
+      children: [new TableCell({
+        shading: { type: ShadingType.CLEAR, fill: PC.bg }, borders: noBorders,
+        children,
+      })],
+    })],
+  })];
+}
+
+// ---------------- Text helpers ----------------
+const EN_FONT = { ascii: "Times New Roman", eastAsia: "SimSun" };
+const HEAD_FONT = { ascii: "Times New Roman", eastAsia: "SimHei" };
+
+function h1(text) {
+  return new Paragraph({
+    heading: HeadingLevel.HEADING_1,
+    spacing: { before: 360, after: 160, line: 312 },
+    children: [new TextRun({ text, bold: true, size: 32, color: P.primary, font: HEAD_FONT })],
+  });
+}
+function h2(text) {
+  return new Paragraph({
+    heading: HeadingLevel.HEADING_2,
+    spacing: { before: 280, after: 120, line: 312 },
+    children: [new TextRun({ text, bold: true, size: 28, color: P.primary, font: HEAD_FONT })],
+  });
+}
+function h3(text) {
+  return new Paragraph({
+    heading: HeadingLevel.HEADING_3,
+    spacing: { before: 220, after: 100, line: 312 },
+    children: [new TextRun({ text, bold: true, size: 24, color: P.primary, font: HEAD_FONT })],
+  });
+}
+// body paragraph from plain text (justified, no CJK indent needed for English)
+function body(text, opts = {}) {
+  return new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { line: 312, after: 120 },
+    children: [new TextRun({ text, size: 22, color: P.body, font: EN_FONT, ...opts })],
+  });
+}
+// body paragraph from runs
+function bodyRuns(runs) {
+  return new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { line: 312, after: 120 },
+    children: runs,
+  });
+}
+function run(text, opts = {}) {
+  return new TextRun({ text, size: 22, color: P.body, font: EN_FONT, ...opts });
+}
+function mono(text, opts = {}) {
+  return new TextRun({ text, size: 20, color: "3D3524", font: { ascii: "Courier New", eastAsia: "Courier New" }, ...opts });
+}
+// code-ish line (left aligned, light shading via border)
+function codeLine(text) {
+  return new Paragraph({
+    alignment: AlignmentType.LEFT,
+    spacing: { line: 280, after: 40 },
+    indent: { left: 360 },
+    border: { left: { style: BorderStyle.SINGLE, size: 6, color: P.accent, space: 8 } },
+    children: [mono(text)],
+  });
+}
+const SEV = {
+  Critical: "9C2B24", Major: "B4540A", Minor: "6B6B23", Cosmetic: "5B6B7D",
+};
+function sevTag(level) {
+  return new TextRun({ text: "  [" + level + "]", bold: true, size: 22, color: SEV[level] || P.secondary, font: EN_FONT });
+}
+// Finding heading: ID + title + severity (H2 to avoid level skips under H1 category sections)
+function findingHead(id, title, level) {
+  return new Paragraph({
+    heading: HeadingLevel.HEADING_2,
+    spacing: { before: 260, after: 80, line: 312 },
+    children: [
+      new TextRun({ text: id + ". ", bold: true, size: 26, color: P.primary, font: HEAD_FONT }),
+      new TextRun({ text: title, bold: true, size: 26, color: P.primary, font: HEAD_FONT }),
+      sevTag(level),
+    ],
+  });
+}
+function locationLine(lines) {
+  return new Paragraph({
+    alignment: AlignmentType.LEFT,
+    spacing: { line: 312, after: 80 },
+    children: [
+      new TextRun({ text: "Location: ", bold: true, size: 22, color: P.secondary, font: EN_FONT }),
+      mono("automata_unified_revised.tex:" + lines),
+    ],
+  });
+}
+
+// ================= BODY CONTENT =================
+const bodyChildren = [];
+
+// ---- 1. Executive Summary ----
+bodyChildren.push(h1("1. Executive Summary"));
+bodyChildren.push(body(
+  "This report records the outcome of a complete line-level review of the manuscript file automata_unified_revised.tex (17,893 lines, 662,978 characters, 18 sections, 378 numbered theorem-like environments). The review covered every line of the source, an automated structural audit of labels, references and environments, and a full compilation pass. The manuscript is mathematically strong on the whole: the information-bottleneck identities, the Pinsker-plus-centring chain behind the probability-coordinate converse, the Csiszar representation lemma, the k-means reductions, and the persistent-stream and gated active lower-bound constructions were all checked line by line and found sound. Nevertheless the review identified six substantive mathematical flaws, seven internal inconsistencies, a set of typesetting defects including two page-overflowing lines, and several items that should be verified against external sources before submission."
+));
+bodyChildren.push(body(
+  "The single most important finding is A1: the zero-threshold characterization in Theorem thm:com-rd-formula (Section 6.2) is incorrect as stated. The zero-cost condition for the distributional commitment gap is determination of the one-step output by the pair (prefix congruence class, next symbol), which is a strictly weaker requirement than the class-level determination used in the definition of the observable support index. A counterexample is given in this report. Two further findings, B1 and B2, are structural rather than logical: the unifilar-machine definitions on which the retention chapter depends are physically located in Section 8 rather than before their first use in Section 2, and the notation Theta_{|O|}(log M) used in the abstract, an open problem, and the conclusion contradicts the body theorem that expressly proves the absence of any dependence on the output-alphabet size."
+));
+bodyChildren.push(body(
+  "The file compiles without errors (tectonic, 1.08 MiB PDF), with no undefined or duplicate labels and no mismatched environments, but produces 151 overfull hboxes. Two of them, in Definition def:type-signature (lines 16821-16828), overflow the text block by 392 pt and 146 pt respectively, which means the printed lines run visibly off the page. A full severity-ranked findings table with line references appears in Section 9, and a recommended order of repairs appears in Section 10."
+));
+
+// ---- 2. Scope and Method ----
+bodyChildren.push(h1("2. Review Scope and Method"));
+bodyChildren.push(body(
+  "The object under review is a single self-contained LaTeX manuscript, automata_unified_revised.tex, submitted through the upload channel. The manuscript develops a comparative framework for finite-state approximation of sequential objects, organized into three regimes (commitment, retention, grounding) with shared syntax (histories, right congruences, quotient index) and regime-specific analysis (Myhill-Nerode theory, information bottleneck, Hankel operator approximation, online learning, and operator algebra). The review was requested as a line-level pass for flaws, internal inconsistencies, and opportunities for improvement."
+));
+bodyChildren.push(body(
+  "Three complementary methods were applied. First, the entire file was read sequentially at line level, with proofs re-derived where feasible: algebraic identities were verified by hand (the ANOVA and Ky Fan chains, the Eckart-Young-Mirsky applications, the Csiszar generator derivation, the modular counting arguments in the temporal chapter), and all worked numerical examples were recomputed (the binary-entropy expansion in Proposition prop:kl-simplex-sharp, the Bernoulli Fisher-information scale comparison, the slope sequences in Proposition prop:rd-nonconvex, the 2^{0.01}-scale singular-value example in Remark rem:p-to-zero, and the kappa table in Remark rem:kappa-values). Second, an automated audit checked label uniqueness, reference resolution, environment matching, and brace balance across the whole file. Third, the file was compiled with tectonic and the log was mined for errors, warnings, and overfull boxes."
+));
+bodyChildren.push(body(
+  "Automated audit results: 502 labels, 0 duplicates; 825 cross-references, 0 undefined; all begin/end environment pairs matched; brace balance zero; no trailing whitespace. Compile results: success, no errors, one benign font-substitution warning (font shape TU/lmr/m/scit undefined), and 151 overfull hboxes of which four exceed 60 pt and two exceed 100 pt. Every claim below cites the source line numbers in automata_unified_revised.tex so that fixes can be applied directly."
+));
+
+// ---- 3. Category A ----
+bodyChildren.push(h1("3. Category A: Substantive Mathematical Flaws"));
+bodyChildren.push(body(
+  "This category lists statements whose mathematical content is wrong, incomplete, or supported by an invalid justification as written. Each item includes the location, the diagnosis, and in the important cases an explicit counterexample or correction. Severity reflects the risk that a referee or reader identifies the issue: A1 would be flagged by any careful reader of Section 6.2; the remaining items are localized and quick to fix."
+));
+
+bodyChildren.push(findingHead("A1", "The zero threshold of the distributional commitment gap is mischaracterized (thm:com-rd-formula)", "Major"));
+bodyChildren.push(locationLine("6287-6293 (statement); 6315-6327 (proof)"));
+bodyChildren.push(body(
+  "The theorem asserts that ComRD(M) = 0 if and only if M is at least the observable support index kappa_obs(F^{(1)}, mu), where F^{(1)}(u) = F(u)_{|u|} is the one-step output object. The proof equates two different determination conditions: it observes correctly that zero cost holds exactly when F(u)_{|u|} is mu-almost-surely determined by the pair (class of the prefix, next symbol), but then asserts that this is 'exactly the condition' of the class-level representative exactness that defines kappa_obs. These conditions are not equivalent. The map u -> ([u_{1:t-1}], u_t) refines the map u -> [u]: the pair determines the class, since [u] = [u_{1:t-1}] . u_t, but a single class can be reached by several distinct pairs. Determination by the coarser class map is therefore a strictly stronger requirement, and kappa_obs is an upper bound on the true threshold, not its value."
+));
+bodyChildren.push(body(
+  "Counterexample. Take the identity transduction F(u) = u over any nontrivial input alphabet with a full-support input process. The Myhill-Nerode index is 1 (every residual equals the identity continuation), so the one-state machine with output rule rho(*, x) = x realizes F exactly and ComRD(1) = 0. But F^{(1)}(u) = u_t is not determined by the single congruence class of the trivial congruence, since histories ending in different symbols share the class; the minimal congruence determining the last symbol has index 2 (classes: last symbol a, last symbol b). Hence ComRD(1) = 0 while kappa_obs = 2 > 1, contradicting both directions of the biconditional as stated."
+));
+bodyChildren.push(body(
+  "The same error undermines the secondary claim at lines 6322-6325 that kappa_obs(F^{(1)}, mu) <= kappa_det(F): the full Myhill-Nerode congruence is exact for the residual object, which determines continuations after u, not the last symbol of u itself, so the inequality fails on the same counterexample (2 > 1). There is also a small type gap: F^{(1)} is defined only on nonempty words, while mu(eps) = 1 - beta > 0 for a discounted law, so the kappa_obs instantiation is not well typed at the empty word. Recommended fix: define the threshold as the minimum index of a right congruence ~ such that F^{(1)}(u) is mu-a.e. determined by ([u_{1:|u|-1}], u_{|u|}); under that definition the residual automaton witnesses the inequality kappa_threshold <= kappa_det(F), the identity counterexample disappears, and the rest of the theorem (the greedy block formula, which is correct) is unaffected. The related discussion in Open Problem item 8 (lines 17393-17410), which quotes the kappa_obs threshold, should be updated to match."
+));
+
+bodyChildren.push(findingHead("A2", "Modular-language commitment complexity is off by a constant (thm:independence, clause iv)", "Minor"));
+bodyChildren.push(locationLine("12954-12958"));
+bodyChildren.push(body(
+  "The proof of the independence theorem states that replacing the square-counting language by L_N = {# 1^n : n congruent to 0 mod N} gives commitment complexity 'exactly N'. The minimal deterministic automaton for the language as written needs N + 2 states: one pre-delimiter start state, N residue states after the delimiter, and one dead state absorbing words that contain a second # or a leading 1. The correct exactly-N statement holds for the delimiter-free variant {1^n : n congruent to 0 mod N} over the unary alphabet (with a second, always-rejecting letter if a binary alphabet is desired), whose Myhill-Nerode classes are exactly the N residues. Either switch the witness language to the delimiter-free form or change the claim to 'exactly N + 2'. The qualitative point of clause (iv), that commitment complexity is tunable to any finite value, is unaffected."
+));
+
+bodyChildren.push(findingHead("A3", "A numeric claim in the binary-input lower bound is false at the stated L (thm:stream-lb-binary)", "Minor"));
+bodyChildren.push(locationLine("13785-13786"));
+bodyChildren.push(body(
+  "The proof states that the ratio M log M / (M' log M') = (1/3) L / (L + log2 3) is 'increasing in L, exceeding 0.23 already at L = 3'. At L = 3 the ratio equals (1/3)(3 / 4.585) = 0.218, which is below 0.23; the ratio first exceeds 0.23 at L = 4, where it equals 0.2387. The asymptotic conclusion (any constant below 1/3 works for large M) is correct, so the fix is cosmetic: change 'L = 3' to 'L = 4' or lower the quoted threshold to 0.21. The definition of the machine family and the mistake-count argument in that proof were verified and are correct."
+));
+
+bodyChildren.push(findingHead("A4", "The alpha-to-infinity limit proof treats an alpha-dependent operator as fixed (prop:renyi-limits)", "Minor"));
+bodyChildren.push(locationLine("12149-12153"));
+bodyChildren.push(body(
+  "The proof of clause (iii) argues that 'the Schatten quasi-norms of a fixed positive operator converge to the operator norm, ||K_alpha||_{S_alpha} -> ||sigma^{-1/2} rho sigma^{-1/2}||_infty, by monotone convergence of l^p norms of the singular-value sequence'. The operator K_alpha = sigma^{(1-alpha)/(2 alpha)} rho sigma^{(1-alpha)/(2 alpha)} varies with alpha, so the monotone-convergence argument for a fixed singular-value sequence does not apply as written; what is needed is joint continuity of the map alpha -> K_alpha (convergence of the matrix powers) together with the norm limit, or a citation to the known sandwiched-Renyi limit (Muller-Lennert et al.; Frank and Lieb). The limit itself is a known correct result, so the fix is to replace the two-line justification with either the two-step continuity argument or an explicit reference. The alpha-to-1 and alpha-to-0 parts of the same proposition are proved correctly."
+));
+
+bodyChildren.push(findingHead("A5", "Leftover revision text inside a proof, and a 'Correction' label in the results list", "Minor"));
+bodyChildren.push(locationLine("8303-8306; 17141-17144"));
+bodyChildren.push(body(
+  "The proof of Proposition prop:grounding-tracking(iii) contains the phrases 'as in the previous version of this claim' and 'upgrades the earlier feasible-set nesting argument', which refer to a prior draft that the reader cannot see; the sentence as a whole is confusing and should be rewritten in self-contained terms (the actual argument, monotonicity of D under refinement plus nesting of the feasible sets, is correct and short). Compounding this, the 'Exact Results' list in Section 17.2 describes the same result as a 'Correction to item (iii) of Proposition prop:grounding-tracking', a label that makes sense only within a revision cycle: as printed, item (iii) is already correct, so the word 'Correction' misleads the reader into hunting for an error that is not there. Remove the label and state the monotonicity as a result."
+));
+
+bodyChildren.push(findingHead("A6", "Garbled justification of the per-episode separation bound (prop:lsyncu-quadratic)", "Minor"));
+bodyChildren.push(locationLine("14618-14623"));
+bodyChildren.push(body(
+  "The proof bounds the separating-word length by M - 1 via breadth-first search on the pair automaton, justified by 'a shortest such path visits pairwise distinct pairs whose underlying state sets are nested along the search and cannot repeat'. Distinct pair-nodes number at most binomial(M, 2), so distinctness alone bounds the path by that quantity, not by M - 1, and 'nested underlying state sets' is not a property of BFS paths in the pair automaton. The bound M - 1 is nevertheless true, by the Moore-partition-refinement argument that the manuscript itself proves later (Lemma lem:tension and Lemma lem:moore-separation). Recommended fix: cite those lemmas here, or move the Moore argument before this proposition; the sharper binomial(M, 2) accounting in prop:lsyncu-binomial then supersedes this proposition anyway."
+));
+
+// ---- 4. Category B ----
+bodyChildren.push(h1("4. Category B: Internal Inconsistencies"));
+bodyChildren.push(body(
+  "These are places where two parts of the manuscript disagree with each other, or where structure and naming conventions drift. None of them is a false theorem on its own, but each creates a wrong expectation somewhere else in the document, and each is a likely referee remark."
+));
+
+bodyChildren.push(findingHead("B1", "Definitions used from Section 2 onward are located in Section 8", "Major"));
+bodyChildren.push(locationLine("def:unifilar-machine at 9307; def:unifilar-lumpable at 9360; first uses at 1248, 1349, 1890, 2049, 3147, 4575-4584, 4822, 4853"));
+bodyChildren.push(body(
+  "Definition def:unifilar-machine (the stationary controlled unifilar causal machine) and Definition def:unifilar-lumpable (unifilar lumpability) are the load-bearing definitions of the retention chapter: Section 3's machine models, Section 5's whole subsection 5.5 on unifilar retention and the controlled information bottleneck, and the complexity-transfer remark all cite them, in some cases dozens of times. Both are physically defined inside subsection 8.1 ('Type-Correct Axes on One Clock'), roughly 4,700 lines after the first use. This is clearly a revision artifact (the unifilar material was appended into the oracle chapter). Move both definitions, together with Remark rem:unifilar-proper-subclass and Remark rem:unifilar-support-not-automatic, into Section 3 (Specialized Task Theories) next to def:controlled-markov and def:lumpable-quotient, which is where the reader will look for them."
+));
+
+bodyChildren.push(findingHead("B2", "Theta_{|O|}(log M) notation contradicts the no-alphabet-dependence theorem", "Major"));
+bodyChildren.push(locationLine("abstract 248-249; 15539 (open:si-hard-family); 17657 (conclusion); versus 14198-14213 (thm:esyncsi-theta) and 14175-14196 (rem:halving-alphabet-free)"));
+bodyChildren.push(body(
+  "Three high-visibility locations write the state-identification complexity as Theta_{|O|}(log M) or O_{|O|}(log M), implying constants that depend on the output-alphabet size: the abstract, the open problem on two-term decompositions, and the conclusion. The body theorem thm:esyncsi-theta proves the exact value floor(log2 M) with no dependence on |O| whatsoever, and the accompanying remark devotes a full paragraph to eliminating the alphabet-dependent factor, calling the alphabet dependence 'an artefact of the counting'. The subscripted notation is a leftover of the weaker bound log_{|O|/(|O|-1)} M described in that remark. Fix by deleting the subscript in all three places (and checking thm:active-direct-sum at 15637, which uses O_{|O|}(log M) in passing)."
+));
+
+bodyChildren.push(findingHead("B3", "The roadmap omits Section 17 (Type Discipline)", "Minor"));
+bodyChildren.push(locationLine("756-779 versus 16789-16790"));
+bodyChildren.push(body(
+  "The roadmap paragraph in the introduction lists fifteen sections, from Section 2 (schema) through Section 18 (conclusion), but Section 17, 'Type Discipline for Approximation Statements' (sec:type-discipline), is missing from the list. Since that section is the one that fixes the seven-coordinate signature used by the classification tables at the end of the paper, its absence from the roadmap is conspicuous. Add one sentence, for example: 'Section 17 fixes the type signature that every approximation statement carries.'"
+));
+
+bodyChildren.push(findingHead("B4", "Wrong macro in the stateless-game proof (cor:stateless)", "Minor"));
+bodyChildren.push(locationLine("6797"));
+bodyChildren.push(body(
+  "The proof says 'The lower bound of Theorem 6 gives Com(M) >= ...' where the quantity being bounded is the simultaneous-move strategic gap ComGame(M); Com(M) is the exact Boolean commitment gap, a different object that the surrounding text is at pains to keep separate (Remark rem:com-rd-scope explicitly lists the three distinct commitment notations). The corollary statement itself uses the correct macro. Change Com to ComGame in the proof line."
+));
+
+bodyChildren.push(findingHead("B5", "Two different letters for the same discount factor", "Minor"));
+bodyChildren.push(locationLine("beta at 2414 (def:observable-support-index) and 6198-6201 (subsec:commitment-rd); gamma at 988 (def:discounted-agg) and throughout Section 7"));
+bodyChildren.push(body(
+  "The discounted-prefix law is written with gamma in Definition def:discounted-agg but with beta in Definition def:observable-support-index and in the commitment rate-distortion subsection, while gamma is the discount used in the grounding gaps and the safety games. A reader crossing from Section 4 to Section 6 or 7 has to re-map the same concept to a different letter. Standardize on one letter (gamma is the more frequent) or state explicitly at 2414 that beta plays the role of gamma."
+));
+
+bodyChildren.push(findingHead("B6", "Label and separator conventions drift", "Minor"));
+bodyChildren.push(locationLine("1149 (sec:right-cong on a subsection); 17240-17241 (double label); 13874-13875 (duplicated separators)"));
+bodyChildren.push(body(
+  "Subsection 2.5 carries the label sec:right-cong although it is a subsection and every other subsection uses the subsec: prefix; the Open Problems subsection carries two labels on consecutive lines (sec:openproblems and subsec:open-problems) for the same anchor; and lines 13874-13875 contain two duplicated %--- separator comment blocks. None affects the compiled output, but the label prefixes are used inconsistently enough to matter for maintenance. Rename the first to subsec:right-cong (updating the two references), keep one of the two open-problem labels, and delete the duplicated separator."
+));
+
+bodyChildren.push(findingHead("B7", "Heavy symbol overloading", "Minor"));
+bodyChildren.push(locationLine("throughout; e.g. Sigma at 1579, 177, 3442, 3999; mathcal E at 845 versus E_A at 11173; I as information at 2864 versus mathcal I as alphabet at 320"));
+bodyChildren.push(body(
+  "The symbol Sigma denotes simultaneously the joint alphabet (grounding), at least six covariance matrices (Sigma_pi, Sigma_p, Sigma_eta, Sigma_F, and their per-input fiber variants), and the summation operator. The letter E appears as the cost profunctor mathcal E, the pinching conditional expectation E_A, the estimation envelope Est, and expectation. Mutual information I(S;Z) sits next to the input alphabet mathcal I. No actual error was traced to this overloading, but the paper asks a lot of the reader, and the risk grows under revision. Suggested renamings: covariances to C with subscripts, freeing Sigma for the alphabet alone; the pinching map to Phi_A or Pinch."
+));
+
+// ---- 5. Category C ----
+bodyChildren.push(h1("5. Category C: LaTeX and Typesetting Defects"));
+bodyChildren.push(body(
+  "The file compiles end to end with tectonic (xetex engine) and yields a 1.08 MiB PDF with functioning hyperlinks and a table of contents. There are no errors, no undefined references, and no multiply-defined labels. The defects below are all visible in the printed output or the compile log and are ranked by how noticeable they are on the page."
+));
+bodyChildren.push(findingHead("C1", "151 overfull hboxes, including two page-overflowing lines", "Major"));
+bodyChildren.push(locationLine("worst: 16821-16828 (392.4 pt and 146.3 pt); 11496 (85.7 pt); 8297-8307 (76.1 pt); full list in compile log"));
+bodyChildren.push(body(
+  "The compile log reports 151 overfull hboxes. The two worst are in the enumerated admissible-value lists of Definition def:type-signature (Section 17): the item listing the regime values (line 16821-16824) overflows the text block by 146 pt and the item listing the machine-type values (lines 16824-16828) overflows by 392 pt, which at 12 pt on a 1-inch-margin page means roughly five inches of text running off the sheet. These are single-line inline math lists that cannot break; convert each enumerated item to a displayed multi-line list, for example an itemize or an aligned environment, or introduce manual line breaks inside the set braces. The next-worst offenders are the long inline formula in the proof of prop:pos-relaxation-identity (85.7 pt at line 11496), which should be displayed, and the garbled proof paragraph of prop:grounding-tracking (76.1 pt at 8297-8307, also flagged as A5), which will resolve when that sentence is rewritten. The remaining 147 boxes are mostly under 20 pt; a pass with \\sloppy or microtype would clear most of them."
+));
+bodyChildren.push(findingHead("C2", "Font shape TU/lmr/m/scit undefined", "Cosmetic"));
+bodyChildren.push(locationLine("compile log; likely a \\textsc inside an italic context"));
+bodyChildren.push(body(
+  "The engine warns that the font shape TU/lmr/m/scit (small capitals, italic) is undefined and substitutes. This is benign, but it signals a small-caps-italic request somewhere in the source; if the shape matters, load a font providing it or drop the small-caps styling in that context."
+));
+bodyChildren.push(findingHead("C3", "Abstract length and display density", "Cosmetic"));
+bodyChildren.push(locationLine("118-289"));
+bodyChildren.push(body(
+  "The abstract runs to roughly 170 source lines with more than ten displayed equations. For a journal submission this exceeds any standard abstract limit (most venues cap at 250 words and forbid displays); even for a preprint it is unusual. Consider compressing to two or three paragraphs of prose with at most two displays, moving the technical statements of the controlled bottleneck, the spectral converses, and the temporal rates into the introduction."
+));
+
+// ---- 6. Category D ----
+bodyChildren.push(h1("6. Category D: Citation and Verification Items"));
+bodyChildren.push(body(
+  "These items were not verifiable from the source alone. They are not claimed to be errors; they are places where an external fact is load-bearing and should be double-checked before submission, or where the manuscript promises material that must actually accompany it."
+));
+bodyChildren.push(findingHead("D1", "Exact form of the Ambainis succinctness bound (thm:exp-gap)", "Minor"));
+bodyChildren.push(locationLine("7763-7772; bibliography 17713-17718"));
+bodyChildren.push(body(
+  "The theorem quotes S(k) = Omega(2^{k log log k / log k}) as 'the best unconditional value' from Ambainis, ISAAC 1996. The cited paper does establish a superpolynomial separation between probabilistic and deterministic automata with isolated cutpoint, but the reviewer could not confirm the exact exponent from offline sources, and the commonly quoted forms of that result differ. Transcribe the bound from the paper itself, with the theorem number, and confirm the accompanying claim that no exponential bound is established by the classical references (Rabin 1963, Freivalds 1981). The surrounding care not to overstate the rate as exponential is commendable and should be preserved."
+));
+bodyChildren.push(findingHead("D2", "Promised supplementary material is not present", "Minor"));
+bodyChildren.push(locationLine("17853-17870 (Data and Code Availability); 4465-4492 (rem:lean-formalization)"));
+bodyChildren.push(body(
+  "The availability statement promises that 'the corresponding programs, the extremal machine tables, and the exact outputs accompany the manuscript as supplementary material', and Remark rem:lean-formalization describes a fifteen-statement Lean 4 formalization checked against Mathlib. Neither artifact accompanies the single .tex file under review. Before submission, either attach both (the Lean file, the enumeration programs, the machine tables, the numerical outputs) or soften the statement to 'will be made available'. The self-scoping of the Lean remark (Pinsker taken as hypothesis, Ky Fan and the automata constructions not formalized) is careful and honest, and deserves to be matched by the availability statement."
+));
+bodyChildren.push(findingHead("D3", "Enumeration conventions behind the computational observations", "Minor"));
+bodyChildren.push(locationLine("e.g. 14845-14850, 14917-14921, 14301-14311, 4524-4534"));
+bodyChildren.push(body(
+  "Several remarks rest on exhaustive or heuristic searches (2,839,200 minimal machines at M = 5 in a structured subclass; 9,313,920 machines at M = 7; 46,656 table pairs at M = 4; hill-climbing up to M = 8 and M = 20; 2,434 partition pairs in the retention checks). The manuscript is admirably explicit that these are observations rather than proofs, and it states the arithmetic precision used. To make them reproducible, the enumeration conventions (what exactly counts as a distinct machine, how ties are broken, which structured subclass is searched) should be stated in one place, ideally alongside the code promised in D2."
+));
+
+// ---- 7. Category E ----
+bodyChildren.push(h1("7. Category E: Opportunities for Improvement"));
+bodyChildren.push(body(
+  "The items in this category are not defects: they are changes that would strengthen the manuscript, reduce its length, or remove latent risks. They are ordered roughly by expected value."
+));
+bodyChildren.push(findingHead("E1", "Consolidate the repeated scope disclaimers", "Minor"));
+bodyChildren.push(locationLine("e.g. the EYM-versus-AAK caveat at 1795-1807, 2793-2800, 7514-7519, 7480-7497, 8878-8896, conclusion 17557; the Dunres = sigma_{M+1} display repeated about ten times; 'finite prefixes do not define a probability measure' at 133-134, 582-583, 3142-3143, 17502-17503"));
+bodyChildren.push(body(
+  "The same scope qualifications are restated many times across sections. The Eckart-Young-Mirsky versus Adamjan-Arov-Krein caveat appears in at least seven places; the unrestricted-gap display is repeated roughly ten times; the finite-prefix warning four times. Some repetition is a deliberate design choice (self-contained sections, per the introduction), but a consolidation pass that keeps one canonical statement per caveat and cross-references it elsewhere would shorten the paper by an estimated 10 to 20 percent and, more importantly, remove the divergence risk that already materialized in B2 and A5, where two versions of the same statement drifted apart."
+));
+bodyChildren.push(findingHead("E2", "Replace duplicated theorem copies with cross-references", "Minor"));
+bodyChildren.push(locationLine("def:dmax 7556 versus def:dmax-exponent 12336; thm:grounding-vertex 7680 versus thm:grounding-alpha-infty 12364"));
+bodyChildren.push(body(
+  "Two results are deliberately printed twice so that the exponent chapter is self-contained, as the text acknowledges. Duplicated statements double the maintenance surface: an edit to one copy silently invalidates the other. Since the document already cross-references aggressively elsewhere, restore the single-statement convention here."
+));
+bodyChildren.push(findingHead("E3", "State explicitly that the right-closed sandwich never bites for discounted laws", "Minor"));
+bodyChildren.push(locationLine("2592-2606 (meta:boolean (ii)); 2515-2560 (rem:support-extension-sharp)"));
+bodyChildren.push(body(
+  "The right-closed-support clause of the Boolean dichotomy sandwich is currently presented as a live possibility, with a sharpness example built on S = I+ (nonempty words). But for a discounted-prefix law mu(eps) = 1 - gamma > 0, right-closure of the support forces S = I*, so c_S = 0 and the sandwich collapses; the remark itself notes the obstruction at its end. One added sentence in the meta-theorem ('for discounted-prefix laws the right-closed case forces S = I*, so the sandwich is informative only for supports that are not right-closed') would prevent readers from hunting for a nontrivial instance."
+));
+bodyChildren.push(findingHead("E4", "The one-step-equivalence example lives on transient states", "Minor"));
+bodyChildren.push(locationLine("2018-2054 (ex:onestep-not-congruence)"));
+bodyChildren.push(body(
+  "With a single input letter and the given transition structure, every stationary distribution is supported on the absorbing pair {s2, s3}; the states s0 and s1 that carry the interesting one-step equivalence are transient, while the definitions of lumpability and predictive equivalence are stated on the stationary support S+. The structural point (one-step predictive equivalence need not be a right congruence) is correct and the example does witness it as a transition structure. Either note explicitly that the example concerns the transition structure rather than the stationary support, or add a second input letter making all four states recurrent."
+));
+bodyChildren.push(findingHead("E5", "Minor presentational nits", "Cosmetic"));
+bodyChildren.push(locationLine("scattered"));
+bodyChildren.push(body(
+  "Five small items. First, the converse direction of prop:lumpability (line 2006-2015) presents tau_K as if it already existed; define it by the displayed intertwining and derive well-definedness from the right-congruence property. Second, def:com-rd-gap writes a minimum over right congruences; since only finitely many M-state machine behaviors exist, one sentence justifying attainment would make the definition airtight. Third, the header display of thm:passive-realizable states the Theta(M log M) equality without the 'for all sufficiently large M' qualifier that cor:stream-all-M supplies; copy the qualifier up. Fourth, 'Nerode' and 'Myhill-Nerode' are used interchangeably (e.g. def:nerode at 1494 versus everywhere else); pick one form. Fifth, line 2283-2284 ('then, E being reflexive by Definition...') has an awkward comma splice."
+));
+
+// ---- 8. Verified-correct items ----
+bodyChildren.push(h1("8. Results Checked and Found Correct"));
+bodyChildren.push(body(
+  "For balance, and so that revision effort can be prioritized, the following load-bearing arguments were checked line by line and re-derived where feasible, with no defects found. The list is deliberately confined to items whose failure would be most damaging."
+));
+bodyChildren.push(body(
+  "Information-theoretic core: the mixture-centroid optimality lemma and its use in the full-KL gap; the finite-state information-bottleneck identity and its controlled and general-input variants, including the infinity-handling (I(S;Z) <= H(S)); the zero-retention thresholds for the input-driven and unifilar classes, including the counter family C_M and the refinement recursion with its tight round count; the predictive-information numerical checks; the Pinsker-plus-centring inequality chain (1/2 ||d||_1^2 >= ||d||_2^2 for centred d) and the sharpness example with its entropy expansion; the interior Fisher converse with its Bregman routing and the two complementary Fisher no-go theorems, whose numeric constants (0.08494, 0.50009, the Fisher scales) recompute exactly."
+));
+bodyChildren.push(body(
+  "Operator and matrix core: the Schur-test stable-decay domination; the Eckart-Young-Mirsky and Mirsky statements and the conditional unified converse; the finite-section certificates and the rank-closedness argument for the structured zero threshold; the AAK theorem statement with its careful indexing convention discussion (sigma_{m+1} = s_m) and the honest treatment of the multi-letter case; the pinching majorization, the equality conditions via traces of squares, the Ky Fan coupling bound, and the quadratic-form discriminant argument for the rational-similarity alphabet reduction in Remark rem:output-alphabet-2d; the p-to-0 non-convergence example (the 4.5e29 figure recomputes)."
+));
+bodyChildren.push(body(
+  "Complexity and learning core: the gap amplification lemma for rational k-means (grid, scaling, bit complexity); the reset and depth-two NP-completeness reductions, including tag-cost bookkeeping and the fractional-assignment lemma; the promise and APX hardness transfers with their uniform remainder control; the PosSLP-type algebraic form of the verification problem and the Lindemann-Weierstrass decidability remark; the persistent-stream forcing construction and its randomized Azuma argument; the gated active family with its product-structure lazy adversary and the optional-stopping randomized argument; the version-space halving bounds and the exact floor(log2 M) state-identification theorem; the Csiszar representation lemma, whose two-branch chain-rule identity, one-sided limiting argument, symmetry step, bootstrap, and gluing step were all re-derived and are correct; the discrete and continuous bias-variance sandwiches with the jump-ratio lemma and its mediant inequality."
+));
+bodyChildren.push(body(
+  "Structural audit: 502 labels, all unique; 825 references, all resolved; every environment opened is closed; brace balance is zero; the theorem counter is shared and consistent; the two classification tables in Section 17 match the body statements they summarize; the conclusion's claims were cross-checked against their body occurrences and match, except for the B2 notation issue."
+));
+
+// ---- 9. Consolidated findings table ----
+bodyChildren.push(h1("9. Consolidated Findings Table"));
+bodyChildren.push(body(
+  "The table below lists every finding with its severity and primary location. Severities: Critical would invalidate a main theorem (none found); Major is a substantive mathematical error or a defect visible on the printed page; Minor is a localized error or inconsistency likely to draw a referee remark; Cosmetic is a presentation issue only."
+));
+
+const findingsRows = [
+  ["A1", "Major", "6287-6293", "thm:com-rd-formula zero threshold: pair-vs-class determination conflation; counterexample (identity transduction); kappa_obs <= kappa_det claim also fails"],
+  ["A2", "Minor", "12954-12958", "thm:independence(iv): modular language needs N+2 states, not N, as written"],
+  ["A3", "Minor", "13785-13786", "thm:stream-lb-binary: ratio is 0.218 at L=3, not above 0.23 (first at L=4)"],
+  ["A4", "Minor", "12149-12153", "prop:renyi-limits(iii): alpha-dependent K_alpha treated as fixed operator; justification invalid, conclusion known"],
+  ["A5", "Minor", "8303-8306; 17141-17144", "Leftover 'previous version' text in prop:grounding-tracking(iii) proof; 'Correction' label in Exact Results list"],
+  ["A6", "Minor", "14618-14623", "prop:lsyncu-quadratic: pair-automaton BFS argument garbled; bound true via Moore refinement (lem:tension)"],
+  ["B1", "Major", "9307; 9360 vs 1248+", "def:unifilar-machine / def:unifilar-lumpable defined in Sec 8, used from Sec 2-5 onward; move earlier"],
+  ["B2", "Major", "249; 15539; 17657", "Theta_{|O|}(log M) in abstract/open-problem/conclusion contradicts thm:esyncsi-theta (no |O| dependence)"],
+  ["B3", "Minor", "756-779", "Roadmap omits Section 17 (sec:type-discipline)"],
+  ["B4", "Minor", "6797", "cor:stateless proof: Com should be ComGame"],
+  ["B5", "Minor", "2414; 6198 vs 988", "Discount factor written beta in two places, gamma elsewhere"],
+  ["B6", "Minor", "1149; 17240-17241; 13874-13875", "sec:-label on a subsection; double label; duplicated separator comments"],
+  ["B7", "Minor", "throughout", "Symbol overloading: Sigma (alphabet + 6 covariances + sums), E-family, I vs mathcal I"],
+  ["C1", "Major", "16821-16828; 11496; 8297-8307", "151 overfull hboxes; two lines overflow page by 392 pt and 146 pt in def:type-signature"],
+  ["C2", "Cosmetic", "compile log", "Font shape TU/lmr/m/scit undefined (small-caps italic substitution)"],
+  ["C3", "Cosmetic", "118-289", "Abstract far exceeds journal norms (170 lines, 10+ displays)"],
+  ["D1", "Minor", "7763-7772", "Verify exact form of Ambainis 1996 bound 2^{k log log k / log k} against source"],
+  ["D2", "Minor", "17853-17870; 4465-4492", "Promised supplementary programs and Lean formalization not present with the file"],
+  ["D3", "Minor", "14845-14850; 4524-4534", "Enumeration conventions for computational observations not centralized"],
+  ["E1", "Minor", "throughout", "Consolidate repeated scope disclaimers (EYM-vs-AAK 7x, gap display 10x)"],
+  ["E2", "Minor", "7556/12336; 7680/12364", "Replace duplicated def/thm copies with cross-references"],
+  ["E3", "Minor", "2592-2606", "State that right-closed sandwich is vacuous for discounted laws (mu(eps) > 0 forces S = I*)"],
+  ["E4", "Minor", "2018-2054", "ex:onestep-not-congruence uses transient states; note or repair stationarity"],
+  ["E5", "Cosmetic", "scattered", "tau_K presentation; min-attainment remark; M-qualifier in thm:passive-realizable; Nerode hyphenation; comma splice at 2283"],
+];
+
+const sevOrder = { Critical: 0, Major: 1, Minor: 2, Cosmetic: 3 };
+findingsRows.sort((a, b) => sevOrder[a[1]] - sevOrder[b[1]]);
+
+function cell(text, opts = {}) {
+  return new TableCell({
+    children: [new Paragraph({
+      alignment: AlignmentType.LEFT,
+      spacing: { line: 276 },
+      children: [new TextRun({
+        text, size: 19,
+        color: opts.color || P.body, font: EN_FONT, bold: !!opts.bold,
+      })],
+    })],
+    shading: opts.fill ? { type: ShadingType.CLEAR, fill: opts.fill } : undefined,
+    margins: { top: 60, bottom: 60, left: 100, right: 100 },
+    width: opts.width ? { size: opts.width, type: WidthType.PERCENTAGE } : undefined,
+  });
+}
+const headerFill = "16324F";
+const zebra = "F5F7FA";
+bodyChildren.push(new Paragraph({
+  keepNext: true,
+  spacing: { before: 120, after: 60 },
+  children: [new TextRun({ text: "Table 1. All findings, sorted by severity.", bold: true, size: 21, color: P.secondary, font: EN_FONT })],
+}));
+bodyChildren.push(new Table({
+  width: { size: 100, type: WidthType.PERCENTAGE },
+  borders: {
+    top: { style: BorderStyle.SINGLE, size: 4, color: P.accent },
+    bottom: { style: BorderStyle.SINGLE, size: 4, color: P.accent },
+    left: NB, right: NB,
+    insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "D0D7DE" },
+    insideVertical: NB,
+  },
+  rows: [
+    new TableRow({
+      tableHeader: true, cantSplit: true,
+      children: [
+        cell("ID", { bold: true, fill: headerFill, width: 7, color: "FFFFFF" }),
+        cell("Severity", { bold: true, fill: headerFill, width: 11, color: "FFFFFF" }),
+        cell("Lines", { bold: true, fill: headerFill, width: 18, color: "FFFFFF" }),
+        cell("Finding", { bold: true, fill: headerFill, width: 64, color: "FFFFFF" }),
+      ],
+    }),
+    ...findingsRows.map(r => new TableRow({
+      cantSplit: true,
+      children: [
+        cell(r[0], { bold: true, fill: zebra }),
+        cell(r[1], { fill: zebra, color: SEV[r[1]] || P.body, bold: true }),
+        cell(r[2], { fill: zebra }),
+        cell(r[3], { fill: zebra }),
+      ],
+    })),
+  ],
+}));
+
+// ---- 10. Recommended fix order ----
+bodyChildren.push(h1("10. Recommended Order of Repairs"));
+bodyChildren.push(body(
+  "The repairs fall into four passes. Pass one (mathematics, one sitting): fix A1 by redefining the ComRD zero threshold around the pair (prefix class, next symbol) and updating the two downstream mentions; correct A2 by changing the witness language or the count; correct the A3 constant; replace the A4 justification with a citation; rewrite the A5 sentence and drop the 'Correction' label; re-anchor the A6 proof to the Moore lemmas. Pass two (consistency): move the unifilar definitions forward (B1); delete the |O| subscripts (B2); add the roadmap sentence (B3); fix the Com macro (B4); unify the discount letter (B5); clean labels and separators (B6)."
+));
+bodyChildren.push(body(
+  "Pass three (typesetting): reformat the two page-overflowing lists in def:type-signature as displayed lists and display the long inline formula at 11496; then run a \\sloppy or microtype pass to clear the residual overfull boxes. Pass four (pre-submission): verify the Ambainis bound against the source (D1); assemble or soften the supplementary-material statement (D2); centralize the enumeration conventions (D3); and, if the target venue has abstract limits, compress the abstract (C3). The consolidation pass E1 is optional but high-value: it would shorten the manuscript materially and remove the drift risk that produced two of the findings in this report."
+));
+bodyChildren.push(body(
+  "Overall assessment: the manuscript is unusually careful in its scope discipline, its conditional-versus-exact labeling, and its honesty about heuristics and open problems. The defects found are concentrated in exactly the places where that care was interrupted: revision seams (A5, B1, B2), one theorem whose proof conflates two determination notions (A1), and typesetting of late-added material (C1). None of the flaws touches the framework's core results, and all are repairable without structural change."
+));
+
+// ================= ASSEMBLY =================
+const coverConfig = {
+  title: "Line-Level Review Report",
+  subtitle: "Flaws, internal inconsistencies, and opportunities for improvement in automata_unified_revised.tex",
+  englishLabel: "MANUSCRIPT REVIEW",
+  metaLines: [
+    "Object: automata_unified_revised.tex (17,893 lines, 18 sections, 378 theorem environments)",
+    "Method: full line-level read, proof re-derivation, automated audit, tectonic compile",
+    "Findings: 6 mathematical flaws, 7 inconsistencies, 3 typesetting defects, 3 verification items",
+    "Date: September 2026",
+  ],
+  footerLeft: "Comparative review of the finite-state approximation framework",
+  footerRight: "automata_unified_revised.tex",
+  palette: P.cover,
+};
+
+const doc = new Document({
+  styles: {
+    default: {
+      document: {
+        run: { font: EN_FONT, size: 22, color: P.body },
+        paragraph: { spacing: { line: 312 } },
+      },
+      heading1: {
+        run: { font: HEAD_FONT, size: 32, bold: true, color: P.primary },
+        paragraph: { spacing: { before: 360, after: 160, line: 312 } },
+      },
+      heading2: {
+        run: { font: HEAD_FONT, size: 28, bold: true, color: P.primary },
+        paragraph: { spacing: { before: 280, after: 120, line: 312 } },
+      },
+      heading3: {
+        run: { font: HEAD_FONT, size: 24, bold: true, color: P.primary },
+        paragraph: { spacing: { before: 220, after: 100, line: 312 } },
+      },
+    },
+  },
+  sections: [
+    // Section 1: Cover (margin 0, no footer)
+    {
+      properties: {
+        page: { size: { width: 11906, height: 16838 }, margin: { top: 0, bottom: 0, left: 0, right: 0 } },
+      },
+      children: buildCoverR1(coverConfig),
+    },
+    // Section 2: TOC (roman numerals)
+    {
+      properties: {
+        type: SectionType.NEXT_PAGE,
+        page: {
+          size: { width: 11906, height: 16838 },
+          margin: { top: 1440, bottom: 1440, left: 1701, right: 1417 },
+          pageNumbers: { start: 1, formatType: NumberFormat.UPPER_ROMAN },
+        },
+      },
+      footers: {
+        default: new Footer({ children: [new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [new TextRun({ children: [PageNumber.CURRENT], size: 18, color: P.secondary, font: EN_FONT })],
+        })] }),
+      },
+      children: [
+        new Paragraph({
+          spacing: { before: 200, after: 200 },
+          children: [new TextRun({ text: "Contents", bold: true, size: 32, color: P.primary, font: HEAD_FONT })],
+        }),
+        new TableOfContents("Contents", { hyperlink: true, headingStyleRange: "1-2" }),
+        new Paragraph({
+          spacing: { before: 200 },
+          children: [new TextRun({
+            text: "Note: open in Word/WPS and right-click the table of contents, then choose Update Field, to refresh page numbers.",
+            italics: true, size: 18, color: "8A8A8A", font: EN_FONT })],
+        }),
+      ],
+    },
+    // Section 3: Body (arabic, restart at 1)
+    {
+      properties: {
+        type: SectionType.NEXT_PAGE,
+        page: {
+          size: { width: 11906, height: 16838 },
+          margin: { top: 1440, bottom: 1440, left: 1701, right: 1417 },
+          pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL },
+        },
+      },
+      headers: {
+        default: new Header({ children: [new Paragraph({
+          alignment: AlignmentType.RIGHT,
+          border: { bottom: { style: BorderStyle.SINGLE, size: 2, color: P.accent, space: 4 } },
+          children: [new TextRun({ text: "Line-Level Review - automata_unified_revised.tex", size: 16, color: P.secondary, font: EN_FONT })],
+        })] }),
+      },
+      footers: {
+        default: new Footer({ children: [new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [new TextRun({ children: [PageNumber.CURRENT], size: 18, color: P.secondary, font: EN_FONT })],
+        })] }),
+      },
+      children: bodyChildren,
+    },
+  ],
+});
+
+Packer.toBuffer(doc).then(buf => {
+  fs.writeFileSync("/home/z/my-project/download/line_level_review_automata_unified_revised.docx", buf);
+  console.log("WROTE docx, bytes:", buf.length);
+});

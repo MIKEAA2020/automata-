@@ -1,0 +1,897 @@
+  2211→separated cost functionals.  Their proofs remain regime-specific:
+  2212→Myhill--Nerode theory, operator approximation, and information processing
+  2213→supply the analytical engines.
+  2214→
+  2215→%----------------------------------------------------------------------
+  2216→\subsection{Master Scope: A Typed Variational Picture}
+  2217→\label{subsec:meta-scope}
+  2218→%----------------------------------------------------------------------
+  2219→
+  2220→The results of this manuscript, across commitment, retention, and grounding,
+  2221→instantiate one typed variational picture along four pillars.  Stating them
+  2222→together fixes what is unified and what is not; this subsection is a summary
+  2223→of scope, not a new derivation.
+  2224→
+  2225→\begin{enumerate}[label=(\Roman*),leftmargin=2.2em]
+  2226→\item \textbf{Typed variational schema.}
+  2227→Every regime gap has the shape
+  2228→$\Delta_{\mathbb T}(M)=\inf_{\text{budget-}M\text{ feasible }B}
+  2229→\mathcal L(\delta,B)$,
+  2230→but the feasible class carries a regime-specific type: a finite right
+  2231→congruence on histories for commitment (Section~\ref{subsec:det-spec}), a
+  2232→stationary lumpable quotient for retention
+  2233→(Section~\ref{subsec:shared-schema-intro}), a deterministic Mealy machine for
+  2234→the symbolic grounding gap (Definition~\ref{def:symbolic-grounding-gap}), and
+  2235→a finite-rank bounded operator for the unrestricted linear grounding
+  2236→relaxation (Theorem~\ref{thm:spectral-grounding}).  The budget $M$ is a
+  2237→right-congruence index in the first three cases and an operator rank in the
+  2238→fourth; these are not asserted equivalent
+  2239→(Remark~\ref{rem:quotient-display-scope}).
+  2240→
+  2241→\item \textbf{Structural monotonicity and zero thresholds.}
+  2242→Each regime gap is non-increasing in $M$ and has an exact zero threshold on
+  2243→its own feasible class: the Myhill--Nerode index for commitment
+  2244→(Theorem~\ref{thm:commitment-spec}), the stationary support size of distinct
+  2245→predictive laws for full-KL retention (Theorem~\ref{thm:retention-zero}), and
+  2246→the operator rank of $H_\nu$ for the linear grounding relaxations
+  2247→(Proposition~\ref{prop:grounding-structured-zero}).  These thresholds are
+  2248→proved separately in each regime; no single argument produces all three.
+  2249→
+  2250→\item \textbf{Conditional response-operator converse.}
+  2251→Whenever a regime's approximants admit a response operator of bounded rank
+  2252→dominating the task cost (Definition~\ref{def:response}), the unified
+  2253→Schatten converse of Theorem~\ref{thm:unified} supplies a spectral-tail lower
+  2254→bound.  This bridge is conditional on the domination hypothesis and on the
+  2255→domination modulus, which may itself depend on the budget
+  2256→(Remark~\ref{rem:bridge-consequence}); it does not by itself make the three
+  2257→regimes' numerical gaps comparable (Theorem~\ref{thm:schatten-nogo}).
+  2258→
+  2259→\item \textbf{Regime-specific analytical engines.}
+  2260→The zero thresholds and quantitative rates are proved by different classical
+  2261→theories: Myhill--Nerode automata theory and minimax game values for
+  2262→commitment, information-bottleneck and Fisher-information asymptotics for
+  2263→retention, and Eckart--Young--Mirsky/Adamjan--Arov--Krein operator
+  2264→approximation for grounding.  The schema organizes these engines under a
+  2265→common typed vocabulary; it does not replace them.
+  2266→\end{enumerate}
+  2267→
+  2268→Sections~\ref{sec:commitment}--\ref{sec:grounding} develop each regime in
+  2269→this order, and Section~\ref{sec:joint} states precisely which joint and
+  2270→comparative statements the typed schema does and does not support across
+  2271→regimes.
+  2272→
+  2273→%----------------------------------------------------------------------
+  2274→\subsection{Monotonicity and Profinite Convergence}
+  2275→\label{subsec:meta-monotone}
+  2276→%----------------------------------------------------------------------
+  2277→
+  2278→\begin{metatheorem}[Monotonicity and Profinite Convergence]
+  2279→\label{meta:monotone}
+  2280→Let $\mathbb T$ be a task theory.
+  2281→\begin{enumerate}[label=(\roman*)]
+  2282→\item $\Delta_{\mathbb T}(M)$ is non-increasing in $M$.
+  2283→\item If $\sim_\delta$ has finite index, then, $\mathcal E$ being reflexive by
+  2284→Definition~\ref{def:task-theory},
+  2285→\[
+  2286→\Delta_{\mathbb T}(M)=0
+  2287→\quad
+  2288→\forall M\ge\operatorname{index}(\sim_\delta).
+  2289→\]
+  2290→\item If $\mathcal E$ is separated and $\{0,\infty\}$-valued, then:
+  2291→\begin{enumerate}[label=(\alph*)]
+  2292→\item for worst-case aggregation,
+  2293→\[
+  2294→\Delta_{\mathbb T}^{\sup}(M)=0
+  2295→\text{ for some }M
+  2296→\iff
+  2297→\operatorname{index}(\sim_\delta)<\infty;
+  2298→\]
+  2299→\item for $\mu$-average aggregation,
+  2300→\[
+  2301→\Delta_{\mathbb T}^{\mu}(M)=0
+  2302→\text{ for some }M
+  2303→\iff
+  2304→\kappa_{\mathrm{obs}}(\delta,\mu)<\infty,
+  2305→\]
+  2306→with $\kappa_{\mathrm{obs}}$ as in
+  2307→Definition~\ref{def:observable-support-index}.  If $\mu$ has full support this
+  2308→reduces to~(a).
+  2309→\end{enumerate}
+  2310→\item Suppose $\mathbf R$ is compact metrizable or compact uniform,
+  2311→$\mathcal E$ is uniformly continuous and separated, the gap is evaluated in
+  2312→the worst-case/uniform sense, and $\mathcal E$ is \emph{uniformly compatible}
+  2313→with the uniformity of $\mathbf R$:
+  2314→\[
+  2315→\forall\,\text{entourages }U\ \exists\,\eta>0:\quad
+  2316→\max\{\mathcal E(X,Z),\mathcal E(Y,Z)\}<\eta
+  2317→\ \Longrightarrow\ (X,Y)\in U .
+  2318→\]
+  2319→Conversely, closeness in $\mathbf R$ implies small cost, by uniform continuity
+  2320→of $\mathcal E$.  On a compact metric space with
+  2321→$\mathcal E(X,Z)=0\iff X=Z$, joint continuity already implies this
+  2322→compatibility; stating it explicitly is what makes the passage from ``small
+  2323→cost to a common representative'' to ``close residual objects'' valid without
+  2324→a hidden asymmetry.  Then the following are equivalent:
+  2325→\begin{enumerate}[label=(\alph*)]
+  2326→\item $\delta$ is uniformly continuous for the profinite uniformity;
+  2327→\item $\delta$ extends continuously to $\widehat{\mathbf H}$;
+  2328→\item
+  2329→\[
+  2330→\lim_{M\to\infty}\Delta_{\mathbb T}(M)=0.
+  2331→\]
+  2332→\end{enumerate}
+  2333→\end{enumerate}
+  2334→\end{metatheorem}
+  2335→
+  2336→\begin{proof}
+  2337→Parts (i)--(iii) follow from the definitions.  Monotonicity follows because
+  2338→the feasible set of right congruences of index at most $M$ is nested:
+  2339→\[
+  2340→\{\operatorname{index}(\sim)\le M\}
+  2341→\subseteq
+  2342→\{\operatorname{index}(\sim)\le M+1\}.
+  2343→\]
+  2344→If $\sim_\delta$ has finite index, quotient by $\sim_\delta$ and assign each
+  2345→class its common residual $\Psi([u])=\delta(u)$, which is well defined since
+  2346→$u\sim_\delta v$ implies $\delta(u)=\delta(v)$.  Every history then incurs
+  2347→$\mathcal E(\delta(u),\Psi([u]))=\mathcal E(\delta(u),\delta(u))=0$ by
+  2348→reflexivity, so the aggregated cost vanishes for any of the three aggregation
+  2349→schemes.  Reflexivity is exactly what this step consumes; without it the
+  2350→quotient reproduces the trajectory but need not reproduce it at zero cost.
+  2351→
+  2352→For the converse in~(iii), suppose $\mathcal E$ is separated and
+  2353→$\{0,\infty\}$-valued and the worst-case gap is zero at budget $M$.  Then
+  2354→$\mathcal E(\delta(u),\Psi([u]))=0$ for every $u$, and separatedness upgrades
+  2355→this to $\delta(u)=\Psi([u])$.  Hence histories in a common class have equal
+  2356→residuals after every continuation, so the state relation refines
+  2357→$\sim_\delta$ and $\operatorname{index}(\sim_\delta)\le M$.  Separatedness is
+  2358→what this direction consumes, and it is assumed in~(iii) but not in~(ii).
+  2359→
+  2360→For (iv), assume first that $\delta$ is uniformly continuous for the profinite
+  2361→uniformity.  By the universal property of completion, $\delta$ extends
+  2362→continuously to a map
+  2363→\[
+  2364→\widehat\delta:\widehat{\mathbf H}\to\mathbf R.
+  2365→\]
+  2366→Since $\widehat{\mathbf H}$ is compact and $\mathbf R$ is compact uniform,
+  2367→$\widehat\delta$ is uniformly continuous.  Hence for every cost tolerance
+  2368→$\varepsilon>0$ there is a finite clopen partition of $\widehat{\mathbf H}$,
+  2369→equivalently a finite-index right congruence $\sim$, such that
+  2370→\[
+  2371→u\sim v
+  2372→\implies
+  2373→\mathcal E(\delta(u),\delta(v))<\varepsilon
+  2374→\]
+  2375→in the uniform sense.  Choosing representatives for each $\sim$-class gives an
+  2376→$M$-state approximation with worst-case gap less than $\varepsilon$.
+  2377→
+  2378→Conversely, suppose $\Delta_{\mathbb T}(M)\to0$ in the worst-case sense.  For
+  2379→every $\varepsilon>0$, choose a finite quotient $\sim$ and representative map
+  2380→$\Psi$ such that
+  2381→\[
+  2382→\sup_{u\in\mathcal I^*}
+  2383→\mathcal E(\delta(u),\Psi([u]))
+  2384→<
+  2385→\eta,
+  2386→\]
+  2387→where $\eta>0$ is chosen small enough, using compactness and separatedness of
+  2388→$\mathcal E$, to ensure that whenever two histories $u,v$ are assigned the same
+  2389→representative, their residual objects are $\varepsilon$-close in the uniform
+  2390→structure of $\mathbf R$.  If $u\sim v$, then $\Psi([u])=\Psi([v])$, so
+  2391→$\delta(u)$ and $\delta(v)$ are $\varepsilon$-close.  Thus $\delta$ is
+  2392→uniformly continuous for the profinite uniformity and therefore extends
+  2393→continuously to $\widehat{\mathbf H}$.
+  2394→\end{proof}
+  2395→
+  2396→\begin{remark}[Average-case aggregation]
+  2397→\label{rem:average-profinite}
+  2398→Uniform worst-case approximation implies stationary average-case
+  2399→approximation.  The converse direction, from average-case gap convergence to
+  2400→profinite uniform continuity, requires additional observability or positivity
+  2401→assumptions on the stationary process.  The profinite equivalence is therefore
+  2402→stated for the worst-case/uniform gap unless such assumptions are supplied.
+  2403→\end{remark}
+  2404→
+  2405→%----------------------------------------------------------------------
+  2406→\subsection{Boolean Zero-Error Dichotomy}
+  2407→\label{subsec:meta-boolean}
+  2408→%----------------------------------------------------------------------
+  2409→
+  2410→\begin{definition}[Observable Support Index]
+  2411→\label{def:observable-support-index}
+  2412→Let $\mu$ be an average-case history law on $\mathcal I^*$ and let
+  2413→$S=\operatorname{supp}\mu$.  Such a $\mu$ exists for discounted-prefix
+  2414→aggregation, where
+  2415→$\mu(u)=(1-\beta)\beta^{|u|}\Pr[\text{prefix }u]$ is a probability measure on
+  2416→finite histories.  Stationary Ces\`aro aggregation does \emph{not} in general
+  2417→supply one: Definition~\ref{def:cesaro-agg} averages a cost process along a
+  2418→stationary trajectory and, when the process has infinite support, the Ces\`aro
+  2419→averages need not converge to the expectation under any single probability
+  2420→measure on $\mathcal I^*$.  The Ces\`aro case is treated separately in
+  2421→Remark~\ref{rem:cesaro-boolean}.
+  2422→The \textbf{observable support index} $\kappa_{\mathrm{obs}}(\delta,\mu)$ is
+  2423→the minimum index of a right congruence $\sim$ on $\mathcal I^*$ for which
+  2424→there exists a representative map $\Psi$ with
+  2425→\[
+  2426→\mathcal E\bigl(\delta(u),\Psi([u])\bigr)=0
+  2427→\qquad
+  2428→\text{for }\mu\text{-almost every }u .
+  2429→\]
+  2430→If $S$ is right-closed and $\mu(u)>0$ for every $u\in S$, define in addition
+  2431→the \emph{support-relative Nerode relation}
+  2432→\[
+  2433→u\sim_{\delta,S}v
+  2434→\iff
+  2435→\forall w\in\mathcal I^*\text{ with }uw,vw\in S:\quad
+  2436→\mathbf R\bigl(\delta(uw),\delta(vw)\bigr)
+  2437→=
+  2438→\mathbf R\bigl(\delta(vw),\delta(uw)\bigr)
+  2439→=
+  2440→0 .
+  2441→\]
+  2442→\end{definition}
+  2443→
+  2444→\begin{remark}[Restriction to the Support Is Not a Congruence]
+  2445→\label{rem:support-restriction-scope}
+  2446→The restriction $\sim_\delta\!\restriction_S$ is not in general a right
+  2447→congruence.  If $S$ is not closed under right extension, a pair $u,v\in S$ may
+  2448→have continuations $uw\notin S$ witnessing $u\not\sim_\delta v$ that the
+  2449→average cost never sees; and the restricted relation need not be compatible
+  2450→with the transition action.  The operative object is therefore the index of a
+  2451→global congruence that is observationally exact on $S$, which is what
+  2452→Definition~\ref{def:observable-support-index} names.  For right-closed $S$ the
+  2453→two indices are related by the sandwich of
+  2454→Meta-Theorem~\ref{meta:boolean}(ii); they coincide precisely when the
+  2455→completion of Lemma~\ref{lem:support-extension} is index-preserving, and
+  2456→Remark~\ref{rem:support-extension-sharp} exhibits a right-closed support where
+  2457→they differ.
+  2458→\end{remark}
+  2459→
+  2460→\begin{lemma}[Index-Preserving Extension off the Support]
+  2461→\label{lem:support-extension}
+  2462→Let $S\subseteq\mathcal I^*$ be right-closed, i.e.\ $u\in S$ implies $uw\in S$
+  2463→for every $w\in\mathcal I^*$.  Let $\approx$ be an equivalence relation on $S$
+  2464→that is \emph{stable}: $u\approx v$ and $x\in\mathcal I$ imply $ux\approx vx$.
+  2465→Then there is a right congruence $\sim$ on all of $\mathcal I^*$ whose
+  2466→restriction to $S$ is $\approx$, and
+  2467→\[
+  2468→\operatorname{index}(\sim)
+  2469→=
+  2470→\operatorname{index}(\approx)+c_S ,
+  2471→\]
+  2472→where $c_S$ is the number of classes the construction requires off $S$.  One
+  2473→has $c_S=0$ when $S=\mathcal I^*$, and $c_S\le1$ whenever no history outside
+  2474→$S$ has an extension inside $S$.  In general $c_S$ may be infinite, in which
+  2475→case the construction yields a right congruence of infinite index and the
+  2476→upper bound is vacuous; the sandwich is informative exactly when the
+  2477→completion has finite index.
+  2478→\end{lemma}
+  2479→
+  2480→\begin{proof}
+  2481→Right-closure gives $u\in S\Rightarrow ux\in S$, so $S$ is forward invariant.
+  2482→The complement is \emph{not} forward invariant: a history outside $S$ may have
+  2483→an extension inside $S$.  For $S=\{u:u\text{ contains at least one }\mathtt b\}$,
+  2484→which is right-closed, one has $\mathtt{aaa}\notin S$ and $\mathtt{aaab}\in S$.
+  2485→The set $\{u:u\text{ ends in }\mathtt b\}$ would \emph{not} serve here, since
+  2486→appending $\mathtt a$ leaves it and it is therefore not right-closed.  The
+  2487→classes off $S$ therefore cannot be merged freely, and the construction below
+  2488→is stated explicitly.
+  2489→
+  2490→Define $\sim$ on $\mathcal I^*$ by declaring $u\sim v$ when either
+  2491→\begin{enumerate}[label=(\alph*)]
+  2492→\item $u,v\in S$ and $u\approx v$; or
+  2493→\item $u,v\notin S$ and for every $y\in\mathcal I^*$ one has
+  2494→$uy\in S\iff vy\in S$, and $uy\in S$ implies $uy\approx vy$.
+  2495→\end{enumerate}
+  2496→This is an equivalence relation, and no class meets both $S$ and its
+  2497→complement.
+  2498→
+  2499→\emph{Right congruence.}  Let $u\sim v$ and $x\in\mathcal I$.  If $u,v\in S$
+  2500→then $ux,vx\in S$ by right-closure and $ux\approx vx$ by stability, so
+  2501→$ux\sim vx$.  Suppose $u,v\notin S$.  For any $y\in\mathcal I^*$, applying~(b)
+  2502→to the continuation $xy$ gives $uxy\in S\iff vxy\in S$ and, when these hold,
+  2503→$uxy\approx vxy$.  If $ux\notin S$ then $vx\notin S$ by~(b) with $y=x$, and the
+  2504→displayed conditions are exactly~(b) for the pair $(ux,vx)$, so $ux\sim vx$.
+  2505→If $ux\in S$ then~(b) with $y=x$ gives $vx\in S$ and $ux\approx vx$, so
+  2506→$ux\sim vx$ by~(a).
+  2507→
+  2508→\emph{Index.}  The classes inside $S$ are exactly the $\approx$-classes, and
+  2509→those outside are the classes of~(b); writing $c_S$ for their number gives the
+  2510→stated count.  If no history outside $S$ has an extension inside $S$, then
+  2511→condition~(b) is vacuous and all such histories form a single class, so
+  2512→$c_S\le1$.
+  2513→\end{proof}
+  2514→
+  2515→\begin{remark}[The Extension Can Strictly Increase the Index]
+  2516→\label{rem:support-extension-sharp}
+  2517→The term $c_S$ in Lemma~\ref{lem:support-extension} is not an artifact of the
+  2518→construction: it can be strictly positive even for right-closed $S$, so the
+  2519→equality $\kappa_{\mathrm{obs}}(\delta,\mu)=\operatorname{index}(\sim_{\delta,S})$
+  2520→is false in general.
+  2521→
+  2522→Let $\mathcal I=\{\mathtt a,\mathtt b\}$ and $S=\mathcal I^{+}$, the set of
+  2523→nonempty words, which is right-closed.  Let the residual take two values
+  2524→$A\ne B$ and set
+  2525→\[
+  2526→\delta(u)=
+  2527→\begin{cases}
+  2528→A, & u\text{ begins with }\mathtt a,\\
+  2529→B, & u\text{ begins with }\mathtt b,
+  2530→\end{cases}
+  2531→\qquad u\in S,
+  2532→\]
+  2533→with $\delta(\varepsilon)$ unconstrained since $\varepsilon\notin S$.  For
+  2534→$u,v\in S$ every continuation $uw,vw$ again lies in $S$ and has the residual
+  2535→determined by the first letter, so $u\sim_{\delta,S}v$ exactly when $u$ and $v$
+  2536→begin with the same letter:
+  2537→\[
+  2538→\operatorname{index}(\sim_{\delta,S})=2 .
+  2539→\]
+  2540→
+  2541→Now let $\sim$ be any right congruence on $\mathcal I^*$ admitting a
+  2542→representative map exact on $S$.  The class of $\varepsilon$ must send
+  2543→$\mathtt a$ into the $A$-class and $\mathtt b$ into the $B$-class.  But the
+  2544→$A$-class sends \emph{both} letters into the $A$-class, and the $B$-class sends
+  2545→both into the $B$-class, since $u\mathtt a$ and $u\mathtt b$ begin with the same
+  2546→letter as $u$.  So $\varepsilon$ has a transition pattern matching neither
+  2547→class and requires a third.  Hence
+  2548→\[
+  2549→\kappa_{\mathrm{obs}}(\delta,\mu)=3=\operatorname{index}(\sim_{\delta,S})+1 ,
+  2550→\]
+  2551→attaining $c_S=1$.  A three-state witness is $q_\varepsilon$ with
+  2552→$\tau(q_\varepsilon,\mathtt a)=q_A$, $\tau(q_\varepsilon,\mathtt b)=q_B$ and
+  2553→$q_A,q_B$ absorbing.
+  2554→
+  2555→Two consequences follow.  First, the sandwich of
+  2556→Meta-Theorem~\ref{meta:boolean}(ii) is sharp at both ends.  Second, the
+  2557→obstruction requires $\mu(\varepsilon)=0$: if $\mu$ is a discounted-prefix law
+  2558→with $\mu(\varepsilon)>0$, then $\varepsilon\in S$, and right-closure forces
+  2559→$S=\mathcal I^*$, whence $c_S=0$ and the equality does hold.
+  2560→\end{remark}
+  2561→
+  2562→\begin{metatheorem}[Boolean Zero-Error Dichotomy]
+  2563→\label{meta:boolean}
+  2564→Let $\mathbb T$ be separated with $\mathcal E$ $\{0,\infty\}$-valued.
+  2565→
+  2566→\emph{(i) Worst-case aggregation.}  If
+  2567→\[
+  2568→\Delta_{\mathbb T}^{\sup}(M)
+  2569→=
+  2570→\inf_{\operatorname{index}(\sim)\le M}
+  2571→\ \sup_{u\in\mathcal I^*}
+  2572→\mathcal E\bigl(\delta(u),\Psi([u])\bigr),
+  2573→\]
+  2574→then
+  2575→\[
+  2576→\Delta_{\mathbb T}^{\sup}(M)=0
+  2577→\iff
+  2578→\operatorname{index}(\sim_\delta)\le M.
+  2579→\]
+  2580→
+  2581→\emph{(ii) Average-case aggregation.}  If the aggregation is discounted-prefix
+  2582→with history law $\mu$ on $\mathcal I^*$, then
+  2583→\[
+  2584→\Delta_{\mathbb T}^{\mu}(M)=0
+  2585→\iff
+  2586→\kappa_{\mathrm{obs}}(\delta,\mu)\le M,
+  2587→\]
+  2588→with $\kappa_{\mathrm{obs}}$ the observable support index of
+  2589→Definition~\ref{def:observable-support-index}.  If $\mu$ has full support on
+  2590→$\mathcal I^*$ then
+  2591→$\kappa_{\mathrm{obs}}(\delta,\mu)=\operatorname{index}(\sim_\delta)$ and~(ii)
+  2592→reduces to~(i).  If $S=\operatorname{supp}\mu$ is right-closed with positive
+  2593→mass, then
+  2594→\[
+  2595→\operatorname{index}(\sim_{\delta,S})
+  2596→\ \le\
+  2597→\kappa_{\mathrm{obs}}(\delta,\mu)
+  2598→\ \le\
+  2599→\operatorname{index}(\sim_{\delta,S})+c_S,
+  2600→\]
+  2601→where $c_S$ is the number of additional classes required off $S$ by
+  2602→Lemma~\ref{lem:support-extension}; in particular $c_S=0$ when
+  2603→$S=\mathcal I^*$, and equality
+  2604→$\kappa_{\mathrm{obs}}(\delta,\mu)=\operatorname{index}(\sim_{\delta,S})$ holds
+  2605→whenever the extension of Lemma~\ref{lem:support-extension} is
+  2606→index-preserving.
+  2607→In general the average-case index may be strictly smaller than the worst-case
+  2608→index, since a machine may err on $\mu$-null histories at no cost.
+  2609→\end{metatheorem}
+  2610→
+  2611→\begin{remark}[The Ces\`aro Case]
+  2612→\label{rem:cesaro-boolean}
+  2613→Clause~(ii) is stated for discounted-prefix aggregation because that scheme
+  2614→carries a genuine probability measure on finite histories.  Stationary
+  2615→Ces\`aro aggregation does not, so the phrase ``$\mu$-almost every history'' has
+  2616→no direct meaning there and the clause must be reformulated.
+  2617→
+  2618→Two formulations are available.  On the \emph{stationary state space}, when
+  2619→the process is a finite-state stationary ergodic chain with positive-mass
+  2620→state set $\Splus$, the natural statement replaces histories by states: zero
+  2621→Ces\`aro cost holds at budget $M$ exactly when some right congruence of index
+  2622→at most $M$ is exact on $\Splus$, which is
+  2623→Theorem~\ref{thm:retention-zero} in the $\{0,\infty\}$-valued case.  On
+  2624→\emph{histories}, the correct surrogate for ``$\mu$-almost every'' is
+  2625→\emph{zero asymptotic frequency of error}: the Ces\`aro cost vanishes exactly
+  2626→when
+  2627→\[
+  2628→\lim_{T\to\infty}\frac1T\,\bigl|\{t<T:\ \mathcal E(\delta(U_t),\Psi([U_t]))>0\}\bigr|
+  2629→=0
+  2630→\]
+  2631→almost surely.  For a finite-state ergodic chain the two agree, since a state
+  2632→of positive stationary mass is visited with positive asymptotic frequency.
+  2633→Outside that setting the second is the operative condition, and no formula in
+  2634→terms of a support-relative Nerode relation is claimed.
+  2635→\end{remark}
+  2636→
+  2637→\begin{proof}
+  2638→\emph{(i)} If $\operatorname{index}(\sim_\delta)\le M$, quotienting by
+  2639→$\sim_\delta$ and assigning each class its common residual gives an $M$-state
+  2640→approximation with zero cost at every history.  Conversely, suppose an
+  2641→$M$-state approximation has zero worst-case cost.  Then for \emph{every}
+  2642→history $u$ we have $\mathcal E(\delta(u),\Psi([u]))=0$, so by separatedness
+  2643→$\delta(u)=\Psi([u])$.  Hence any two histories in the same machine state have
+  2644→equal residuals, and, the state relation being a right congruence, equal
+  2645→residuals after every continuation; that is, the state relation refines
+  2646→$\sim_\delta$.  Therefore
+  2647→$\operatorname{index}(\sim_\delta)\le\operatorname{index}(\sim)\le M$.
+  2648→
+  2649→\emph{(ii)} Suppose $\Delta_{\mathbb T}^{\mu}(M)=0$.  Then there are a right
+  2650→congruence $\sim$ of index at most $M$ and a map $\Psi$ with
+  2651→$\mathcal E(\delta(u),\Psi([u]))=0$ for $\mu$-almost every $u$.  That is
+  2652→precisely the defining property in
+  2653→Definition~\ref{def:observable-support-index}, so
+  2654→$\kappa_{\mathrm{obs}}(\delta,\mu)\le M$.
+  2655→
+  2656→Conversely, if $\kappa_{\mathrm{obs}}(\delta,\mu)\le M$, take a witnessing
+  2657→congruence and representative map; the induced $M$-state machine has zero
+  2658→$\mu$-average cost by construction.
+  2659→
+  2660→If $\mu$ has full support, ``$\mu$-almost every'' is ``every'', and the
+  2661→argument of~(i) applies verbatim, giving
+  2662→$\kappa_{\mathrm{obs}}(\delta,\mu)=\operatorname{index}(\sim_\delta)$.
+  2663→
+  2664→If $S$ is right-closed with positive mass, then for $u,v\in S$ the constraint
+  2665→is exactly that all continuations \emph{within $S$} agree, which is
+  2666→$\sim_{\delta,S}$.  Right-closure makes $\sim_{\delta,S}$ stable under the
+  2667→transition action in the sense of Lemma~\ref{lem:support-extension}: if
+  2668→$u\sim_{\delta,S}v$ and $x\in\mathcal I$, then for every $w$ with
+  2669→$uxw,vxw\in S$ the defining condition applied to the continuation $xw$ gives
+  2670→$\delta(uxw)=\delta(vxw)$, so $ux\sim_{\delta,S}vx$.
+  2671→
+  2672→For the lower bound, any global right congruence $\sim$ witnessing
+  2673→$\kappa_{\mathrm{obs}}$ must, restricted to $S$, refine $\sim_{\delta,S}$: two
+  2674→$\sim$-equivalent histories in $S$ receive the same representative and hence
+  2675→the same residual after every continuation remaining in $S$.  Therefore
+  2676→$\operatorname{index}(\sim_{\delta,S})\le\kappa_{\mathrm{obs}}(\delta,\mu)$.
+  2677→
+  2678→For the upper bound, apply Lemma~\ref{lem:support-extension} to
+  2679→$\approx\,=\,\sim_{\delta,S}$ to obtain a global right congruence restricting
+  2680→to it on $S$, of index $\operatorname{index}(\sim_{\delta,S})+c_S$; assigning
+  2681→each class inside $S$ its common residual gives zero cost $\mu$-almost
+  2682→everywhere.  This is the stated sandwich.
+  2683→
+  2684→The extension step is not vacuous: a history outside $S$ may have an extension
+  2685→inside $S$, so the classes off $S$ cannot be merged arbitrarily without
+  2686→destroying the right-congruence property.  Lemma~\ref{lem:support-extension}
+  2687→supplies the correct construction, and $c_S=0$ exactly when it is
+  2688→index-preserving.
+  2689→\end{proof}
+  2690→
+  2691→\begin{remark}[Why the Qualifier Is Necessary]
+  2692→\label{rem:boolean-aggregation-qualifier}
+  2693→The two clauses differ.  Let $\delta$ be a residual trajectory
+  2694→requiring $\operatorname{index}(\sim_\delta)=k$ on all of $\mathcal I^*$, but
+  2695→suppose the input process never visits a set of histories whose removal
+  2696→collapses $\sim_\delta$ to $k'<k$ classes.  Then a $k'$-state machine has zero
+  2697→average cost while failing to realize $\delta$ exactly, so the unqualified
+  2698→biconditional would be false.  Statements elsewhere in this manuscript that
+  2699→invoke ``zero error'' should be read with clause~(i) unless a stationary
+  2700→support is explicitly named, as in Theorem~\ref{thm:retention-zero}, which is
+  2701→a clause~(ii) statement with $\operatorname{supp}\mu=\Splus$, so the
+  2702→relevant quantity there is $\kappa_{\mathrm{obs}}$ rather than the restriction
+  2703→of $\sim_\delta$ to the support.
+  2704→\end{remark}
+  2705→
+  2706→\begin{corollary}[Normalized $\{0,1\}$ Commitment Cost]
+  2707→\label{cor:boolean-01}
+  2708→If
+  2709→\[
+  2710→\mathcal E(f,g)=
+  2711→\begin{cases}
+  2712→0,&f=g,\\
+  2713→1,&f\neq g,
+  2714→\end{cases}
+  2715→\]
+  2716→and the aggregation is worst-case, then
+  2717→\[
+  2718→\Com(M)=
+  2719→\begin{cases}
+  2720→0,&M\ge\operatorname{index}(\sim_\delta),\\
+  2721→1,&M<\operatorname{index}(\sim_\delta).
+  2722→\end{cases}
+  2723→\]
+  2724→\end{corollary}
+  2725→
+  2726→This corollary separates the structural Boolean valuation $\{0,\infty\}$ from
+  2727→the normalized operational valuation $\{0,1\}$.  The threshold is the same;
+  2728→only the positive mismatch value changes.
+  2729→
+  2730→%----------------------------------------------------------------------
+  2731→\subsection{Exact Spectral Converse for Linear Hankel Gaps}
+  2732→\label{subsec:meta-spectral}
+  2733→%----------------------------------------------------------------------
+  2734→
+  2735→\begin{metatheorem}[Eckart--Young--Mirsky Spectral Converse]
+  2736→\label{meta:spectral}
+  2737→Let $\mathbb T$ be a Hilbert-module task theory with compact Hankel operator
+  2738→$H_\delta$.  Define the unrestricted linear rank-$M$ gap by
+  2739→\[
+  2740→\Delta_{\mathbb T}^{\mathrm{unres}}(M)
+  2741→=
+  2742→\inf_{\operatorname{rank}B\le M}
+  2743→\norm{H_\delta-B}_{\mathrm{op}}.
+  2744→\]
+  2745→Then
+  2746→\[
+  2747→\Delta_{\mathbb T}^{\mathrm{unres}}(M)
+  2748→=
+  2749→\sigma_{M+1}(H_\delta).
+  2750→\]
+  2751→Define the Hankel-structured finite-rank gap by
+  2752→\[
+  2753→\Delta_{\mathbb T}^{\mathrm{Hank,str}}(M)
+  2754→=
+  2755→\inf_{\substack{
+  2756→\operatorname{rank}B\le M\\
+  2757→B\ \text{Hankel}
+  2758→}}
+  2759→\norm{H_\delta-B}_{\mathrm{op}}.
+  2760→\]
+  2761→Then
+  2762→\[
+  2763→\Delta_{\mathbb T}^{\mathrm{Hank,str}}(M)
+  2764→\ge
+  2765→\sigma_{M+1}(H_\delta),
+  2766→\]
+  2767→with equality if an optimal rank-$M$ truncation can be chosen Hankel, or under
+  2768→a valid Hardy-space Adamjan--Arov--Krein embedding satisfying its hypotheses.
+  2769→\end{metatheorem}
+  2770→
+  2771→\begin{proof}
+  2772→The unrestricted equality is the Eckart--Young--Mirsky theorem for compact
+  2773→operators on Hilbert space:
+  2774→\[
+  2775→\inf_{\operatorname{rank}B\le M}
+  2776→\norm{H_\delta-B}_{\mathrm{op}}
+  2777→=
+  2778→\sigma_{M+1}(H_\delta).
+  2779→\]
+  2780→The Hankel-structured feasible set is a subset of the unrestricted feasible
+  2781→set, so restricting the infimum cannot decrease the value.  Hence
+  2782→\[
+  2783→\Delta_{\mathbb T}^{\mathrm{Hank,str}}(M)
+  2784→\ge
+  2785→\Delta_{\mathbb T}^{\mathrm{unres}}(M)
+  2786→=
+  2787→\sigma_{M+1}(H_\delta).
+  2788→\]
+  2789→Equality requires that an unrestricted optimal rank-$M$ approximant can be
+  2790→chosen Hankel, or that a separate Hankel approximation theorem applies.
+  2791→\end{proof}
+  2792→
+  2793→\begin{remark}[AAK versus EYM]
+  2794→\label{rem:aak-eym-meta}
+  2795→The theorem above uses Eckart--Young--Mirsky \cite{eckart1936,mirsky1960}.  As
+  2796→already noted in Remark~\ref{rem:aak-eym-hilbert} for the Hilbert-module
+  2797→instantiation, the Adamjan--Arov--Krein theorem \cite{aak1971} applies only
+  2798→after a Hardy-space embedding has been separately established, and the model
+  2799→does not assume one by default.
+  2800→\end{remark}
+  2801→
+  2802→\begin{corollary}[Stable Residual-Norm Spectral Bound]
+  2803→\label{cor:stable-residual-spectral}
+  2804→Suppose a residual-cost functional satisfies
+  2805→\[
+  2806→\norm{h_\delta-h_{\widehat\delta}}_{\infty,\rho}
+  2807→\le
+  2808→\mathcal L_{\infty,\rho}(\delta,\widehat\delta)
+  2809→\]
+  2810→with $0<\rho<1/|\Sigma|$.  Then for every linear $M$-rank approximation
+  2811→$\widehat\delta$ with $\operatorname{rank}H_{\widehat\delta}\le M$,
+  2812→\[
+  2813→\mathcal L_{\infty,\rho}(\delta,\widehat\delta)
+  2814→\ge
+  2815→(1-|\Sigma|\rho)
+  2816→\sigma_{M+1}(H_\delta).
+  2817→\]
+  2818→\end{corollary}
+  2819→
+  2820→\begin{proof}
+  2821→By Proposition~\ref{prop:stable-decay},
+  2822→\[
+  2823→\norm{H_\delta-H_{\widehat\delta}}_{\mathrm{op}}
+  2824→\le
+  2825→\frac{1}{1-|\Sigma|\rho}
+  2826→\norm{h_\delta-h_{\widehat\delta}}_{\infty,\rho}.
+  2827→\]
+  2828→By Eckart--Young--Mirsky, since
+  2829→$\operatorname{rank}H_{\widehat\delta}\le M$,
+  2830→\[
+  2831→\norm{H_\delta-H_{\widehat\delta}}_{\mathrm{op}}
+  2832→\ge
+  2833→\sigma_{M+1}(H_\delta).
+  2834→\]
+  2835→Combining the two inequalities gives
+  2836→\[
+  2837→\sigma_{M+1}(H_\delta)
+  2838→\le
+  2839→\frac{1}{1-|\Sigma|\rho}
+  2840→\norm{h_\delta-h_{\widehat\delta}}_{\infty,\rho}.
+  2841→\]
+  2842→Using the assumed domination of the weighted residual norm by the cost gives
+  2843→\[
+  2844→\sigma_{M+1}(H_\delta)
+  2845→\le
+  2846→\frac{1}{1-|\Sigma|\rho}
+  2847→\mathcal L_{\infty,\rho}(\delta,\widehat\delta),
+  2848→\]
+  2849→which rearranges to the stated bound.
+  2850→\end{proof}
+  2851→
+  2852→This corollary is a domination-bridge result.  It does not assert that the
+  2853→residual-cost linear finite-rank gap equals the Hankel spectral tail unless
+  2854→the task cost is exactly the relevant operator or weighted residual norm and
+  2855→the feasible set is unrestricted.
+  2856→
+  2857→%----------------------------------------------------------------------
+  2858→\subsection{Information-Bottleneck Meta-Theorem for Full KL}
+  2859→\label{subsec:meta-ib}
+  2860→%----------------------------------------------------------------------
+  2861→
+  2862→\begin{metatheorem}[Finite-State Information Bottleneck]
+  2863→\label{meta:ib}
+  2864→Let $S=S_t$, let $K=K_t=\phi(S_t)$ be a lumpable quotient, and let $Z=Z_t$ be
+  2865→the predictive future, by default the next output.  For every lumpable quotient
+  2866→$\phi$,
+  2867→\[
+  2868→\RetKL(\phi)
+  2869→=
+  2870→I(S;Z\mid K).
+  2871→\]
+  2872→Consequently,
+  2873→\[
+  2874→\RetKL(\phi)
+  2875→=
+  2876→I(S;Z)-I(K;Z).
+  2877→\]
+  2878→Therefore,
+  2879→\[
+  2880→\RetKL(M)
+  2881→=
+  2882→I(S;Z)
+  2883→-
+  2884→\max_{\substack{
+  2885→\phi\ \text{lumpable}\\
+  2886→|\mathcal K|\le M
+  2887→}}
+  2888→I(K;Z).
+  2889→\]
+  2890→\end{metatheorem}
+  2891→
+  2892→\begin{proof}
+  2893→Since $K=\phi(S)$, $K$ is a function of $S$.  Since $S$ is sufficient for $Z$,
+  2894→\[
+  2895→Z\perp\!\!\!\perp K\mid S.
+  2896→\]
+  2897→Therefore,
+  2898→\[
+  2899→I(K;Z\mid S)=0.
+  2900→\]
+  2901→For a fixed quotient $K$, the optimal representative in each block $k$ is the
+  2902→conditional law $P_{Z\mid K=k}$, which equals the mixture centroid
+  2903→$\bar P_k$.  Hence
+  2904→\[
+  2905→\RetKL(\phi)
+  2906→=
+  2907→\mathbb E
+  2908→D_{\mathrm{KL}}
+  2909→\bigl(
+  2910→P_{Z\mid S}
+  2911→\|
+  2912→P_{Z\mid K}
+  2913→\bigr)
+  2914→=
+  2915→I(S;Z\mid K).
+  2916→\]
+  2917→By the chain rule,
+  2918→\[
+  2919→I(S,K;Z)
+  2920→=
+  2921→I(K;Z)+I(S;Z\mid K).
+  2922→\]
+  2923→But $K$ is a function of $S$, so
+  2924→\[
+  2925→I(S,K;Z)=I(S;Z).
+  2926→\]
+  2927→The first identity $\RetKL(\phi)=I(S;Z\mid K)$ holds in $[0,\infty]$ without
+  2928→restriction, regular conditional probabilities existing because $Z$ is standard
+  2929→Borel.  The subtracted form
+  2930→\[
+  2931→I(S;Z\mid K)
+  2932→=
+  2933→I(S;Z)-I(K;Z)
+  2934→\]
+  2935→requires $I(S;Z)<\infty$, since otherwise the right-hand side is the undefined
+  2936→difference $\infty-\infty$.  In the present finite-state setting that condition
+  2937→is automatic: $S$ takes finitely many values, so
+  2938→\[
+  2939→I(S;Z)\le H(S)<\infty ,
+  2940→\]
+  2941→and $I(K;Z)\le I(S;Z)<\infty$ by data processing, so the rearrangement is
+  2942→always legitimate here.  The statement carries the hypothesis explicitly
+  2943→because the identity is applied in the sequel to state sets that are finite by
+  2944→assumption rather than by construction.  All variational
+  2945→statements below are to be read in the conditional-mutual-information form,
+  2946→which is unconditionally defined.
+  2947→Minimizing over lumpable quotients of size at most $M$ is equivalent to
+  2948→maximizing $I(K;Z)$ over the same feasible set.
+  2949→\end{proof}
+  2950→
+  2951→The identity is stated for the input-marginal target; its controlled analogue,
+  2952→conditional on the input and valid for general unifilar machines, is
+  2953→Theorem~\ref{thm:controlled-ib}.
+  2954→
+  2955→\begin{corollary}[Lumpable Partition Form]
+  2956→\label{cor:ib-lumpable}
+  2957→If $\phi:\Splus\to\mathcal K$ is a lumpable quotient with blocks
+  2958→$C_k=\{s\in\Splus:\phi(s)=k\}$, then
+  2959→\[
+  2960→\RetKL(M)
+  2961→=
+  2962→\min_{\substack{
+  2963→\phi:\Splus\to\mathcal K\ \text{lumpable}\\
+  2964→|\mathcal K|\le M
+  2965→}}
+  2966→\sum_{k\in\mathcal K}
+  2967→\sum_{s\in C_k}
+  2968→\pi_s
+  2969→D_{\mathrm{KL}}(P_s\|\bar P_k),
+  2970→\]
+  2971→where
+  2972→\[
+  2973→\bar P_k
+  2974→=
+  2975→\frac{
+  2976→\sum_{s\in C_k}\pi_s P_s
+  2977→}{
+  2978→\sum_{s\in C_k}\pi_s
+  2979→}.
+  2980→\]
+  2981→\end{corollary}
+  2982→
+  2983→\begin{remark}[Role of the Right-Congruence Constraint]
+  2984→\label{rem:ib-what-buys}
+  2985→The identity in Meta-Theorem~\ref{meta:ib} is the information bottleneck \cite{tishby1999,bialek2001} in
+  2986→native form.  The schema constrains the optimizer: the maximum runs over
+  2987→finite-index right congruences in synchronized machines, or equivalently over
+  2988→lumpable deterministic quotients of the stationary support, rather than over
+  2989→arbitrary Markov encoders.
+  2990→\end{remark}
+  2991→
+  2992→\begin{remark}[Full KL versus Quadratic Surrogate]
+  2993→\label{rem:ib-vs-quad}
+  2994→The information-bottleneck identity is exact for the full-KL retention gap.
+  2995→The spectral covariance-tail bound proved later applies to the Gaussian
+  2996→quadratic restricted gap $\RetQuad(M)$, and locally to full KL under
+  2997→additional regularity assumptions.  The full-KL centroid is the mixture
+  2998→distribution $\bar P_k$; the arithmetic mean centroid is a restricted
+  2999→Gaussian/Fisher phenomenon.
+  3000→\end{remark}
+  3001→
+  3002→%----------------------------------------------------------------------
+  3003→\subsection{The Typed Principle}
+  3004→\label{subsec:typed-principle}
+  3005→%----------------------------------------------------------------------
+  3006→
+  3007→\begin{metatheorem}[Typed Finite-State Rate--Distortion Principle]
+  3008→\label{meta:typed-rate-distortion}
+  3009→Fix a regime $\mathsf r$ specified by a rooted history right action
+  3010→$H_{\mathsf r}$ over an event alphabet $\mathcal A_{\mathsf r}$, a residual map
+  3011→$\delta_{\mathsf r}:H_{\mathsf r}\to\mathbf R_{\mathsf r}$, a reflexive cost
+  3012→$\mathcal E_{\mathsf r}$, a declared aggregation and support, and a class
+  3013→$\mathfrak Q_{\mathsf r}(M)$ of admissible finite-state factors of index at
+  3014→most $M$, with
+  3015→\[
+  3016→\Delta_{\mathsf r}(M)
+  3017→=
+  3018→\inf_{(Q,\Psi)\in\mathfrak Q_{\mathsf r}(M)}
+  3019→\mathcal L_{\mathsf r}\bigl(\delta_{\mathsf r},\Psi\circ Q\bigr).
+  3020→\]
+  3021→Then:
+  3022→\begin{enumerate}[label=(\alph*)]
+  3023→\item $\Delta_{\mathsf r}(M)$ is nonincreasing in $M$
+  3024→(Meta-Theorem~\ref{meta:monotone}(i));
+  3025→\item exact zero distortion is governed by the least admissible factor
+  3026→through which $\delta_{\mathsf r}$ factors on the declared support: for
+  3027→separated $\{0,\infty\}$-valued costs this is
+  3028→Meta-Theorem~\ref{meta:monotone}(iii), with the index taken relative to the
+  3029→support in the average-aggregation case;
+  3030→\item every quantitative converse beyond~(b) requires a regime-specific
+  3031→analytical bridge; no such bound follows from the factorization syntax alone;
+  3032→\item if the regime admits a Schatten-$p$ response representation with
+  3033→response operator $A_{\delta_{\mathsf r}}$, effective rank budget
+  3034→$r_{\mathsf r}(M)$ and modulus $c_{\mathsf r}$, then
+  3035→\[
+  3036→\Delta_{\mathsf r}(M)
+  3037→\ \ge\
+  3038→c_{\mathsf r}^{-1}\,
+  3039→\Phi^{(p_{\mathsf r})}_{r_{\mathsf r}(M)}\bigl(A_{\delta_{\mathsf r}}\bigr)
+  3040→\]
+  3041→(Theorem~\ref{thm:unified});
+  3042→\item no comparison between two regimes follows without an explicit map
+  3043→identifying their history actions, admissible factors, costs and response
+  3044→operators; in the three principal regimes no such map exists
+  3045→(Theorem~\ref{thm:schatten-nogo}).
+  3046→\end{enumerate}
+  3047→
+  3048→In the three principal regimes the instantiation is:
+  3049→
+  3050→\begin{center}
+  3051→\begin{tabular}{llll}
+  3052→\toprule
+  3053→regime & admissible factor & exact invariant & analytical bridge \\
+  3054→\midrule
+  3055→commitment &
+  3056→deterministic right congruence &
+  3057→Myhill--Nerode index &
+  3058→Boolean realizability \\
+  3059→retention &
+  3060→lumpable quotient &
+  3061→$Z$-predictive support index &
+  3062→bottleneck / covariance \\
+  3063→grounding &
+  3064→linear rank factor &
+  3065→Hankel rank (unrestricted gap) &
+  3066→Eckart--Young--Mirsky \\
+  3067→\bottomrule
+  3068→\end{tabular}
+  3069→\end{center}
+  3070→
+  3071→\noindent
+  3072→The grounding entry is stated for the \emph{unrestricted} gap $\Dunres$, where
+  3073→$\operatorname{rank}(H_\nu)=r<\infty$ gives $\Dunres(M)=0$ for $M\ge r$ by
+  3074→Corollary~\ref{cor:grounding-finite-rank}.  For the Hankel-structured gap
+  3075→$\DHankstr$ only the inequality $\DHankstr(M)\ge\sigma_{M+1}(H_\nu)$ holds in
+  3076→general, and the corresponding exact statement needs the additional hypotheses
+  3077→of Theorems~\ref{thm:aak-equality} and~\ref{thm:aak-multiletter}.
+  3078→\end{metatheorem}
+  3079→
+  3080→\begin{remark}[What the Principle Does and Does Not Unify]
+  3081→\label{rem:typed-principle-scope}
+  3082→The principle is a statement about shared \emph{syntax} together with an
+  3083→explicit refusal to share \emph{analysis}.  Clauses~(a) and~(b) are genuinely
+  3084→regime-independent: monotonicity and the zero-distortion threshold follow from
+  3085→the factorization structure alone.  Clause~(d) is conditional on a
+  3086→representation being supplied, and the three regimes supply different operators
+  3087→--- $H_\nu$, $\Sigma_\pi$, $N_\Lambda$ --- with different effective rank
+  3088→budgets $M$, $M-1$, $M$ and unrelated moduli, which is precisely the content of
+  3089→clause~(e).
+  3090→
+  3091→Two things the principle deliberately does not assert.  It does not claim a
+  3092→common history alphabet: commitment acts on $\mathcal I^*$ while retention in
+  3093→the unifilar generality of Definition~\ref{def:unifilar-machine} and grounding
+  3094→act on $(\mathcal I\times\mathcal O)^*$, and the input-driven retention model
+  3095→of Definition~\ref{def:controlled-markov} is the output-independent case in
+  3096→which the action factors through the input projection
+  3097→(Remark~\ref{rem:unifilar-proper-subclass}).  And it does not assert a
+  3098→per-symbol rate: the resource is the quotient index, whose description length
+  3099→is $R(M)=\log M$ by Definition~\ref{def:state-rate}.
+  3100→\end{remark}
+  3101→
+  3102→%======================================================================
+  3103→\section{Retention}
+  3104→\label{sec:retention}
+  3105→%======================================================================
+
+[showing lines 2211-3105 of 17893; use offset=3106 with limit to continue reading]
