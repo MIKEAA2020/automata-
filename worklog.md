@@ -98,3 +98,20 @@ Stage Summary:
 - All review items A1-A6, B1-B7, C1-C3, D1-D3, E1-E5 now CLOSED (v2: A1+B; v3: A2-A6+C1+bold Sigma; v4: citations+positioning+C2/C3+D+E+AAK precision).
 - Citation corrections to the novelty report: IB-causal-states paper = Shalizi & Crutchfield; arXiv 1412.2859 = Marzen & Crutchfield; ICALP 2021 authors = Balle, Lacroce, Panangaden, Precup, Rabusseau.
 - Next: git add + commit + push all created documents to MIKEAA2020/automata-.
+
+---
+Task ID: 5
+Agent: Super Z (main agent)
+Task: User protocol "read thoroughly at line-level and wait:" — full line-level read of the current latest manuscript version (v4), then wait for next instruction. Standing rule: always commit and push.
+
+Work Log:
+- Verified repo state first: working tree clean, local HEAD = remote HEAD = ce3b15c (v4 revision + AAK proof-check report + all artifacts already pushed to MIKEAA2020/automata-).
+- Verified freeze state: v3 (md5 eec4bad177aa51d45fd5c5685811740b, perms 444) unchanged; v4 (18,032 lines, 673KB) is current latest, writable.
+- Read automata_unified_revised_v4.tex in full at line level, sequential chunks 1-18033 (preamble/macros; abstract; intro + both positioning sentences; schema; specialized task theories; meta-theorems; retention incl. unifilar + complexity; commitment incl. ComRD; grounding incl. thm:aak-equality, thm:aak-multiletter, open:hankel-multiletter, cor:hankel-strict; Schatten template; oracle; PoS-linear; exponent vertex; joint/independence; temporal (passive/stream/active/agnostic); spectral heuristic; conditional representation; type discipline; epistemic/open problems; conclusion; bibliography; backmatter).
+- Spot-verified all prior fix families in place: A1 (pair-determination index, thm:com-rd-formula, rem:pair-vs-class), A2 (L_N unary modular), A3 (L=4 ratio), A4 (two-step continuity + Renyi citations), A5 (self-contained refinement recursion), A6 (lem:tension/lem:moore-separation re-anchoring), B1-B7 (Pinch macro, gamma, ComGame, moved defs), C1 (aligned displays), C2 (textup-wrapped textsc), C3 (3-paragraph abstract), D1 (Ambainis 2^{k log log k/log k} + Freivalds 2008 Artin caveat), D2 (softened availability), D3 (rem:computational-conventions), E1-E5 (anchors/consolidations), global \bm{\Sigma} notation, 3 flagged citations (shalizicrutchfield2002, geiger2015/2026, balle2021, lacroce2024, marzencrutchfield2014) + 2 positioning sentences, AAK precision edits (U H_nu U* hypothesis, displayed transport chain, intertwining redundancy note).
+- No new defects flagged during this read; no edits made (v4 is current latest; nothing to revise absent a new instruction).
+
+Stage Summary:
+- v4 fully re-read at line level; context rebuilt for the next revision cycle.
+- All review items A1-A6, B1-B7, C1-C3, D1-D3, E1-E5 confirmed closed in v4; repo fully pushed at ce3b15c.
+- Awaiting next user instruction (per "read ... and wait" protocol). Next revision, if any, will go into a new v5 file; v4 to be frozen first.

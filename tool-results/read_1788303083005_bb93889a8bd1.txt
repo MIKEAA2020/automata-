@@ -1,0 +1,2002 @@
+     1→\documentclass[12pt]{article}
+     2→
+     3→\usepackage{amsmath,amssymb,amsthm,mathtools}
+     4→\usepackage{bm}
+     5→\usepackage{enumitem}
+     6→\usepackage{booktabs}
+     7→\usepackage{array}
+     8→\usepackage[margin=1in]{geometry}
+     9→\usepackage{parskip}
+    10→\usepackage{xcolor}
+    11→\usepackage{microtype}
+    12→\setlength{\emergencystretch}{2em}
+    13→\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+    14→
+    15→%----------------------------------------------------------------------
+    16→% Theorem environments
+    17→%----------------------------------------------------------------------
+    18→\newtheorem{theorem}{Theorem}[section]
+    19→\newtheorem{lemma}[theorem]{Lemma}
+    20→\newtheorem{proposition}[theorem]{Proposition}
+    21→\newtheorem{corollary}[theorem]{Corollary}
+    22→\newtheorem{metatheorem}[theorem]{Meta-Theorem}
+    23→
+    24→\theoremstyle{definition}
+    25→\newtheorem{definition}[theorem]{Definition}
+    26→\newtheorem{remark}[theorem]{Remark}
+    27→\newtheorem{example}[theorem]{Example}
+    28→\newtheorem{openproblem}[theorem]{Open Problem}
+    29→\newtheorem{heuristic}[theorem]{Heuristic}
+    30→\newtheorem{conjecture}[theorem]{Conjecture}
+    31→\newtheorem{assumption}[theorem]{Hypothesis}
+    32→
+    33→%----------------------------------------------------------------------
+    34→% Operators
+    35→%----------------------------------------------------------------------
+    36→\DeclareMathOperator{\rank}{rank}
+    37→\DeclareMathOperator{\tr}{tr}
+    38→\DeclareMathOperator{\Tr}{Tr}
+    39→\DeclareMathOperator{\supp}{supp}
+    40→\DeclareMathOperator{\PoS}{PoS}
+    41→\DeclareMathOperator{\Ldim}{Ldim}
+    42→\DeclareMathOperator*{\argmin}{arg\,min}
+    43→\DeclareMathOperator*{\argmax}{arg\,max}
+    44→
+    45→%----------------------------------------------------------------------
+    46→% Macros
+    47→%----------------------------------------------------------------------
+    48→\newcommand{\eqdef}{\vcentcolon=}
+    49→\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    50→\newcommand{\vertiii}[1]{%
+    51→  \left\lvert\left\lvert\left\lvert#1\right\rvert\right\rvert\right\rvert%
+    52→}
+    53→
+    54→
+    55→\newcommand{\Hcal}{\mathcal H}
+    56→
+    57→\newcommand{\RetKL}{\Delta_{\mathrm{ret}}^{\mathrm{KL}}}
+    58→\newcommand{\RetQuad}{\Delta_{\mathrm{ret}}^{\mathrm{quad}}}
+    59→\newcommand{\GrdLin}{\Delta_{\mathrm{grd}}^{\mathrm{lin}}}
+    60→\newcommand{\Dunres}{\Delta_{\mathrm{grd}}^{\mathrm{unres}}}
+    61→\newcommand{\DHankstr}{\Delta_{\mathrm{grd}}^{\mathrm{Hank,str}}}
+    62→\newcommand{\Com}{\Delta_{\mathrm{com}}}
+    63→\newcommand{\Comex}{\Com}
+    64→\newcommand{\ComRD}{\Delta_{\mathrm{com}}^{\mathrm{RD}}}
+    65→\newcommand{\ComGame}{\Delta_{\mathrm{com}}^{\mathrm{game}}}
+    66→
+    67→\newcommand{\Sp}[1]{\mathcal S_{#1}}
+    68→
+    69→\newcommand{\rankBdet}{\operatorname{rank}_{\mathbb B}^{\mathrm{det}}}
+    70→\newcommand{\kappaMN}{\kappa_{\mathrm{MN}}}
+    71→
+    72→\newcommand{\Reg}{\mathrm{Reg}}
+    73→\newcommand{\Est}{\mathsf E}
+    74→\newcommand{\Aapp}{A_T}
+    75→\newcommand{\Fbudget}{\mathsf F}
+    76→\newcommand{\PsiAgg}{\Psi}
+    77→
+    78→\newcommand{\EA}{\operatorname{Pinch}_{\mathcal A}}
+    79→\newcommand{\KyF}[2]{\left\|#1\right\|_{(#2)}}
+    80→\newcommand{\PoSlin}{\PoS_{\mathrm{lin}}^{\mathrm{loc}}}
+    81→\newcommand{\PoSquad}{\PoS_{\mathrm{quad}}}
+    82→
+    83→\newcommand{\Ren}[1]{D_{#1}}
+    84→\newcommand{\sRen}[1]{\widetilde D_{#1}}
+    85→\newcommand{\KL}{D_{\mathrm{KL}}}
+    86→\newcommand{\Dmax}{D_{\max}}
+    87→\newcommand{\Dmaxsym}{D_{\max}^{\mathrm{sym}}}
+    88→
+    89→\newcommand{\Splus}{\mathcal S^{+}}
+    90→\newcommand{\Lsync}{L_{\mathrm{sync}}^{\mathrm{adapt}}}
+    91→\newcommand{\Lsyncu}{L_{\mathrm{sync}}^{\mathrm{univ}}}
+    92→\newcommand{\Esync}{E_{\mathrm{sync}}}
+    93→\newcommand{\EsyncSI}{E_{\mathrm{sync}}^{\mathrm{SI}}}
+    94→\newcommand{\MistRI}{\operatorname{Mistakes}_{\mathrm{active,RI}}}
+    95→\newcommand{\Valt}{V_{\mathrm{alt}}}
+    96→\newcommand{\Vsim}{V_{\mathrm{sim}}}
+    97→\newcommand{\Gact}{\mathcal G^{\mathrm{act}}}
+    98→\newcommand{\free}{\mathsf f}
+    99→\newcommand{\rd}{\mathsf r}
+   100→\newcommand{\rot}{\mathrm{rot}}
+   101→\newcommand{\flipl}{\mathrm{flip}}
+   102→\newcommand{\mistk}{\mathrm{mis}}
+   103→\newcommand{\ind}[1]{\mathbf 1\{#1\}}
+   104→\newcommand{\RetKLr}[1]{\Delta_{\mathrm{ret}}^{\mathrm{KL},(#1)}}
+   105→\newcommand{\RetKLc}{\Delta_{\mathrm{ret}}^{\mathrm{KL,ctrl}}}
+   106→\newcommand{\RetQuadc}{\Delta_{\mathrm{ret}}^{\mathrm{quad,ctrl}}}
+   107→\newcommand{\RetKLg}{\Delta_{\mathrm{ret}}^{\mathrm{KL,gen}}}
+   108→
+   109→\title{
+   110→\bfseries
+   111→The Rate--Distortion Theory of Bounded Sequential Transduction:\\
+   112→A Comparative Syntax for Finite-State Approximation
+   113→}
+   114→\author{}
+   115→\date{}
+   116→
+   117→\begin{document}
+   118→\maketitle
+   119→
+   120→%======================================================================
+   121→\begin{abstract}
+   122→We develop a comparative framework for finite-state approximation of
+   123→sequential objects: a rate--distortion theory of bounded sequential
+   124→transduction in which the rate is a state budget $M$ and the distortion is a
+   125→regime-specific task loss.  Three regimes share one syntax --- histories,
+   126→finite-index right congruences, quotient machines, stationary aggregation, and
+   127→variational gaps --- and differ in their semantic objects.  Commitment targets
+   128→deterministic specifications through deterministic Mealy machines and
+   129→Myhill--Nerode residuals.  Retention targets stochastic controlled processes
+   130→through stationary controlled unifilar causal machines (controlled
+   131→$\epsilon$-machines, whose state update may read the realized output) and
+   132→their lumpable quotients.  Grounding targets stochastic channels through
+   133→linear finite-rank Hankel realizations, whose resource is operator rank rather
+   134→than quotient index; a closed-form finite-budget characterization of exact
+   135→symbolic deterministic grounding remains open, but an observable deterministic
+   136→floor, its finite-state limit, and certified finite-horizon and finite-section
+   137→intervals are established.  Every approximation claim carries an explicit type
+   138→signature fixing regime, feasible set, aggregation, support, protocol, and
+   139→analytical bridge, so that statements from different regimes are not
+   140→conflated.
+   141→
+   142→The principal exact results are as follows.  The retention full-KL gap admits
+   143→an exact finite-state information-bottleneck decomposition over stationary
+   144→lumpable quotients, with a controlled analogue, conditional on the input, for
+   145→general unifilar machines, and a zero-retention threshold at the stationary
+   146→support size of distinct predictive states in the input-driven theory and at
+   147→the coarsest unifilar-lumpable refinement of the predictive-kernel partition
+   148→in general.  For finite output alphabets a global spectral converse holds in
+   149→probability coordinates with sharp constant $1$; under uniform interiority a
+   150→corresponding bound holds in a fixed minimal natural-parameter chart, and the
+   151→interiority hypothesis cannot be removed.  The unrestricted linear finite-rank
+   152→Hankel relaxation gap is $\Dunres(M)=\sigma_{M+1}(H_\nu)$ by
+   153→Eckart--Young--Mirsky, while the Hankel-structured gap is bounded below by
+   154→$\sigma_{M+1}(H_\nu)$ and equals it under an Adamjan--Arov--Krein
+   155→Hardy-space embedding --- unconditional for one-letter alphabets, conditional
+   156→on a multiletter Nehari/AAK-type theorem otherwise, which is not established
+   157→here.  A superpolynomial, sub-exponential determinism gap separates formal
+   158→Hankel rank from deterministic state complexity.  Retention is NP-complete in
+   159→the Gaussian quadratic restricted regime and NP-hard under a promise with
+   160→APX-hardness for unrestricted full KL.  Mistake complexity is $\Theta(M\log
+   161→M)$ in the reset-word, persistent-stream, and active residual-identification
+   162→protocols, with agnostic regret $\Theta(\sqrt{TM\log M})$.
+   163→
+   164→The framework separates shared syntax from regime-specific analysis: a typed
+   165→variational schema; structural monotonicity and zero thresholds; a conditional
+   166→response-operator converse and Schatten template; adaptive oracle
+   167→inequalities with a matching minimax lower bound under explicit floors; and a
+   168→linear second-order Price-of-Safety surrogate with a Ky Fan majorization law.
+   169→A vertex correspondence organizes retention, commitment, and grounding by
+   170→R\'enyi/Schatten labels $\{0,1,\infty\}$ as a formal consistency rather
+   171→than a derivation, and no analytic theorem depends on it.  An independence
+   172→theorem shows that the three regimes' obstructions vary independently, so no
+   173→cross-regime ordering holds.  The average-case theory uses stationary
+   174→Ces\`aro or discounted prefix aggregation throughout, finite prefixes not
+   175→defining a probability measure over all lengths.  The manuscript identifies a
+   176→small set of sharply posed open research programs in place of a single
+   177→undifferentiated open problem of exact symbolic deterministic grounding.
+   178→\end{abstract}
+   179→\tableofcontents
+   180→
+   181→%======================================================================
+   182→\section{Introduction: The Bounded Sequential Generator and Its Regimes}
+   183→\label{sec:intro}
+   184→%======================================================================
+   185→
+   186→This manuscript develops a comparative theory of finite-state approximation
+   187→for sequential objects.  The resource is memory, measured by the number of
+   188→internal states or, equivalently, by the index of a finite right congruence on
+   189→histories.  The cost is a regime-specific distortion functional: Boolean
+   190→mismatch for commitment, KL divergence for retention, operator-norm distance
+   191→for linear grounding relaxations, and related quantitative costs.
+   192→
+   193→The framework may be viewed as a rate--distortion theory of bounded sequential
+   194→transduction.  The rate is the finite-state budget $M$.  The distortion is the
+   195→task loss induced by the regime.
+   196→
+   197→%----------------------------------------------------------------------
+   198→\subsection{Bounded sequential generators}
+   199→\label{subsec:bsg-intro}
+   200→%----------------------------------------------------------------------
+   201→
+   202→A \textbf{Bounded Sequential Generator} (BSG) is a deterministic finite-state
+   203→transducer, i.e.\ a Mealy machine,
+   204→\[
+   205→\mathcal A=(\mathcal S,s_0,\delta,\lambda),
+   206→\qquad
+   207→|\mathcal S|\le M,
+   208→\]
+   209→with finite input alphabet $\mathcal I$, finite output alphabet $\mathcal O$,
+   210→transition map
+   211→\[
+   212→\delta:\mathcal S\times\mathcal I\to\mathcal S,
+   213→\]
+   214→and output map
+   215→\[
+   216→\lambda:\mathcal S\times\mathcal I\to\mathcal O.
+   217→\]
+   218→It defines a synchronous causal function
+   219→\[
+   220→F_{\mathcal A}:\mathcal I^{\mathbb N}\to\mathcal O^{\mathbb N}.
+   221→\]
+   222→
+   223→The deterministic Mealy BSG is the machine model for the commitment regime.
+   224→In that regime, the target is a deterministic specification, a safety
+   225→property, or a deterministic strategic rule, and the question is whether a
+   226→finite-state machine implements or enforces it exactly or approximately.  The
+   227→exact zero-error theory is governed by Myhill--Nerode residual equivalence.
+   228→
+   229→%----------------------------------------------------------------------
+   230→\subsection{Three approximation regimes}
+   231→\label{subsec:three-regimes}
+   232→%----------------------------------------------------------------------
+   233→
+   234→The manuscript studies three regimes.  They share a finite-state syntax but
+   235→differ in their semantic objects.  The framework does not reduce the three
+   236→regimes to a single machine category.
+   237→
+   238→\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+   239→\item \textbf{Commitment.}
+   240→The target is a deterministic residual function.  A history $u$ determines a
+   241→residual continuation map
+   242→\[
+   243→F_u(w)=F(uw)_{|u|+1:|u|+|w|}.
+   244→\]
+   245→Two histories are equivalent if they induce the same residual function.  The
+   246→minimal exact state complexity is the Myhill--Nerode index
+   247→\[
+   248→\kappa_{\det}(F)
+   249→=
+   250→\operatorname{index}(\sim_F).
+   251→\]
+   252→The exact commitment gap is a threshold phenomenon:
+   253→\[
+   254→\Com(M)=0
+   255→\quad\Longleftrightarrow\quad
+   256→M\ge\kappa_{\det}(F).
+   257→\]
+   258→
+   259→\item \textbf{Retention.}
+   260→The target is a stochastic controlled process whose predictive structure is
+   261→encoded by causal states.  Each positive-mass causal state $s\in\Splus$
+   262→carries a predictive distribution $P_s$ over future outputs.  An $M$-state
+   263→approximation merges causal states into at most $M$ lumped machine states
+   264→through a stationary lumpable quotient.
+   265→
+   266→The full-KL retention gap is
+   267→\[
+   268→\RetKL(M)
+   269→=
+   270→\min_{\substack{
+   271→\phi:\Splus\to\mathcal K\ \text{lumpable}\\
+   272→|\mathcal K|\le M
+   273→}}
+   274→\sum_{k\in\mathcal K}
+   275→\sum_{s:\phi(s)=k}
+   276→\pi_s
+   277→D_{\mathrm{KL}}(P_s\|\bar P_k),
+   278→\]
+   279→where
+   280→\[
+   281→\bar P_k
+   282→=
+   283→\frac{
+   284→\sum_{s:\phi(s)=k}\pi_s P_s
+   285→}{
+   286→\sum_{s:\phi(s)=k}\pi_s
+   287→}.
+   288→\]
+   289→In synchronized machines, lumpable quotients of $\Splus$ correspond to
+   290→finite-index right congruences on sufficiently long histories.  In the general
+   291→unifilar model the causal-state update reads the realized output, the feasible
+   292→quotients are the unifilar-lumpable ones, and the input-driven synchronized
+   293→subclass recovers right congruences on input histories.
+   294→
+   295→When the predictive family is restricted to common-covariance Gaussians, one
+   296→obtains a quadratic restricted gap
+   297→\[
+   298→\RetQuad(M).
+   299→\]
+   300→The full-KL gap and the quadratic restricted gap are distinct objects.
+   301→
+   302→\emph{Positioning.}  The retention chapter extends the causal-state program of
+   303→computational mechanics \cite{shalizi2001} from output processes to
+   304→controlled, input-driven transductions: the objects approximated are lumpable
+   305→quotients of a \emph{controlled} unifilar causal machine rather than
+   306→partitions of a stationary process, and the feasibility notion of unifilar
+   307→lumpability is correspondingly stricter than ordinary lumpability.  Unlike the
+   308→information-bottleneck-for-causal-states line
+   309→\cite{shalizicrutchfield2002,marzencrutchfield2014}, which characterizes the
+   310→optimal causal statistic, and unlike the Kullback--Leibler aggregation line for
+   311→regular Markov chains \cite{geiger2015,geiger2026}, which computes the optimal
+   312→reduction, the manuscript tracks the full budget-$M$ gap curve: the zero
+   313→threshold at the stable kernel refinement, NP-hardness below it, and spectral
+   314→lower certificates from the predictive covariance, rather than only the
+   315→optimum.
+   316→
+   317→\item \textbf{Grounding.}
+   318→The target is a stochastic channel or residual kernel.  The spectral converse
+   319→uses linear finite-rank realizations rather than deterministic Mealy
+   320→machines.  The relevant object is a Hankel operator $H_\nu$ built from an
+   321→impulse-response function.
+   322→
+   323→The unrestricted linear finite-rank Hankel relaxation gap is
+   324→\[
+   325→\Dunres(M)
+   326→=
+   327→\inf_{\operatorname{rank}B\le M}
+   328→\norm{H_\nu-B}_{\mathrm{op}},
+   329→\]
+   330→and satisfies
+   331→\[
+   332→\Dunres(M)
+   333→=
+   334→\sigma_{M+1}(H_\nu)
+   335→\]
+   336→by Eckart--Young--Mirsky \cite{eckart1936,mirsky1960}.
+   337→
+   338→The Hankel-structured finite-rank realization gap is
+   339→\[
+   340→\DHankstr(M)
+   341→=
+   342→\inf_{\substack{
+   343→\operatorname{rank}B\le M\\
+   344→B\ \text{Hankel}
+   345→}}
+   346→\norm{H_\nu-B}_{\mathrm{op}},
+   347→\]
+   348→and satisfies
+   349→\[
+   350→\DHankstr(M)
+   351→\ge
+   352→\sigma_{M+1}(H_\nu).
+   353→\]
+   354→Equality in the Hankel-structured problem requires additional structure
+   355→(Theorems~\ref{thm:aak-equality} and~\ref{thm:aak-multiletter}).  The
+   356→resource $M$ here is a finite-rank budget on a bounded operator, not the
+   357→index of a right congruence; Section~\ref{subsec:grounding-instantiation} and
+   358→the master scope of Section~\ref{subsec:meta-scope} record this distinction
+   359→explicitly, and Definition~\ref{def:symbolic-grounding-gap} below supplies a
+   360→quotient-typed \emph{symbolic} grounding gap, over deterministic Mealy
+   361→machines, whose resource is again a right-congruence index and which is
+   362→therefore the object genuinely comparable to commitment and retention.  A
+   363→closed-form finite-budget value for that symbolic gap remains open; certified
+   364→bounds are given in
+   365→Propositions~\ref{prop:grounding-finite-section},~\ref{prop:symbolic-finite-horizon}
+   366→and Theorem~\ref{thm:observable-floor}.
+   367→
+   368→\emph{Positioning.}  The grounding chapter transports the
+   369→Adamjan--Arov--Krein program for weighted automata
+   370→\cite{balle2021,lacroce2024} from weighted languages to transductions.  The
+   371→object approximated is the Hankel operator of a channel on the joint alphabet
+   372→rather than that of a weighted language; the unrestricted and
+   373→Hankel-restricted feasible sets are separated explicitly, the
+   374→Eckart--Young--Mirsky value being available for the former and only the
+   375→singular-value lower bound for the latter; and the published one-letter
+   376→results extend to the multiletter setting only conditionally
+   377→(Theorem~\ref{thm:aak-multiletter}, Open Problem~\ref{open:hankel-multiletter}),
+   378→with grounded finite-section certificates and the zero-threshold
+   379→characterization $\rank(H)\le M$ standing in for the exact minimization values
+   380→of the one-letter theory.
+   381→\end{enumerate}
+   382→
+   383→The three regimes share a \textbf{typed finite-memory budget} rather than a
+   384→single literal resource.  For commitment and retention (and for the symbolic
+   385→grounding gap of Definition~\ref{def:symbolic-grounding-gap}), the budget $M$
+   386→is the index of a finite right congruence on histories.  For the
+   387→\emph{unrestricted linear} grounding relaxation, the budget $M$ is instead the
+   388→rank of a finite-rank operator approximating a Hankel operator.  These two
+   389→notions of budget are related --- both cap the ``resolution'' of the
+   390→approximant --- but they are not asserted equivalent: a rank-$M$ operator is
+   391→not in general reachable through an $M$-state quotient, and an $M$-state
+   392→quotient does not in general act on the joint alphabet the way a rank-$M$
+   393→Hankel truncation does.  Section~\ref{subsec:meta-scope} makes this typed
+   394→picture precise as four pillars common to all three regimes.
+   395→
+   396→%----------------------------------------------------------------------
+   397→\subsection{The shared finite-state schema}
+   398→\label{subsec:shared-schema-intro}
+   399→%----------------------------------------------------------------------
+   400→
+   401→The shared combinatorial resource is the index of a finite quotient of a
+   402→regime-typed history system (Definition~\ref{def:history-system}, developed in
+   403→Section~\ref{subsec:history-actions}).
+   404→Commitment quotients live on input histories $\mathcal I^*$ with a total right
+   405→action; unifilar retention quotients live on feasible joint input--output
+   406→histories with a pruned action, in the support-relative sense of
+   407→Definition~\ref{def:support-right-cong}; grounding quotients live on the joint
+   408→alphabet $\Sigma=\mathcal I\times\mathcal O$.  For the commitment regime, and
+   409→for the input-driven retention subclass, the classical form is the following;
+   410→Remark~\ref{rem:regime-history-instances} tabulates the three instantiations.
+   411→
+   412→Let $\mathcal I^*$ denote the set of finite input histories.  A right
+   413→congruence $\sim$ on $\mathcal I^*$, in the standard sense of automata theory
+   414→\cite{sakarovitch2009}, is an equivalence relation satisfying
+   415→\[
+   416→u\sim v
+   417→\implies
+   418→ux\sim vx
+   419→\qquad
+   420→\forall x\in\mathcal I.
+   421→\]
+   422→Equivalently, the quotient $\mathcal I^*/\!\sim$ carries a well-defined
+   423→deterministic transition
+   424→\[
+   425→[u]\cdot x=[ux].
+   426→\]
+   427→The index of $\sim$ is the number of equivalence classes.  This index is the
+   428→finite-state budget.
+   429→
+   430→A target sequential object may be represented as a trajectory
+   431→\[
+   432→\delta:\mathcal I^*\to\operatorname{ob}(\mathbf R),
+   433→\]
+   434→where $\mathbf R$ is a regime-specific residual category.  An $M$-state
+   435→approximation factors $\delta$ through a finite quotient:
+   436→\[
+   437→\mathcal I^*
+   438→\longrightarrow
+   439→\mathcal I^*/\!\sim
+   440→\longrightarrow
+   441→\mathbf R,
+   442→\qquad
+   443→\operatorname{index}(\sim)\le M.
+   444→\]
+   445→The associated variational gap is
+   446→\[
+   447→\Delta_{\mathbb T}(M)
+   448→=
+   449→\inf_{\substack{\sim,\Psi\\ \operatorname{index}(\sim)\le M}}
+   450→\mathcal L(\delta,\Psi\circ Q).
+   451→\]
+   452→
+   453→\begin{remark}[Scope of the Quotient Display]
+   454→\label{rem:quotient-display-scope}
+   455→The display above is the quotient-typed instance of the schema, and it is the
+   456→literal resource for commitment, for retention, and for the symbolic
+   457→grounding gap of Definition~\ref{def:symbolic-grounding-gap}.  The
+   458→\emph{unrestricted linear} grounding relaxation of
+   459→Theorem~\ref{thm:spectral-grounding} instead instantiates the schema with a
+   460→finite-rank feasible set,
+   461→\[
+   462→\Delta_{\mathbb T}(M)
+   463→=
+   464→\inf_{\operatorname{rank}(B)\le M}
+   465→\mathcal L(\delta,B),
+   466→\]
+   467→a genuinely different budget type.  Section~\ref{subsec:meta-scope} records
+   468→both instances as coordinates of one typed variational schema without
+   469→asserting that the two budgets coincide.
+   470→\end{remark}
+   471→
+   472→Each regime attaches its own per-state semantic object:
+   473→\begin{itemize}[nosep]
+   474→\item \textbf{commitment:} a residual function;
+   475→\item \textbf{retention:} a predictive distribution or exponential-family
+   476→parameter;
+   477→\item \textbf{grounding:} an operator, kernel, or linear realization
+   478→coordinate.
+   479→\end{itemize}
+   480→
+   481→The shared theorems concern the quotient structure and the index of right
+   482→congruences.  The analytical engines---Myhill--Nerode theory, information
+   483→bottleneck, Hankel approximation, game-theoretic commitment, online learning,
+   484→and operator algebra---are regime-specific.
+   485→
+   486→%----------------------------------------------------------------------
+   487→\subsection{Stationary aggregation and type-correct costs}
+   488→\label{subsec:stationary-intro}
+   489→%----------------------------------------------------------------------
+   490→
+   491→The average-case theory uses stationary aggregation.  For each fixed length
+   492→$n$, a stationary process assigns total mass one to the prefixes of length $n$:
+   493→\[
+   494→\sum_{|u|=n}\mu(u)=1.
+   495→\]
+   496→Consequently,
+   497→\[
+   498→\sum_{u\in\mathcal I^*}\mu(u)=\infty,
+   499→\]
+   500→so the prefix weights do not define a probability measure on the whole free
+   501→monoid $\mathcal I^*$.  The theory uses stationary aggregation schemes.
+   502→
+   503→Two canonical average-case aggregations are admitted:
+   504→\begin{enumerate}[nosep,label=(\alph*)]
+   505→\item a stationary Ces\`aro average;
+   506→\item a discounted prefix measure.
+   507→\end{enumerate}
+   508→
+   509→The worst-case aggregation remains the supremum over all finite histories:
+   510→\[
+   511→\mathcal L_\infty(\delta,\widehat\delta)
+   512→=
+   513→\sup_{u\in\mathcal I^*}
+   514→\mathcal E(\delta(u),\widehat\delta(u)).
+   515→\]
+   516→
+   517→The cost profunctor $\mathcal E$ is regime-specific.  Commitment uses a
+   518→Boolean or $0/1$ equality cost.  Retention uses KL divergence or a quadratic
+   519→Fisher surrogate.  Grounding uses operator-norm distance or a related linear
+   520→relaxation cost.  The structural Boolean cost $\{0,\infty\}$ is distinguished
+   521→from the normalized operational cost $\{0,1\}$.
+   522→
+   523→%----------------------------------------------------------------------
+   524→\subsection{Analytical boundaries}
+   525→\label{subsec:boundaries-intro}
+   526→%----------------------------------------------------------------------
+   527→
+   528→The framework separates shared syntax from regime-specific analysis.
+   529→
+   530→\begin{itemize}[leftmargin=2.0em]
+   531→\item \textbf{Shared syntax versus regime-specific semantics.}
+   532→The schema provides histories, right congruences, finite quotients, and
+   533→variational gaps.  It does not derive the Myhill--Nerode theorem, the
+   534→Eckart--Young--Mirsky theorem, or the information-bottleneck identity from
+   535→categorical axioms alone.
+   536→
+   537→\item \textbf{Exact theorems versus local theorems.}
+   538→The commitment zero-error threshold, the full-KL finite-state
+   539→information-bottleneck identity, and the unrestricted linear Hankel spectral
+   540→converse are exact within their domains.  The full-KL spectral lower bound is
+   541→local and requires explicit regularity assumptions.  The Hankel-structured
+   542→finite-rank realization gap satisfies the unrestricted singular-value lower
+   543→bound, but equality requires additional structure.
+   544→
+   545→\item \textbf{Converses versus achievability.}
+   546→Spectral converses are lower bounds on approximation gaps.  They become
+   547→online regret upper rates only when paired with explicit approximation
+   548→achievability bounds.
+   549→
+   550→\item \textbf{Linear relaxations versus discrete problems.}
+   551→The linear Hankel gap and the linear Price-of-Safety surrogate are exact
+   552→linear objects.  They do not automatically solve the corresponding discrete
+   553→right-congruence optimization problems.
+   554→
+   555→\item \textbf{Heuristics versus theorems.}
+   556→The spectral-tail picture is a heuristic.  The tail shape depends on
+   557→aggregation, operator type, affine versus linear approximation, rank versus
+   558→state count, compactness, domination, and quadratic-regime assumptions.
+   559→
+   560→\item \textbf{No unconditional cross-regime ordering.}
+   561→The framework does not assert a universal inequality among grounding,
+   562→retention, and commitment gaps.  The Independence Theorem shows that the
+   563→gaps can be varied independently.
+   564→\end{itemize}
+   565→
+   566→%----------------------------------------------------------------------
+   567→\subsection{Components of the framework}
+   568→\label{subsec:integrated-components-intro}
+   569→%----------------------------------------------------------------------
+   570→
+   571→The framework comprises the following components.
+   572→
+   573→\paragraph{Schatten conditional converse template.}
+   574→A task theory with a rank-controlled response operator $A_\delta$ and a
+   575→Schatten-$p$ domination inequality satisfies a unified converse:
+   576→\[
+   577→\Delta_{\mathbb T}(M)
+   578→\ge
+   579→\frac1{c_p}
+   580→\Phi^{(p)}_{r_{\mathbb T}(M)}(A_\delta),
+   581→\]
+   582→where $r_{\mathbb T}(M)$ is the effective rank budget and
+   583→$\Phi^{(p)}_r$ is the Schatten-$p$ tail.
+   584→
+   585→Grounding is the Schatten-$\infty$ instance for the unrestricted linear
+   586→finite-rank relaxation; retention is the Schatten-$1$ instance with effective
+   587→rank $M-1$; commitment is the Boolean-rank vertex.  Contextwise $\ell^p$
+   588→aggregation does not by itself imply Schatten-$p$ domination.
+   589→
+   590→\paragraph{Adaptive two-axis oracle inequality.}
+   591→Within each type-correct regime, offline approximation and online estimation
+   592→compose into a bias--variance decomposition:
+   593→\[
+   594→\Reg_T(\mathcal A_M)
+   595→\le
+   596→\Aapp^{\mathsf r}(M)
+   597→+
+   598→\Est_M^{\mathsf r}(T).
+   599→\]
+   600→Adaptive aggregation over the state budget $M$ yields an oracle inequality
+   601→without knowledge of the optimal budget.  For bounded agnostic losses, the
+   602→adaptive penalty is
+   603→\[
+   604→\PsiAgg_M(T)
+   605→=
+   606→O\!\left(
+   607→\sqrt{T\ln(eM)}
+   608→+
+   609→\ln(eM)
+   610→\right).
+   611→\]
+   612→Realizable $0/1$ and mixable log-loss model selection have logarithmic
+   613→overhead.  Spectral tails enter online rates only under explicit spectral-rate
+   614→assumptions.
+   615→
+   616→Estimation rates may be supplied by a Littlestone bound, a multiclass
+   617→Littlestone bound, a mixability bound, or a linear-regret bound.  The oracle
+   618→inequality does not assume a single estimation rate across regimes.
+   619→
+   620→\paragraph{Linear Price-of-Safety surrogate.}
+   621→For a quadratic/Fisher retention embedding with state-indexed centered Gram
+   622→matrix
+   623→\[
+   624→G_{st}
+   625→=
+   626→\sqrt{\pi_s\pi_t}\,
+   627→\langle y_s-\bar y,\;y_t-\bar y\rangle,
+   628→\]
+   629→and a safety partition inducing a pinching conditional expectation
+   630→$\EA$, the linear block-local Price-of-Safety surrogate is
+   631→\[
+   632→\PoSlin(M)
+   633→=
+   634→\frac12\KyF{G}{M-1}
+   635→-
+   636→\frac12\KyF{\EA G}{M-1}.
+   637→\]
+   638→Pinching majorization gives nonnegativity:
+   639→\[
+   640→\PoSlin(M)\ge0.
+   641→\]
+   642→The coupling bound
+   643→\[
+   644→\PoSlin(M)
+   645→\le
+   646→\frac12\KyF{G-\EA G}{M-1}
+   647→\]
+   648→is an upper bound, not an equality.  This surrogate is exact for the linear
+   649→block-local problem but is not the discrete right-congruence Price of Safety
+   650→without relaxation-error control.
+   651→
+   652→\paragraph{Exponent vertex correspondence.}
+   653→The manuscript separates three exponent-like layers:
+   654→\begin{enumerate}[nosep,label=(\arabic*)]
+   655→\item R\'enyi order $\alpha$;
+   656→\item Schatten exponent $p$;
+   657→\item aggregation or vertex label.
+   658→\end{enumerate}
+   659→
+   660→Retention is the $\alpha=1$ KL vertex.  Commitment is recovered from the
+   661→$\alpha=0$ support vertex after symmetrization and Boolean valuation.
+   662→Grounding is organized by the $\alpha=\infty$ supremum vertex, but the exact
+   663→unrestricted linear finite-rank grounding cost is operator-norm distance, not
+   664→max-divergence.
+   665→
+   666→The equality of vertex labels
+   667→\[
+   668→\alpha=p\in\{0,1,\infty\}
+   669→\]
+   670→is a formal consistency, not a derivation of the Mirsky converses from
+   671→R\'enyi identities.
+   672→
+   673→\paragraph{Temporal protocols.}
+   674→On the deterministic Mealy classes $\mathcal H_M$, the reset-word,
+   675→persistent-stream, and active residual-identification protocols each have
+   676→mistake complexity $\Theta(M\log M)$; the persistent-stream and active
+   677→lower bounds are explicit forcing constructions rather than Littlestone
+   678→transfers, and agnostic regret is $\Theta(\sqrt{TM\log M})$.
+   679→
+   680→%----------------------------------------------------------------------
+   681→\subsection{Roadmap}
+   682→\label{subsec:roadmap}
+   683→%----------------------------------------------------------------------
+   684→
+   685→Section~\ref{sec:schema} develops the shared finite-state schema.
+   686→Section~\ref{sec:specialized} defines specialized task theories.
+   687→Section~\ref{sec:meta} states the structural meta-theorems.
+   688→Section~\ref{sec:retention} develops retention.
+   689→Section~\ref{sec:commitment} develops commitment.
+   690→Section~\ref{sec:grounding} develops grounding.
+   691→Section~\ref{sec:schatten} develops the conditional Schatten-converse
+   692→template.
+   693→Section~\ref{sec:oracle} develops the adaptive two-axis oracle inequality and
+   694→the associated budget laws.
+   695→Section~\ref{sec:pos-linear} develops the linear Price-of-Safety surrogate and
+   696→the pinching law.
+   697→Section~\ref{sec:exponent} develops the exponent vertex correspondence.
+   698→Section~\ref{sec:joint} develops joint, comparative, interaction, and
+   699→independence results.
+   700→Section~\ref{sec:temporal} develops the temporal axis.
+   701→Section~\ref{sec:spectral-heuristic} states the spectral-tail heuristic.
+   702→Section~\ref{sec:conditional-rep} states the Conditional Representation
+   703→Theorem.
+   704→Section~\ref{sec:type-discipline} fixes the type signature that every
+   705→approximation statement carries.
+   706→Section~\ref{sec:epistemic} records epistemic boundaries.
+   707→Section~\ref{sec:conclusion} concludes.
+   708→
+   709→%======================================================================
+   710→\section{The Schema of Finite-State Approximation}
+   711→\label{sec:schema}
+   712→%======================================================================
+   713→
+   714→This section develops the shared finite-state schema.  The schema supplies a
+   715→common syntax for all regimes: histories, enriched cost categories, finite
+   716→right congruences, quotient machines, stationary aggregation, and profinite
+   717→completion.  The analytical meaning of the residual objects is supplied later
+   718→by each regime.
+   719→
+   720→%----------------------------------------------------------------------
+   721→\subsection{The Enriching Poset}
+   722→\label{subsec:enriching-poset}
+   723→%----------------------------------------------------------------------
+   724→
+   725→All costs take values in the monoidal poset
+   726→\[
+   727→\mathbf V=([0,\infty],\ge,+,0).
+   728→\]
+   729→The unit is $0$, and the order is reversed from the usual real order: a
+   730→morphism $v\to v'$ exists iff $v\ge v'$ in the usual order.  Thus $0$ is
+   731→terminal and $\infty$ is initial.  A morphism $v\to v'$ records that the cost
+   732→has decreased from $v$ to $v'$.
+   733→
+   734→The Boolean sub-poset is
+   735→\[
+   736→\mathbf V_{\mathbb B}=\{0,\infty\}\subset[0,\infty].
+   737→\]
+   738→It corresponds to exact equality versus definite mismatch.  A normalized
+   739→Boolean mismatch cost with values $\{0,1\}$ is treated separately as an
+   740→operational corollary.  The structural zero-error theory uses
+   741→$\{0,\infty\}$; the normalized decision-theoretic version uses $\{0,1\}$.
+   742→
+   743→The reversed-order convention is the standard Lawvere metric convention
+   744→\cite{lawvere1973}.
+   745→
+   746→%----------------------------------------------------------------------
+   747→\subsection{$\mathbf V$-Categories and $\mathbf V$-Profunctors}
+   748→\label{subsec:V-cats-profunctors}
+   749→%----------------------------------------------------------------------
+   750→
+   751→A \textbf{$\mathbf V$-category} $\mathbf R$ consists of a set of objects
+   752→$\operatorname{ob}(\mathbf R)$ and hom-objects
+   753→\[
+   754→\mathbf R(X,Y)\in\mathbf V
+   755→\]
+   756→satisfying:
+   757→\begin{enumerate}[label=(\roman*),nosep]
+   758→\item \textbf{Identity.}
+   759→\[
+   760→0\ge \mathbf R(X,X),
+   761→\]
+   762→hence $\mathbf R(X,X)=0$.
+   763→
+   764→\item \textbf{Composition.}
+   765→\[
+   766→\mathbf R(X,Y)+\mathbf R(Y,Z)\ge \mathbf R(X,Z).
+   767→\]
+   768→\end{enumerate}
+   769→
+   770→A \textbf{$\mathbf V$-profunctor}
+   771→\[
+   772→\mathcal E:\mathbf R^{\mathrm{op}}\times\mathbf R\to\mathbf V
+   773→\]
+   774→assigns costs $\mathcal E(X,Y)$ with left and right actions satisfying
+   775→\[
+   776→\mathbf R(X',X)+\mathcal E(X,Y)\ge \mathcal E(X',Y),
+   777→\]
+   778→and
+   779→\[
+   780→\mathcal E(X,Y)+\mathbf R(Y,Y')\ge \mathcal E(X,Y').
+   781→\]
+   782→
+   783→The profunctor $\mathcal E$ is the cost bimodule.  It measures the mismatch
+   784→between residual objects $X$ and $Y$, while the left and right actions express
+   785→compatibility with the internal geometry of $\mathbf R$.
+   786→
+   787→\begin{remark}[Discrete versus enriched residuals]
+   788→\label{rem:discrete-vs-enriched}
+   789→For retention and commitment, $\mathbf R$ is usually a discrete
+   790→$\mathbf V$-category:
+   791→\[
+   792→\mathbf R(X,Y)=
+   793→\begin{cases}
+   794→0,&X=Y,\\
+   795→\infty,&X\neq Y.
+   796→\end{cases}
+   797→\]
+   798→Then the action inequalities impose no triangle inequality on $\mathcal E$.
+   799→KL divergence is not a metric, and Boolean mismatch is not a metric.
+   800→
+   801→For grounding, $\mathbf R$ may be a metric $\mathbf V$-category of operators,
+   802→with
+   803→\[
+   804→\mathbf R(X,Y)=
+   805→\norm{X-Y}_{\mathrm{op}}.
+   806→\]
+   807→If $\mathcal E$ is the identity profunctor,
+   808→\[
+   809→\mathcal E(X,Y)=\mathbf R(X,Y),
+   810→\]
+   811→then the action inequalities reduce to the triangle inequality for the
+   812→operator norm.
+   813→\end{remark}
+   814→
+   815→%----------------------------------------------------------------------
+   816→\subsection{The History $\mathbf V$-Category}
+   817→\label{subsec:history-category}
+   818→%----------------------------------------------------------------------
+   819→
+   820→Let $\mathcal I$ be a finite input alphabet.  The \textbf{history
+   821→$\mathbf V$-category} $\mathbf H$ is the discrete $\mathbf V$-category on the
+   822→free monoid $\mathcal I^*$:
+   823→\begin{itemize}[nosep]
+   824→\item objects are finite words $u\in\mathcal I^*$;
+   825→\item hom-objects are
+   826→\[
+   827→\mathbf H(u,v)=
+   828→\begin{cases}
+   829→0,&u=v,\\
+   830→\infty,&u\neq v.
+   831→\end{cases}
+   832→\]
+   833→\end{itemize}
+   834→
+   835→Because $\mathbf H$ is discrete, any object-level map
+   836→\[
+   837→\delta:\mathcal I^*\to\operatorname{ob}(\mathbf R)
+   838→\]
+   839→is automatically a $\mathbf V$-functor.  No nontrivial morphism inequalities
+   840→need to be checked.
+   841→
+   842→The prefix structure of histories is not encoded in the hom-objects of
+   843→$\mathbf H$.  It is encoded externally in the right-congruence condition,
+   844→which ensures that deterministic finite-state approximations evolve
+   845→consistently under input extensions.
+   846→
+   847→%----------------------------------------------------------------------
+   848→\subsection{Task Theory with Stationary Aggregation}
+   849→\label{subsec:task-theory}
+   850→%----------------------------------------------------------------------
+   851→
+   852→\begin{definition}[Task Theory]
+   853→\label{def:task-theory}
+   854→A \textbf{task theory} is a tuple
+   855→\[
+   856→\mathbb T=(\mathbf H,\mathbf R,\mathcal E,\delta,\mathrm{Agg},\mathcal L)
+   857→\]
+   858→where:
+   859→\begin{enumerate}[nosep,label=(\arabic*)]
+   860→\item $\mathbf H$ is the history $\mathbf V$-category.
+   861→\item $\mathbf R$ is a $\mathbf V$-category of residual objects.
+   862→\item $\mathcal E:\mathbf R^{\mathrm{op}}\times\mathbf R\to\mathbf V$ is a
+   863→cost profunctor which is \textbf{reflexive}: $\mathcal E(X,X)=0$ for every
+   864→$X\in\mathbf R$.  Reflexivity is not automatic for a $\mathbf V$-profunctor.
+   865→In the Lawvere quantale $([0,\infty],\ge,+)$ the constant profunctor
+   866→$\mathcal E\equiv1$ on a one-object $\mathbf R$ satisfies every profunctor
+   867→axiom, and for it the trajectory cannot be realized at any budget even though
+   868→its Myhill--Nerode index is $1$.  Every cost used in this manuscript --- KL divergence,
+   869→operator norm, and the $0/1$ commitment loss --- is reflexive, so the axiom
+   870→constrains nothing in the instances but is required for the generic statements
+   871→of Meta-Theorem~\ref{meta:monotone}.
+   872→\item $\delta:\mathbf H\to\mathbf R$ is the true trajectory.
+   873→\item $\mathrm{Agg}$ is an aggregation scheme, one of:
+   874→\begin{itemize}[nosep]
+   875→\item a stationary Ces\`aro average;
+   876→\item a discounted prefix measure; or
+   877→\item the worst-case supremum
+   878→$\mathcal L_\infty(\delta,\widehat\delta)=\sup_{u\in\mathcal I^*}
+   879→\mathcal E(\delta(u),\widehat\delta(u))$.
+   880→\end{itemize}
+   881→The first two are \emph{average-case} schemes and require the stationary or
+   882→discounted datum; the third requires none.  A task theory carrying the
+   883→worst-case scheme is called \emph{uniform}.  Results are stated against a
+   884→declared scheme, since the Boolean dichotomy in particular takes different
+   885→forms under worst-case and average-case aggregation
+   886→(Meta-Theorem~\ref{meta:boolean}).
+   887→\item $\mathcal L$ is the resulting cost functional.
+   888→\end{enumerate}
+   889→\end{definition}
+   890→
+   891→\begin{definition}[Stationary Ces\`aro aggregation]
+   892→\label{def:cesaro-agg}
+   893→Let $U_t$ denote the stationary past at time $t$.  For a cost process
+   894→\[
+   895→c_t=\mathcal E(\delta(U_t),\widehat\delta(U_t)),
+   896→\]
+   897→define
+   898→\[
+   899→\overline{\mathcal L}_1(\delta,\widehat\delta)
+   900→=
+   901→\lim_{T\to\infty}
+   902→\frac1T
+   903→\sum_{t=0}^{T-1}
+   904→\mathbb E[c_t],
+   905→\]
+   906→whenever the limit exists.
+   907→\end{definition}
+   908→
+   909→For finite-state stationary ergodic processes and finite-state
+   910→approximations, the limit exists under standard ergodicity assumptions.  In
+   911→non-ergodic settings, one may replace the limit by a limsup or by ergodic
+   912→decomposition.
+   913→
+   914→\begin{definition}[Discounted prefix aggregation]
+   915→\label{def:discounted-agg}
+   916→For $0<\gamma<1$, define a probability measure on $\mathcal I^*$ by
+   917→\[
+   918→\mu_\gamma(u)
+   919→=
+   920→(1-\gamma)\gamma^{|u|}
+   921→\mathbb P(X_{1:|u|}=u).
+   922→\]
+   923→Then
+   924→\[
+   925→\mathcal L_1^\gamma(\delta,\widehat\delta)
+   926→=
+   927→\mathbb E_{u\sim\mu_\gamma}
+   928→\mathcal E(\delta(u),\widehat\delta(u)).
+   929→\]
+   930→\end{definition}
+   931→
+   932→The discounted prefix measure is a probability measure because
+   933→\[
+   934→\sum_{u\in\mathcal I^*}\mu_\gamma(u)
+   935→=
+   936→(1-\gamma)
+   937→\sum_{n=0}^\infty
+   938→\gamma^n
+   939→\sum_{|u|=n}
+   940→\mathbb P(X_{1:n}=u)
+   941→=
+   942→(1-\gamma)
+   943→\sum_{n=0}^\infty
+   944→\gamma^n
+   945→=
+   946→1.
+   947→\]
+   948→
+   949→The worst-case aggregation remains
+   950→\[
+   951→\mathcal L_\infty(\delta,\widehat\delta)
+   952→=
+   953→\sup_{u\in\mathcal I^*}
+   954→\mathcal E(\delta(u),\widehat\delta(u)).
+   955→\]
+   956→It is not an average-case aggregation and should not be conflated with the
+   957→stationary Ces\`aro or discounted prefix schemes.
+   958→
+   959→\begin{remark}[Finite Prefixes versus Stationary States]
+   960→\label{rem:prefixes-versus-states}
+   961→Finite prefixes do not define a probability measure on all of
+   962→$\mathcal I^*$.  For stationary retention, the canonical object is the
+   963→stationary state process $(S_t)$ and its stationary support $\Splus$.  Finite
+   964→histories enter directly in synchronized machines, where $S_t$ is a function
+   965→of a finite suffix of the input past.
+   966→\end{remark}
+   967→
+   968→%----------------------------------------------------------------------
+   969→\subsection{Regime-Typed History Actions}
+   970→\label{subsec:history-actions}
+   971→%----------------------------------------------------------------------
+   972→
+   973→The finite-state resource shared by the three regimes is the index of a finite
+   974→quotient of a history system.  Which history system is regime-dependent: the
+   975→regimes share the \emph{form} of a finite-index right-action quotient, not a
+   976→single literal free monoid.  Forcing every regime onto $\mathcal I^*$ would
+   977→misdescribe predictive machines whose state update reads the realized output.
+   978→
+   979→\begin{definition}[History System]
+   980→\label{def:history-system}
+   981→A \textbf{history system} is a tuple
+   982→\[
+   983→\mathsf H=(H,h_\varnothing,\mathcal A,\cdot),
+   984→\]
+   985→where $H$ is a set of finite histories with root $h_\varnothing$, $\mathcal A$
+   986→is an event alphabet, and $\cdot$ is a partial right action
+   987→\[
+   988→H\times\mathcal A\rightharpoonup H,
+   989→\qquad
+   990→(h,a)\mapsto h\cdot a,
+   991→\]
+   992→defined exactly when $a$ is \emph{feasible} from $h$; write
+   993→$\mathrm{Feas}(h)\subseteq\mathcal A$ for the set of feasible events.  The
+   994→action is \emph{pruned}: whenever $h\cdot a$ is defined it lies in $H$.  If
+   995→$\mathrm{Feas}(h)=\mathcal A$ for every $h$, the action is \emph{total}.
+   996→\end{definition}
+   997→
+   998→\begin{definition}[Support-Relative Right Congruence]
+   999→\label{def:support-right-cong}
+  1000→Let $\mathsf H=(H,h_\varnothing,\mathcal A,\cdot)$ be a history system.  A
+  1001→\textbf{support-relative right congruence} on $\mathsf H$ is an equivalence
+  1002→relation $\sim$ on $H$ such that $u\sim v$ implies
+  1003→\begin{enumerate}[label=(\roman*),nosep]
+  1004→\item $\mathrm{Feas}(u)=\mathrm{Feas}(v)$; and
+  1005→\item $u\cdot a\sim v\cdot a$ for every $a\in\mathrm{Feas}(u)$.
+  1006→\end{enumerate}
+  1007→Its \textbf{index} is the number of equivalence classes.  The quotient
+  1008→$H/\!\sim$ carries a well-defined partial transition $[u]\cdot a=[u\cdot a]$,
+  1009→with $\mathrm{Feas}([u])=\mathrm{Feas}(u)$; clause~(i) is exactly what makes
+  1010→the feasible-event set of a class well defined.  For a total action clause~(i)
+  1011→is vacuous and the definition reduces to Definition~\ref{def:right-cong}.
+  1012→\end{definition}
+  1013→
+  1014→\begin{remark}[Clause~(i) Is Not Redundant]
+  1015→\label{rem:support-clause-i-needed}
+  1016→Clause~(ii) alone, read as a condition on commonly feasible events, does not
+  1017→give a quotient history system.  Take $\mathcal A=\{a,b\}$ and two histories
+  1018→$u,v$ with $\mathrm{Feas}(u)=\{a\}$ and $\mathrm{Feas}(v)=\{b\}$.  The
+  1019→relation identifying $u$ with $v$ satisfies clause~(ii) vacuously, there being
+  1020→no commonly feasible event, yet the class $[u]$ has no well-defined feasible
+  1021→set and the quotient carries no transition structure.  This is the mechanism
+  1022→behind Remark~\ref{rem:unifilar-support-not-automatic} below.
+  1023→\end{remark}
+  1024→
+  1025→\begin{remark}[The Regimes as History Systems]
+  1026→\label{rem:regime-history-instances}
+  1027→The principal instantiations are the following.
+  1028→
+  1029→\begin{center}
+  1030→\begin{tabular}{@{}llp{3.1cm}l@{}}
+  1031→\toprule
+  1032→regime & $H$ & $\mathcal A$ & action \\
+  1033→\midrule
+  1034→commitment & $\mathcal I^*$ & $\mathcal I$ & total \\
+  1035→retention, unifilar & feasible joint histories
+  1036→& $\mathcal I\times\mathcal O$ & pruned \\
+  1037→retention, input-driven & $\mathcal I^*$ & $\mathcal I$ & total \\
+  1038→grounding & $\Sigma^*$, $\Sigma=\mathcal I\times\mathcal O$ & $\Sigma$ & total \\
+  1039→\bottomrule
+  1040→\end{tabular}
+  1041→\end{center}
+  1042→
+  1043→For commitment and grounding the action is total and
+  1044→Definition~\ref{def:right-cong} applies verbatim.  For unifilar retention the
+  1045→feasible joint histories form a pruned tree under the stationary law, and
+  1046→compatibility with the action is understood in the support-relative sense.  The
+  1047→input-driven model of Definition~\ref{def:controlled-markov} is the case in
+  1048→which the state process factors through the input projection, and the
+  1049→input-history syntax is recovered.  The history $\mathbf V$-category of
+  1050→Section~\ref{subsec:history-category} is built on whichever $H$ the regime
+  1051→supplies; being discrete, it makes every object-level trajectory a
+  1052→$\mathbf V$-functor regardless of which system is used.
+  1053→\end{remark}
+  1054→
+  1055→\begin{lemma}[Cofilteredness for Support-Relative Congruences]
+  1056→\label{lem:cofiltered-support}
+  1057→Let $\sim_1,\sim_2$ be finite-index support-relative right congruences on a
+  1058→history system $\mathsf H$.  Then $\sim_1\cap\sim_2$ is one as well, refines
+  1059→both, and has index at most
+  1060→$\operatorname{index}(\sim_1)\operatorname{index}(\sim_2)$.  The finite
+  1061→quotients of $\mathsf H$ therefore form a cofiltered system.
+  1062→\end{lemma}
+  1063→
+  1064→\begin{proof}
+  1065→The intersection of equivalence relations is an equivalence relation.  If
+  1066→$u\,(\sim_1\cap\sim_2)\,v$ then $\mathrm{Feas}(u)=\mathrm{Feas}(v)$ already
+  1067→from $\sim_1$, giving clause~(i); and for $a$ in that common feasible set,
+  1068→$u\cdot a\sim_iv\cdot a$ for $i=1,2$, giving clause~(ii).  The map
+  1069→$[u]_{\sim_1\cap\sim_2}\mapsto([u]_{\sim_1},[u]_{\sim_2})$ is well defined and
+  1070→injective, which is the index bound.  The argument is that of
+  1071→Lemma~\ref{lem:cofiltered}, with the feasible-set clause carried along.
+  1072→\end{proof}
+  1073→
+  1074→%----------------------------------------------------------------------
+  1075→\subsection{Right Congruences and Quotients}
+  1076→\label{subsec:right-cong}
+  1077→%----------------------------------------------------------------------
+  1078→
+  1079→\begin{definition}[Right Congruence]
+  1080→\label{def:right-cong}
+  1081→A \textbf{right congruence} $\sim$ on $\mathbf H$ is an equivalence relation
+  1082→on $\mathcal I^*$ such that
+  1083→\[
+  1084→u\sim v
+  1085→\implies
+  1086→uw\sim vw
+  1087→\quad
+  1088→\forall w\in\mathcal I^*.
+  1089→\]
+  1090→Equivalently, it suffices to require
+  1091→\[
+  1092→u\sim v
+  1093→\implies
+  1094→ux\sim vx
+  1095→\quad
+  1096→\forall x\in\mathcal I.
+  1097→\]
+  1098→The \textbf{index} of $\sim$ is the number of equivalence classes.
+  1099→\end{definition}
+  1100→
+  1101→This is the total-action instance of Definition~\ref{def:support-right-cong};
+  1102→pruned retention history systems use the support-relative form.
+  1103→
+  1104→The quotient $\mathbf Q=\mathbf H/\!\sim$ has objects $[u]$ and hom-objects
+  1105→\[
+  1106→\mathbf Q([u],[v])=
+  1107→\begin{cases}
+  1108→0,&[u]=[v],\\
+  1109→\infty,&\text{otherwise}.
+  1110→\end{cases}
+  1111→\]
+  1112→The quotient map
+  1113→\[
+  1114→Q:\mathbf H\to\mathbf Q,
+  1115→\qquad
+  1116→u\mapsto[u],
+  1117→\]
+  1118→is a $\mathbf V$-functor.  The right-congruence condition ensures that the
+  1119→quotient carries a well-defined deterministic transition
+  1120→\[
+  1121→[u]\cdot x=[ux].
+  1122→\]
+  1123→
+  1124→\begin{definition}[$M$-State Approximation]
+  1125→\label{def:M-state-approx}
+  1126→An \textbf{$M$-state approximation} of a task theory $\mathbb T$ is a pair
+  1127→$(\sim,\Psi)$ where $\sim$ is a right congruence of index at most $M$ and
+  1128→\[
+  1129→\Psi:\mathbf Q\to\mathbf R
+  1130→\]
+  1131→is a $\mathbf V$-functor.  The approximate trajectory is
+  1132→\[
+  1133→\Psi\circ Q:\mathbf H\to\mathbf R.
+  1134→\]
+  1135→\end{definition}
+  1136→
+  1137→\begin{definition}[$M$-State Gap]
+  1138→\label{def:M-state-gap}
+  1139→The \textbf{$M$-state gap} is
+  1140→\[
+  1141→\Delta_{\mathbb T}(M)
+  1142→=
+  1143→\inf_{\substack{\sim,\Psi\\ \operatorname{index}(\sim)\le M}}
+  1144→\mathcal L(\delta,\Psi\circ Q).
+  1145→\]
+  1146→\end{definition}
+  1147→
+  1148→\begin{remark}[Machine type depends on $\mathbf R$]
+  1149→\label{rem:realization-types}
+  1150→The composite $\Psi\circ Q$ has deterministic state-transition structure, but
+  1151→its per-state content depends on $\mathbf R$:
+  1152→\begin{itemize}[nosep]
+  1153→\item \textbf{Commitment:} each state stores a residual function; the
+  1154→approximant is a deterministic Mealy BSG.
+  1155→\item \textbf{Retention:} each state stores a predictive distribution or
+  1156→kernel; the approximant is a unifilar lumped controlled predictor
+  1157→(Definition~\ref{def:unifilar-lumpable}), and in the input-driven synchronized
+  1158→subclass a deterministic-transition, stochastic-emission machine, in the sense
+  1159→of Definition~\ref{def:unifilar-machine} and
+  1160→Remark~\ref{rem:unifilar-proper-subclass}.
+  1161→\item \textbf{Grounding spectral converse:} each state stores an operator or
+  1162→linear coordinate; the approximant is a linear finite-rank realization.
+  1163→\end{itemize}
+  1164→The shared theorems concern $\operatorname{index}(\sim)$.  The
+  1165→regime-specific theorems concern the semantic objects attached to the states.
+  1166→\end{remark}
+  1167→
+  1168→\begin{remark}[Stationary Retention Quotients]
+  1169→\label{rem:schema-stationary-retention}
+  1170→For stationary controlled unifilar machines, the primary feasible objects are
+  1171→unifilar-lumpable quotients
+  1172→\[
+  1173→\phi:\Splus\to\mathcal K
+  1174→\]
+  1175→(Definition~\ref{def:unifilar-lumpable}).  In a machine with joint-history
+  1176→synchronization depth $L$, each such quotient with block-uniform support
+  1177→induces a support-relative right congruence on feasible joint histories of
+  1178→length at least $L$ by
+  1179→\[
+  1180→u\sim_\phi v
+  1181→\iff
+  1182→\phi(\sigma(u))=\phi(\sigma(v))
+  1183→\]
+  1184→(Proposition~\ref{prop:unifilar-lumpability}); in the input-driven
+  1185→synchronized subclass this projects to the input-history right congruence of
+  1186→Proposition~\ref{prop:lumpability}.  Thus the finite-state budget remains an
+  1187→index resource, now on regime-typed histories.  For non-synchronized
+  1188→stationary machines, finite-index right congruences on finite histories should
+  1189→be replaced by finite-state factors of the stationary state process.
+  1190→\end{remark}
+  1191→
+  1192→%----------------------------------------------------------------------
+  1193→\subsection{Profinite Completion}
+  1194→\label{subsec:profinite-completion}
+  1195→%----------------------------------------------------------------------
+  1196→
+  1197→The finite quotients of $\mathbf H$ form a cofiltered system; the
+  1198→support-relative analogue, for pruned history systems, is
+  1199→Lemma~\ref{lem:cofiltered-support}.  Let $\mathcal C$ be the cofiltered poset
+  1200→of finite-index right congruences on $\mathcal I^*$, ordered by refinement:
+  1201→\[
+  1202→\sim_1\le\sim_2
+  1203→\quad\Longleftrightarrow\quad
+  1204→\sim_1\text{ refines }\sim_2.
+  1205→\]
+  1206→
+  1207→\begin{lemma}[$\mathcal C$ Is Cofiltered]
+  1208→\label{lem:cofiltered}
+  1209→If $\sim_1$ and $\sim_2$ are finite-index right congruences on $\mathcal I^*$,
+  1210→then so is $\sim_1\cap\sim_2$, and it refines both.
+  1211→\end{lemma}
+  1212→
+  1213→\begin{proof}
+  1214→The intersection is an equivalence relation.  It is a right congruence: if
+  1215→$u\sim_1v$ and $u\sim_2v$, then for every $w\in\mathcal I^*$ we have
+  1216→$uw\sim_1vw$ and $uw\sim_2vw$, hence
+  1217→$uw\,(\sim_1\cap\sim_2)\,vw$.  The map
+  1218→\[
+  1219→[u]_{\sim_1\cap\sim_2}
+  1220→\mapsto
+  1221→\bigl([u]_{\sim_1},\,[u]_{\sim_2}\bigr)
+  1222→\]
+  1223→is well defined and injective, so
+  1224→\[
+  1225→\operatorname{index}(\sim_1\cap\sim_2)
+  1226→\le
+  1227→\operatorname{index}(\sim_1)\,
+  1228→\operatorname{index}(\sim_2)
+  1229→<
+  1230→\infty.
+  1231→\]
+  1232→Thus $\sim_1\cap\sim_2\in\mathcal C$ refines both, so $\mathcal C$ is
+  1233→cofiltered.
+  1234→\end{proof}
+  1235→
+  1236→\begin{definition}[Profinite completion]
+  1237→\label{def:profinite-completion}
+  1238→The \textbf{profinite completion} of $\mathbf H$ is
+  1239→\[
+  1240→\widehat{\mathbf H}
+  1241→=
+  1242→\varprojlim_{\sim\in\mathcal C}
+  1243→\mathbf H/\!\sim.
+  1244→\]
+  1245→\end{definition}
+  1246→
+  1247→An object of $\widehat{\mathbf H}$ is a compatible family
+  1248→\[
+  1249→(q_\sim)_\sim,
+  1250→\qquad
+  1251→q_\sim\in\mathbf H/\!\sim,
+  1252→\]
+  1253→such that whenever $\sim_1$ refines $\sim_2$, the projection of
+  1254→$q_{\sim_1}$ to $\mathbf H/\!\sim_2$ equals $q_{\sim_2}$.
+  1255→
+  1256→There is a canonical dense embedding
+  1257→\[
+  1258→\iota:\mathbf H\hookrightarrow\widehat{\mathbf H},
+  1259→\qquad
+  1260→u\mapsto([u]_\sim)_\sim.
+  1261→\]
+  1262→Injectivity is not formal: it holds because the free monoid $\mathcal I^*$ is
+  1263→\emph{residually finite} with respect to finite-index right congruences.
+  1264→Given distinct $u\ne v$, set $N>\max\{|u|,|v|\}$ and let $\sim_N$ identify two
+  1265→words when they are equal, or when both have length at least $N$.  This is a
+  1266→right congruence: if $w\sim_Nw'$ and $x\in\mathcal I$ then either $w=w'$, whence
+  1267→$wx=w'x$, or both $|w|,|w'|\ge N$, whence both $|wx|,|w'x|\ge N$.  It has
+  1268→finite index $|\mathcal I^{<N}|+1$, and separates $u$ from $v$.  Hence the
+  1269→components of $\iota(u)$ and $\iota(v)$ differ at $\sim_N$.
+  1270→
+  1271→The same separation argument applies to pruned history systems, once
+  1272→feasibility is carried along.
+  1273→
+  1274→\begin{proposition}[Residual Finiteness of Synchronized Unifilar History Trees]
+  1275→\label{prop:unifilar-residually-finite}
+  1276→Let a unifilar machine (Definition~\ref{def:unifilar-machine}) have
+  1277→joint-history synchronization, so that its feasible histories of length at
+  1278→least $L$ form a pruned history system $F$ carrying a state readout
+  1279→$\sigma:F\to\Splus$ with $\sigma(u\cdot a)=\tau(\sigma(u),a)$ on feasible
+  1280→events.  Then $F$ is residually finite with respect to finite-index
+  1281→support-relative right congruences: the canonical map from $F$ into the inverse
+  1282→limit of its finite quotients is injective.
+  1283→\end{proposition}
+  1284→
+  1285→\begin{proof}
+  1286→Let $u\neq v$ in $F$.  Choose $N>\max\{|u|,|v|\}$ and define $\sim_N$ by
+  1287→declaring $w\sim_Nw'$ when either $w=w'$, or $|w|,|w'|\ge N$ and
+  1288→$\sigma(w)=\sigma(w')$.
+  1289→
+  1290→\emph{Finite index.}  There are at most
+  1291→$\sum_{n<N}|\mathcal I\times\mathcal O|^{\,n}$ singleton classes of length
+  1292→below $N$ and at most $|\Splus|$ state-labelled classes at length $N$ or
+  1293→above.
+  1294→
+  1295→\emph{Clause~(i).}  Feasibility of $(x,y)$ from a history $w$ means
+  1296→$P_{\sigma(w)}^x(\{y\})>0$, so it is a function of $\sigma(w)$ alone.  Two
+  1297→histories identified by $\sim_N$ are either equal or have equal $\sigma$, and
+  1298→in both cases have the same feasible events.
+  1299→
+  1300→\emph{Clause~(ii).}  In the identity case $w\cdot a=w'\cdot a$.  Otherwise
+  1301→$|w|,|w'|\ge N$ and $\sigma(w)=\sigma(w')$, so for a feasible $(x,y)$,
+  1302→\[
+  1303→\sigma\bigl(w\cdot(x,y)\bigr)
+  1304→=
+  1305→\tau(\sigma(w),x,y)
+  1306→=
+  1307→\tau(\sigma(w'),x,y)
+  1308→=
+  1309→\sigma\bigl(w'\cdot(x,y)\bigr),
+  1310→\]
+  1311→and both extensions have length at least $N+1$, hence
+  1312→$w\cdot(x,y)\sim_Nw'\cdot(x,y)$.
+  1313→
+  1314→Since $N$ exceeds $|u|$ and $|v|$, both are singleton classes of $\sim_N$ and
+  1315→are therefore separated, so the corresponding components of their images in
+  1316→the inverse limit differ.
+  1317→\end{proof}
+  1318→
+  1319→For total-action regimes the completion is that of the free monoid; for
+  1320→synchronized unifilar retention it is the completion of the feasible
+  1321→joint-history tree, residually finite by
+  1322→Proposition~\ref{prop:unifilar-residually-finite}.
+  1323→
+  1324→The \textbf{profinite uniformity} on $\mathbf H$ is the initial uniformity
+  1325→with respect to the projections
+  1326→\[
+  1327→\mathbf H\to\mathbf H/\!\sim.
+  1328→\]
+  1329→Equivalently, its basic entourages are
+  1330→\[
+  1331→U_\sim
+  1332→=
+  1333→\{(u,v)\in\mathcal I^*\times\mathcal I^*:u\sim v\},
+  1334→\]
+  1335→where $\sim$ ranges over finite-index right congruences.
+  1336→
+  1337→\begin{remark}[Cofiltered limits and Lawvere's framework]
+  1338→\label{rem:lawvere-limit}
+  1339→The enriched poset
+  1340→\[
+  1341→\mathbf V=([0,\infty],\ge,+,0)
+  1342→\]
+  1343→is complete symmetric monoidal closed in the sense of Lawvere
+  1344→\cite{lawvere1973}.  The relevant enriched cofiltered limits therefore exist.
+  1345→Because $\mathbf V$ is posetal, the enriched inverse limit coincides with the
+  1346→ordinary compatible-family limit on objects, equipped with the induced
+  1347→profinite uniformity.
+  1348→\end{remark}
+  1349→
+  1350→\begin{remark}[Profinite uniformity for discrete residual categories]
+  1351→\label{rem:profinite-discrete}
+  1352→Let $\mathbf R$ be a discrete $\mathbf V$-category.  Uniform continuity of a
+  1353→trajectory
+  1354→\[
+  1355→\delta:\mathbf H\to\mathbf R
+  1356→\]
+  1357→in the profinite uniformity is equivalent to $\delta$ factoring through some
+  1358→finite quotient:
+  1359→\[
+  1360→\mathbf H
+  1361→\longrightarrow
+  1362→\mathbf H/\!\sim
+  1363→\longrightarrow
+  1364→\mathbf R
+  1365→\]
+  1366→for some finite-index right congruence $\sim$.  Indeed, in a discrete
+  1367→$\mathbf V$-category the only entourages are those containing the diagonal, so
+  1368→uniform continuity requires a finite-index congruence $\sim$ with
+  1369→$u\sim v\Rightarrow\delta(u)=\delta(v)$, which is exactly factorization through
+  1370→$\mathbf H/\!\sim$.
+  1371→\end{remark}
+  1372→
+  1373→\begin{remark}[Compactness and convergence]
+  1374→\label{rem:profinite-compact}
+  1375→Each finite quotient $\mathbf H/\!\sim$ is a finite discrete space.  The
+  1376→inverse limit $\widehat{\mathbf H}$ is compact in the profinite topology.
+  1377→This compactness underlies the profinite convergence meta-theorem: under
+  1378→compact-uniform hypotheses on $\mathbf R$ and $\mathcal E$, uniform continuity
+  1379→of $\delta$ is equivalent to continuous extension to $\widehat{\mathbf H}$,
+  1380→and hence to approximability by finite-index right congruences with vanishing
+  1381→gap.
+  1382→\end{remark}
+  1383→
+  1384→The profinite completion is not an analytic Hilbert-space completion such as
+  1385→an $L^2$ completion.  It is a logical or Stone-type completion generated by
+  1386→finite deterministic quotients.
+  1387→
+  1388→%======================================================================
+  1389→\section{Specialized Task Theories}
+  1390→\label{sec:specialized}
+  1391→%======================================================================
+  1392→
+  1393→The generic schema becomes operative after the residual category, cost
+  1394→profunctor, and aggregation scheme are specialized.  This section defines the
+  1395→principal specialized task theories used later: separated task theories,
+  1396→compact uniform task theories, Hilbert-module task theories, stationary
+  1397→controlled causal machines, full-KL retention, and Gaussian quadratic
+  1398→restricted retention.
+  1399→
+  1400→%----------------------------------------------------------------------
+  1401→\subsection{Separated Task Theories}
+  1402→\label{subsec:separated}
+  1403→%----------------------------------------------------------------------
+  1404→
+  1405→\begin{definition}[Separated Task Theory]
+  1406→\label{def:separated-task}
+  1407→A task theory $\mathbb T$ is \textbf{separated} if:
+  1408→\[
+  1409→\mathbf R(X,Y)=\mathbf R(Y,X)=0
+  1410→\implies
+  1411→X=Y,
+  1412→\]
+  1413→and
+  1414→\[
+  1415→\mathcal E(X,Y)=0
+  1416→\implies
+  1417→X=Y.
+  1418→\]
+  1419→\end{definition}
+  1420→
+  1421→\begin{definition}[Myhill--Nerode Equivalence]
+  1422→\label{def:nerode}
+  1423→For any task theory $\mathbb T$, the \textbf{Myhill--Nerode equivalence}
+  1424→$\sim_\delta$ is
+  1425→\[
+  1426→u\sim_\delta v
+  1427→\iff
+  1428→\forall w\in\mathcal I^*,
+  1429→\quad
+  1430→\mathbf R(\delta(uw),\delta(vw))
+  1431→=
+  1432→\mathbf R(\delta(vw),\delta(uw))
+  1433→=
+  1434→0.
+  1435→\]
+  1436→\end{definition}
+  1437→
+  1438→The two-sided condition is used because $\mathbf R$ need not be symmetric.  If
+  1439→$\mathbf R$ is symmetric, the condition reduces to
+  1440→\[
+  1441→\mathbf R(\delta(uw),\delta(vw))=0
+  1442→\quad
+  1443→\forall w.
+  1444→\]
+  1445→
+  1446→The Myhill--Nerode equivalence is always a right congruence.  Indeed, if
+  1447→$u\sim_\delta v$, then for every $x\in\mathcal I$ and every
+  1448→$w\in\mathcal I^*$,
+  1449→\[
+  1450→\delta(uxw)=\delta(u(xw)),
+  1451→\qquad
+  1452→\delta(vxw)=\delta(v(xw)),
+  1453→\]
+  1454→so the defining zero-distance condition for $u$ and $v$ applied to the
+  1455→continuation $xw$ gives $ux\sim_\delta vx$.
+  1456→
+  1457→In the commitment regime, $\sim_\delta$ is the usual Myhill--Nerode residual
+  1458→equivalence.  In the retention regime, when predictive distributions are
+  1459→distinct on the stationary support, it coincides with causal-state
+  1460→equivalence.  In grounding regimes, it may correspond to equality of residual
+  1461→kernels or impulse-response functionals, depending on the chosen residual
+  1462→category.
+  1463→
+  1464→%----------------------------------------------------------------------
+  1465→\subsection{Compact Uniform Task Theories}
+  1466→\label{subsec:compact-uniform}
+  1467→%----------------------------------------------------------------------
+  1468→
+  1469→\begin{definition}[Compact Metrizable $\mathbf V$-Category]
+  1470→\label{def:compact-metrizable}
+  1471→A $\mathbf V$-category $\mathbf R$ is \textbf{compact metrizable} if
+  1472→$\operatorname{ob}(\mathbf R)$ carries a compact metric topology and the
+  1473→hom-object map
+  1474→\[
+  1475→\mathbf R(-,-):
+  1476→\operatorname{ob}(\mathbf R)\times\operatorname{ob}(\mathbf R)
+  1477→\to
+  1478→[0,\infty]
+  1479→\]
+  1480→is continuous in the metric topology, with the usual extended-real topology on
+  1481→$[0,\infty]$.
+  1482→\end{definition}
+  1483→
+  1484→More generally, one may use a compact uniform space in place of a compact
+  1485→metric space.  The profinite convergence meta-theorem is stated under the
+  1486→hypothesis that $\mathbf R$ is compact metrizable or compact uniform and that
+  1487→the cost profunctor $\mathcal E$ is uniformly continuous and separated.
+  1488→
+  1489→\begin{remark}[Separate Continuity Is Insufficient]
+  1490→\label{rem:separate-continuity-insufficient}
+  1491→Separate continuity alone is insufficient for the profinite equivalence.  The
+  1492→meta-theorem uses joint uniform continuity, or compact-uniform continuity, of
+  1493→the cost profunctor.
+  1494→\end{remark}
+  1495→
+  1496→%----------------------------------------------------------------------
+  1497→\subsection{Hilbert-Module Task Theories and Linear Hankel Gaps}
+  1498→\label{subsec:hilbert-module}
+  1499→%----------------------------------------------------------------------
+  1500→
+  1501→\begin{definition}[Hilbert-Module Task Theory]
+  1502→\label{def:hilbert-module}
+  1503→A \textbf{Hilbert-module task theory} is a separated task theory on a finite
+  1504→joint alphabet
+  1505→\[
+  1506→\Sigma=\mathcal I\times\mathcal O
+  1507→\]
+  1508→equipped with the following additional data:
+  1509→\begin{enumerate}[label=(\arabic*)]
+  1510→\item a Banach space $B$ of residual observables;
+  1511→\item a bounded linear functional
+  1512→\[
+  1513→\phi:B\to\mathbb C;
+  1514→\]
+  1515→\item an impulse-response function
+  1516→\[
+  1517→h:\Sigma^*\to\mathbb C
+  1518→\]
+  1519→obtained from the true trajectory by
+  1520→\[
+  1521→h(u)=\phi(\delta(u));
+  1522→\]
+  1523→\item a Hankel operator
+  1524→\[
+  1525→H_\delta:\ell^2(\Sigma^*)\to\ell^2(\Sigma^*)
+  1526→\]
+  1527→specified on the standard basis by
+  1528→\[
+  1529→(H_\delta e_u)(v)=h(uv),
+  1530→\]
+  1531→\emph{provided} this densely defined formula extends to a bounded operator on
+  1532→$\ell^2(\Sigma^*)$.  Boundedness is not automatic: for general $h$ the vector
+  1533→$v\mapsto h(uv)$ need not be square summable, and even when it is, the induced
+  1534→matrix need not be bounded.  A sufficient condition is the geometric decay
+  1535→hypothesis of Proposition~\ref{prop:stable-decay}, which yields boundedness by
+  1536→the Schur test;
+  1537→\item compactness of the resulting bounded operator $H_\delta$.
+  1538→\end{enumerate}
+  1539→A Hilbert-module task theory is said to be \emph{spectrally admissible} when
+  1540→the Hankel operator exists as a bounded operator and is compact, i.e.\ when
+  1541→conditions~(iv) and~(v) hold.  All singular-value statements below are
+  1542→asserted only for spectrally admissible task theories.
+  1543→\end{definition}
+  1544→
+  1545→If the residual objects are operators, $B$ may be an operator space or a
+  1546→$C^*$-algebra, and $\phi$ may be a bounded functional selecting the scalar
+  1547→observable relevant to the impulse response.  The scalar impulse response $h$
+  1548→is the object seen by the Hankel operator.  Distinct residual objects may
+  1549→induce the same impulse response; the Hankel theory below depends only on $h$
+  1550→unless additional domination hypotheses are supplied.
+  1551→
+  1552→\begin{remark}[Residual Norm versus Hankel Norm]
+  1553→\label{rem:hilbert-residual-hankel}
+  1554→The norm used for residual-operator comparisons is the norm of $B$, while the
+  1555→Hankel gap uses the $\ell^2$ operator norm of $H_\delta$.  No domination
+  1556→between the $B$-norm and the Hankel operator norm is assumed.
+  1557→\end{remark}
+  1558→
+  1559→The model does not assume an unqualified domination hypothesis of the form
+  1560→\[
+  1561→\norm{H_\delta-H_{\widehat\delta}}_{\mathrm{op}}
+  1562→\le
+  1563→\mathcal L_\infty(\delta,\widehat\delta).
+  1564→\]
+  1565→Such an inequality may hold under explicit decay or summability conditions,
+  1566→but it is not a general axiom.
+  1567→
+  1568→\begin{definition}[Unrestricted Linear Hankel Relaxation Gap]
+  1569→\label{def:linear-hankel-gap}
+  1570→The \textbf{unrestricted linear Hankel $M$-rank relaxation gap} is
+  1571→\[
+  1572→\Delta_{\mathbb T}^{\mathrm{unres}}(M)
+  1573→=
+  1574→\inf_{\operatorname{rank}\widehat H\le M}
+  1575→\norm{H_\delta-\widehat H}_{\mathrm{op}}.
+  1576→\]
+  1577→The infimum is over bounded operators $\widehat H$ of rank at most $M$, not
+  1578→necessarily Hankel operators.
+  1579→\end{definition}
+  1580→
+  1581→This is an operator-approximation gap.  It is the object to which
+  1582→Eckart--Young--Mirsky \cite{eckart1936,mirsky1960} applies directly.
+  1583→
+  1584→\begin{definition}[Hankel-Structured Finite-Rank Gap]
+  1585→\label{def:hankel-structured-gap}
+  1586→The \textbf{Hankel-structured finite-rank gap} is
+  1587→\[
+  1588→\Delta_{\mathbb T}^{\mathrm{Hank,str}}(M)
+  1589→=
+  1590→\inf_{\substack{
+  1591→\operatorname{rank}\widehat H\le M\\
+  1592→\widehat H\ \text{Hankel}
+  1593→}}
+  1594→\norm{H_\delta-\widehat H}_{\mathrm{op}}.
+  1595→\]
+  1596→The infimum is over Hankel operators of rank at most $M$.
+  1597→\end{definition}
+  1598→
+  1599→Because the Hankel-structured feasible set is a subset of the unrestricted
+  1600→feasible set,
+  1601→\[
+  1602→\Delta_{\mathbb T}^{\mathrm{Hank,str}}(M)
+  1603→\ge
+  1604→\Delta_{\mathbb T}^{\mathrm{unres}}(M).
+  1605→\]
+  1606→Equality requires additional structure.
+  1607→
+  1608→\begin{definition}[Linear Finite-Rank Residual-Cost Gap]
+  1609→\label{def:lin-finite-rank-gap}
+  1610→The \textbf{linear finite-rank residual-cost gap} is
+  1611→\[
+  1612→\Delta_{\mathbb T}^{\mathrm{lin}}(M)
+  1613→=
+  1614→\inf
+  1615→\left\{
+  1616→\mathcal L_\infty(\delta,\widehat\delta):
+  1617→\operatorname{rank}H_{\widehat\delta}\le M
+  1618→\right\}.
+  1619→\]
+  1620→\end{definition}
+  1621→
+  1622→The residual-cost gap $\Delta_{\mathbb T}^{\mathrm{lin}}(M)$ and the
+  1623→unrestricted Hankel relaxation gap
+  1624→$\Delta_{\mathbb T}^{\mathrm{unres}}(M)$ are distinct objects.  The former
+  1625→measures task loss of finite-rank residual approximants; the latter measures
+  1626→operator-norm approximation to $H_\delta$.  They are related only under
+  1627→explicit domination or achievability hypotheses.
+  1628→
+  1629→\begin{definition}[Weighted Residual Norm]
+  1630→\label{def:weighted-residual-norm}
+  1631→For $0<\rho<1$, define
+  1632→\[
+  1633→\norm{d}_{\infty,\rho}
+  1634→=
+  1635→\sup_{w\in\Sigma^*}
+  1636→\rho^{-|w|}
+  1637→|d(w)|.
+  1638→\]
+  1639→\end{definition}
+  1640→
+  1641→\begin{proposition}[Stable-Decay Hankel Domination]
+  1642→\label{prop:stable-decay}
+  1643→Suppose
+  1644→\[
+  1645→|h_\delta(w)-h_{\widehat\delta}(w)|
+  1646→\le
+  1647→\varepsilon\rho^{|w|}
+  1648→\]
+  1649→with
+  1650→\[
+  1651→0<\rho<\frac1{|\Sigma|}.
+  1652→\]
+  1653→Then
+  1654→\[
+  1655→\norm{H_\delta-H_{\widehat\delta}}_{\mathrm{op}}
+  1656→\le
+  1657→\frac{1}{1-|\Sigma|\rho}
+  1658→\varepsilon.
+  1659→\]
+  1660→Equivalently, if
+  1661→\[
+  1662→\norm{h_\delta-h_{\widehat\delta}}_{\infty,\rho}
+  1663→\le
+  1664→\varepsilon,
+  1665→\]
+  1666→then
+  1667→\[
+  1668→\norm{H_\delta-H_{\widehat\delta}}_{\mathrm{op}}
+  1669→\le
+  1670→\frac{1}{1-|\Sigma|\rho}
+  1671→\norm{h_\delta-h_{\widehat\delta}}_{\infty,\rho}.
+  1672→\]
+  1673→\end{proposition}
+  1674→
+  1675→\begin{proof}
+  1676→Let
+  1677→\[
+  1678→A=H_\delta-H_{\widehat\delta}.
+  1679→\]
+  1680→The Hankel matrix entries satisfy
+  1681→\[
+  1682→|A(u,v)|
+  1683→=
+  1684→|h_\delta(uv)-h_{\widehat\delta}(uv)|
+  1685→\le
+  1686→\varepsilon\rho^{|u|+|v|}.
+  1687→\]
+  1688→By Schur's test,
+  1689→\[
+  1690→\sup_u\sum_v |A(u,v)|
+  1691→\le
+  1692→\varepsilon
+  1693→\sup_u
+  1694→\rho^{|u|}
+  1695→\sum_{v\in\Sigma^*}
+  1696→\rho^{|v|}.
+  1697→\]
+  1698→Since $\rho^{|u|}\le1$ and the number of words of length $n$ is
+  1699→$|\Sigma|^n$,
+  1700→\[
+  1701→\sum_{v\in\Sigma^*}\rho^{|v|}
+  1702→=
+  1703→\sum_{n=0}^\infty
+  1704→|\Sigma|^n\rho^n
+  1705→=
+  1706→\frac{1}{1-|\Sigma|\rho}.
+  1707→\]
+  1708→Thus
+  1709→\[
+  1710→\sup_u\sum_v |A(u,v)|
+  1711→\le
+  1712→\frac{\varepsilon}{1-|\Sigma|\rho}.
+  1713→\]
+  1714→The same bound holds for columns.  Schur's test therefore gives
+  1715→\[
+  1716→\norm{A}_{\mathrm{op}}
+  1717→\le
+  1718→\frac{\varepsilon}{1-|\Sigma|\rho}.
+  1719→\]
+  1720→\end{proof}
+  1721→
+  1722→\begin{remark}[AAK versus EYM]
+  1723→\label{rem:aak-eym-hilbert}
+  1724→The default spectral converse for
+  1725→$\Delta_{\mathbb T}^{\mathrm{unres}}(M)$ is Eckart--Young--Mirsky:
+  1726→\[
+  1727→\Delta_{\mathbb T}^{\mathrm{unres}}(M)
+  1728→=
+  1729→\sigma_{M+1}(H_\delta).
+  1730→\]
+  1731→Adamjan--Arov--Krein applies only after a Hardy-space embedding has been
+  1732→separately established.  The model does not assume such an embedding by
+  1733→default.
+  1734→\end{remark}
+  1735→
+  1736→\begin{remark}[Infinite support and boundedness]
+  1737→\label{rem:infinite-support}
+  1738→Infinite support of an impulse response does not by itself imply that the
+  1739→associated Hankel operator is unbounded.  Boundedness requires decay or
+  1740→summability conditions.  For example, scalar impulse responses satisfying
+  1741→$|h(u)|\le C\rho^{|u|}$ with $0<\rho<1/|\Sigma|$ define bounded Hankel-type
+  1742→operators by the Schur-test argument above.  Bounded symbolic impulse
+  1743→responses that fail to decay may or may not define bounded Hankel operators;
+  1744→boundedness is checked case by case.
+  1745→\end{remark}
+  1746→
+  1747→%----------------------------------------------------------------------
+  1748→\subsection{Stationary Controlled Causal Machines}
+  1749→\label{subsec:controlled-markov}
+  1750→%----------------------------------------------------------------------
+  1751→
+  1752→\begin{definition}[Stationary Controlled Causal Machine]
+  1753→\label{def:controlled-markov}
+  1754→A \textbf{stationary controlled causal machine} consists of:
+  1755→\begin{enumerate}[label=(\arabic*)]
+  1756→\item a finite input alphabet $\mathcal I$;
+  1757→\item a standard Borel output space $\mathcal O$;
+  1758→\item a finite state set $\mathcal S$;
+  1759→\item a deterministic transition map
+  1760→\[
+  1761→\tau:\mathcal S\times\mathcal I\to\mathcal S;
+  1762→\]
+  1763→\item emission laws
+  1764→\[
+  1765→P_s\in\mathcal P(\mathcal O)
+  1766→\]
+  1767→for each $s\in\mathcal S$;
+  1768→\item a stationary ergodic input process $(X_t)_{t\in\mathbb Z}$;
+  1769→\item a stationary state process $(S_t)_{t\in\mathbb Z}$ satisfying
+  1770→\[
+  1771→S_t=\tau(S_{t-1},X_t)
+  1772→\quad\text{a.s.};
+  1773→\]
+  1774→\item a stationary distribution
+  1775→\[
+  1776→\pi_s=\mathbb P(S_t=s);
+  1777→\]
+  1778→\item a predictive future variable $Z_t$, by default the next output $Y_t$,
+  1779→such that $S_t$ is sufficient:
+  1780→\[
+  1781→Z_t\perp\!\!\!\perp
+  1782→\{S_u,X_u,Y_u:u<t\}
+  1783→\mid S_t.
+  1784→\]
+  1785→\end{enumerate}
+  1786→The predictive distribution of state $s$ is
+  1787→\[
+  1788→P_s=\mathcal L(Z_t\mid S_t=s).
+  1789→\]
+  1790→The stationary support is
+  1791→\[
+  1792→\Splus=\{s\in\mathcal S:\pi_s>0\}.
+  1793→\]
+  1794→\end{definition}
+  1795→
+  1796→\begin{definition}[Stationary Controlled Unifilar Causal Machine]
+  1797→\label{def:unifilar-machine}
+  1798→A \textbf{stationary controlled unifilar causal machine} consists of a finite
+  1799→input alphabet $\mathcal I$, a standard Borel output space $\mathcal O$, a
+  1800→finite state set $\mathcal S$, emission kernels
+  1801→\[
+  1802→P_s^x=\mathcal L\bigl(Y_t\mid S_t=s,\ X_t=x\bigr),
+  1803→\]
+  1804→a measurable \emph{unifilar} update
+  1805→\[
+  1806→\tau:\mathcal S\times\mathcal I\times\mathcal O\to\mathcal S,
+  1807→\qquad
+  1808→S_{t+1}=\tau(S_t,X_t,Y_t)\quad\text{a.s.},
+  1809→\]
+  1810→defined on jointly feasible triples, together with a stationary ergodic input
+  1811→process, a stationary distribution $\pi$, and a declared predictive target
+  1812→$Z_t$.
+  1813→
+  1814→An update with $\tau(s,x,y)=\tau_0(s,x)$ for every feasible $y$ is called
+  1815→\emph{output-independent}; in that case the recursion collapses to
+  1816→$S_{t+1}=\tau_0(S_t,X_t)$ and, after an index shift, the machine is exactly a
+  1817→stationary controlled causal machine in the sense of
+  1818→Definition~\ref{def:controlled-markov}.
+  1819→\end{definition}
+  1820→
+  1821→\begin{remark}[The Input-Driven Model Is a Proper Subclass]
+  1822→\label{rem:unifilar-proper-subclass}
+  1823→The containment is strict, and the witness is standard.  Take
+  1824→$|\mathcal I|=1$, $\mathcal O=\{0,1\}$, two states $A,B$, with $A$ emitting
+  1825→$0$ or $1$ with equal probability and $B$ emitting $1$ almost surely, and
+  1826→\[
+  1827→\tau(A,\cdot,0)=A,\qquad \tau(A,\cdot,1)=B,\qquad \tau(B,\cdot,1)=A .
+  1828→\]
+  1829→Since the input alphabet is a singleton, the input history of length $t$ is
+  1830→the unique word of that length, yet the state after two steps is $A$ on the
+  1831→output history $00$ and $B$ on $01$.  The state is therefore not a function of
+  1832→the input history, and no map $\tau_0:\mathcal S\times\mathcal I\to\mathcal S$
+  1833→reproduces this machine.
+  1834→
+  1835→Consequently Definition~\ref{def:controlled-markov} describes an
+  1836→\emph{input-driven} transducer, and the descriptions of it as a lumped
+  1837→$\epsilon$-machine refer to this output-independent subclass rather than to
+  1838→general controlled $\epsilon$-machines, whose causal states are functions of
+  1839→joint input--output histories
+  1840→(Remark~\ref{rem:epsilon-machine-relation}).  The retention theory is developed
+  1841→for the full unifilar class in
+  1842→Section~\ref{subsec:unifilar-retention}, with the input-driven model as the
+  1843→output-independent specialization; the complexity constructions of
+  1844→Section~\ref{subsec:retention-complexity} are stated for the input-driven model
+  1845→and transfer to the unifilar class by
+  1846→Remark~\ref{rem:complexity-transfer}.
+  1847→\end{remark}
+  1848→
+  1849→\begin{definition}[$Z$-predictive equivalence]
+  1850→\label{def:z-predictive-equivalence}
+  1851→Fix the predictive target $Z_t$.  On the stationary support define
+  1852→\[
+  1853→s\sim_Z s'
+  1854→\iff
+  1855→\mathcal L(Z_t\mid S_t=s)
+  1856→=
+  1857→\mathcal L(Z_t\mid S_t=s').
+  1858→\]
+  1859→If $Z_t$ is the entire controlled future, $\sim_Z$ is causal-state
+  1860→equivalence.  If $Z_t=Y_t$ is only the next output, $\sim_Z$ is one-step
+  1861→predictive equivalence, which is strictly coarser in general and need not
+  1862→identify causal states.
+  1863→
+  1864→Throughout, ``causal equivalence'' means $\sim_Z$ for the declared target
+  1865→$Z$, and coincides with causal-state equivalence exactly when $Z$ is the full
+  1866→future.  All retention statements, including the zero-retention threshold,
+  1867→are to be read with respect to distinct $Z$-predictive states.
+  1868→
+  1869→For unifilar machines with input-dependent emissions
+  1870→(Definition~\ref{def:unifilar-machine}) the predictive object attached to a
+  1871→state is the whole kernel $x\mapsto P_s^x$, and $\sim_Z$ compares kernels on
+  1872→the input support: $s\sim_Zs'$ if and only if $P_s^x=P_{s'}^x$ for every input
+  1873→$x$ of positive mass.
+  1874→\end{definition}
+  1875→
+  1876→Finite output alphabets are the special case in which all $P_s$ are supported
+  1877→on a finite set.  Gaussian quadratic retention is obtained by taking
+  1878→$\mathcal O=\mathbb R^D$ and $P_s$ Gaussian.
+  1879→
+  1880→\begin{definition}[Synchronized Finite-History Realization]
+  1881→\label{def:synchronized-realization}
+  1882→A stationary controlled causal machine has \textbf{synchronization depth}
+  1883→$L<\infty$ if there exists a surjection
+  1884→\[
+  1885→\sigma_L:\mathcal I^L\to\Splus
+  1886→\]
+  1887→such that, almost surely,
+  1888→\[
+  1889→S_t=\sigma_L(X_{t-L+1},\dots,X_t).
+  1890→\]
+  1891→For histories $u$ with $|u|\ge L$, define
+  1892→\[
+  1893→\sigma(u)=\sigma_L(\operatorname{suffix}_L(u)).
+  1894→\]
+  1895→Then for all sufficiently long $u$,
+  1896→\[
+  1897→\sigma(ux)=\tau(\sigma(u),x).
+  1898→\]
+  1899→The finite-history trajectory is
+  1900→\[
+  1901→\delta(u)=P_{\sigma(u)}.
+  1902→\]
+  1903→\end{definition}
+  1904→
+  1905→Thus the original finite-history/right-congruence syntax is recovered for
+  1906→definite and synchronizing machines, including all NP-hardness constructions.
+  1907→
+  1908→\begin{definition}[Causal Equivalence]
+  1909→\label{def:causal-equivalence}
+  1910→On the stationary support, causal equivalence is
+  1911→\[
+  1912→s\sim_\delta t
+  1913→\iff
+  1914→P_s=P_t.
+  1915→\]
+  1916→In a synchronized machine, the corresponding history equivalence is
+  1917→\[
+  1918→u\sim_\delta v
+  1919→\iff
+  1920→\sigma(u)=\sigma(v).
+  1921→\]
+  1922→If the predictive distributions $P_s$ are pairwise distinct on $\Splus$, then
+  1923→causal equivalence coincides with state identity on $\Splus$.
+  1924→\end{definition}
+  1925→
+  1926→\begin{definition}[Lumpable Quotient]
+  1927→\label{def:lumpable-quotient}
+  1928→A map $\phi:\Splus\to\mathcal K$ is \textbf{lumpable} if there exists a
+  1929→deterministic quotient transition
+  1930→\[
+  1931→\tau_{\mathcal K}:\mathcal K\times\mathcal I\to\mathcal K
+  1932→\]
+  1933→such that
+  1934→\[
+  1935→\phi(\tau(s,x))
+  1936→=
+  1937→\tau_{\mathcal K}(\phi(s),x)
+  1938→\]
+  1939→for all $s\in\Splus$ and all inputs $x$ in the support of the input process.
+  1940→For worst-case aggregation, require this for all $x\in\mathcal I$.
+  1941→The quotient process is
+  1942→\[
+  1943→K_t=\phi(S_t).
+  1944→\]
+  1945→\end{definition}
+  1946→
+  1947→\begin{definition}[Unifilar Lumpability]
+  1948→\label{def:unifilar-lumpable}
+  1949→A quotient $\phi:\mathcal S\to\mathcal K$ of a unifilar machine is
+  1950→\textbf{unifilar-lumpable} if there is
+  1951→$\tau_{\mathcal K}:\mathcal K\times\mathcal I\times\mathcal O\to\mathcal K$
+  1952→with
+  1953→\[
+  1954→\phi\bigl(\tau(s,x,y)\bigr)=\tau_{\mathcal K}\bigl(\phi(s),x,y\bigr)
+  1955→\]
+  1956→for every \emph{jointly feasible} triple $(s,x,y)$, that is, every triple with
+  1957→$P_s^x(\{y\})>0$ in the discrete case and, in general, every triple in the
+  1958→support of the joint law.  The singleton quotient is always
+  1959→unifilar-lumpable.
+  1960→
+  1961→The quotient has \textbf{block-uniform support} if
+  1962→\[
+  1963→\phi(s)=\phi(s')
+  1964→\implies
+  1965→\supp P_s^x=\supp P_{s'}^x
+  1966→\qquad\text{for every }x
+  1967→\]
+  1968→in the input support.  More generally, say that $\phi$ has \textbf{connected
+  1969→support} if for every block $C$ and every input $x$ the graph on $C$ joining
+  1970→$s$ to $s'$ when $\supp P_s^x\cap\supp P_{s'}^x\neq\varnothing$ is connected;
+  1971→block-uniform support is the special case in which that graph is complete.
+  1972→\end{definition}
+  1973→
+  1974→\begin{remark}[Unifilar Lumpability Does Not Reduce to
+  1975→Definition~\ref{def:lumpable-quotient}]
+  1976→\label{rem:unifilar-support-not-automatic}
+  1977→For an output-independent update Definition~\ref{def:unifilar-lumpable} is
+  1978→strictly weaker than Definition~\ref{def:lumpable-quotient}, and the two do not
+  1979→collapse onto each other.  Writing
+  1980→$\tau(s,x,y)=\tau_0(s,x)$, unifilar lumpability requires
+  1981→$\phi(\tau_0(s,x))=\phi(\tau_0(s',x))$ only for $s,s'$ in a common block that
+  1982→share a feasible output $y$ at input $x$; ordinary lumpability requires it for
+  1983→\emph{all} $s,s'$ in the block.  When within-block emission supports are
+  1984→disjoint the requirement is vacuous and the unifilar notion is strictly weaker.
+  1985→
+  1986→An explicit witness has $\mathcal I=\{0,1\}$, $\mathcal O=\{0,1\}$, three
+  1987→states, and
+  1988→\[
+  1989→\tau_0(s_0,0)=s_0,\quad \tau_0(s_0,1)=s_1,\qquad
+  1990→\tau_0(s_1,0)=s_0,\quad \tau_0(s_1,1)=s_2,
+  1991→\]
+  1992→\[
+  1993→\tau_0(s_2,0)=s_0,\quad \tau_0(s_2,1)=s_0,
+  1994→\]
+  1995→with $s_0,s_1$ emitting $0$ almost surely and $s_2$ emitting $1$ almost surely.
+  1996→The chain is irreducible with strictly positive stationary distribution.  The
+  1997→partition $\{\{s_0,s_2\},\{s_1\}\}$ is unifilar-lumpable --- $s_0$ and $s_2$
+  1998→never share a feasible output, so no intertwining is demanded of them --- yet
+  1999→it is not lumpable, since $\tau_0(s_0,1)=s_1$ and $\tau_0(s_2,1)=s_0$ lie in
+  2000→different blocks.
+
+[showing lines 1-2000 of 18033; use offset=2001 with limit to continue reading]
