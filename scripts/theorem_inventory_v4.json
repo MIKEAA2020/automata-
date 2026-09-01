@@ -1,0 +1,3828 @@
+{
+ "items": [
+  {
+   "env": "remark",
+   "line": 453,
+   "label": "rem:quotient-display-scope",
+   "section": "Introduction: The Bounded Sequential Generator and Its Regimes",
+   "has_proof": false,
+   "title": "[Scope of the Quotient Display]",
+   "end_line": 470
+  },
+  {
+   "env": "remark",
+   "line": 787,
+   "label": "rem:discrete-vs-enriched",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Discrete versus enriched residuals]",
+   "end_line": 813
+  },
+  {
+   "env": "definition",
+   "line": 852,
+   "label": "def:task-theory",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Task Theory]",
+   "end_line": 889
+  },
+  {
+   "env": "definition",
+   "line": 891,
+   "label": "def:cesaro-agg",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Stationary Ces\\`aro aggregation]",
+   "end_line": 907
+  },
+  {
+   "env": "definition",
+   "line": 914,
+   "label": "def:discounted-agg",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Discounted prefix aggregation]",
+   "end_line": 930
+  },
+  {
+   "env": "remark",
+   "line": 959,
+   "label": "rem:prefixes-versus-states",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Finite Prefixes versus Stationary States]",
+   "end_line": 966
+  },
+  {
+   "env": "definition",
+   "line": 979,
+   "label": "def:history-system",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[History System]",
+   "end_line": 996
+  },
+  {
+   "env": "definition",
+   "line": 998,
+   "label": "def:support-right-cong",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Support-Relative Right Congruence]",
+   "end_line": 1012
+  },
+  {
+   "env": "remark",
+   "line": 1014,
+   "label": "rem:support-clause-i-needed",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Clause~(i) Is Not Redundant]",
+   "end_line": 1023
+  },
+  {
+   "env": "remark",
+   "line": 1025,
+   "label": "rem:regime-history-instances",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[The Regimes as History Systems]",
+   "end_line": 1053
+  },
+  {
+   "env": "lemma",
+   "line": 1055,
+   "label": "lem:cofiltered-support",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": true,
+   "title": "[Cofilteredness for Support-Relative Congruences]",
+   "end_line": 1062,
+   "proof_line": 1064
+  },
+  {
+   "env": "definition",
+   "line": 1079,
+   "label": "def:right-cong",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Right Congruence]",
+   "end_line": 1099
+  },
+  {
+   "env": "definition",
+   "line": 1124,
+   "label": "def:M-state-approx",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[$M$-State Approximation]",
+   "end_line": 1135
+  },
+  {
+   "env": "definition",
+   "line": 1137,
+   "label": "def:M-state-gap",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[$M$-State Gap]",
+   "end_line": 1146
+  },
+  {
+   "env": "remark",
+   "line": 1148,
+   "label": "rem:realization-types",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Machine type depends on $\\mathbf R$]",
+   "end_line": 1166
+  },
+  {
+   "env": "remark",
+   "line": 1168,
+   "label": "rem:schema-stationary-retention",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Stationary Retention Quotients]",
+   "end_line": 1190
+  },
+  {
+   "env": "lemma",
+   "line": 1207,
+   "label": "lem:cofiltered",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": true,
+   "title": "[$\\mathcal C$ Is Cofiltered]",
+   "end_line": 1211,
+   "proof_line": 1213
+  },
+  {
+   "env": "definition",
+   "line": 1236,
+   "label": "def:profinite-completion",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Profinite completion]",
+   "end_line": 1245
+  },
+  {
+   "env": "proposition",
+   "line": 1274,
+   "label": "prop:unifilar-residually-finite",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": true,
+   "title": "[Residual Finiteness of Synchronized Unifilar History Trees]",
+   "end_line": 1283,
+   "proof_line": 1285
+  },
+  {
+   "env": "remark",
+   "line": 1337,
+   "label": "rem:lawvere-limit",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Cofiltered limits and Lawvere's framework]",
+   "end_line": 1348
+  },
+  {
+   "env": "remark",
+   "line": 1350,
+   "label": "rem:profinite-discrete",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Profinite uniformity for discrete residual categories]",
+   "end_line": 1371
+  },
+  {
+   "env": "remark",
+   "line": 1373,
+   "label": "rem:profinite-compact",
+   "section": "The Schema of Finite-State Approximation",
+   "has_proof": false,
+   "title": "[Compactness and convergence]",
+   "end_line": 1382
+  },
+  {
+   "env": "definition",
+   "line": 1405,
+   "label": "def:separated-task",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Separated Task Theory]",
+   "end_line": 1419
+  },
+  {
+   "env": "definition",
+   "line": 1421,
+   "label": "def:nerode",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Myhill--Nerode Equivalence]",
+   "end_line": 1436
+  },
+  {
+   "env": "definition",
+   "line": 1469,
+   "label": "def:compact-metrizable",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Compact Metrizable $\\mathbf V$-Category]",
+   "end_line": 1482
+  },
+  {
+   "env": "remark",
+   "line": 1489,
+   "label": "rem:separate-continuity-insufficient",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Separate Continuity Is Insufficient]",
+   "end_line": 1494
+  },
+  {
+   "env": "definition",
+   "line": 1501,
+   "label": "def:hilbert-module",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Hilbert-Module Task Theory]",
+   "end_line": 1543
+  },
+  {
+   "env": "remark",
+   "line": 1552,
+   "label": "rem:hilbert-residual-hankel",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Residual Norm versus Hankel Norm]",
+   "end_line": 1557
+  },
+  {
+   "env": "definition",
+   "line": 1568,
+   "label": "def:linear-hankel-gap",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Unrestricted Linear Hankel Relaxation Gap]",
+   "end_line": 1579
+  },
+  {
+   "env": "definition",
+   "line": 1584,
+   "label": "def:hankel-structured-gap",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Hankel-Structured Finite-Rank Gap]",
+   "end_line": 1597
+  },
+  {
+   "env": "definition",
+   "line": 1608,
+   "label": "def:lin-finite-rank-gap",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Linear Finite-Rank Residual-Cost Gap]",
+   "end_line": 1620
+  },
+  {
+   "env": "definition",
+   "line": 1629,
+   "label": "def:weighted-residual-norm",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Weighted Residual Norm]",
+   "end_line": 1639
+  },
+  {
+   "env": "proposition",
+   "line": 1641,
+   "label": "prop:stable-decay",
+   "section": "Specialized Task Theories",
+   "has_proof": true,
+   "title": "[Stable-Decay Hankel Domination]",
+   "end_line": 1673,
+   "proof_line": 1675
+  },
+  {
+   "env": "remark",
+   "line": 1722,
+   "label": "rem:aak-eym-hilbert",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[AAK versus EYM]",
+   "end_line": 1734
+  },
+  {
+   "env": "remark",
+   "line": 1736,
+   "label": "rem:infinite-support",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Infinite support and boundedness]",
+   "end_line": 1745
+  },
+  {
+   "env": "definition",
+   "line": 1752,
+   "label": "def:controlled-markov",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Stationary Controlled Causal Machine]",
+   "end_line": 1794
+  },
+  {
+   "env": "definition",
+   "line": 1796,
+   "label": "def:unifilar-machine",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Stationary Controlled Unifilar Causal Machine]",
+   "end_line": 1819
+  },
+  {
+   "env": "remark",
+   "line": 1821,
+   "label": "rem:unifilar-proper-subclass",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[The Input-Driven Model Is a Proper Subclass]",
+   "end_line": 1847
+  },
+  {
+   "env": "definition",
+   "line": 1849,
+   "label": "def:z-predictive-equivalence",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[$Z$-predictive equivalence]",
+   "end_line": 1874
+  },
+  {
+   "env": "definition",
+   "line": 1880,
+   "label": "def:synchronized-realization",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Synchronized Finite-History Realization]",
+   "end_line": 1903
+  },
+  {
+   "env": "definition",
+   "line": 1908,
+   "label": "def:causal-equivalence",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Causal Equivalence]",
+   "end_line": 1924
+  },
+  {
+   "env": "definition",
+   "line": 1926,
+   "label": "def:lumpable-quotient",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Lumpable Quotient]",
+   "end_line": 1945
+  },
+  {
+   "env": "definition",
+   "line": 1947,
+   "label": "def:unifilar-lumpable",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Unifilar Lumpability]",
+   "end_line": 1972
+  },
+  {
+   "env": "remark",
+   "line": 1974,
+   "label": "rem:unifilar-support-not-automatic",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Unifilar Lumpability Does Not Reduce to",
+   "end_line": 2013
+  },
+  {
+   "env": "proposition",
+   "line": 2015,
+   "label": "prop:lumpability",
+   "section": "Specialized Task Theories",
+   "has_proof": true,
+   "title": "[Right-Congruence Correspondence in Synchronized Machines]",
+   "end_line": 2036,
+   "proof_line": 2038
+  },
+  {
+   "env": "example",
+   "line": 2075,
+   "label": "ex:onestep-not-congruence",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[One-Step Predictive Equivalence Need Not Be a Congruence]",
+   "end_line": 2120
+  },
+  {
+   "env": "definition",
+   "line": 2127,
+   "label": "def:full-kl-retention",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Full-KL Retention Gap]",
+   "end_line": 2159
+  },
+  {
+   "env": "definition",
+   "line": 2173,
+   "label": "def:gaussian-quadratic",
+   "section": "Specialized Task Theories",
+   "has_proof": false,
+   "title": "[Gaussian Quadratic Restricted Retention]",
+   "end_line": 2257
+  },
+  {
+   "env": "metatheorem",
+   "line": 2346,
+   "label": "meta:monotone",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Monotonicity and Profinite Convergence]",
+   "end_line": 2402,
+   "proof_line": 2404
+  },
+  {
+   "env": "remark",
+   "line": 2464,
+   "label": "rem:average-profinite",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Average-case aggregation]",
+   "end_line": 2471
+  },
+  {
+   "env": "definition",
+   "line": 2478,
+   "label": "def:observable-support-index",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Observable Support Index]",
+   "end_line": 2510
+  },
+  {
+   "env": "remark",
+   "line": 2512,
+   "label": "rem:support-restriction-scope",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Restriction to the Support Is Not a Congruence]",
+   "end_line": 2526
+  },
+  {
+   "env": "lemma",
+   "line": 2528,
+   "label": "lem:support-extension",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Index-Preserving Extension off the Support]",
+   "end_line": 2546,
+   "proof_line": 2548
+  },
+  {
+   "env": "remark",
+   "line": 2583,
+   "label": "rem:support-extension-sharp",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[The Extension Can Strictly Increase the Index]",
+   "end_line": 2628
+  },
+  {
+   "env": "metatheorem",
+   "line": 2630,
+   "label": "meta:boolean",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Boolean Zero-Error Dichotomy]",
+   "end_line": 2683,
+   "proof_line": 2711
+  },
+  {
+   "env": "remark",
+   "line": 2685,
+   "label": "rem:cesaro-boolean",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[The Ces\\`aro Case]",
+   "end_line": 2709
+  },
+  {
+   "env": "remark",
+   "line": 2765,
+   "label": "rem:boolean-aggregation-qualifier",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Why the Qualifier Is Necessary]",
+   "end_line": 2778
+  },
+  {
+   "env": "corollary",
+   "line": 2780,
+   "label": "cor:boolean-01",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Normalized $\\{0,1\\}$ Commitment Cost]",
+   "end_line": 2798
+  },
+  {
+   "env": "metatheorem",
+   "line": 2809,
+   "label": "meta:spectral",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Eckart--Young--Mirsky Spectral Converse]",
+   "end_line": 2843,
+   "proof_line": 2845
+  },
+  {
+   "env": "remark",
+   "line": 2867,
+   "label": "rem:aak-eym-meta",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[AAK versus EYM]",
+   "end_line": 2874
+  },
+  {
+   "env": "corollary",
+   "line": 2876,
+   "label": "cor:stable-residual-spectral",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Stable Residual-Norm Spectral Bound]",
+   "end_line": 2892,
+   "proof_line": 2894
+  },
+  {
+   "env": "metatheorem",
+   "line": 2936,
+   "label": "meta:ib",
+   "section": "Structural Meta-Theorems",
+   "has_proof": true,
+   "title": "[Finite-State Information Bottleneck]",
+   "end_line": 2964,
+   "proof_line": 2966
+  },
+  {
+   "env": "corollary",
+   "line": 3029,
+   "label": "cor:ib-lumpable",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Lumpable Partition Form]",
+   "end_line": 3055
+  },
+  {
+   "env": "remark",
+   "line": 3057,
+   "label": "rem:ib-what-buys",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Role of the Right-Congruence Constraint]",
+   "end_line": 3064
+  },
+  {
+   "env": "remark",
+   "line": 3066,
+   "label": "rem:ib-vs-quad",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Full KL versus Quadratic Surrogate]",
+   "end_line": 3074
+  },
+  {
+   "env": "metatheorem",
+   "line": 3081,
+   "label": "meta:typed-rate-distortion",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[Typed Finite-State Rate--Distortion Principle]",
+   "end_line": 3154
+  },
+  {
+   "env": "remark",
+   "line": 3156,
+   "label": "rem:typed-principle-scope",
+   "section": "Structural Meta-Theorems",
+   "has_proof": false,
+   "title": "[What the Principle Does and Does Not Unify]",
+   "end_line": 3176
+  },
+  {
+   "env": "lemma",
+   "line": 3265,
+   "label": "lem:mixture-centroid",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Mixture-Centroid Optimality]",
+   "end_line": 3291,
+   "proof_line": 3293
+  },
+  {
+   "env": "theorem",
+   "line": 3318,
+   "label": "thm:retention-zero",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Zero Retention on Stationary Support]",
+   "end_line": 3330,
+   "proof_line": 3332
+  },
+  {
+   "env": "example",
+   "line": 3346,
+   "label": "ex:parity",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Parity]",
+   "end_line": 3376
+  },
+  {
+   "env": "lemma",
+   "line": 3378,
+   "label": "lem:coarsening",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Coarsening Lemma]",
+   "end_line": 3404,
+   "proof_line": 3406
+  },
+  {
+   "env": "theorem",
+   "line": 3419,
+   "label": "thm:predictive-info",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Predictive-Information Decomposition]",
+   "end_line": 3441,
+   "proof_line": 3443
+  },
+  {
+   "env": "corollary",
+   "line": 3448,
+   "label": "cor:retention-elementary",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Range, One-State Value, and Refinement Monotonicity]",
+   "end_line": 3463,
+   "proof_line": 3465
+  },
+  {
+   "env": "remark",
+   "line": 3483,
+   "label": "rem:retention-what-buys",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Role of the Right-Congruence Constraint in Retention]",
+   "end_line": 3492
+  },
+  {
+   "env": "theorem",
+   "line": 3543,
+   "label": "thm:spectral-retention",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Spectral Converse for Quadratic Restricted Retention]",
+   "end_line": 3560,
+   "proof_line": 3562
+  },
+  {
+   "env": "corollary",
+   "line": 3673,
+   "label": "cor:quad-trace-equality",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Trace Form and Equality Condition]",
+   "end_line": 3721,
+   "proof_line": 3723
+  },
+  {
+   "env": "remark",
+   "line": 3732,
+   "label": "rem:spectral-not-full-kl",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Scope of the Spectral Theorem]",
+   "end_line": 3738
+  },
+  {
+   "env": "remark",
+   "line": 3740,
+   "label": "rem:quad-tightness",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Tightness]",
+   "end_line": 3745
+  },
+  {
+   "env": "lemma",
+   "line": 3747,
+   "label": "lem:fisher-uniform-expansion",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Uniform Second-Order Expansion of Mixture KL]",
+   "end_line": 3805,
+   "proof_line": 3807
+  },
+  {
+   "env": "corollary",
+   "line": 3887,
+   "label": "cor:fisher-uniform-remainder",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Uniform Fisher Remainder]",
+   "end_line": 3916,
+   "proof_line": 3918
+  },
+  {
+   "env": "theorem",
+   "line": 3925,
+   "label": "thm:local-full-kl",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Local Fisher Asymptotic Equality]",
+   "end_line": 4014,
+   "proof_line": 4016
+  },
+  {
+   "env": "remark",
+   "line": 4060,
+   "label": "rem:local-fisher-scope",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Scope of the Local Fisher Theorem]",
+   "end_line": 4065
+  },
+  {
+   "env": "theorem",
+   "line": 4067,
+   "label": "thm:global-kl-simplex",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Global Full-KL Spectral Converse in Probability Coordinates]",
+   "end_line": 4095,
+   "proof_line": 4097
+  },
+  {
+   "env": "proposition",
+   "line": 4183,
+   "label": "prop:kl-simplex-sharp",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Optimality of the Constant]",
+   "end_line": 4207,
+   "proof_line": 4209
+  },
+  {
+   "env": "remark",
+   "line": 4239,
+   "label": "rem:kl-simplex-constant",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Where the Factor of Two Was Lost]",
+   "end_line": 4250
+  },
+  {
+   "env": "remark",
+   "line": 4252,
+   "label": "rem:simplex-vs-fisher",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Why This Does Not Contradict the Fisher No-Go]",
+   "end_line": 4274
+  },
+  {
+   "env": "theorem",
+   "line": 4276,
+   "label": "thm:global-interior-fisher",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Global Interior Fisher-Coordinate Converse]",
+   "end_line": 4298,
+   "proof_line": 4300
+  },
+  {
+   "env": "remark",
+   "line": 4335,
+   "label": "rem:interior-fisher-boundary",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Degeneration at the Boundary]",
+   "end_line": 4342
+  },
+  {
+   "env": "proposition",
+   "line": 4344,
+   "label": "prop:bernoulli-fisher-scales",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[The Two-Point Bernoulli Family Does Not Separate the Scales]",
+   "end_line": 4369,
+   "proof_line": 4371
+  },
+  {
+   "env": "theorem",
+   "line": 4418,
+   "label": "thm:no-global-fisher-converse",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[No Global Fisher-Coordinate Converse]",
+   "end_line": 4435,
+   "proof_line": 4437
+  },
+  {
+   "env": "remark",
+   "line": 4494,
+   "label": "rem:fisher-nogo-reading",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Reading the Two Fisher Statements Together]",
+   "end_line": 4517
+  },
+  {
+   "env": "remark",
+   "line": 4519,
+   "label": "rem:global-kl-what-survives",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[What Survives, and Why]",
+   "end_line": 4539
+  },
+  {
+   "env": "remark",
+   "line": 4542,
+   "label": "rem:lean-formalization",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Machine-Checked Fragments]",
+   "end_line": 4569
+  },
+  {
+   "env": "remark",
+   "line": 4571,
+   "label": "rem:kl-minorant-sharp",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Sharpness of the Quadratic Minorant]",
+   "end_line": 4591
+  },
+  {
+   "env": "remark",
+   "line": 4593,
+   "label": "rem:retention-numerical",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Numerical Verification]",
+   "end_line": 4626
+  },
+  {
+   "env": "remark",
+   "line": 4628,
+   "label": "rem:computational-conventions",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Computational Conventions]",
+   "end_line": 4647
+  },
+  {
+   "env": "proposition",
+   "line": 4649,
+   "label": "prop:retkl-le-retquad",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Relation between Full-KL and Quadratic Restricted Gaps]",
+   "end_line": 4655,
+   "proof_line": 4657
+  },
+  {
+   "env": "definition",
+   "line": 4684,
+   "label": "def:controlled-full-kl",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Controlled Full-KL Retention Gap]",
+   "end_line": 4703
+  },
+  {
+   "env": "theorem",
+   "line": 4711,
+   "label": "thm:controlled-ib",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Controlled Information-Bottleneck Identity]",
+   "end_line": 4739,
+   "proof_line": 4741
+  },
+  {
+   "env": "remark",
+   "line": 4771,
+   "label": "rem:controlled-ib-independence",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Role of the Independence Hypothesis]",
+   "end_line": 4788
+  },
+  {
+   "env": "definition",
+   "line": 4790,
+   "label": "def:controlled-full-kl-general",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Fiberwise Controlled Retention Gap]",
+   "end_line": 4817
+  },
+  {
+   "env": "theorem",
+   "line": 4819,
+   "label": "thm:controlled-ib-general",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Controlled Information-Bottleneck Identity, General Inputs]",
+   "end_line": 4847,
+   "proof_line": 4849
+  },
+  {
+   "env": "corollary",
+   "line": 4882,
+   "label": "cor:controlled-elementary-general",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Elementary Properties, General Inputs]",
+   "end_line": 4887,
+   "proof_line": 4889
+  },
+  {
+   "env": "corollary",
+   "line": 4895,
+   "label": "cor:controlled-simplex-general",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Fiberwise Spectral Converse, General Inputs]",
+   "end_line": 4905,
+   "proof_line": 4907
+  },
+  {
+   "env": "remark",
+   "line": 4915,
+   "label": "rem:controlled-general-reweighting",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[The Reweighting Is Not Cosmetic]",
+   "end_line": 4927
+  },
+  {
+   "env": "corollary",
+   "line": 4929,
+   "label": "cor:controlled-elementary",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Range, One-State Value, and Refinement Monotonicity, Controlled]",
+   "end_line": 4936,
+   "proof_line": 4938
+  },
+  {
+   "env": "definition",
+   "line": 4958,
+   "label": "def:kernel-refinement",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Kernel Partition and Its Stable Refinement]",
+   "end_line": 4965
+  },
+  {
+   "env": "proposition",
+   "line": 4967,
+   "label": "prop:kernel-refinement-exists",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Existence of the Stable Refinement]",
+   "end_line": 4979,
+   "proof_line": 4981
+  },
+  {
+   "env": "theorem",
+   "line": 5008,
+   "label": "thm:controlled-zero",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Zero Controlled Retention]",
+   "end_line": 5012,
+   "proof_line": 5014
+  },
+  {
+   "env": "remark",
+   "line": 5030,
+   "label": "rem:controlled-zero-not-kernels",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[The Threshold Is Not the Number of Distinct Kernels]",
+   "end_line": 5064
+  },
+  {
+   "env": "definition",
+   "line": 5071,
+   "label": "def:counter-family",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Counter Family $\\mathcal C_M$]",
+   "end_line": 5097
+  },
+  {
+   "env": "proposition",
+   "line": 5099,
+   "label": "prop:refinement-extremal",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[The Refinement Gap Is Maximal and the Bound Is Tight]",
+   "end_line": 5115,
+   "proof_line": 5117
+  },
+  {
+   "env": "remark",
+   "line": 5161,
+   "label": "rem:refinement-extremal-scope",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Scope of the Extremal Family]",
+   "end_line": 5174
+  },
+  {
+   "env": "corollary",
+   "line": 5176,
+   "label": "cor:controlled-reduces",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Recovery of the Input-Driven Theory]",
+   "end_line": 5187,
+   "proof_line": 5189
+  },
+  {
+   "env": "remark",
+   "line": 5197,
+   "label": "rem:controlled-reduces-sharp",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Why the Support Hypothesis Cannot Be Dropped Here]",
+   "end_line": 5208
+  },
+  {
+   "env": "corollary",
+   "line": 5210,
+   "label": "cor:controlled-quad-spectral",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Controlled Quadratic Spectral Converse]",
+   "end_line": 5225,
+   "proof_line": 5227
+  },
+  {
+   "env": "corollary",
+   "line": 5238,
+   "label": "cor:controlled-simplex-spectral",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Controlled Probability-Coordinate Spectral Converse]",
+   "end_line": 5249,
+   "proof_line": 5251
+  },
+  {
+   "env": "corollary",
+   "line": 5260,
+   "label": "cor:controlled-fisher",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Controlled Interior Fisher Converse]",
+   "end_line": 5273,
+   "proof_line": 5275
+  },
+  {
+   "env": "remark",
+   "line": 5282,
+   "label": "rem:controlled-fisher-nogo",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[The Fisher No-Go Persists Under Control]",
+   "end_line": 5290
+  },
+  {
+   "env": "remark",
+   "line": 5292,
+   "label": "rem:complexity-transfer",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Complexity Results Transfer to the Unifilar Class]",
+   "end_line": 5322
+  },
+  {
+   "env": "lemma",
+   "line": 5333,
+   "label": "lem:kmeans-gap",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Polynomial Gap Amplification for Rational $k$-Means]",
+   "end_line": 5354,
+   "proof_line": 5356
+  },
+  {
+   "env": "lemma",
+   "line": 5440,
+   "label": "lem:fractional-kmeans",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Fractional Assignment Cannot Beat Hard $k$-Means]",
+   "end_line": 5463,
+   "proof_line": 5465
+  },
+  {
+   "env": "theorem",
+   "line": 5491,
+   "label": "thm:retention-reset-np",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Reset-Vacuity NP-Completeness]",
+   "end_line": 5500,
+   "proof_line": 5502
+  },
+  {
+   "env": "theorem",
+   "line": 5647,
+   "label": "thm:retention-definite-np",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[NP-Hardness for Minimal Definite Depth-$2$ $\\epsilon$-Machines]",
+   "end_line": 5657,
+   "proof_line": 5659
+  },
+  {
+   "env": "theorem",
+   "line": 5793,
+   "label": "thm:full-kl-promise-np",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Promise NP-Hardness of Finite-Alphabet Full-KL Retention]",
+   "end_line": 5805,
+   "proof_line": 5807
+  },
+  {
+   "env": "corollary",
+   "line": 5913,
+   "label": "cor:full-kl-apx",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[APX-Hardness of Finite-Alphabet Full-KL Retention]",
+   "end_line": 5919,
+   "proof_line": 5921
+  },
+  {
+   "env": "remark",
+   "line": 6002,
+   "label": "rem:full-kl-promise-scope",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Why Only a Promise, and Only Hardness]",
+   "end_line": 6026
+  },
+  {
+   "env": "proposition",
+   "line": 6033,
+   "label": "prop:full-kl-algebraic-form",
+   "section": "Retention",
+   "has_proof": true,
+   "title": "[Algebraic Form of the Full-KL Verification Problem]",
+   "end_line": 6055,
+   "proof_line": 6057
+  },
+  {
+   "env": "remark",
+   "line": 6081,
+   "label": "rem:full-kl-slp",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[The Factored Representation Is Necessary]",
+   "end_line": 6094
+  },
+  {
+   "env": "remark",
+   "line": 6096,
+   "label": "rem:full-kl-exp-membership",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Exact Status of Membership]",
+   "end_line": 6116
+  },
+  {
+   "env": "remark",
+   "line": 6118,
+   "label": "rem:output-alphabet-2d",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[The Output Alphabet of the Embedding]",
+   "end_line": 6165
+  },
+  {
+   "env": "remark",
+   "line": 6167,
+   "label": "rem:complexity-scope",
+   "section": "Retention",
+   "has_proof": false,
+   "title": "[Scope of the Complexity Theorems]",
+   "end_line": 6184
+  },
+  {
+   "env": "definition",
+   "line": 6208,
+   "label": "def:causal-lp-spec",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Causal Length-Preserving Specification]",
+   "end_line": 6224
+  },
+  {
+   "env": "theorem",
+   "line": 6246,
+   "label": "thm:commitment-spec",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Exact Commitment Bound]",
+   "end_line": 6260,
+   "proof_line": 6262
+  },
+  {
+   "env": "definition",
+   "line": 6309,
+   "label": "def:com-rd-machine",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Implemented Machine and One-Step Mismatch]",
+   "end_line": 6335
+  },
+  {
+   "env": "definition",
+   "line": 6337,
+   "label": "def:com-rd-gap",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Distributional Commitment Rate--Distortion Gap]",
+   "end_line": 6352
+  },
+  {
+   "env": "definition",
+   "line": 6371,
+   "label": "def:pair-determination-index",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[One-Step Determination Index]",
+   "end_line": 6383
+  },
+  {
+   "env": "theorem",
+   "line": 6385,
+   "label": "thm:com-rd-formula",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Exact Fixed-Budget Commitment Rate--Distortion Formula]",
+   "end_line": 6413,
+   "proof_line": 6415
+  },
+  {
+   "env": "remark",
+   "line": 6453,
+   "label": "rem:pair-vs-class",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Why the Pair, Not the Class]",
+   "end_line": 6471
+  },
+  {
+   "env": "remark",
+   "line": 6473,
+   "label": "rem:com-rd-scope",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Relation to the Three Commitment Notions]",
+   "end_line": 6487
+  },
+  {
+   "env": "definition",
+   "line": 6510,
+   "label": "def:controller-complexity",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Controller Complexity of a Safety Property]",
+   "end_line": 6521
+  },
+  {
+   "env": "theorem",
+   "line": 6523,
+   "label": "thm:safety-enforce",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Exact Safety Enforcement]",
+   "end_line": 6536,
+   "proof_line": 6538
+  },
+  {
+   "env": "theorem",
+   "line": 6560,
+   "label": "thm:finite-monitor",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Finite-Monitor Winning Region for Regular Safety]",
+   "end_line": 6597,
+   "proof_line": 6599
+  },
+  {
+   "env": "remark",
+   "line": 6623,
+   "label": "rem:finite-monitor-scope",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Relation to $\\kappa_{\\mathrm{ctrl}}$]",
+   "end_line": 6633
+  },
+  {
+   "env": "definition",
+   "line": 6675,
+   "label": "def:pio-controller",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Pre-Input-Output Controller]",
+   "end_line": 6694
+  },
+  {
+   "env": "theorem",
+   "line": 6752,
+   "label": "thm:strategic-spread",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Strategic Spread Lower Bound, Precise Version]",
+   "end_line": 6787,
+   "proof_line": 6789
+  },
+  {
+   "env": "remark",
+   "line": 6881,
+   "label": "rem:strategic-proof-tracking",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Memory Tracking and Adversary Specification]",
+   "end_line": 6888
+  },
+  {
+   "env": "corollary",
+   "line": 6890,
+   "label": "cor:stateless",
+   "section": "Commitment",
+   "has_proof": true,
+   "title": "[Stateless Games]",
+   "end_line": 6913,
+   "proof_line": 6915
+  },
+  {
+   "env": "remark",
+   "line": 7083,
+   "label": "rem:commitment-alpha0-scope",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Scope of the Boolean Vertex]",
+   "end_line": 7089
+  },
+  {
+   "env": "remark",
+   "line": 7091,
+   "label": "rem:commitment-not-schatten",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Not Ordinary Schatten Rank]",
+   "end_line": 7098
+  },
+  {
+   "env": "remark",
+   "line": 7100,
+   "label": "rem:p-to-zero",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[The $p\\to0$ Limit and Why It Is Not the Boolean Vertex]",
+   "end_line": 7134
+  },
+  {
+   "env": "remark",
+   "line": 7136,
+   "label": "rem:commitment-degeneracy",
+   "section": "Commitment",
+   "has_proof": false,
+   "title": "[Commitment Threshold Behavior]",
+   "end_line": 7143
+  },
+  {
+   "env": "remark",
+   "line": 7185,
+   "label": "rem:grounding-residual-hankel",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Residual Norm versus Hankel Norm]",
+   "end_line": 7192
+  },
+  {
+   "env": "remark",
+   "line": 7199,
+   "label": "rem:algebraic-vs-operator-rank",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Algebraic Hankel Rank Versus Bounded-Operator Rank]",
+   "end_line": 7211
+  },
+  {
+   "env": "theorem",
+   "line": 7213,
+   "label": "thm:spectral-grounding",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Spectral Bound for Linear Grounding]",
+   "end_line": 7249,
+   "proof_line": 7251
+  },
+  {
+   "env": "corollary",
+   "line": 7278,
+   "label": "cor:grounding-domination",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Spectral Converse under Operator-Norm Domination]",
+   "end_line": 7291,
+   "proof_line": 7293
+  },
+  {
+   "env": "remark",
+   "line": 7302,
+   "label": "rem:grounding-domination-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Domination Is the Only Input]",
+   "end_line": 7310
+  },
+  {
+   "env": "corollary",
+   "line": 7312,
+   "label": "cor:grounding-finite-rank",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Finite-Rank and Compact Limits]",
+   "end_line": 7323,
+   "proof_line": 7325
+  },
+  {
+   "env": "proposition",
+   "line": 7332,
+   "label": "prop:grounding-finite-section",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Finite-Section Certificates for Linear Grounding]",
+   "end_line": 7355,
+   "proof_line": 7357
+  },
+  {
+   "env": "proposition",
+   "line": 7379,
+   "label": "prop:grounding-structured-zero",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Exact Zero Threshold for the Structured Linear Problem]",
+   "end_line": 7389,
+   "proof_line": 7391
+  },
+  {
+   "env": "theorem",
+   "line": 7403,
+   "label": "thm:aak-equality",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Hankel-Structured Equality via Adamjan--Arov--Krein]",
+   "end_line": 7466,
+   "proof_line": 7468
+  },
+  {
+   "env": "remark",
+   "line": 7506,
+   "label": "rem:rank-conventions",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Two Rank Conventions, and Why They Differ]",
+   "end_line": 7533
+  },
+  {
+   "env": "theorem",
+   "line": 7535,
+   "label": "thm:aak-multiletter",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Multi-Letter Case, Conditional Form]",
+   "end_line": 7571,
+   "proof_line": 7573
+  },
+  {
+   "env": "remark",
+   "line": 7595,
+   "label": "rem:aak-multialphabet-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Multi-Alphabet Scope]",
+   "end_line": 7606
+  },
+  {
+   "env": "openproblem",
+   "line": 7608,
+   "label": "open:hankel-multiletter",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Intrinsic Multi-Alphabet Hankel Equality]",
+   "end_line": 7624
+  },
+  {
+   "env": "corollary",
+   "line": 7626,
+   "label": "cor:hankel-strict",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[When the Structured Gap Is Strict]",
+   "end_line": 7634,
+   "proof_line": 7636
+  },
+  {
+   "env": "remark",
+   "line": 7640,
+   "label": "rem:hankel-strict-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Scope: Scalar Shift Model Only]",
+   "end_line": 7653
+  },
+  {
+   "env": "remark",
+   "line": 7655,
+   "label": "rem:grounding-unrestricted-restricted",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Unrestricted versus Hankel-Restricted Feasible Sets]",
+   "end_line": 7665
+  },
+  {
+   "env": "remark",
+   "line": 7667,
+   "label": "rem:infinite-support-grounding",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Infinite Support Does Not Imply Unboundedness]",
+   "end_line": 7680
+  },
+  {
+   "env": "remark",
+   "line": 7682,
+   "label": "rem:grounding-aak",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[AAK Scope]",
+   "end_line": 7689
+  },
+  {
+   "env": "openproblem",
+   "line": 7691,
+   "label": "open:symbolic-grounding",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Exact Symbolic Grounding Gap]",
+   "end_line": 7714
+  },
+  {
+   "env": "definition",
+   "line": 7726,
+   "label": "def:dmax",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Symmetrized Max-Divergence]",
+   "end_line": 7747
+  },
+  {
+   "env": "proposition",
+   "line": 7749,
+   "label": "prop:grounding-local-equivalence",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Local Equivalence with Operator-Norm Distance]",
+   "end_line": 7789,
+   "proof_line": 7791
+  },
+  {
+   "env": "theorem",
+   "line": 7850,
+   "label": "thm:grounding-vertex",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Grounding Vertex]",
+   "end_line": 7874
+  },
+  {
+   "env": "remark",
+   "line": 7876,
+   "label": "rem:grounding-vertex-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Scope of the Grounding-Vertex Identification]",
+   "end_line": 7890
+  },
+  {
+   "env": "remark",
+   "line": 7892,
+   "label": "rem:grounding-supremum-organization",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Supremum Vertex as Organization]",
+   "end_line": 7901
+  },
+  {
+   "env": "theorem",
+   "line": 7914,
+   "label": "thm:exp-gap",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Determinism Gap for Formal Hankel Rank]",
+   "end_line": 7940,
+   "proof_line": 7942
+  },
+  {
+   "env": "remark",
+   "line": 8002,
+   "label": "rem:exp-gap-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Scope of the Superpolynomial Gap]",
+   "end_line": 8021
+  },
+  {
+   "env": "definition",
+   "line": 8075,
+   "label": "def:symbolic-grounding-gap",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Discounted Symbolic Grounding Gap]",
+   "end_line": 8098
+  },
+  {
+   "env": "theorem",
+   "line": 8100,
+   "label": "thm:stochasticity",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Stochasticity Lower Bound]",
+   "end_line": 8123,
+   "proof_line": 8125
+  },
+  {
+   "env": "theorem",
+   "line": 8180,
+   "label": "thm:observable-floor",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Observable Deterministic Floor and Its Finite-State Limit]",
+   "end_line": 8208,
+   "proof_line": 8210
+  },
+  {
+   "env": "remark",
+   "line": 8241,
+   "label": "rem:observable-floor-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Scope: Input-Only Deterministic Class]",
+   "end_line": 8249
+  },
+  {
+   "env": "proposition",
+   "line": 8251,
+   "label": "prop:symbolic-finite-horizon",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Finite-Horizon Symbolic Certificates]",
+   "end_line": 8276,
+   "proof_line": 8278
+  },
+  {
+   "env": "corollary",
+   "line": 8299,
+   "label": "cor:memoryless-floor",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Exact Memoryless Stochasticity Floor]",
+   "end_line": 8315,
+   "proof_line": 8317
+  },
+  {
+   "env": "remark",
+   "line": 8351,
+   "label": "rem:stochasticity-meaning",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Deterministic Machines Cannot Remove Intrinsic Randomness]",
+   "end_line": 8358
+  },
+  {
+   "env": "remark",
+   "line": 8360,
+   "label": "rem:stochasticity-vs-linear",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Relation to the Linear Spectral Converse]",
+   "end_line": 8367
+  },
+  {
+   "env": "definition",
+   "line": 8386,
+   "label": "def:tracking-deficit",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Block Symbol and Tracking Deficit]",
+   "end_line": 8405
+  },
+  {
+   "env": "proposition",
+   "line": 8407,
+   "label": "prop:grounding-tracking",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Floor Plus Tracking Decomposition]",
+   "end_line": 8436,
+   "proof_line": 8438
+  },
+  {
+   "env": "proposition",
+   "line": 8485,
+   "label": "prop:block-mode-implementability",
+   "section": "Grounding",
+   "has_proof": true,
+   "title": "[Implementability of a Block-Mode Policy]",
+   "end_line": 8500,
+   "proof_line": 8502
+  },
+  {
+   "env": "remark",
+   "line": 8519,
+   "label": "rem:tracking-deficit-scope",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[What the Deficit Is, and What It Is Not]",
+   "end_line": 8542
+  },
+  {
+   "env": "remark",
+   "line": 8544,
+   "label": "rem:tracking-vs-retention",
+   "section": "Grounding",
+   "has_proof": false,
+   "title": "[Relation to Retention]",
+   "end_line": 8565
+  },
+  {
+   "env": "proposition",
+   "line": 8579,
+   "label": "prop:common-operator",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Comparison of Schatten Tails of a Common Operator]",
+   "end_line": 8605,
+   "proof_line": 8607
+  },
+  {
+   "env": "remark",
+   "line": 8615,
+   "label": "rem:common-operator-scope",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Scope of the Comparison]",
+   "end_line": 8622
+  },
+  {
+   "env": "remark",
+   "line": 8624,
+   "label": "rem:response-what-supplies",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Relation to Aggregation and Domination]",
+   "end_line": 8656
+  },
+  {
+   "env": "remark",
+   "line": 8658,
+   "label": "rem:frobenius-nonempty",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Nonempty Instantiation]",
+   "end_line": 8692
+  },
+  {
+   "env": "remark",
+   "line": 8694,
+   "label": "rem:schatten-conditional-status",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Conditional Status of the Template]",
+   "end_line": 8704
+  },
+  {
+   "env": "lemma",
+   "line": 8745,
+   "label": "lem:frame-bridge",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Linear Measurement Bridges]",
+   "end_line": 8759,
+   "proof_line": 8761
+  },
+  {
+   "env": "proposition",
+   "line": 8768,
+   "label": "prop:no-dimension-free-bridge",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[No Dimension-Free Hankel Bridge]",
+   "end_line": 8783,
+   "proof_line": 8785
+  },
+  {
+   "env": "remark",
+   "line": 8800,
+   "label": "rem:bridge-consequence",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Consequence for the Template]",
+   "end_line": 8836
+  },
+  {
+   "env": "definition",
+   "line": 8838,
+   "label": "def:response",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Schatten-$p$ Response Representation]",
+   "end_line": 8867
+  },
+  {
+   "env": "theorem",
+   "line": 8869,
+   "label": "thm:mirsky",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Eckart--Young--Mirsky]",
+   "end_line": 8895
+  },
+  {
+   "env": "theorem",
+   "line": 8897,
+   "label": "thm:unified",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Conditional Unified Spectral Converse]",
+   "end_line": 8929,
+   "proof_line": 8931
+  },
+  {
+   "env": "remark",
+   "line": 8957,
+   "label": "rem:schatten-numerical-scope",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Numerical Verification Scope]",
+   "end_line": 8981
+  },
+  {
+   "env": "remark",
+   "line": 8983,
+   "label": "rem:unified-equality",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Equality versus Lower Bound]",
+   "end_line": 8989
+  },
+  {
+   "env": "corollary",
+   "line": 8994,
+   "label": "cor:grd-schatten",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Grounding as $p=\\infty$]",
+   "end_line": 9026,
+   "proof_line": 9028
+  },
+  {
+   "env": "remark",
+   "line": 9050,
+   "label": "rem:grd-schatten-scope",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Scope of the Grounding Instance]",
+   "end_line": 9059
+  },
+  {
+   "env": "corollary",
+   "line": 9064,
+   "label": "cor:ret-schatten",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Retention as $p=1$ with Rank Budget $M-1$]",
+   "end_line": 9082,
+   "proof_line": 9084
+  },
+  {
+   "env": "remark",
+   "line": 9139,
+   "label": "rem:retention-why-p1",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Why the Exponent Is $1$]",
+   "end_line": 9146
+  },
+  {
+   "env": "corollary",
+   "line": 9151,
+   "label": "cor:l2",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Conditional Frobenius Converse]",
+   "end_line": 9168,
+   "proof_line": 9170
+  },
+  {
+   "env": "definition",
+   "line": 9180,
+   "label": "def:boolean-hankel-rank",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Deterministic Boolean Hankel Rank]",
+   "end_line": 9201
+  },
+  {
+   "env": "remark",
+   "line": 9203,
+   "label": "rem:boolean-rank-not-ordinary",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": false,
+   "title": "[Scope of the Boolean Realization Rank]",
+   "end_line": 9209
+  },
+  {
+   "env": "proposition",
+   "line": 9211,
+   "label": "prop:com-threshold",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[Commitment Exact Threshold]",
+   "end_line": 9242,
+   "proof_line": 9244
+  },
+  {
+   "env": "theorem",
+   "line": 9254,
+   "label": "thm:schatten-nogo",
+   "section": "The Conditional Schatten Converse Template",
+   "has_proof": true,
+   "title": "[No Universal Cross-Regime Inequality]",
+   "end_line": 9287,
+   "proof_line": 9289
+  },
+  {
+   "env": "definition",
+   "line": 9361,
+   "label": "def:finite-state-benchmark",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Finite-State Benchmark]",
+   "end_line": 9373
+  },
+  {
+   "env": "definition",
+   "line": 9375,
+   "label": "def:state-rate",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[State Rate]",
+   "end_line": 9401
+  },
+  {
+   "env": "proposition",
+   "line": 9403,
+   "label": "prop:rd-nonconvex",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[The Finite-State Curve Need Not Be Convex]",
+   "end_line": 9407,
+   "proof_line": 9409
+  },
+  {
+   "env": "remark",
+   "line": 9441,
+   "label": "rem:rd-nonconvex-mechanism",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Why Convexity Fails]",
+   "end_line": 9470
+  },
+  {
+   "env": "remark",
+   "line": 9472,
+   "label": "rem:unifilar-feasibility",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Necessity of the Feasibility Restriction]",
+   "end_line": 9484
+  },
+  {
+   "env": "proposition",
+   "line": 9486,
+   "label": "prop:unifilar-lumpability",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Right Congruences on Joint Histories]",
+   "end_line": 9507,
+   "proof_line": 9509
+  },
+  {
+   "env": "remark",
+   "line": 9553,
+   "label": "rem:unifilar-converse-hypothesis",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Which Hypothesis Does the Work in (ii)]",
+   "end_line": 9564
+  },
+  {
+   "env": "proposition",
+   "line": 9566,
+   "label": "prop:input-driven-specialization",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Input-Driven Specialization]",
+   "end_line": 9582,
+   "proof_line": 9584
+  },
+  {
+   "env": "remark",
+   "line": 9626,
+   "label": "rem:epsilon-machine-relation",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Relation to $\\epsilon$-Machines]",
+   "end_line": 9641
+  },
+  {
+   "env": "definition",
+   "line": 9643,
+   "label": "def:approx-deficit",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Finite-Horizon Approximation Deficit]",
+   "end_line": 9693
+  },
+  {
+   "env": "definition",
+   "line": 9695,
+   "label": "def:estimation-rate",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Online Estimation Rate]",
+   "end_line": 9707
+  },
+  {
+   "env": "proposition",
+   "line": 9714,
+   "label": "prop:fixed",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Fixed-Budget Bias--Variance Decomposition]",
+   "end_line": 9735,
+   "proof_line": 9737
+  },
+  {
+   "env": "theorem",
+   "line": 9775,
+   "label": "thm:oracle-agnostic",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Adaptive Agnostic Oracle Inequality]",
+   "end_line": 9832,
+   "proof_line": 9834
+  },
+  {
+   "env": "theorem",
+   "line": 9873,
+   "label": "thm:oracle-realizable",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Realizable $0/1$ Model Selection]",
+   "end_line": 9893,
+   "proof_line": 9895
+  },
+  {
+   "env": "remark",
+   "line": 9914,
+   "label": "rem:realizable-not-agnostic",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Realizable and Agnostic Laws Are Separate]",
+   "end_line": 9919
+  },
+  {
+   "env": "theorem",
+   "line": 9921,
+   "label": "thm:oracle-logloss",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Mixable Log-Loss Oracle Inequality]",
+   "end_line": 9946,
+   "proof_line": 9948
+  },
+  {
+   "env": "definition",
+   "line": 9970,
+   "label": "def:spectral-rate",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Spectral-Rate Assumption]",
+   "end_line": 9989
+  },
+  {
+   "env": "corollary",
+   "line": 10038,
+   "label": "cor:geo-agnostic",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Agnostic Geometric Decay]",
+   "end_line": 10071,
+   "proof_line": 10073
+  },
+  {
+   "env": "corollary",
+   "line": 10106,
+   "label": "cor:poly-agnostic",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Agnostic Polynomial Decay]",
+   "end_line": 10133,
+   "proof_line": 10135
+  },
+  {
+   "env": "corollary",
+   "line": 10174,
+   "label": "cor:geo-realizable",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Realizable Geometric Decay]",
+   "end_line": 10207,
+   "proof_line": 10209
+  },
+  {
+   "env": "corollary",
+   "line": 10234,
+   "label": "cor:poly-realizable",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Realizable Polynomial Decay]",
+   "end_line": 10267,
+   "proof_line": 10269
+  },
+  {
+   "env": "remark",
+   "line": 10296,
+   "label": "rem:exponents-structural",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Different Exponents Are Structural]",
+   "end_line": 10312
+  },
+  {
+   "env": "proposition",
+   "line": 10325,
+   "label": "prop:aggregation-necessary",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Necessity of the Aggregation Penalty]",
+   "end_line": 10340,
+   "proof_line": 10342
+  },
+  {
+   "env": "remark",
+   "line": 10356,
+   "label": "rem:aggregation-scope",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[What the Lower Bound Does and Does Not Settle]",
+   "end_line": 10367
+  },
+  {
+   "env": "assumption",
+   "line": 10369,
+   "label": "ass:regular-bv-envelope",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Regular Bias--Variance Envelope]",
+   "end_line": 10420
+  },
+  {
+   "env": "proposition",
+   "line": 10422,
+   "label": "prop:continuous-bv-sandwich",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Continuous Bias--Variance Sandwich]",
+   "end_line": 10446,
+   "proof_line": 10448
+  },
+  {
+   "env": "remark",
+   "line": 10481,
+   "label": "rem:sandwich-not-minimax",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[The Sandwich Is Not by Itself a Minimax Lower Bound]",
+   "end_line": 10498
+  },
+  {
+   "env": "remark",
+   "line": 10500,
+   "label": "rem:envelope-conditions",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Conditions Governing the Envelope Comparison]",
+   "end_line": 10525
+  },
+  {
+   "env": "assumption",
+   "line": 10527,
+   "label": "ass:oracle-floors",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Explicit Approximation and Estimation Floors]",
+   "end_line": 10595
+  },
+  {
+   "env": "remark",
+   "line": 10597,
+   "label": "rem:floors-two-axes",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[What a Single Family Can and Cannot Deliver]",
+   "end_line": 10646
+  },
+  {
+   "env": "lemma",
+   "line": 10648,
+   "label": "lem:kappa-bounded",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[The Jump Ratio Is an Absolute Constant]",
+   "end_line": 10676,
+   "proof_line": 10678
+  },
+  {
+   "env": "remark",
+   "line": 10718,
+   "label": "rem:kappa-values",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[The Jump Ratio for the Envelopes of This Paper]",
+   "end_line": 10748
+  },
+  {
+   "env": "lemma",
+   "line": 10750,
+   "label": "lem:discrete-bv-sandwich",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Discrete Bias--Variance Sandwich]",
+   "end_line": 10779,
+   "proof_line": 10781
+  },
+  {
+   "env": "remark",
+   "line": 10818,
+   "label": "rem:sandwich-jump",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Role of the Jump Ratio]",
+   "end_line": 10828
+  },
+  {
+   "env": "lemma",
+   "line": 10830,
+   "label": "lem:packing-criterion",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[The Packing Floor Is an Information Condition]",
+   "end_line": 10848,
+   "proof_line": 10850
+  },
+  {
+   "env": "remark",
+   "line": 10865,
+   "label": "rem:packing-per-regime",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[What Discharging the Floor Requires in Each Regime]",
+   "end_line": 10889
+  },
+  {
+   "env": "proposition",
+   "line": 10891,
+   "label": "prop:floors-instance",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[The Packing Floor Is Satisfied in the Realizable Stream Regime]",
+   "end_line": 10917,
+   "proof_line": 10919
+  },
+  {
+   "env": "remark",
+   "line": 10937,
+   "label": "rem:floors-status",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Status of the Floor Across Regimes]",
+   "end_line": 10974
+  },
+  {
+   "env": "theorem",
+   "line": 10976,
+   "label": "thm:oracle-minimax-lower",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": true,
+   "title": "[Minimax Lower Bound for the Oracle Envelope]",
+   "end_line": 11017,
+   "proof_line": 11019
+  },
+  {
+   "env": "remark",
+   "line": 11076,
+   "label": "rem:oracle-no-lecam",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[Sum-Separation versus Two-Point Testing]",
+   "end_line": 11091
+  },
+  {
+   "env": "remark",
+   "line": 11093,
+   "label": "rem:oracle-minimax-residual",
+   "section": "The Two-Axis Oracle Inequality",
+   "has_proof": false,
+   "title": "[What Remains Genuinely Open]",
+   "end_line": 11106
+  },
+  {
+   "env": "remark",
+   "line": 11250,
+   "label": "rem:partition-faithful",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[A More Partition-Faithful Linear Safe Relaxation]",
+   "end_line": 11283
+  },
+  {
+   "env": "remark",
+   "line": 11285,
+   "label": "rem:pos-causal-compatibility",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Compatibility with Causal States]",
+   "end_line": 11296
+  },
+  {
+   "env": "definition",
+   "line": 11303,
+   "label": "def:free-linear",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Free Linear Retained Information]",
+   "end_line": 11313
+  },
+  {
+   "env": "definition",
+   "line": 11315,
+   "label": "def:safe-linear-local",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Block-Local Safe Linear Retained Information]",
+   "end_line": 11330
+  },
+  {
+   "env": "lemma",
+   "line": 11332,
+   "label": "lem:safe-local-kyfan",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Safe Block-Local Maximum as a Ky Fan Norm]",
+   "end_line": 11352,
+   "proof_line": 11354
+  },
+  {
+   "env": "remark",
+   "line": 11367,
+   "label": "rem:poslin-measures",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[What the Surrogate Compares]",
+   "end_line": 11378
+  },
+  {
+   "env": "definition",
+   "line": 11380,
+   "label": "def:poslin",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Linear Block-Local Price of Safety Surrogate]",
+   "end_line": 11396
+  },
+  {
+   "env": "theorem",
+   "line": 11403,
+   "label": "thm:pinching",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Pinching Majorization and Surrogate Nonnegativity]",
+   "end_line": 11419,
+   "proof_line": 11421
+  },
+  {
+   "env": "corollary",
+   "line": 11450,
+   "label": "cor:pos-coupling",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Coupling Upper Bound]",
+   "end_line": 11459,
+   "proof_line": 11461
+  },
+  {
+   "env": "remark",
+   "line": 11473,
+   "label": "rem:pos-coupling-design",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[What the Coupling Bound Measures]",
+   "end_line": 11483
+  },
+  {
+   "env": "proposition",
+   "line": 11485,
+   "label": "prop:pos-relaxation-identity",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Relaxation-Gap Decomposition of the Price of Safety]",
+   "end_line": 11529,
+   "proof_line": 11531
+  },
+  {
+   "env": "remark",
+   "line": 11547,
+   "label": "rem:pos-reduction",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[What This Reduces the Open Problem To]",
+   "end_line": 11560
+  },
+  {
+   "env": "lemma",
+   "line": 11567,
+   "label": "lem:equality-pinching",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Equality in Pinching Majorization]",
+   "end_line": 11577,
+   "proof_line": 11579
+  },
+  {
+   "env": "theorem",
+   "line": 11609,
+   "label": "thm:pos-allM",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Free Lunch for All Budgets]",
+   "end_line": 11619,
+   "proof_line": 11621
+  },
+  {
+   "env": "theorem",
+   "line": 11628,
+   "label": "thm:pos-fixedM",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Fixed-Budget Free Lunch]",
+   "end_line": 11646,
+   "proof_line": 11648
+  },
+  {
+   "env": "remark",
+   "line": 11675,
+   "label": "rem:pos-fixed-not-blockdiag",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Block Diagonality Is Sufficient but Not Necessary at Fixed $M$]",
+   "end_line": 11681
+  },
+  {
+   "env": "definition",
+   "line": 11740,
+   "label": "def:safe-right-cong",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Safe Right Congruence]",
+   "end_line": 11749
+  },
+  {
+   "env": "proposition",
+   "line": 11751,
+   "label": "prop:pos-quad-consistent",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Feasibility and Range of the Discrete Price of Safety]",
+   "end_line": 11762,
+   "proof_line": 11764
+  },
+  {
+   "env": "remark",
+   "line": 11783,
+   "label": "rem:pos-convention-independent",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[The Convention Is Not Inherited from the Surrogate]",
+   "end_line": 11798
+  },
+  {
+   "env": "proposition",
+   "line": 11800,
+   "label": "prop:free-discrete-bound",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": true,
+   "title": "[Free Discrete Objective Is Bounded by the Free Linear Surrogate]",
+   "end_line": 11809,
+   "proof_line": 11811
+  },
+  {
+   "env": "remark",
+   "line": 11844,
+   "label": "rem:safe-discrete-not-captured",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Safe Discrete Objective Is Not Captured by the Block-Local Surrogate]",
+   "end_line": 11892
+  },
+  {
+   "env": "remark",
+   "line": 11894,
+   "label": "rem:relaxation-gap",
+   "section": "The Linear Second-Order Safety Surrogate",
+   "has_proof": false,
+   "title": "[Relaxation-Gap Identity]",
+   "end_line": 11932
+  },
+  {
+   "env": "definition",
+   "line": 12011,
+   "label": "def:classical-renyi",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Classical R\\'enyi Divergence]",
+   "end_line": 12038
+  },
+  {
+   "env": "definition",
+   "line": 12040,
+   "label": "def:sandwiched-renyi",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Sandwiched R\\'enyi Divergence]",
+   "end_line": 12060
+  },
+  {
+   "env": "remark",
+   "line": 12062,
+   "label": "rem:renyi-commuting",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Commuting States]",
+   "end_line": 12071
+  },
+  {
+   "env": "proposition",
+   "line": 12073,
+   "label": "prop:schatten-rep",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": true,
+   "title": "[Schatten-Norm Representation]",
+   "end_line": 12102,
+   "proof_line": 12104
+  },
+  {
+   "env": "remark",
+   "line": 12121,
+   "label": "rem:schatten-rep-scope",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Scope of the Schatten-Norm Representation]",
+   "end_line": 12129
+  },
+  {
+   "env": "proposition",
+   "line": 12131,
+   "label": "prop:renyi-limits",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": true,
+   "title": "[Standard Vertex Limits]",
+   "end_line": 12178,
+   "proof_line": 12180
+  },
+  {
+   "env": "theorem",
+   "line": 12243,
+   "label": "thm:retention-alpha1",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Retention Is the $\\alpha=1$ Vertex]",
+   "end_line": 12259
+  },
+  {
+   "env": "remark",
+   "line": 12261,
+   "label": "rem:retention-cost-converse",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Cost versus Converse]",
+   "end_line": 12277
+  },
+  {
+   "env": "definition",
+   "line": 12286,
+   "label": "def:sym-support",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Symmetrized Support Mismatch]",
+   "end_line": 12311
+  },
+  {
+   "env": "proposition",
+   "line": 12313,
+   "label": "prop:B0",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": true,
+   "title": "[Boolean Support Equality]",
+   "end_line": 12322,
+   "proof_line": 12324
+  },
+  {
+   "env": "theorem",
+   "line": 12346,
+   "label": "thm:commitment-alpha0",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": true,
+   "title": "[Commitment as Booleanized $\\alpha=0$ Vertex]",
+   "end_line": 12381,
+   "proof_line": 12383
+  },
+  {
+   "env": "remark",
+   "line": 12393,
+   "label": "rem:exponent-alpha0-scope",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Scope of the Boolean Vertex]",
+   "end_line": 12400
+  },
+  {
+   "env": "definition",
+   "line": 12408,
+   "label": "def:dmax-exponent",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Symmetrized Max-Divergence]",
+   "end_line": 12418
+  },
+  {
+   "env": "theorem",
+   "line": 12423,
+   "label": "thm:grounding-alpha-infty",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Grounding Vertex]",
+   "end_line": 12434
+  },
+  {
+   "env": "remark",
+   "line": 12436,
+   "label": "rem:grounding-interpretations",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Two Possible Grounding Interpretations]",
+   "end_line": 12451
+  },
+  {
+   "env": "proposition",
+   "line": 12458,
+   "label": "prop:DPI-scoped",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Data Processing, Scoped]",
+   "end_line": 12485
+  },
+  {
+   "env": "remark",
+   "line": 12487,
+   "label": "rem:monotonicity-not-dpi",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[Monotonicity Meta-Theorem Is Not Exactly DPI]",
+   "end_line": 12507
+  },
+  {
+   "env": "theorem",
+   "line": 12548,
+   "label": "thm:vertex-consistency",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": true,
+   "title": "[Formal Vertex Consistency, Not Derivation]",
+   "end_line": 12557,
+   "proof_line": 12559
+  },
+  {
+   "env": "remark",
+   "line": 12570,
+   "label": "rem:vertex-two-ingredients",
+   "section": "The Aggregation Exponent Vertex Correspondence",
+   "has_proof": false,
+   "title": "[What the Matching Labels Do Explain]",
+   "end_line": 12595
+  },
+  {
+   "env": "theorem",
+   "line": 12662,
+   "label": "thm:joint",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Exact Joint Zero-Error Memory]",
+   "end_line": 12688,
+   "proof_line": 12690
+  },
+  {
+   "env": "theorem",
+   "line": 12780,
+   "label": "thm:comparative",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Comparative State Complexity]",
+   "end_line": 12806,
+   "proof_line": 12827
+  },
+  {
+   "env": "remark",
+   "line": 12808,
+   "label": "rem:comparative-grounding-excluded",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Why the Unrestricted Linear Relaxation Is Excluded]",
+   "end_line": 12825
+  },
+  {
+   "env": "remark",
+   "line": 12862,
+   "label": "rem:comparative-tightness",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Tightness]",
+   "end_line": 12868
+  },
+  {
+   "env": "remark",
+   "line": 12870,
+   "label": "rem:comparative-algorithmic",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Algorithmic Consequence]",
+   "end_line": 12875
+  },
+  {
+   "env": "theorem",
+   "line": 12886,
+   "label": "thm:independence",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Independence of Regime Obstructions]",
+   "end_line": 12905,
+   "proof_line": 12907
+  },
+  {
+   "env": "remark",
+   "line": 13016,
+   "label": "rem:independence-use",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Consequence for Cross-Regime Comparisons]",
+   "end_line": 13024
+  },
+  {
+   "env": "theorem",
+   "line": 13042,
+   "label": "thm:interaction",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Exact Commitment with Approximate Retention]",
+   "end_line": 13056,
+   "proof_line": 13058
+  },
+  {
+   "env": "lemma",
+   "line": 13064,
+   "label": "lem:constrained-ib",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Constrained Information-Bottleneck Form]",
+   "end_line": 13109,
+   "proof_line": 13111
+  },
+  {
+   "env": "remark",
+   "line": 13118,
+   "label": "rem:no-lower-constraint",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Why the Lower Constraint Is Only Sufficient]",
+   "end_line": 13159
+  },
+  {
+   "env": "corollary",
+   "line": 13161,
+   "label": "cor:interaction-equality",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Equality Condition]",
+   "end_line": 13209,
+   "proof_line": 13211
+  },
+  {
+   "env": "corollary",
+   "line": 13226,
+   "label": "cor:price-safety",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Price of Safety]",
+   "end_line": 13263,
+   "proof_line": 13265
+  },
+  {
+   "env": "remark",
+   "line": 13272,
+   "label": "rem:no-universal-overhead",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[No Universal Strict Overhead]",
+   "end_line": 13298
+  },
+  {
+   "env": "theorem",
+   "line": 13300,
+   "label": "thm:interaction-complexity",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": true,
+   "title": "[Complexity of Interaction]",
+   "end_line": 13314,
+   "proof_line": 13316
+  },
+  {
+   "env": "remark",
+   "line": 13348,
+   "label": "rem:interaction-complexity-scope",
+   "section": "Joint, Comparative, Interaction, and Independence Results",
+   "has_proof": false,
+   "title": "[Scope of the Interaction Complexity]",
+   "end_line": 13354
+  },
+  {
+   "env": "lemma",
+   "line": 13404,
+   "label": "lem:littlestone",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Littlestone Dimension]",
+   "end_line": 13422,
+   "proof_line": 13449
+  },
+  {
+   "env": "remark",
+   "line": 13424,
+   "label": "rem:dfa-to-mealy",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[From Word Classifiers to Transducers]",
+   "end_line": 13447
+  },
+  {
+   "env": "remark",
+   "line": 13491,
+   "label": "rem:ldim-protocol-scope",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Protocol Scope of Lemma~\\ref{lem:littlestone}]",
+   "end_line": 13502
+  },
+  {
+   "env": "theorem",
+   "line": 13515,
+   "label": "thm:passive-realizable",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Passive Realizable Mistakes]",
+   "end_line": 13550,
+   "proof_line": 13552
+  },
+  {
+   "env": "theorem",
+   "line": 13570,
+   "label": "thm:stream-lower-bound",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Persistent-Stream Mistake Lower Bound]",
+   "end_line": 13609,
+   "proof_line": 13611
+  },
+  {
+   "env": "remark",
+   "line": 13756,
+   "label": "rem:stream-lb-mechanism",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[What the Construction Supplies]",
+   "end_line": 13770
+  },
+  {
+   "env": "remark",
+   "line": 13772,
+   "label": "rem:stream-lb-alphabet",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Alphabet Size]",
+   "end_line": 13779
+  },
+  {
+   "env": "theorem",
+   "line": 13781,
+   "label": "thm:stream-lb-binary",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Binary-Input Persistent-Stream Lower Bound]",
+   "end_line": 13794,
+   "proof_line": 13796
+  },
+  {
+   "env": "lemma",
+   "line": 13840,
+   "label": "lem:subsequence-allM",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Subsequence-to-All-$M$ Extension]",
+   "end_line": 13849,
+   "proof_line": 13851
+  },
+  {
+   "env": "corollary",
+   "line": 13862,
+   "label": "cor:stream-all-M",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Persistent-Stream Bound for All $M$]",
+   "end_line": 13878
+  },
+  {
+   "env": "remark",
+   "line": 13880,
+   "label": "rem:stream-lb-binary",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Binary Input Closes the Alphabet Gap]",
+   "end_line": 13888
+  },
+  {
+   "env": "remark",
+   "line": 13890,
+   "label": "rem:streaming-lower-scope",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Scope of the Streaming Lower Bound]",
+   "end_line": 13903
+  },
+  {
+   "env": "remark",
+   "line": 13905,
+   "label": "rem:passive-no-sync",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[No Passive Synchronization Assumption]",
+   "end_line": 13912
+  },
+  {
+   "env": "remark",
+   "line": 13914,
+   "label": "rem:identification-vs-tracking",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Identification versus State Tracking]",
+   "end_line": 13921
+  },
+  {
+   "env": "definition",
+   "line": 13932,
+   "label": "def:residual-knowledge",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Active Identification Objectives]",
+   "end_line": 14002
+  },
+  {
+   "env": "remark",
+   "line": 14004,
+   "label": "rem:objective-bookkeeping",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Which Objective Each Bound Uses]",
+   "end_line": 14025
+  },
+  {
+   "env": "definition",
+   "line": 14027,
+   "label": "def:output-aware-sync",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Adaptive Output-Aware Synchronization Length]",
+   "end_line": 14107
+  },
+  {
+   "env": "definition",
+   "line": 14109,
+   "label": "def:sync-mistake-complexity",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Synchronization Mistake Complexity]",
+   "end_line": 14176
+  },
+  {
+   "env": "proposition",
+   "line": 14178,
+   "label": "prop:esyncsi-log",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[State Identification Costs Only Logarithmically Many Mistakes]",
+   "end_line": 14187,
+   "proof_line": 14189
+  },
+  {
+   "env": "remark",
+   "line": 14223,
+   "label": "rem:halving-alphabet-free",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Why the Alphabet Drops Out]",
+   "end_line": 14244
+  },
+  {
+   "env": "theorem",
+   "line": 14246,
+   "label": "thm:esyncsi-theta",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[State Identification Costs Logarithmically Many Mistakes, Exactly]",
+   "end_line": 14261,
+   "proof_line": 14263
+  },
+  {
+   "env": "remark",
+   "line": 14324,
+   "label": "rem:esyncsi-intermediate",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Why No Padding Is Needed]",
+   "end_line": 14336
+  },
+  {
+   "env": "remark",
+   "line": 14338,
+   "label": "rem:esyncsi-tight",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Both Bounds Are Attained by the Same Mechanism]",
+   "end_line": 14373
+  },
+  {
+   "env": "remark",
+   "line": 14375,
+   "label": "rem:additive-collapses",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[The Additive Form Collapses]",
+   "end_line": 14393
+  },
+  {
+   "env": "lemma",
+   "line": 14395,
+   "label": "lem:operational-equivalence",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Operational Equivalence]",
+   "end_line": 14405,
+   "proof_line": 14407
+  },
+  {
+   "env": "definition",
+   "line": 14427,
+   "label": "def:direct-sum-active",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Direct-Sum Active Instance]",
+   "end_line": 14464
+  },
+  {
+   "env": "theorem",
+   "line": 14466,
+   "label": "thm:active-certified",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Active Realizable Certified Bounds]",
+   "end_line": 14522,
+   "proof_line": 14524
+  },
+  {
+   "env": "proposition",
+   "line": 14575,
+   "label": "prop:active-length-upper",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Length-Based Active Upper Bound]",
+   "end_line": 14608,
+   "proof_line": 14610
+  },
+  {
+   "env": "proposition",
+   "line": 14644,
+   "label": "prop:lsyncu-quadratic",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Machine-Specific Synchronization Depth Is Quadratic]",
+   "end_line": 14654,
+   "proof_line": 14656
+  },
+  {
+   "env": "proposition",
+   "line": 14699,
+   "label": "prop:lsyncu-version-space",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Universal Synchronization Depth, Version-Space Form]",
+   "end_line": 14712,
+   "proof_line": 14714
+  },
+  {
+   "env": "remark",
+   "line": 14745,
+   "label": "rem:lsyncu-finite-not-rate",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Finiteness Is Now Unconditional; the Rate Is Not]",
+   "end_line": 14755
+  },
+  {
+   "env": "conjecture",
+   "line": 14757,
+   "label": "conj:lsyncu-poly",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Polynomial Universal Depth]",
+   "end_line": 14760
+  },
+  {
+   "env": "remark",
+   "line": 14762,
+   "label": "rem:lsync-not-lsyncu",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[The Machine-Specific Bounds Are on $\\Lsync$, Not on $\\Lsyncu$]",
+   "end_line": 14789
+  },
+  {
+   "env": "lemma",
+   "line": 14791,
+   "label": "lem:tension",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Separation--Size Tension]",
+   "end_line": 14802,
+   "proof_line": 14804
+  },
+  {
+   "env": "proposition",
+   "line": 14831,
+   "label": "prop:lsyncu-binomial",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Machine-Specific Depth Is at Most $\\binom{M}{2}$]",
+   "end_line": 14840,
+   "proof_line": 14842
+  },
+  {
+   "env": "remark",
+   "line": 14883,
+   "label": "rem:attainment-sporadic",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Attainment Is Sporadic, and the Extremal Structure Is Linear]",
+   "end_line": 14917
+  },
+  {
+   "env": "proposition",
+   "line": 14919,
+   "label": "prop:lsyncu-single-input",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Single-Input Machines Are Linear]",
+   "end_line": 14928,
+   "proof_line": 14930
+  },
+  {
+   "env": "remark",
+   "line": 14962,
+   "label": "rem:witness-needs-two-inputs",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[The Search for a Witness Needs a Nontrivial Input Alphabet]",
+   "end_line": 14982
+  },
+  {
+   "env": "remark",
+   "line": 14984,
+   "label": "rem:lsyncu-consequences",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Consequences, and What Remains Open]",
+   "end_line": 15021
+  },
+  {
+   "env": "lemma",
+   "line": 15023,
+   "label": "lem:moore-separation",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Separation Across Two Mealy Machines]",
+   "end_line": 15029,
+   "proof_line": 15031
+  },
+  {
+   "env": "theorem",
+   "line": 15050,
+   "label": "thm:active-halving",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Unconditional Active Attainment Bound]",
+   "end_line": 15067,
+   "proof_line": 15069
+  },
+  {
+   "env": "remark",
+   "line": 15127,
+   "label": "rem:active-unconditional",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[What Becomes Unconditional, and What Does Not]",
+   "end_line": 15146
+  },
+  {
+   "env": "remark",
+   "line": 15148,
+   "label": "rem:no-automatic-active-lower",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[No Automatic Active Lower Bound]",
+   "end_line": 15166
+  },
+  {
+   "env": "definition",
+   "line": 15168,
+   "label": "def:gated-active-family",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Gated Active Family $\\Gact_M$]",
+   "end_line": 15209
+  },
+  {
+   "env": "theorem",
+   "line": 15211,
+   "label": "thm:active-explicit-directsum",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Gated Family and Unconditional Active Lower Bound]",
+   "end_line": 15270,
+   "proof_line": 15272
+  },
+  {
+   "env": "remark",
+   "line": 15392,
+   "label": "rem:gating-needed",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Why the Passive Family Must Be Gated]",
+   "end_line": 15417
+  },
+  {
+   "env": "corollary",
+   "line": 15419,
+   "label": "cor:active-theta",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Active Realizable Mistake Complexity, Unconditionally]",
+   "end_line": 15431,
+   "proof_line": 15433
+  },
+  {
+   "env": "theorem",
+   "line": 15468,
+   "label": "thm:active-two-phase",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Explicit Two-Phase Direct-Sum Instance]",
+   "end_line": 15491,
+   "proof_line": 15493
+  },
+  {
+   "env": "openproblem",
+   "line": 15597,
+   "label": "open:si-hard-family",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[A Non-Degenerate Two-Term Active Decomposition]",
+   "end_line": 15651
+  },
+  {
+   "env": "remark",
+   "line": 15653,
+   "label": "rem:active-objective-needed",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Necessity of the Identification Objective]",
+   "end_line": 15663
+  },
+  {
+   "env": "remark",
+   "line": 15665,
+   "label": "rem:direct-sum-saturation",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Direct-Sum Saturation Alternative]",
+   "end_line": 15677
+  },
+  {
+   "env": "theorem",
+   "line": 15679,
+   "label": "thm:active-direct-sum",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Direct-Sum Additive Lower Bound]",
+   "end_line": 15703,
+   "proof_line": 15705
+  },
+  {
+   "env": "remark",
+   "line": 15772,
+   "label": "rem:active-length-lower",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[When Length Gives a Lower Bound]",
+   "end_line": 15788
+  },
+  {
+   "env": "remark",
+   "line": 15790,
+   "label": "rem:active-additive",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Additive Synchronization Cost]",
+   "end_line": 15798
+  },
+  {
+   "env": "remark",
+   "line": 15800,
+   "label": "rem:active-oracle",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Oracle Integration]",
+   "end_line": 15820
+  },
+  {
+   "env": "theorem",
+   "line": 15831,
+   "label": "thm:agnostic",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Agnostic Regret]",
+   "end_line": 15861,
+   "proof_line": 15863
+  },
+  {
+   "env": "corollary",
+   "line": 15897,
+   "label": "cor:stream-ldim",
+   "section": "The Temporal Axis",
+   "has_proof": true,
+   "title": "[Stream Littlestone Dimension]",
+   "end_line": 15909,
+   "proof_line": 15911
+  },
+  {
+   "env": "remark",
+   "line": 15942,
+   "label": "rem:agnostic-log-factors",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Logarithmic Refinements]",
+   "end_line": 15958
+  },
+  {
+   "env": "remark",
+   "line": 15960,
+   "label": "rem:logloss-retention",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Log-Loss Bridge for Retention]",
+   "end_line": 15967
+  },
+  {
+   "env": "remark",
+   "line": 15969,
+   "label": "rem:temporal-type-correct",
+   "section": "The Temporal Axis",
+   "has_proof": false,
+   "title": "[Type-Correct Temporal Rates]",
+   "end_line": 15977
+  },
+  {
+   "env": "heuristic",
+   "line": 15994,
+   "label": "heur:spectral",
+   "section": "Spectral Tail Heuristic",
+   "has_proof": false,
+   "title": "[Spectral Tail Heuristic]",
+   "end_line": 16008
+  },
+  {
+   "env": "conjecture",
+   "line": 16111,
+   "label": "conj:cross-terms",
+   "section": "Spectral Tail Heuristic",
+   "has_proof": false,
+   "title": "[Conditional Cross Terms]",
+   "end_line": 16153
+  },
+  {
+   "env": "theorem",
+   "line": 16208,
+   "label": "thm:master-rigorous",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Conditional Representation]",
+   "end_line": 16326
+  },
+  {
+   "env": "lemma",
+   "line": 16333,
+   "label": "lem:csiszar-representation",
+   "section": "Conditional Representation Theorem",
+   "has_proof": true,
+   "title": "[Csisz\\'ar Representation]",
+   "end_line": 16379,
+   "proof_line": 16381
+  },
+  {
+   "env": "remark",
+   "line": 16537,
+   "label": "rem:csiszar-automatic-smoothness",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Smoothness of the Generator Is Derived, Not Assumed]",
+   "end_line": 16559
+  },
+  {
+   "env": "remark",
+   "line": 16561,
+   "label": "rem:csiszar-conditional-needed",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Why the Conditional Structure Is Indispensable]",
+   "end_line": 16597
+  },
+  {
+   "env": "remark",
+   "line": 16599,
+   "label": "rem:csiszar-sumform-needed",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[The Sum-Form Hypothesis Cannot Be Dropped]",
+   "end_line": 16623
+  },
+  {
+   "env": "remark",
+   "line": 16625,
+   "label": "rem:csiszar-role",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Role of the Lemma]",
+   "end_line": 16637
+  },
+  {
+   "env": "remark",
+   "line": 16672,
+   "label": "rem:clauseI-faithfulness",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Why Faithfulness Is Necessary]",
+   "end_line": 16681
+  },
+  {
+   "env": "remark",
+   "line": 16683,
+   "label": "rem:chain-rule-external",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[The Chain Rule Is External]",
+   "end_line": 16689
+  },
+  {
+   "env": "remark",
+   "line": 16691,
+   "label": "rem:clauseI-retention-vertex",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Retention Vertex]",
+   "end_line": 16697
+  },
+  {
+   "env": "remark",
+   "line": 16727,
+   "label": "rem:clauseII-01",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Normalized $0/1$ Version]",
+   "end_line": 16739
+  },
+  {
+   "env": "remark",
+   "line": 16741,
+   "label": "rem:clauseII-commitment-vertex",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Commitment Vertex]",
+   "end_line": 16747
+  },
+  {
+   "env": "remark",
+   "line": 16794,
+   "label": "rem:clauseIII-grounding",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Grounding Cost]",
+   "end_line": 16814
+  },
+  {
+   "env": "remark",
+   "line": 16816,
+   "label": "rem:clauseIII-grounding-vertex",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[What Clause III Supports at the Grounding Face]",
+   "end_line": 16822
+  },
+  {
+   "env": "remark",
+   "line": 16829,
+   "label": "rem:conditional-not-unconditional",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Not an Unconditional Derivation]",
+   "end_line": 16835
+  },
+  {
+   "env": "remark",
+   "line": 16837,
+   "label": "rem:conditional-consequences",
+   "section": "Conditional Representation Theorem",
+   "has_proof": false,
+   "title": "[Regime-Specific Consequences]",
+   "end_line": 16851
+  },
+  {
+   "env": "definition",
+   "line": 16867,
+   "label": "def:type-signature",
+   "section": "Type Discipline for Approximation Statements",
+   "has_proof": false,
+   "title": "[Type signature of an approximation claim]",
+   "end_line": 16921
+  },
+  {
+   "env": "remark",
+   "line": 16923,
+   "label": "rem:type-discipline-coordinates",
+   "section": "Type Discipline for Approximation Statements",
+   "has_proof": false,
+   "title": "[Role of Each Coordinate]",
+   "end_line": 16960
+  },
+  {
+   "env": "remark",
+   "line": 17077,
+   "label": "rem:gap-symbol-convention",
+   "section": "Type Discipline for Approximation Statements",
+   "has_proof": false,
+   "title": "[How to read a gap symbol]",
+   "end_line": 17097
+  }
+ ],
+ "secnum": {
+  "Introduction: The Bounded Sequential Generator and Its Regimes": 1,
+  "The Schema of Finite-State Approximation": 2,
+  "Specialized Task Theories": 3,
+  "Structural Meta-Theorems": 4,
+  "Retention": 5,
+  "Commitment": 6,
+  "Grounding": 7,
+  "The Conditional Schatten Converse Template": 8,
+  "The Two-Axis Oracle Inequality": 9,
+  "The Linear Second-Order Safety Surrogate": 10,
+  "The Aggregation Exponent Vertex Correspondence": 11,
+  "Joint, Comparative, Interaction, and Independence Results": 12,
+  "The Temporal Axis": 13,
+  "Spectral Tail Heuristic": 14,
+  "Conditional Representation Theorem": 15,
+  "Type Discipline for Approximation Statements": 16
+ },
+ "secs": [
+  "Introduction: The Bounded Sequential Generator and Its Regimes",
+  "The Schema of Finite-State Approximation",
+  "Specialized Task Theories",
+  "Structural Meta-Theorems",
+  "Retention",
+  "Commitment",
+  "Grounding",
+  "The Conditional Schatten Converse Template",
+  "The Two-Axis Oracle Inequality",
+  "The Linear Second-Order Safety Surrogate",
+  "The Aggregation Exponent Vertex Correspondence",
+  "Joint, Comparative, Interaction, and Independence Results",
+  "The Temporal Axis",
+  "Spectral Tail Heuristic",
+  "Conditional Representation Theorem",
+  "Type Discipline for Approximation Statements"
+ ],
+ "remaining_labels": [
+  "lem:cofiltered-support",
+  "lem:cofiltered",
+  "prop:unifilar-residually-finite",
+  "prop:stable-decay",
+  "prop:lumpability",
+  "meta:monotone",
+  "lem:support-extension",
+  "meta:boolean",
+  "meta:spectral",
+  "cor:stable-residual-spectral",
+  "meta:ib",
+  "lem:mixture-centroid",
+  "thm:retention-zero",
+  "lem:coarsening",
+  "thm:predictive-info",
+  "cor:retention-elementary",
+  "thm:spectral-retention",
+  "cor:quad-trace-equality",
+  "lem:fisher-uniform-expansion",
+  "cor:fisher-uniform-remainder",
+  "thm:local-full-kl",
+  "thm:global-kl-simplex",
+  "prop:kl-simplex-sharp",
+  "thm:global-interior-fisher",
+  "prop:bernoulli-fisher-scales",
+  "thm:no-global-fisher-converse",
+  "prop:retkl-le-retquad",
+  "thm:controlled-ib",
+  "thm:controlled-ib-general",
+  "cor:controlled-elementary-general",
+  "cor:controlled-simplex-general",
+  "cor:controlled-elementary",
+  "prop:kernel-refinement-exists",
+  "thm:controlled-zero",
+  "prop:refinement-extremal",
+  "cor:controlled-reduces",
+  "cor:controlled-quad-spectral",
+  "cor:controlled-simplex-spectral",
+  "cor:controlled-fisher",
+  "lem:kmeans-gap",
+  "lem:fractional-kmeans",
+  "thm:retention-reset-np",
+  "thm:retention-definite-np",
+  "thm:full-kl-promise-np",
+  "cor:full-kl-apx",
+  "prop:full-kl-algebraic-form",
+  "thm:commitment-spec",
+  "thm:com-rd-formula",
+  "thm:safety-enforce",
+  "thm:finite-monitor",
+  "thm:strategic-spread",
+  "cor:stateless",
+  "cor:grounding-domination",
+  "cor:grounding-finite-rank",
+  "prop:grounding-local-equivalence",
+  "thm:exp-gap",
+  "thm:stochasticity",
+  "thm:observable-floor",
+  "prop:symbolic-finite-horizon",
+  "cor:memoryless-floor",
+  "prop:grounding-tracking",
+  "prop:block-mode-implementability",
+  "prop:common-operator",
+  "lem:frame-bridge",
+  "prop:no-dimension-free-bridge",
+  "thm:unified",
+  "cor:grd-schatten",
+  "cor:ret-schatten",
+  "cor:l2",
+  "prop:com-threshold",
+  "thm:schatten-nogo",
+  "prop:rd-nonconvex",
+  "prop:unifilar-lumpability",
+  "prop:input-driven-specialization",
+  "prop:fixed",
+  "thm:oracle-agnostic",
+  "thm:oracle-realizable",
+  "thm:oracle-logloss",
+  "cor:geo-agnostic",
+  "cor:poly-agnostic",
+  "cor:geo-realizable",
+  "cor:poly-realizable",
+  "prop:aggregation-necessary",
+  "prop:continuous-bv-sandwich",
+  "lem:kappa-bounded",
+  "lem:discrete-bv-sandwich",
+  "lem:packing-criterion",
+  "prop:floors-instance",
+  "thm:oracle-minimax-lower",
+  "lem:safe-local-kyfan",
+  "thm:pinching",
+  "cor:pos-coupling",
+  "prop:pos-relaxation-identity",
+  "lem:equality-pinching",
+  "thm:pos-allM",
+  "thm:pos-fixedM",
+  "prop:pos-quad-consistent",
+  "prop:free-discrete-bound",
+  "prop:schatten-rep",
+  "prop:renyi-limits",
+  "prop:B0",
+  "thm:commitment-alpha0",
+  "thm:vertex-consistency",
+  "thm:joint",
+  "thm:comparative",
+  "thm:independence",
+  "thm:interaction",
+  "lem:constrained-ib",
+  "cor:interaction-equality",
+  "cor:price-safety",
+  "thm:interaction-complexity",
+  "lem:littlestone",
+  "thm:passive-realizable",
+  "thm:stream-lower-bound",
+  "thm:stream-lb-binary",
+  "lem:subsequence-allM",
+  "prop:esyncsi-log",
+  "thm:esyncsi-theta",
+  "lem:operational-equivalence",
+  "thm:active-certified",
+  "prop:active-length-upper",
+  "prop:lsyncu-quadratic",
+  "prop:lsyncu-version-space",
+  "lem:tension",
+  "prop:lsyncu-binomial",
+  "prop:lsyncu-single-input",
+  "lem:moore-separation",
+  "thm:active-halving",
+  "thm:active-explicit-directsum",
+  "cor:active-theta",
+  "thm:active-two-phase",
+  "thm:active-direct-sum",
+  "thm:agnostic",
+  "cor:stream-ldim",
+  "lem:csiszar-representation"
+ ]
+}

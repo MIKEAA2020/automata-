@@ -115,3 +115,25 @@ Stage Summary:
 - v4 fully re-read at line level; context rebuilt for the next revision cycle.
 - All review items A1-A6, B1-B7, C1-C3, D1-D3, E1-E5 confirmed closed in v4; repo fully pushed at ce3b15c.
 - Awaiting next user instruction (per "read ... and wait" protocol). Next revision, if any, will go into a new v5 file; v4 to be frozen first.
+
+---
+Task ID: 6
+Agent: Super Z (main agent)
+Task: Give the remaining theorems dedicated proof checks. Standing rule: always commit and push. Version policy: freeze v4, new file v5 for any revision.
+
+Work Log:
+- Verified repo state (local = origin = 0286256, tree clean); confirmed v4 frozen-lineage state and prior fix families.
+- Built the inventory (scripts/inventory_theorems_v4.py): 390 theorem-like environments; robust proof assignment (each proof -> nearest preceding proof-type env, fixing window misses for lem:littlestone, meta:boolean, thm:comparative); 141 proof-bearing results; minus 6 AAK-family proof-type items = 135 remaining in scope (50 thm, 21 lem, 37 prop, 29 cor, 4 metatheorems).
+- Read automata_unified_revised_v4.tex in full at line level (sequential chunks, all 18,032 lines, all 18 sections), re-deriving every one of the 135 proofs: algebraic identities recomputed (ANOVA/Ky Fan chains, Fisher expansions, Csiszar dagger identity incl. gluing (c1-c2)(u-1-log u)=0, transport-word mechanics, halving bounds, tension/Moore block counting); inequality directions and constants checked; constructions traced on small instances.
+- Ran 42 independent numerical checks (scripts/verify_remaining_theorems.py + log): counter family C_M (0.0481/0.0321/0.0192/0.0107/0.0057 exact), both rd-nonconvex instances to 7 decimals, Csiszar identity (KL generator defect <1e-15; reverse-KL defect -0.1657 exact), M=4 adaptive-depth witness = 6 + minimality, stream-forcing simulation at L=2 (8 forced mistakes, consistency), Bernoulli-Fisher ratio 0.50010, sharpness expansion, cyclic-shift depths L=1..6, 4084 minorant pairs 0 violations. All 42 PASS (two initial failures were bugs in the checker, not the manuscript).
+- Findings: 133/135 sound as stated; 2 minor proof-internal defects: F1 = incorrect displayed constant in prop:grounding-tracking(iii) (should be the partition-independent total modal mass 1-sigma_1, not sigma_1; contradicted clause (ii) as displayed); F2 = 'right congruence' convention gap in the discrete PoS subsection (def:safe-right-cong / prop:pos-quad-consistent witness admissibility). 3 non-blocking observations recorded (forward refs cor:fisher-uniform-remainder / cor:controlled-elementary-general; Hadamard remark lists Sylvester dimensions).
+- Froze v4 (chmod 444, md5 7ea7be4f1f99a06b5fec7fdf3c9ce3b7); created v5 via scripts/apply_v5_fixes.py (4 anchored, abort-before-write edits: F1 display + subtraction sentence + preceding-term naming; F2 convention paragraph + witness-admissibility clause).
+- Compiled v5 with tectonic: exit 0, 234 pp., 1.09 MiB; structural checks: 504 labels/0 dup, 871 refs/0 undefined, envs matched, brace balance 0, 9 overfull identical to v4 baseline (worst 12.4pt pre-existing).
+- Generated download/remaining_theorems_proof_check.docx via scripts/gen_theorem_check.js (+tpc_helpers.js, tpc_content_a.js, tpc_content_b.js; docx skill reloaded: SKILL.md, routes/create.md, references/common-rules.md, docx-js-core.md, toc.md, scenes/report.md, design-system.md R1 recipe + calcTitleLayout/calcCoverSpacing/non-negotiables); R1 cover, 3-section numbering (cover / TOC roman / body arabic restart 1), TOC + refresh hint; add_toc_placeholders.py exit 0 (22 headings); fix_footers_novelty.py applied (ROMAN/arabic instrText, empty pgNumType removed); postcheck.py 0 errors (1 expected line-spacing warning from table cells/cover); LibreOffice render 16 pp.; VLM visual checks on pages 1-4 and 5/8/11/14/16: 'No defects' (both checks).
+- Updated download/README.md manifest: v4 FROZEN entry, v5 current latest, new companion doc, v5 change log.
+
+Stage Summary:
+- Every proof-bearing result in the manuscript has now had a dedicated line-level check (7 AAK-cone results in the previous round + 135 remaining in this round).
+- Verdict: 133/135 sound; 2 minor proof-internal precision defects fixed in v5; 42/42 numerical checks pass.
+- Deliverables: download/remaining_theorems_proof_check.docx (16 pp.), download/automata_unified_revised_v5.tex + .pdf (234 pp.), updated README.md; scripts retained (inventory, verifier + log, v5 edit script, docx generators).
+- Next: git add + commit + push all created documents to MIKEAA2020/automata-.
