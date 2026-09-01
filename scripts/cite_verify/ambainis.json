@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://research.lu.lv/en/publications/the-complexity-of-probabilistic-versus-deterministic-finite-autom",
+    "name": "The complexity of probabilistic versus deterministic finite",
+    "snippet": "Abstract. We show that there exists probabflistic finite automata with an isolated cutpoint and n states such that the smallest equivalent deterministic finite ... Read more",
+    "host_name": "research.lu.lv",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2605.10682",
+    "name": "On the Simulation Cost of Quantum Finite Automata",
+    "snippet": "by Z Chen · 2026 — This paper identifies exact probabilistic simulation cost as the natural quantitative mea- sure of quantum advantage for finite automata under ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Optimal-lower-bounds-for-quantum-automata-and-codes-Nayak/ca86a3524b766f97850e04c78a3a4cda00a75a55",
+    "name": "[PDF] Optimal lower bounds for quantum automata and",
+    "snippet": "Holevo's theorem is turned to, and it is shown that in typical situations, it may be replaced by a tighter and more transparent in-probability bound .",
+    "host_name": "www.semanticscholar.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.jmlr.org/papers/volume5/clark04a/clark04a.pdf",
+    "name": "PAC-learnability of Probabilistic Deterministic Finite State",
+    "snippet": "by A Clark · 2004 · Cited by 147 — Abstract. We study the learnability of Probabilistic Deterministic Finite State Automata under a modified. PAC-learning criterion. Read more",
+    "host_name": "www.jmlr.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CONCUR.2026.15",
+    "name": "Probabilistic Model Checking via Families of Deterministic and",
+    "snippet": "by C Baier · 2026 — This paper introduces a model of families of unambiguous finite automata (FUFA) that captures the class of ω-regular languages. FUFA can be ... Read more",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inspirehep.net/literature/498977",
+    "name": "Optimal lower bounds for quantum automata and random",
+    "snippet": "by A Nayak · Cited by 387 — 1-way quantum finite automata : strengths, weaknesses and generalizations. Proceedings of the 39th. A. Ambainis . ,. R. Freivalds. Comput.Sci. 1998 332-341. edit. Read more",
+    "host_name": "inspirehep.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Probabilistic_automaton",
+    "name": "Probabilistic automaton",
+    "snippet": "is η-stochastic. A cut-point is said to be an isolated cut-point if and only if there exists a δ > 0 {\\displaystyle \\delta >0} {\\displaystyle \\delta >0 ... Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-00456538v1/document",
+    "name": "Probabilistic Automata on Finite words: Decidable and",
+    "snippet": "Feb 15, 2010 — This paper tackles three algorithmic problems for probabilis- tic automata on finite words: the Emptiness Problem, the Isolation Prob- lem and ... Read more",
+    "host_name": "hal.science",
+    "rank": 7,
+    "date": "Feb 15, 2010",
+    "favicon": ""
+  },
+  {
+    "url": "https://keele-repository.worktribe.com/OutputFile/457763",
+    "name": "Polynomially ambiguous probabilistic automata on",
+    "snippet": "by PC Bell · 2022 · Cited by 9 — We consider the computability and complexity of decision questions for Probabilistic Finite. Automata (PFA) with sub-exponential ambiguity. Read more",
+    "host_name": "keele-repository.worktribe.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cs.tau.ac.il/~amnon/Papers/ANTV.stoc99.pdf",
+    "name": "Dense Quantum Coding and a Lower Bound for l-way",
+    "snippet": "by A Ambainis · Cited by 230 — Ambainis . The complexity of probabilistic ver- sus deterministic . Ii&e automata . Proceedings of the. International Symposium on Algorithms and Compu- tation ... Read more",
+    "host_name": "www.cs.tau.ac.il",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

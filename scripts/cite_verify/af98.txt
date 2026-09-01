@@ -1,0 +1,1154 @@
+arXiv:quant-ph/9802062v3 30 Sep 1998
+
+1-way quantum finite automata: strengths,
+weaknesses and generalizations
+Andris Ambainis∗
+UC Berkeley
+
+Rūsiņš Freivalds†
+University of Latvia
+
+Abstract
+We study 1-way quantum finite automata (QFAs). First, we compare them with
+their classical counterparts. We show that, if an automaton is required to give the
+correct answer with a large probability (greater than 7/9), then any 1-way QFA can be
+simulated by a 1-way reversible automaton. However, quantum automata giving the
+correct answer with smaller probabilities are more powerful than reversible automata.
+Second, we show that 1-way QFAs can be very space-efficient. We construct a 1way QFA that is exponentially smaller than any equivalent classical (even randomized)
+finite automaton. We think that this construction may be useful for design of other
+space-efficient quantum algorithms.
+Third, we consider several generalizations of 1-way QFAs. Here, our goal is to find
+a model which is more powerful than 1-way QFAs keeping the quantum part as simple
+as possible.
+
+1
+
+Introduction
+
+It is quite possible that the first implementations of quantum computers will not be fully
+quantum mechanical. Instead, they may have two parts: a quantum part and a classical part
+with a communication between two parts. In this case, the quantum part will be considerably
+more expensive than the classical part. Therefore, it will be useful to make the quantum
+part as small as possible even if it leads to some (reasonable) increases in the size of the
+classical part. This motivates the study of systems with a small quantum mechanical part.
+Quantum finite automata (QFA) is a theoretical model for such systems. [12] introduced
+both 1-way and 2-way QFAs, with emphasis on 2-way automata because they are more
+∗
+
+Address: Computer Science Division, University of California, Berkeley, CA 94720, e-mail:
+ambainis@cs.berkeley.edu. Supported by Berkeley Fellowship for Graduate Studies. Part of this work
+done during 1998 I.S.I.-Elsag Bailey research meeting on quantum computing.
+†
+Address: Institute of Mathematics and Computer Science, University of Latvia, Raina bulv. 29, Riga,
+LV-1459, Latvia, e-mail: rusins@cclu.lv. Supported by Latvia Science Council Grant 96.0282
+
+1
+
+powerful. However, the model of 2-way QFAs is not quite consistent with the idea of a
+system with a small quantum mechanical part. [12] allows superpositions where different
+parts of superposition have the head of QFA at different locations. (Even more, using such
+superpositions was the main idea in the proof that 2-way QFAs are more powerful than
+classical finite automata.) This means that the position of the head must be encoded into
+quantum state. Hence, the number of quantum states necessary to implement a 2-way QFA
+is not a constant but grows when the size of the input increases. This also makes state
+transformations more complicated (and more difficult to implement).
+Hence, we think that more attention should be given to the study of simpler models like
+1-way QFAs. A 1-way quantum automaton is a very reasonable model of computation and
+it is easy to see how it can be implemented. The finite dimensional state-space of a QFA
+corresponds to a system with finitely many particles. Each letter has a corresponding unitary
+transformation on the state-space. A classical device can read symbols from the input and
+apply the corresponding transformations to the quantum mechanical part.
+Results about 1-way QFAs in [12] were quite pessimistic. It was shown that the class of
+languages recognized by 1-way QFAs is a proper subset of regular languages. We continue
+the investigation of 1-way QFAs and show that, despite being limited in some situations,
+they perform well in other situations.
+Our first results consider relations between 1-way QFAs and 1-way reversible automata.
+Clearly, a 1-way reversible automaton is a special case of a QFA and, therefore, cannot
+recognize all regular languages. It is a natural question whether 1-way QFAs are more
+powerful than 1-way reversible automata. Interestingly, the answer depends on the accepting
+probability of a QFA. If a QFA gives a correct answer with a large probability (greater than
+7/9), it can be replaced by a 1-way reversible automaton. However, this is not true for 0.68...
+and smaller probabilities.
+Then, we show that QFAs can be much more space-efficient than deterministic and even
+probabilistic finite automata. Namely, there is a 1-way QFA that can check whether the
+number of letters received from the input is divisible by a prime p with only O(log p) states
+(this is equivalent to log log p bits of memory). Any deterministic or probabilistic finite
+automaton needs p states (log p bits of memory). We think that this space-efficient quantum
+algorithm may be interesting for design of other quantum algoritms as well.
+Finally, we consider modifications of 2-way quantum automata where the head is always
+at the same position for all parts of superposition. Modified 2-way QFAs can be implemented
+with a quantum system of constant size. Several modifications are proposed. In one of our
+models (1-way QFAs with a probabilistic preprocessing), some non-regular languages can be
+recognized.
+
+2
+
+Definitions
+
+2.1
+
+Quantum finite automata
+
+We consider 1-way quantum finite automata (QFA) as defined in [12]. Namely, a 1-way QFA
+is a tuple M = (Q, Σ, δ, q0 , Qacc , Qrej ) where Q is a finite set of states, Σ is an input alphabet,
+δ is a transition function, q0 ∈ Q is a starting state and Qacc ⊂ Q and Qrej ⊂ Q are sets of
+accepting and rejecting states. The states in Qacc and Qrej are called halting states and the
+states in Qnon = Q − (Qacc ∪ Qrej ) are called non-halting states. /c and $ are symbols that
+do not belong to Σ. We use /c and $ as the left and the right endmarker, respectively. The
+working alphabet of M is Γ = Σ ∪ {/c, $}.
+A superposition of M is any element of l2 (Q) (the space of mappings from Q to C with
+l2 norm). For q ∈ Q, |qi denotes the unit vector with value 1 at q and 0 elsewhere. All
+elements of l2 (Q) can be expressed as linear combinations of vectors |qi. We will use ψ to
+denote elements of l2 (Q).
+The transition function δ maps Q × Γ × Q to C. The value δ(q1 , a, q2 ) is the amplitude
+of |q2 i in the superposition of states to which M goes from |q1 i after reading a. For a ∈ Γ,
+Va is a linear transformation on l2 (Q) defined by
+Va (|q1 i) =
+
+X
+
+q2 ∈Q
+
+δ(q1 , a, q2 )|q2 i.
+
+(1)
+
+We require all Va to be unitary.
+The computation of a QFA starts in the superposition |q0 i. Then transformations corresponding to the left endmarker /c, the letters of the input word x and the right endmarker $
+are applied. The transformation corresponding to a ∈ Γ consists of two steps.
+1. First, Va is applied. The new superposition ψ ′ is Va (ψ) where ψ is the superposition
+before this step.
+2. Then, ψ ′ is observed with respect to the observable Eacc ⊕ Erej ⊕ Enon where Eacc =
+span{|qi : q ∈ Qacc }, Erej = span{|qi : q ∈ Qrej }, Enon = span{|qi : q ∈ Qnon }. This
+observation gives x ∈ Ei with the probability equal to the amplitude of the projection
+of ψ ′ . After that, the superposition collapses to this projection.
+If we get ψ ′ ∈ Eacc , the input is accepted. If ψ ′ ∈ Erej , the input is rejected. If
+ψ ′ ∈ Enon , the next transformation is applied.
+We regard these two transformations as reading a letter a.
+Another definition of QFAs. Independently of [12], quantum automata were introduced in [13]. There is one difference between these two definitions. In [12], a QFA is
+observed after reading each letter (after doing each Va ). In [13], a QFA is observed only after
+all letters have been read. Any language recognized by a QFA according to the definition of
+[13] is recognized by a QFA according to [12]. The converse is not true. Any finite language
+can be recognized in the sense of [12]. However, no finite non-empty language can be recognized in the sense of [13]. Everywhere in this paper, we will use the more general definition
+
+of [12]. However, our results of section 4.1 which show that 1-way QFAs can be more spaceefficient than deterministic or probabilistic automata are true in the more restricted model
+of [13] as well.
+
+2.2
+
+Example
+
+To explain our notation, we give an example of a 1-way QFA. To keep it simple, we use a one
+letter alphabet Σ = {a}. The state space is Q = {q0 , q1 , qacc , qrej } with the set of accepting
+states Qacc = {qacc } and the set of rejecting states Qrej = {qrej }. The starting state is q0 .
+The transition function can be specified in two ways: by specifying δ or by specifying Vx
+for all letters x ∈ Γ. These methods are equivalent: all Vx are determined by δ and equation
+(1). We shall define the automaton by describing Vx .
+1
+1
+1
+Va (|q0 i) = |q0 i + |q1 i + √ |qrej i,
+2
+2
+2
+1
+1
+1
+Va (|q1 i) = |q0 i + |q1 i − √ |qrej i,
+2
+2
+2
+V$ (|q0 i) = |qrej i, V$ (|q1 i) = |qacc i.
+
+It can be also defined by describing δ. For example, Va (|q0 i) = 12 |q0 i + 12 |q1 i + √12 |qrej i would
+be
+1
+1
+δ(q0 , a, q0 ) = , δ(q0 , a, q1 ) = ,
+2
+2
+1
+δ(q0 , a, qacc ) = 0, δ(q0 , a, qrej ) = √ .
+2
+As we see, this is much longer. For this reason, we will mainly use Vx notation.
+There are some transitions that we have not described. For example, Va (qacc ) has not
+been specified. These values are not important and can be arbitrary. We need them to be
+such that Va is unitary but this is not difficult. As long as all specified Va (qi ) are orthogonal,
+the remaining values can be assigned so that the whole Va is unitary. In the sequel, we will
+often shorten descriptions of QFAs by leaving out transitions that can be defined arbitrarily.
+Next, we show how this automaton works on the word aa.
+1. The automaton starts in |q0 i. Then, Va is applied, giving 12 |q0 i + 21 |q1 i + √12 |qrej i. This
+√
+is observed. Two outcomes are possible. With probability (1/ 2)2 = 1/2, a rejecting
+state is observed. Then, the superposition collapses to |qrej i, the word is rejected and
+the computation terminates. Otherwise (with probability 1/2), a non-halting state is
+observed and the superposition collapses to 21 |q0 i + 12 |q1 i. In this case, the computation
+continues.
+
+2. A simple computation shows that 21 |q0 i + 12 |q1 i is mapped to itself by Va . After that,
+a non-halting state is observed. (There are no accepting or rejecting states in this
+superposition.)
+3. Then, the word ends and the transformation V$ corresponding to the right endmarker
+$ is done. It maps the superposition to 21 |qrej i + 21 |qacc i. This is observed. With
+probability (1/2)2 = 1/4, the rejecting state qrej is observed. With probability 1/4,
+the accepting state qacc is observed.
+The total probability of accepting is 1/4, the probability of rejecting is 1/2 + 1/4 = 3/4.
+
+2.3
+
+Reversible automata
+
+A 1-way reversible finite automaton (RFA) is a QFA with δ(q1 , a, q2 ) ∈ {0, 1} for all q1 , a, q2 .
+Alternatively, RFA can be defined as a deterministic automaton where, for any q2 , a, there
+is at most one state q1 such that reading a in q1 leads to q2 . We use the same definitions
+of acceptance and rejection. States are partitioned into accepting, rejecting and non-halting
+states and a word is accepted (rejected) whenever the RFA enters an accepting (rejecting)
+state. After that, the computation is terminated. Similarly to quantum case, endmarkers
+are added to the input word. The starting state is one, accepting (rejecting) states can be
+multiple. This makes our model different from both [3] (where only one accepting state was
+allowed) and [14] (where multiple starting states with a non-deterministic choice between
+them at the beginning were allowed). We define our model so because we want it to be as
+close to our model of QFAs as possible.
+Generally, it’s hard to introduce probabilism into finite automata without losing reversibility. However, there are some types of probabilistic choices that are consistent with
+reversibility. For example, we can choose the starting state probabilistically. The next
+example shows that such probabilistic choices increase the power of an automaton.
+Example. Consider the language L = {a2n+3 |n ∈ IN}. It cannot be recognized by a 1way RFA. However, there are 3 1-way RFAs such that each word in the language is accepted
+by 2 of them and each word not in the language is rejected by 2 out of 3. Hence, if we
+choose one of these three automata equiprobably, L will be recognized with the probability
+of correct answer 2/3.
+Probabilistic choices of this type can be easily done in our model of QFAs. This may lead
+to a claim that QFAs are more powerful than classical reversible automata because they can
+do such probabilistic choices. We wish to avoid such situations and to separate probabilistic
+choices from real quantum effects.
+Therefore, we define 1-way finite automata with probabilistic choices (PRFAs) and compare capabilities of QFAs with them. A PRFA is a probabilistic finite automaton such that,
+for any state q1 and any a ∈ Γ, there is at most one state q2 such that the probability of
+passing from q2 to q1 after reading a is non-zero. Definitions of acceptance and rejection
+
+are similar to QFAs and RFAs. Now, the probabilistic automaton from the example above
+becomes a 1-way PRFA.
+Theorem 1
+
+1. If a language is accepted by a 1-way RFA, it is accepted by a 1-way PRFA.
+
+2. If a language is accepted by a 1-way PRFA, it is accepted by a 1-way QFA with the
+same probability of correct answer.
+Proof: Easy. ✷
+In section 3.2 we will compare the power of 1-way QFAs and PRFAs and show that 1-way
+quantum automata can actually do more than just probabilistic choices.
+
+3
+
+Capabilities of RFAs and QFAs
+
+3.1
+
+QFAs with probability of correct answer above 7/9
+
+We characterize the languages recognized by 1-way QFAs in terms of their minimal automata.
+The minimal automaton of a language L is a 1-way deterministic finite automaton recognizing
+it with the smallest number of states. (Note: the minimal automaton can be non-reversible,
+even for some languages L that can be recognized by a 1-way RFA. The extreme case of this
+is our Theorem 12 where the smallest 1-way RFA is exponentially bigger than the minimal
+nonreversible automaton.) It is well known[9] that the minimal automaton is unique and
+can be effectively constructed.
+Theorem 2 Let L be a language and M be its minimal automaton. Assume that there is a
+word x such that M contains states q1 , q2 satisfying:
+1. q1 6= q2 ,
+2. If M starts in the state q1 and reads x, it passes to q2 ,
+3. If M starts in q2 and reads x, it passes to q2 , and
+4. q2 is neither “all - accepting” state, nor “all - rejecting” state.
+Then L cannot be recognized by a 1-way QFA with probability at least 7/9 + ǫ for any fixed
+ǫ > 0.
+Proof: We prove the result for a slightly smaller probability of correct answer 5/6 + ǫ
+(instead of 7/8 + ǫ). The proof for 7/8 + ǫ is technically more complicated.
+Let L be a language such that its minimal automaton contains the “forbidden construction” and M be a QFA. We show that, for some word y the probability of M giving the
+correct answer to ”y ∈ L?” is less than 5/6 + ǫ. This implies that L cannot be recognized
+with probability of correct answer being 5/6 + ǫ.
+
+q1
+
+x
+
+q2
+
+x
+
+Figure 1: “The forbidden construction” of Theorem 2.
+
+For simplicity, we assume that q1 is the starting state of M. We introduce some notation.
+Let Pnon (ψ) be the non-halting part of ψ and Phalt (ψ) be the halting part of ψ. Va′ = Pnon Va
+is a transformation that maps ψ to the non-halting part of Va (ψ). If x is a word consisting
+of letters a1 . . . ak , then Vx′ denotes Va′k . . . Va1 . ψx denotes the non-halting part of the QFA’s
+configuration after reading x. It is easy to see that, for any word x and letter a, ψxa = Va′ (ψx ).
+We recall that l2 (Q) denotes the state-space of M with l2 norm kψk. l2 (Q) = Eacc ⊕
+Erej ⊕ Enon .
+First, we prove that the state-space of M can be decomposed into two parts with different
+behavior.
+Lemma 1 There are subspaces E1 , E2 such that Enon = E1 ⊕ E2 and
+(i) If ψ ∈ E1 , then Vx (ψ) ∈ E1 ,
+(ii) If ψ ∈ E2 , then kVx′k (ψ)k → 0 when k → ∞.
+Proof. We define two sequences of subspaces E11 , E12 , . . . and E21 , E22 , . . . such that Enon =
+E1i ⊕ E2i . Let E11 = {ψ|ψ ∈ Enon and Va (ψ) ∈ Enon } (i.e., the subspace of all ψ such that
+both ψ and Va (ψ) have only non-halting components). E21 consists of all vectors in Enon
+orthogonal to E11 . For i > 1, E1i = E1i−1 ∩ {ψ|Va (ψ) ∈ E1i−1 } and E2i consists of all vectors in
+Enon orthogonal to E1i .
+Clearly, E11 ⊇ E12 ⊇ . . .. If E1i+1 is a proper subspace of E1i , then the dimensionality of
+E1i+1 is smaller than the dimensionality of E1i . This can happen only finitely many times
+because the original E11 is finite-dimensional. Hence, there is i0 such that E1i0 = E1i0 +1 . We
+define E1 = E1i0 , E2 = E2i0 . Next, we check that both (i) and (ii) are true.
+Let ψ ∈ E1 . Then, Va (ψ) ∈ E1i0 +1 = E1i0 = E1 and Va (ψ) ∈ Enon by E1 ⊆ E11 and the
+definition of E11 . It remains to prove that E2 satisfies (ii) condition of Lemma 1.
+−
+→
+Claim 1 If ψ ∈ E1i , then Phalt (Va (Va′l (ψ))) = 0 for all l ≤ i − 1.
+−
+→
+Proof: By induction. If i = 1, then Phalt (Va (ψ)) = 0 by definition of E11 . If i > 1 and
+−
+→
+l = 0, then Phalt (Va (ψ)) = 0 because E1i ⊆ E11 .
+The only remaining case is i > 1 and l > 1. Let ψ ′ = Va (ψ). By definition of E1i , Va (ψ) ∈
+E1i−1 . We also have Va (ψ) ∈ Enon because E1i−1 ⊆ Enon . Hence, Va′ (ψ) = Pnon (Va (ψ)) =
+Va (ψ) = ψ ′ and
+−
+→
+Phalt (Va (Va′l (ψ))) = Phalt (Va (Va′l−1 (ψ ′ ))) = 0
+by ψ ′ ∈ E1i−1 and inductive assumption. ✷
+
+Claim 2 Let ψ = ψ1 + ψ2 , ψ1 ∈ E1i , ψ2 ∈ E2i . Then, for all l ≤ i − 1,
+Phalt (Va (Va′l (ψ))) = Phalt (Va (Va′l (ψ2 ))).
+Proof: By linearity of Phalt , Va , Va′ ,
+Phalt (Va (Va′l (ψ))) = Phalt (Va (Va′l (ψ1 ))) + Phalt (Va (Va′l (ψ2 ))).
+−
+→
+Claim 1 implies that Phalt (Va (Va′l (ψ1 ))) = 0 . ✷
+Claim 3 Let j ∈ {1, . . . , i0 }. There is a constant δj > 0 such that for any ψ ∈ E2i there is
+l ∈ {0, . . . , j − 1} such that kPhalt (Va (Va′l (ψ)))k ≥ δj kψk.
+Proof: By induction.
+Base Case. Consider the linear transformation T1 : E21 → Eacc ⊕ Erej that maps ψ ∈ E to
+the halting part of Va (ψ). kT1 k (the norm of T1 ) is the minimum of kT1 (x)k over all x such
+that kxk = 1.
+If kT1 k = 0, there is x ∈ E21 such that kxk = 1 but kT1 (x)k = 0. This means that
+−
+→
+−
+→
+T1 (x) = 0 , implying that x ∈ E11 . However, E11 ∩ E21 = { 0 }, leading to a contradiction.
+Hence, kT1 k > 0. Also, kT1 k ≤ 1 because Va is unitary and projection to the halting subspace
+can only decrease the norm.
+We take δ1 = kT1 k. Then, the halting part of Va (ψ) is at least kT1 kkψk = δ1 kψk.
+Inductive Case. We assume that the lemma is true for E2i and prove it for E2i+1 .
+We consider the transformation Ti+1 mapping ψ ∈ E2i+1 to the projection of Va (ψ) on
+−
+→
+E2i . If Ti+1 (ψ) = 0 , then ψ ∈ E1i+1 by the definition of E1i+1 . Similarly to the previous case,
+−
+→
+−
+→
+−
+→
+E1i+1 ∩ E2i+1 = { 0 }. Hence, if Ti+1 (ψ) = 0 and ψ ∈ E2i+1 , then ψ = 0 . This means that
+kTi+1 k > 0. We can also prove that kTi+1 k ≤ 1.
+k
+δi .
+We define δi+1 = kTi+1
+4
+i+1
+i
+Let E3 = {x ∈ E2 and x⊥E2i }. Then, E2i+1 = E2i ⊕ E3i . We also note that E3i is a
+subspace of E1i . (This follows from definitions of E1i and E3i .)
+To show that one of Phalt (Va (Va′l (ψ))) is large enough, we represent ψ ∈ E2i+1 as ψ2 + ψ3 ,
+ψ2 ∈ E2i , ψ3 ∈ E3i . There are two cases:
+k
+1. kψ2 k ≥ kTi+1
+kψk.
+4
+
+Then,
+
+kTi+1 k
+kψk = δi+1 kψk
+4
+for some l ≤ i − 1 because ψ2 ∈ E2i and we can apply the inductive assumption. Claim
+2 implies that this is also true for Phalt (Va (Va′l (ψ))).
+Phalt (Va (Va′l (ψ2 ))) ≥ δi kψ2 k ≥ δi
+
+k
+kψk.
+2. kψ2 k < kTi+1
+4
+
+Then, by triangle inequality,
+kψ3 k ≥ kψk − kψ2 k ≥ (1 −
+
+3kTi+1 k
+kTi+1 k
+)kψk ≥
+kψk.
+4
+4
+
+Let ψ ′ , ψ2′ and ψ3′ be the projections of Va (ψ), Va (ψ2 ), Va (ψ3 ) on E2i . Clearly, ψ ′ =
+ψ2′ + ψ3′ . Triangle inequality gives us
+kψ ′ k ≥ kψ3′ k − kψ2′ k ≥ kψ3′ k − kψ2 k ≥
+
+3kTi+1 k
+kTi+1 k
+kTi+1 k
+kψk −
+kψk =
+kψk.
+4
+4
+2
+
+We have ψ ′ = Pnon (ψ ′ ) + Phalt (ψ ′ ). Again, we have two cases.
+k
+k
+kψk, then kPhalt (ψ ′ )k ≥ δi+1 kψk because δi+1 = kTi+1
+δi and
+If kPhalt (ψ ′ )k ≥ kTi+1
+4
+4
+δi ≤ 1 because all kTi k are at most 1.
+
+k
+Otherwise, by triangle inequality, kPnon (ψ ′ )k ≥ kψ ′ k − kPhalt (ψ ′ )k ≥ kTi+1
+kψk. By
+4
+′
+′
+′
+inductive assumption, there is l ≤ i − 1 such that kPhalt Va (Val (ψ ))k ≥ δi kψ k. Therefore,
+kTi+1 k
+kPhalt (Va (Va′l+1 (ψ)))k ≥
+δi kψk = δi+1 kψk.
+4
+
+✷
+Claim 4 There is c such that 0 < c < 1 and, for any ψ ∈ E2 , t ∈ IN, kVa′i0 t (ψ)k ≤ ct kψk.
+q
+
+Proof: We take c = 1 − δi20 .
+By Claim 3, one of Phalt (Va (Va′l (ψ))) is at least δi0 kψk. Pnon (Va (Va′l (ψ))) is orthogonal to
+this vector. Hence, Pnon (Va (Va′l (ψ))) is at most
+q
+
+kψk2 − δi20 kψk2 =
+
+q
+
+1 − δi20 kψk.
+
+Va′i0 can be only smaller because Va is unitary and Pnon does not increase vectors.
+We have shown that Va′i0 (ψ) ≤ ckψk. Repeating this t times, we obtain Claim 4. ✷
+Clearly, ct → 0 if t → ∞. This completes the proof of Lemma 1. ✷
+Let ψ/c = ψ 1 + ψ 2 , ψ 1 ∈ E1 , ψ 2 ∈ E2 . We consider two cases.
+/c
+/c /c
+/c
+√
+2
+Case 1. kψ k > 1/ 3.
+/c
+q
+√
+√
+√
+Then, kψ 1 k < 1 − (1/ 3)2 = 2/ 3. This also means kVx′i (ψ 1 )k < 2/ 3. For suffi/c
+/c
+√
+ciently large i, kVx′i (ψ 2 )k becomes negligible (part (ii) of Lemma 1). Then, kψ/cxi k < 2/ 3.
+/c
+The probability of M halting after this moment is less than 2/3. Hence, M has already
+halted with probability more than 1/3 and accepted (or rejected) with probability more
+
+than 1/6. This means that M cannot reject (accept) any continuation of xi with probability
+5/6. However, xi has both continuations in L and continuations not in L. Hence, M does
+not recognize L.
+√
+Case 2. kψ 2 k ≤ 1/ 3.
+/c
+q1 and q2 are different states in the minimal automaton of L. Therefore, there is a word
+y ∈ Σ∗ such that y leads to acceptance from one of q1 , q2 but not from the other one. We
+consider the distributions of probabilities on M’s answers “accept” and “reject” on y and
+xi y. On one of these words, M must accept with probability at least 5/6 + ǫ and reject
+with probability at most 1/6 − ǫ. On the other word, M must accept with probability most
+1/6 − ǫ and reject with probability at least 5/6 + ǫ. Therefore, both the probabilities of
+accepting and the probabilities of rejecting must differ by at least 2/3 + 2ǫ. This means
+that the variational distance between two probability distributions (the sum of these two
+distances) must be at least 4/3 + 4ǫ. We show that it cannot be so large.
+First, we select an appropriate i. Let m be so large that kVx′m (ψ 2 )k ≤ δ for δ = ǫ/4.
+/c
+ψ 1 , Vx′ (ψ 1 ), Vx′2 (ψ 1 ), . . . is a sequence in a finite-dimensional space. Therefore, it has a limit
+/c
+/c
+/c
+point and there are i, j such that
+kVx′j (ψ/c1 ) − Vx′i+j (ψ/c1 )k < δ.
+We choose i, j so that i > m.
+The difference between two probability distributions comes from two sources. The first
+is difference between ψ/c and ψ/cxi (the states of M before reading y). The second source is
+the possibility of M accepting while reading xi (the only part that is different in two words).
+We bound the difference created by each of these two sources.
+The difference ψ/c − ψ/cxi can be partitioned into three parts.
+ψ/c − ψ/cxi = (ψ/c − ψ/c1 ) + (ψ/c1 − ψ/c1 xi ) + (ψ/c1 xi − ψ/cxi ).
+The first part is ψ/c − ψ 1 = ψ 2 and kψ 2 k ≤ √13 . The second and the third parts are both
+/c
+/c
+/c
+small. For the second part, notice that Vx′ is unitary on E1 (because Vx is unitary and Vx (ψ)
+does not contain halting components for ψ ∈ E1 ). Hence, Vx′ preserves distances on E1 and
+kψ/c1 − ψ/c1 xi k = kψ/c1 xj − ψ/c1 xi+j k ≤ δ.
+The third part is ψ/cxi − ψ 1 i = ψ 2 i and kψ 2 i k ≤ δ because i > m.
+/cx
+/cx
+/cx
+Next, we state two lemmas relating differences between two superpositions and differences
+between probability distributions created by observing these superpositions. The first lemma
+is by Bernstein and Vazirani[4].
+Lemma 2 [4] Let ψ and φ be such that kψk ≤ 1, kφk ≤ 1 and kψ − φk ≤ ǫ. Then the total
+variational distance resulting from measurements of φ and ψ is at most 4ǫ.
+
+The second lemma is our improvement of lemma 2.
+Lemma 3 Let ψ 1 and ψ 2 be such that ψ 1 ⊥ψ 2 . Then the total variational distance resulting
+from measurements of ψ 1 and ψ 1 + ψ 2 is at most
+q
+
+kψ 2 k k4ψ 1 k2 + kψ 2 k2 .
+Proof. Omitted. ✷
+We apply lemma 3 to ψ 1 and ψ 2 . This gives that the variational distance between
+/c
+/c
+distributions generated by ψ 1 and ψ 1 + ψ 2 is at most 1. Then, we apply lemma 2 to two
+/c
+/c
+/c
+other parts of ψ/c − ψ/cxi . Each of them influences the variational distance by at most 4δ.
+Together, the variational distance between distributions obtained by observing ψ/c and ψ/cxi
+is at most 1 + 8δ.
+The probability of M halting while reading xi is at most kψ 2 k2 = 1/3. Adding it
+/c
+increases the variational distance by at most 1/3. Hence, the total variational distance is at
+most 4/3 + 8δ = 4/3 + 2ǫ. However, if M distinguishes y and xi y correctly, it should be at
+least 4/3 + 4ǫ. Hence, M does not recognize one of these words correctly. ✷
+Theorem 3 Let L be a language and M be its minimal automaton. If M does not contain
+the “forbidden construction” of Theorem 2, then L can be recognized by a 1-way reversible
+finite automaton.
+Proof. We define a non-reversibility as a tuple hq1 , q2 , q, ai where q1 , q2 , q ∈ Q, a ∈ Σ,
+q1 6= q2 and reading a in q1 or q2 leads to q. Let m be the number of non-reversibilities in M.
+We show how to modify M so that the number of non-reversibilities decreases. A reversible
+automaton is obtained by repeating this modification several times.
+We define a partial ordering < on non-reversibilities. hq1 , q2 , q, ai < hq1′ , q2′ , q ′ , a′ i if and
+only if one of q1′ and q2′ is reachable from q. It is easy to see that < is transitive.
+Lemma 4 < is anti-reflexive.
+Proof. For a contradiction, assume there is hq1 , q2 , q, ai such that hq1 , q2 , q, ai < hq1 , q2 , q, ai.
+We also assume that q2 is reachable from q by reading a word y. (Otherwise, q1 is reachable
+from q and we can just exchange q1 and q2 .) Then, reading x = ay leads from q1 to q2 and
+from q2 to q2 . This contradicts our assumption that M does not contain such q1 , q2 . ✷
+Hence, there is a tuple hq1 , q2 , q, ai that is maximal with respect to <. We create two
+copies for state q and all states reachable from q. If M reads a in q1 , it passes to one copy
+of q, if it reads a in q2 , it passes to the second copy. This eliminates this non-reversibility.
+Other non-reversibilities are not dublicated because they are not reachable from q. Hence,
+the number of non-reversibilities is decreased. ✷
+
+Corollary 1 A language can be recognized by a 1-way QFA with probability 7/9 + ǫ if and
+only if it can be recognized by a 1-way reversible finite automaton.
+Proof. Clearly, a RFA is a special case of a QFA. The other direction follows from Theorems
+2 and 3. ✷
+This immediately implies the same result about 1-way reversible automata with probabilistic choices. For this type of automata, a stronger result can be proved.
+Theorem 4 A language can be recognized by a 1-way PRFA with probability 2/3 + ǫ (for
+arbitrary ǫ > 0) if and only if it can be recognized by a 1-way reversible finite automaton.
+Proof: Omitted. ✷
+The example in Section 2.3 shows that Theorem 4 is tight.
+
+3.2
+
+QFAs with probability of correct answer below 7/9
+
+For smaller probabilities, QFAs are slightly more powerful than RFAs or even PRFAs.
+Theorem 5 The language a∗ b∗ can be recognized by a 1-way QFA with the probability of
+correct answer p = 0.68... where p is the root of p3 + p = 1.
+Proof. We describe a 1-way QFA M accepting this language. The automaton
+has 4 states:
+√
+√
+q0 , q1 , qacc and qrej . Qacc = {qacc }, Qrej = {qrej }. The initial state is 1 − p|q0 i + p|q1 i.
+The transition function is
+q
+√
+Va (|q0 i) = (1 − p)|q0 i + p(1 − p)|q1 i + p|qrej i,
+Va (|q1 i) =
+
+q
+
+p(1 − p)|q0 i + p|q1 i −
+
+q
+
+1 − p|qrej i,
+
+Vb (|q0 i) = |qrej i, Vb(|q1 i) = |q1 i,
+V$ (|q0 i) = |qrej i, V$ (|q1 i) = |qacc i.
+
+Case 1. The input is x = a∗ .
+√
+√
+p|q1 i to itself while it receives a from
+It is straightforward that δ maps 1 − p|q0 i + √
+√
+∗
+the input. Hence, after reading a √the state remains 1 − p|q0 i + p|q1 i and, after reading
+√
+the right endmarker, it becomes 1 − p|qrej i + p|qacc i. This means that the automaton
+accepts with probability p.
++
+Case 2. The input is x = a∗ b√
+.
+√
+Again, the√state remains 1 − p|q0 i + p|q1 i while input contains a. Reading the first b
+√
+√
+changes it to 1 − p|qrej i + p|q1 i. The non-halting part of this state is p|q1 i. It is left
+unchanged by next bs and mapped to |qacc i after reading the right endmarker. Again, the
+accepting probability is p.
+Case 3. The input is x ∈
+/ a∗ b∗ .
+
+√
+Then, the initial segment of x is a∗ b+ a+ . After reading the first b, the state is 1 − p|qrej i+
+√
+p|q1 i. The automaton rejects at this moment withqprobability (1−p). The non-halting part
+√
+√
+√
+p|q1 i is mapped to p 1 − p|q0 i + (1 − p) p|q1 i − p(1 − p)|qrej i by the next Va . Then, the
+√
+√
+automaton rejects with probability p(1−p). The non-halting part p 1 − p|q0 i+(1−p) p|q1 i
+is unchanged by as. However, either b or right endmarker follows as and then q0 is mapped
+to |qrej i and the automaton rejects with probability p2 (1 − p). We add the probabilities of
+rejecting at different moments together and get that M rejects x ∈
+/ a∗ b∗ with probability at
+least
+(1 − p) + p(1 − p) + p2 (1 − p) = (1 + p + p2 )(1 − p) =
+
+✷
+
+1 − p3
+(1 − p) = 1 − p3 = p.
+1−p
+
+It is easy to see that the minimal automaton of a∗ b∗ contains the “forbidden construction”
+of Theorem 2. Therefore, we have
+
+Corollary 2 There is a language that can be recognized by a 1-QFA with probability 0.68...
+but not with probability 7/9 + ǫ.
+Proof: Follows from Theorems 2 and 5. ✷
+For probabilistic computation, the property that the probability of correct answer can be
+increased arbitrarily is considered evident. Hence, it was not surprising that [12] wrote “with
+error probability bounded away from 1/2” about QFAs, thinking that all such probabilities
+are equivalent. However, mixing reversible (quantum computation) and nonreversible (measurements after each step) components in one model makes it impossible for QFAs. It is
+open whether a counterpart of Corollary 2 is true for 2-way QFAs.
+Corollary 3 There is a language that can be recognized by a 1-QFA with probability 0.68...
+but not by a classical 1-way reversible FA.
+This corollary can be improved by showing that even a 1-way probabilistic reversible
+automaton cannot recognize this language (and even with probability 1/2 + ǫ).
+Theorem 6 Let L be a language and M be its minimal automaton. Assume that there are
+words x, y and M’s states q1 , q2 such that
+1. none of q1 and q2 is ”all-accepting” or ”all-rejecting” state;
+2. reading x in q1 leads to q1 ;
+3. reading y in q1 leads to q2 ;
+4. reading y in q2 leads to q2 ;
+
+5. there is no i > 0 such that reading xi leads from q2 to q2 .
+Then L cannot be recognized by a 1-way PRFA with probability 1/2 + ǫ, for any ǫ > 0.
+Proof. Without the loss of generality, we assume that q1 is the starting state of M. Let Mp
+be a 1-way probabilistic reversible automaton. We are going to show that, for some word x,
+the probability of Mp giving the right answer on the input x is less than 1/2 + ǫ.
+Lemma 5 For any state q and a ∈ Σ+ , there is k such that 0 < k ≤ |Q| and, for any
+sequence of probabilistic choices, one of the following happens:
+1. After reading ak in state q, Mp returns to q;
+2. After reading a|Q|+1 in state q, Mp accepts or rejects.
+Proof. Let q0 , q1 , . . . be any sequence of non-halting states such that q0 = q and the
+probability that reading a causes Mp to go from qi to qi+1 is non-zero. If the length of the
+sequence is greater than |Q|, then some state appears twice in this sequence. We consider
+the first state which appears twice. If it is not q0 , then it has two preceding states: the state
+preceding it when it appears in the sequence for the first time and the state preceding it
+when it appears in the sequence for the second time. This contradicts the definition of a
+probabilistic reversible automaton. We have shown that q0 is the first state which appears
+twice.
+Next, assume we have two such sequences: q0 , q1 , . . . and q0′ , q1′ , . . .. Let k1 , k2 be the
+smallest numbers such that k1 > 0, qk1 = q0 and k2 > 0, qk′ 2 = q0′ , respectively. We show
+that k1 = k2 . For a contradiction, assume that k1 > k2 (k2 > k1 case is similar.). Then,
+qk1 −1 = qk′ 2 −1 (because the state qk1 = qk′ 2 cannot have two preceding states), qk1 −2 = qk′ 2 −2
+and so on, qk1 −k2 = qk′ 2 −k2 = q0′ = q0 . This contradicts the assumption that k1 is the smallest
+number such that k1 > 0 and qk1 = q0 . Hence, k1 = k2 . ✷
+Lemma 6 For any state q and a ∈ Σ+ , one of the following happens:
+1. There is k such that, after reading ak in state q, Mp returns to q for any sequence of
+probabilistic choices;
+2. The probability of halting after reading ak in state q tends to 1 when k → ∞.
+Proof. Let k be as in Lemma 5. If Mp always returns to q after reading ak , Lemma 6 is
+true. It remains to consider the case if there is a sequence of probabilistic choices for which
+Mp does not return to q. Then, by Lemma 5, this sequence causes Mp to halt. Let p be the
+probability of returning to q after reading ak . Then, the probability of returning to q after
+reading aik is pi . With probability 1 − pi , Mp does not returns to q at some moment and
+(this is the only alternative) terminates after reading aik+|Q| (or some its prefix). Clearly,
+1 − pi → 1, if i → ∞. ✷
+
+We note that one can use the same k = |Q|! for all q and a. (For any q, a, k ≤ |Q| and
+|Q|! is a multiple of any such k.) We shall call the states of the first type return states for a.
+Let pi be the probability of non-halting after reading xi and p = limi→∞ pi . We select
+i so that |p − pi | < ǫ. Let p′j be the probability of non-halting after reading xi y j and
+p′ = limj→∞ p′j . We select j so that j is a multiple of |Q|! and |p′ − p′j | < ǫ.
+Next, we compare the behaviour of Mp on xi y j and xi y j x|Q|! . These words correspond
+to different states in the minimal automaton. Hence, there is a continuation z such that
+exactly one of xi y j z and xi y j x|Q|! z is in L.
+If Mp had accepted or rejected after xi y j (without seeing the right endmarker), it accepts
+(rejects) both xi y j z and xi y j x|Q|! z. It remains to consider the sequences of probabilistic
+choices where Mp does not accept until xi y j .
+Let qx be the state of Mp after reading xi . We consider three cases:
+1. qx is not a return state for x.
+Then, reading more x’s cause Mp to halt with probability 1. However, the probability
+of halting after reading more than i x’s is less than ǫ (by the definition of i). Hence,
+the probability of this case is less than ǫ.
+2. qx is not a return state for y.
+Then, reading y’s cause Mp to halt with probability 1. If it does not happen before
+reading y j , it happens later with probability 1. The definition of j implies that, if M
+does not halt before reading y j , then the probability of it halting later is less than ǫ.
+Hence, the probability that qx is not a return state and Mp does not halt before reading
+xi y j is less than ǫ.
+3. qx is return state for both x and y.
+Then, reading y j causes Mp to return to qx because j is a multiple of |Q|! and reading
+x|Q| causes it to return to qx as well. In both cases, it is in the same state after reading
+xi y j and after reading xi y j x|Q| and, hence, does the same thing on both xi y j z and
+xi y j x|Q|! z.
+We see that the third case causes Mp to react similarly on xi y j z and xi y j x|Q|! z and the probability of the other two cases together is less than 2ǫ. Hence, the probabilities of accepting
+these two words differ by less than 2ǫ. However, one of them is in L and must be accepted
+with probability 1/2 + ǫ and the second is not in L and must be accepted with probability
+at most 1/2 − ǫ. This means that Mp does not recognize L with probability 1/2 + ǫ. ✷
+The “forbidden construction” of Theorem 6 is also present in the minimal automaton of
+a∗ b∗ . Therefore, we have
+Corollary 4 There is a language that can be recognized by a 1-QFA with probability 0.68...
+but cannot be recognized by a 1-PRFA with probability 1/2 + ǫ, for any ǫ > 0.
+
+We do not know whether all languages with minimal automata not containing the construction in Theorem 6 can be recognized by 1-way PRFAs. Another open question is
+characterizating the languages recognized by 1-way QFAs in terms of “forbidden constructions”.
+
+4
+
+Complexity
+
+4.1
+
+Divisibility by a prime
+
+All previous work on 1-way QFAs ([12, 13] and the previous sections of this paper) considers
+the question what languages can be recognized by quantum automata. However, there
+is another interesting and important question: how efficient are QFAs compared to their
+classical counterparts?
+For 1-way finite automata, the most natural complexity measure is the number of states
+in the automaton. We can follow the proof in [12] that any language recognized by a 1-way
+QFA is regular step by step and add complexity bounds to it. Then, we get
+Theorem 7 Let L be a language recognized by a 1-way QFA with n states. Then it can be
+recognized by a 1-way deterministic automaton with 2O(n) states.
+So, transforming a QFA into a classical automaton can cause an exponential increase in
+its size. Our next results show that, indeed, 1-way QFAs can be exponentially smaller than
+their classical counterparts.
+Let p be a prime. We consider the language Lp = {ai |i is divisible by p}. It is easy to see
+that any deterministic 1-way finite automaton recognizing Lp has at least p states. However,
+there is a much more efficient QFA!
+Theorem 8 For any ǫ > 0, there is a QFA with O(log p) states recognizing Lp with probability 1 − ǫ.
+Proof. First, we construct an automaton accepting all words in L with probability 1 and
+accepting words not in L with probability at most 7/8. Later, we will show how to increase
+the probability of correct answer to 1 − ǫ for an arbitrary constant ǫ > 0.
+Let Uk , for k ∈ {1, . . . , p − 1} be a quantum automaton with a set of states |Q| =
+{q0 , q1 , qacc , qrej }, a starting state |q0 i, Qacc = {qacc }, Qrej = {qrej }. The transition function is
+defined as follows. Reading a maps |q0 i to cos φ|q0 i+i sin φ|q1 i and |q1 i to i sin φ|q0 i+cos φ|q1 i
+where φ = 2πk
+. (It is easy to check that this transformation is unitary.) Reading the right
+p
+endmarker $ maps |q0 i to |qacc i and |q1 i to |qrej i.
+Lemma 7 After reading aj , the state of Uk is
+!
+
+!
+
+2πjk
+2πjk
+|q0 i + i sin
+|q1 i.
+cos
+p
+p
+
+Proof. By induction. ✷
+If j is divisible by p, then 2πjk
+is a multiple of 2π, cos( 2πjk
+) = 1, sin( 2πjk
+) = 0, reading aj
+p
+p
+p
+maps the starting state |q0 i to |q0 i and the right endmarker $ maps it to |qacc i. Therefore,
+all automata Uk accept words in L with probability 1.
+For a word aj ∈
+/ L, call Uk “good” if Uk rejects aj with probability at least 1/2.
+Lemma 8 For any aj ∈
+/ L, at least (p − 1)/2 of all Uk are “good”.
+Proof. The superposition of Uk after reading aj is cos( 2πjk
+)|q0 i + sin( 2πjk
+)|q1 i. This is
+p
+p
+2πjk
+2πjk
+mapped to cos( p )|qacc i + sin( p )|qrej i by the right endmarker. Therefore, the probability
+√
+2πjk
+2 2πjk
+of Uk accepting ai is cos2 ( 2πjk
+).
+cos
+(
+)
+≤
+1/2
+if
+and
+only
+if
+|
+cos(
+)|
+≤
+1/
+2. This
+p
+p
+p
+2πjk
+happens if and only if p is in [2πl + π/4, 2πl + 3π/4] or in [2πl + 5π/4, 2πl + 7π/4] for
+some l ∈ IN.
+2π(jk mod p)
+∈ [π/4, 3π/4] if and only if 2πjk
+∈ [2πl+π/4, 2πl+3π/4] for some l. p is a prime
+p
+p
+and j is relatively prime with p. Therefore, j mod p, 2j mod p, . . ., (p − 1)j mod p are just
+1, 2, . . ., p − 1 in different order. Hence, it is enough to count k such that 2πk
+∈ [π/4, 3π/4]
+p
+2πk
+or p ∈ [5π/4, 7π/4].
+We do the counting for p = 8m + 1. (Other cases are similar.) Then 2πk
+∈ [π/4, 3π/4]
+p
+if and only if m + 1 ≤ k ≤ 3m and 2πk
+∈ [5π/4, 7π/4] if and only if 5m + 1 ≤ k ≤ 7m.
+p
+Together, this gives us 4m = (p − 1)/2 “good” k’s. ✷
+Next, we consider sequences of ⌈8 ln p⌉ k’s. A sequence is good for aj if at least 1/4 of all
+its elements are good for aj .
+Lemma 9 There is a sequence of length ⌈8 ln p⌉ which is good for all aj ∈
+/ L.
+Proof. First, we show that at most 1/p fraction of all sequences is not good for any fixed
+aj ∈
+/ L.
+We select a sequence randomly by selecting each of its elements uniformly at random
+from {1, . . . , p − 1}. The probability of selecting a good k in each step is at least 1/2. By
+Chernoff bounds, the probability that less than 1/4 = 1/2 − 1/4 fraction of all elements is
+good is at most
+1
+2
+e−2(1/4) 8 ln p = .
+p
+Hence, the fraction of sequences which are bad for at least one j ∈ {1, 2, . . . , p − 1} is
+at most (p − 1)/p and there is a sequence which is good for all j ∈ {1, . . . , p − 1}. This
+sequence is good for aj ∈
+/ L with j > p as well because any Uk returns to the starting state
+after reading ap and, hence, works in the same way on aj and aj mod p . ✷
+Next, we use a good sequence k1 , . . . , k⌈8 ln p⌉ to construct a quantum automaton recognizing Lp . The automaton consists of Uk1 , Uk2 , . . ., Uk⌈8 ln p⌉ and a distinguished starting state.
+Upon reading the left endmarker /c, it passes from the starting state to a superposition where
+|q0 i states of all Ukl have equal amplitudes.
+
+Words in L are always accepted because all Uk accept them. For any aj ∈
+/ L, at least 1/4
+of the sequence is good. This means that at least 1/4 of all Ukl reject it with probability at
+least 1/2 and the total probability of rejecting any aj ∈
+/ L is at least 1/8.
+Finally, we sketch how to increase the probability of correct answer to 1−ǫ for an arbitrary
+ǫ > 0. We do it by increasing the probability of correct answer for each Uk .
+Namely, we consider an automaton Uk′ with 2d non-halting states where d is a constant
+depending on the required probability 1 − ǫ. The states are labelled by strings of 0s and 1s
+of length d: q0...00 , q0...01 and so on. The starting state is the state q0...00 corresponding to the
+all-0 string. The transition function is defined by
+δ(qx1 ...xd , a, qy1 ...yd ) =
+
+d
+Y
+
+δ(qx1 , a, qy1 ).
+
+j=1
+
+It is easy to see that this is just the tensor product of d copies of Uk . The automaton also
+has one accepting state and 2d − 1 rejecting states. After reading the right endmarker, the
+automaton passes to the accepting state from q0...00 and to a rejecting state from any other
+state qx1 ...xd . (To ensure unitarity, one-to-one correspondence between qx1 ...xd and rejecting
+states is established.) A counterpart of Lemma 7 is
+Lemma 10 The state of Uk′ after reading aj is
+!
+
+!
+
+!
+
+!
+
+2πjk
+2πjk
+2πjk
+2πjk
+(cos
+|q0 i + i sin
+|q1 i) ⊗ . . . ⊗ (cos
+|q0 i + i sin
+|q1 i) .
+p
+p
+p
+p
+|
+
+{z
+
+d times
+
+}
+
+The amplitude of |q0 i ⊗ . . . ⊗ |q0 i = q0...0 in this superposition is cosd ( 2πjk
+). If j is a
+p
+multiple of p, then this is 1, meaning that words in Lp are always accepted. For aj ∈
+/ Lp , we
+′
+j
+call Uk δ-good if it rejects a with probability at least 1 − δ. We formulate a counterpart of
+Lemma 8.
+Lemma 11 For a suitable constant d, at least 1 − δ of all Uk′ are δ-good.
+Then, we define a δ-good sequence of automata as a sequence such that, for any aj ∈
+/ L,
+at least 1 − 2δ of all automata in the sequence are δ-good. Similarly to Lemma 9, we show
+that there is a δ-good sequence Uk′ 1 , Uk′ 2 , . . . of length O(log n). Then, we consider an
+automaton consisting of Uk′ 1 , Uk′ 2 , . . . and a distinguished starting state. Upon reading the
+left endmarker /c, it passes from the starting state to a superposition where |q0 i states of
+all Uk′ l have equal amplitudes. Again, it accepts aj ∈ Lp with probability 1 because all Uk′
+accept aj ∈ Lp . Words aj ∈
+/ Lp are rejected by at least 1 − 2δ of Uk′ l with probability 1 − δ.
+Therefore, the probability of rejecting any aj ∈
+/ Lp is at least (1 − 2δ)(1 − δ) > 1 − 3δ. Taking
+δ = ǫ/3 and choosing d so that it satisfies Lemma 11 completes the proof. ✷
+
+We have shown an exponential gap between deterministic and quantum 1-way finite
+automata. Next, we compare quantum and probabilistic finite automata. Generally, probabilistic finite automata can recognize some languages with the number of states being close to
+the logarithm of the number of states needed by a deterministic automaton[1, 7]. However,
+this is not the case with Lp . Here, adding probabilism does not help to decrease the number
+of states at all.
+Theorem 9 Any 1-way probabilistic finite automaton recognizing Lp with probability 1/2+ǫ,
+for a fixed ǫ > 0, has at least p states.
+Proof. Assume that there is a 1-way probabilistic finite automaton with less than p states
+recognizing Lp with probability 12 + ǫ, for a fixed ǫ > 0. Since the language Lp is in a singleletter alphabet, the automaton can be described as a Markov chain. We use the classification
+of Markov chains described in Section 2 of [10] . According to this classification, the states of
+the Markov chain (the automaton) are divided into ergodic and transient states. An ergodic
+set of states is a set which cannot be left once it is entered. A transient set of states is a
+set in which every state can be reached from every other state, and which can be left. An
+ergodic state is an element of an ergodic set. A transient state is an element of a transient
+set.
+If a Markov chain has more than one ergodic set, then there is absolutely no interaction
+between these sets. Hence we have two or more unrelated Markov chains lumped together.
+These chains may be studied seperately. If a Markov chain consists of a single ergodic set,
+the chain is called an ergodic chain. According to results in Section 2 of [10] , every ergodic
+chain is either regular or cyclic.
+If a Markov chain is regular, then sufficiently high powers of the state transition matrix
+P of the Markov chain are with all positive elements. Thus no matter where the process
+starts, after sufficient lapse of time it can be in any state. Moreover, by Theorem 4.2.1 of
+[10] there is limiting vector of probabilities of being in the states of the chain, not dependent
+of the initial state.
+If a Markov chain is cyclic, then the chain has a period d, and its states are subdivided
+into d cyclic sets (d > 1). For a given starting position, it moves through the cyclic sets in a
+definite order, returning to the set of the starting state after d steps. Hence the d-th power
+of the state transition matrix P describes a regular Markov chain.
+We have assumed that p is prime, and the automaton has less than p states. Hence for
+every cyclic state of the automaton the value of d is strictly less than p, and because of
+primality of p, d is relatively prime to p. By D we denote the least common multiple of all
+such values d. Hence D is relatively prime to p, and so is any positive degree D n of D. Since
+n
+n
+1D ∈
+/ Mp but 1D p ∈ Mp , the total of the probabilities to be in an accepting state exceeds
+n
+n
+1
++ ǫ for 1D and is less than 21 − ǫ for 1D p . Contradiction with Theorem 4.2.1 of [10]. ✷
+2
+Corollary 5 For the language Lp , the number of states needed by a classical (deterministic
+or probabilistic) 1-way automaton is exponential in the number of states of a 1-way QFA.
+
+Proof: Follows from Theorems 8 and 9. ✷
+
+4.2
+
+Equality
+
+Divisibility by a prime is quite natural problem and we expect that our algorithm can be
+used as a subroutine, making other quantum algorithms more space-efficient. Here, we show
+how to use our quantum automaton for another problem as well. This problem is checking
+whether the length of the input word is equal to some constant n.
+Theorem 10 [7] Let L′n be a language consisting of one word an in a single-letter alphabet.
+1. Any deterministic automaton that recognizes L′n has at least n states.
+2. For any ǫ > 0, there is a probabilistic automaton with O(log2 n) states recognizing L′n
+with probability 1 − ǫ.
+The first part is evident. To prove the second part, Freivalds[7] used the following construction. O( logloglogn n ) different primes are employed and O(log n) states are used for every
+employed prime. At first, the automaton randomly chooses a prime p, and then the remainder modulo p of the length of the input word is found and compared with the standard.
+Additionally, once in every p steps a transition to a rejecting state is made with a ”small”
+p
+probability const
+. The number of used primes suffices to assert that, for every input of length
+n
+less than n, most of primes p give remainders different from the remainder of n modulo p.
+The ”small” probability is chosen to have the rejection probability high enough for every
+input length N such that both N 6= n and an ǫ-fraction of all the primes used have the same
+remainders mod p as n.
+This 1-way probabilistic automaton is reversible according to the definition of section 2.
+We can use Theorem 1 to transform it into quantum automaton with the number of states
+increasing at most twice. Then, we obtain a counterpart of Theorem 10 for quantum case.
+However, we can do better by counting modulo prime as in Theorem 8. For that, we need
+O(log p) states for each prime p (instead of p states in the probabilistic case). Each prime
+p is O(log n) and there are O(log n/ log log n) of them. Therefore, the number of states in
+quantum case will be
+O(
+
+log n
+log n
+log p) = O(
+log log n) = O(log n).
+log log n
+log log n
+
+We have shown
+Theorem 11 L′n can be recognized by a 1-way QFA with O(log n) states.
+Again, the QFA is exponentially smaller than the corresponding deterministic automaton.
+
+4.3
+
+Are QFAs always space-efficient?
+
+Subsections 4.1 and 4.2 showed cases when 1-way QFAs are more space-efficient than their
+classical counterparts. There can be examples of different kind where deterministic finite
+automata are exponentially smaller than 1-way QFAs. The construction of theorem 3 which
+transforms the minimal automaton into a 1-way RFA can increase the size of the automaton
+exponentially. The next theorem shows that this is inevitable.
+Theorem 12 Let Lm = (xy|zy)m ∪ {(xy|zy)ixx|0 ≤ i ≤ m − 1}. Then,
+1. Lm can be recognized by a 1-way deterministic finite automaton with 3m + 2 states;
+2. Lm can be recognized by a 1-way reversible automaton but it requires at least 3(2m − 1)
+states.
+After first version of this paper appeared, Ambainis, Nayak and Vazirani[2] showed that,
+for a different language, the number of states needed by a 1-way QFA is almost exponentially
+bigger than the number of states of a 1-way deterministic finite automaton.
+
+5
+
+Modifications of 2-way QFAs
+
+The advantage of 1-way quantum automata is the simplicity of this model. However, we saw
+that 1-way automata are quite limited in several situations (despite being good in others)
+while [12] shows that 2-way QFAs are strictly more powerful than classical finite automata.
+It would be interesting to come up with a model having both advantages, i.e. being both
+powerful and simple. In the remainder, we propose several modifications of quantum automata which are intermediate between 1-way QFAs and 2-way QFAs. Quantum part is kept
+finite in all of these models. Questions about exact power of these models are mostly open
+but we have shown that, in most of these models, all regular languages can be recognized
+and, in at least one of them, non-regular languages can be recognized as well.
+
+5.1
+
+Scanning the tape multiple times
+
+The simplest modification is to allow a 1-way QFA to scan its input tape several times
+(after the right endmarker it goes to the left endmarker and so on). This is enough to make
+the proof from [12] that 1-way QFAs recognize only regular languages fail. If we allow the
+automaton to reject words by non-halting, a nonregular language can be recognized.
+Theorem 13 Let L = {an bn |n ∈ IN}. There is a 1-way QFA M scanning tape several times
+such that
+1. If x ∈
+/ L, M stops with probability 1 after O(|x|) scans of the tape.
+
+2. If x ∈ L, M never stops.
+If we require M to stop in a rejecting state for rejection, a similar question is still open.
+It is also open whether multiple scans of the tape can be used by a 1-way QFA to recognize
+an arbitrary regular language. (However, known proofs that 1-way QFAs do not recognize
+some regular languages also fail in this case.)
+
+5.2
+
+Passing information back to environment
+
+Another possibility is introducing more complicated observables. We can partition all nonhalting states into 2 or 3 classes: moving-left states, moving-right states and (may be)
+non-moving states. Then, after each step we observe whether the automaton is in accepting,
+rejecting, moving-right or moving-left state. If it is in a halting state, we terminate the
+computation. If it is in a moving-right state, we feed it the next letter (do the transformation
+on the quantum system corresponding to the next letter). If it is in a moving-left state, we
+feed it the previous letter.
+The model of section 5.1 is a special case of this model where all non-halting states are
+classified as moving-right states.
+
+5.3
+
+Preprocessing the input word
+
+In this model, we have two automata M1 and M2 instead of one. M1 is a 2-way deterministic
+(or probabilistic) finite automaton with output and M2 is a 1-way QFA. The input word is
+given to M1 and M2 is run on the output of M1 . (This can be viewed as M1 preprocessing
+the input word.) Again, the model of section 5.1 can be viewed as a special case of this
+model where M1 moves from left to right all the time and outputs all letters that it reads.
+Any regular language can be recognized in a trivial way because we can recognize it by
+M1 and give the result as an input to M2 . If the preprocessing is done by a probabilistic
+automaton, we can do more.
+Theorem 14 For any ǫ > 0, there is a 2-way probabilistic finite automaton M1 and a 1-way
+QFA M2 such that, with probability at least 1 − ǫ,
+1. M1 stops in time quadratic in the length of the input and,
+2. M2 accepts the output of M1 if and only if x ∈ {an bn |n ∈ IN}.
+Any 2-way probabilistic automaton that recognizes a non-regular language has an exponential expected running time[5, 6, 8, 11]. So, neither polynomial time 2-way probabilistic
+finite automata nor 1-way QFAs can recognize non-regular languages. However, their combination can do that!
+Acknowledgments. We thank Isaac Chuang, Ashwin Nayak, Alistair Sinclair, Amnon
+Ta-Shma and Umesh Vazirani for useful discussions.
+
+References
+[1] A. Ambainis, The complexity of probabilistic versus deterministic finite automata. Proceedings of the International Symposium on Algorithms and Computation(ISAAC’96),
+Lecture Notes in Computer Science, 1178:233-239, 1996.
+[2] A. Ambainis, A. Nayak, U. Vazirani, On the space-efficiency of 1-way quantum finite
+automata, LANL e-print quant-ph/9804043.
+[3] D. Angluin, Inference of reversible languages. Journal of the ACM, 29:741-765, 1982.
+[4] E. Bernstein, U. Vazirani, Quantum complexity theory. SIAM Journal on Computing,
+26:1411-1473, 1997.
+[5] C.Dwork and L.Stockmeyer. On the power of 2-way probabilistic finite state automata.
+Proceedings of the 30th IEEE Conference on Foundations of Computer Science(FOCS),
+1989, pp. 480-485.
+[6] R.Freivalds. Probabilistic two-way machines. Lecture Notes in Computer Science,
+188:33-45, 1981
+[7] R. Freivalds, On the growth of the number of states in result of determinization of
+probabilistic finite automata. Automatic Control and Computer Sciences, 1982, no. 3,
+39-42
+[8] A.G.Greenberg and A.Weiss. A lower bound for probabilistic algorithms for finite state
+machines. Journal of Computer and System Sciences, 33:88-105, 1986.
+[9] J. Hopcroft, J. Ullman, An Introduction to Automata Theory, Languages and Computation. Addison-Wesley, 1979.
+[10] J. Kemeny, J. L. Snell. Finite Markov chains. Van Nostrand, Princeton, N.J. , 1960
+[11] J. Kaņeps and R. Freivalds. Running time to recognize nonregular languages by 2-way
+probabilistic automata. Lecture Notes in Computer Science, 510:174-185, 1991.
+[12] A. Kondacs, J. Watrous, On the power of quantum finite state automata. Proceedings
+of the 38th IEEE Conference on Foundations of Computer Science, 66-75, 1997.
+[13] C. Moore, J. Crutchfield. Quantum automata and quantum grammars. Santa-Fe Institute Working Paper 97-07-062, 1997. Also quant-ph/9707031.
+[14] J. Pin. On reversible automata. Proceedings of Latin American Symposium on Theoretical Informatics(LATIN’92), Lecture Notes in Computer Science, 583:401-415, 1992.
+
+

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2102.06860",
+    "name": "Optimal Spectral-Norm Approximate Minimization of",
+    "snippet": "by B Balle · 2021 · Cited by 9 — Approximate Minimization of Weighted Finite Automata Authors:Borja Balle, Clara Lacroce, Prakash Panangaden, Doina Precup, Guillaume Rabusseau",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2106.02965",
+    "name": "Extracting Weighted Automata for Approximate",
+    "snippet": "by C Lacroce · 2021 · Cited by 8 — Authors: Clara Lacroce , Prakash Panangaden, Guillaume Rabusseau ・ by Clara Lacroce and 2 other authors ・ obtain a weighted finite automaton ( ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1501.06841",
+    "name": "[1501.06841] A Canonical Form for Weighted Automata",
+    "snippet": "by B Balle · 2015 · Cited by 34 — Abstract page for arXiv paper ... Weighted Automata and Applications to Approximate Minimization , by Borja Balle and 2 other authors. Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ICALP.2021.118",
+    "name": "Optimal Spectral-Norm Approximate Minimization of Weighted",
+    "snippet": "by B Balle · 2021 · Cited by 9 — Borja Balle, Clara Lacroce, Prakash Panangaden, Doina Precup, and Guillaume Rabusseau . Optimal Spectral-Norm Approximate Minimization of Weighted Finite ... Read more",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://claralacroce.github.io/static/LacroceClara_PhDthesis.pdf",
+    "name": "The approximate minimization problem of weighted finite",
+    "snippet": "by C Lacroce · 2022 · Cited by 1 — In this thesis, we leverage classical results from the theory of Hankel operators to tackle the approximate minimization problem and its applications to ... Read more 193 pages",
+    "host_name": "claralacroce.github.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1501.06841v3",
+    "name": "A Canonical Form for Weighted Automata and Applications",
+    "snippet": "The goal of our approximate minimization algorithm is to start from a minimal WFA and produce a smaller WFA that is close to the given one in a certain sense. Read more",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v153/lacroce21a/lacroce21a.pdf",
+    "name": "Extracting Weighted Automata for Approximate Minimization in",
+    "snippet": "by C Lacroce · 2021 · Cited by 8 — Borja Balle, Clara Lacroce, Prakash Panangaden, Doina Precup, and Guillaume Rabusseau . Optimal. Approximate Minimization of Weighted Finite Automata. J.W. ... 21 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2606.26038v1",
+    "name": "Representing One Letter Weighted Automata Over the",
+    "snippet": "We show that determinisation, register minimisation , and boundedness are all coNP-complete for unary weighted automata .",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://arxiv.org/html/2003.09877v2",
+    "name": "Lower Bounds on the Running Time of Two-Way Quantum",
+    "snippet": "If W G ∈ 𝖡𝖰𝖳𝖨𝖲𝖯 ⁡ ( n O ⁡ ( 1 ) , o ⁡ ( log ⁡ log ⁡ log ⁡ n ) ) W_{G}\\in\\mathsf{BQTISP}(n^{O(1)},o(\\ log\\log\\log n)) , then G G is virtually nilpotent. Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Optimal-lower-bounds-for-quantum-automata-and-codes-Nayak/ca86a3524b766f97850e04c78a3a4cda00a75a55",
+    "name": "[PDF] Optimal lower bounds for quantum automata and",
+    "snippet": "... (0, 1=2) regular language L it holds that dim(Q) = Ω (log dim (A)/ log log dim(A)). Expand. 29 Citations · Highly Influenced. Add to Library. Alert. 1 ... Read more",
+    "host_name": "www.semanticscholar.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/quant-ph/9802062",
+    "name": "1-way quantum finite automata",
+    "snippet": "by A Ambainis · 1998 · Cited by 413 — O(log p) states for each prime p (instead of p states in the probabilistic case). Each prime p is O(log n) and there are O(log n/ log log n) of them. Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/0911.0996",
+    "name": "The Need for Structure in Quantum Speedups",
+    "snippet": "by S Aaronson · 2009 · Cited by 176 — 4. Other examples, for which R(f) = Ω(√N) and Q(f) = O(log N log log N), follow easily from Simon's al- gorithm [30] and Shor's algorithm ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2302.06749",
+    "name": "Improved Algorithm and Lower Bound for Variable Time",
+    "snippet": "by A Ambainis · 2023 · Cited by 14 — ... log log d) = Θ(log d), we have. Q(fT ) ≥ Q(fT ′ )=Ω q d log2 d. = Ω p. T log T . 5 Conclusion. In this paper, we developed a new quantum algorithm and a new ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/1411.5729",
+    "name": "Forrelation: A Problem that Optimally Separates Quantum",
+    "snippet": "by S Aaronson · 2014 · Cited by 218 — and O(log N log log N) quantumly. Since then, there has been only sporadic progress on the Speedup Question. In 2009, Aaronson. [1] ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]

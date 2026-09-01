@@ -1,0 +1,1330 @@
+On the state complexity of semi-quantum finite automata
+Shenggen Zheng1,∗, Jozef Gruska1 , Daowen Qiu2
+1
+
+arXiv:1307.2499v2 [cs.FL] 28 Jan 2014
+
+2
+
+Faculty of Informatics, Masaryk University, Brno 60200, Czech Republic
+
+Department of Computer Science, Sun Yat-sen University, Guangzhou 510006, China
+
+Abstract
+Some of the most interesting and important results concerning quantum finite automata are those
+showing that they can recognize certain languages with (much) less resources than corresponding
+classical finite automata. This paper shows three results of such a type that are stronger in some
+sense than other ones because (a) they deal with models of quantum finite automata with very
+little quantumness (so-called semi-quantum one- and two-way finite automata); (b) differences, even
+comparing with probabilistic classical automata, are bigger than expected; (c) a trade-off between the
+number of classical and quantum basis states needed is demonstrated in one case and (d) languages (or
+the promise problem) used to show main results are very simple and often explored ones in automata
+theory or in communication complexity, with seemingly little structure that could be utilized.
+Keywords: Quantum computing, semi-quantum finite automata, state complexity.
+
+1
+
+Introduction
+
+An important way to get deeper insights into the power of various quantum resources and operations is to explore the power of various quantum variations of the basic models of classical automata.
+Of a special interest is to do that for various quantum variations of the classical finite automata,
+especially for those that use limited amounts of quantum resources: states, correlations, operations
+and measurements. This paper aims to contribute to such a line of research.
+There are several approaches how to introduce quantum features to classical models of finite
+automata. Two of them will be dealt with in this paper. The first one is to consider quantum
+variants of the classical one-way (deterministic) finite automata (1FA or 1DFA) and the second one
+is to consider quantum variants of the classical two-way finite automata (2FA or 2DFA). Already
+the very first attempts to introduce such models, by Moore and Crutchfields [34] as well as Kondacs
+and Watrous [26] demonstrated that in spite of the fact that in the classical case, 1FA and 2FA
+have the same recognition power, this is not so for their quantum variations (in case only unitary
+operations and projective measurements are considered as quantum operations). Moreover, already
+the first model of two-way quantum finite automata (2QFA), namely that introduced by Kondacs and
+Watrous, demonstrated that quantum variants of 2FA are much too powerful – they can recognize
+∗ Corresponding author.
+
+E-mail addresss: zhengshenggen@gmail.com (S. Zheng), gruska@fi.muni.cz (J. Gruska),
+issqdw@mail.sysu.edu.cn (D. Qiu).
+
+1
+
+even some non-context free languages and are actually not really finite in a strong sense [26]. Therefore
+it started to be of interest to introduce and explore some “less quantum” variations of 2FA and their
+power [3, 4, 10, 33, 43].
+A “hybrid” – quantum/clssical – variations of 2FA, namely, two-way finite automata with quantum
+and classical states (2QCFA), were introduced by Ambainis and Watrous [3]. For this model they
+showed, in an elegant way, that already an addition of a single qubit to the classical model can much
+increase its power. A 2QCFA is essentially a classical 2FA augmented with a quantum memory of
+constant size (for states of a fixed Hilbert space) that does not depend on the size of the (classical)
+input. In spite of such a restriction, 2QCFA have been shown to be even more powerful than two-way
+probabilistic finite automata (2PFA) [3, 46, 47]. A one-way version of 2QCFA was studied in [45],
+namely one-way finite automata with quantum and classical states (1QCFA).
+Number of states is a natural complexity measure for finite automata. In case of quantum finite
+automata by that we understand the number of the basis states of the quantum space – that is its
+dimension. In case of hybrid, that is quantum/classical, finite automata, it is natural to consider
+both complexity measures – number of classical and also number of quantum (basis) states – and,
+potentially, trade-offs between them.
+State complexity is one of the important research fields of computer science and it has many
+applications [42], e.g., in natural language and speech processing, image generation and encoding,
+etc. Early in 1959, Rabin and Scott [37] proved that any n-state one-way nondeterministic finite
+automaton (1NFA) can be simulated by a 2n -state one-way deterministic finite automaton (1DFA).
+Salomaa [40] began to explore state complexity of finite automata in 1960s. The number of states of
+finite automata used in applications were usually small at that time and therefore investigations of
+state complexity of finite automata was seen mainly as a purely theoretical problem. However, the
+numbers of states of finite automata in applications can be huge nowadays, even millions of states in
+some cases [23]. It becomes therefore also practically important to explore state complexity of finite
+automata. State complexity of several variants of finite automata, both one-way and two-way, were
+deeply and broadly studied in the past thirty years [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 21, 27,
+28, 29, 30, 31, 32, 41, 42, 43, 44, 45, 46].
+In this paper we explore the state complexity of semi-quantum finite automata and their spaceefficiency comparing to the corresponding classical counterparts. We do that by showing that even for
+several very simple, and often considered, languages or promise problems, a little of quantumness can
+much decrease the state complexity of the corresponding semi-quantum finite automata. The first of
+these problems will be one of the very basic problem that is explored in communication complexity.
+Namely, the strings equality problem.
+In this paper we explore the state complexity of semi-quantum finite automata and their spaceefficiency comparing to the corresponding classical counterparts. We do that by showing that even for
+several very simple, and often considered, languages or promise problems, a little of quantumness can
+much decrease the state complexity of the corresponding semi-quantum finite automata. The first of
+these problems will be one of the very basic problem that is explored in communication complexity.
+Namely, the promise version of strings equality problem [11, 12].
+We use a promise problem to model the promise version of strings equality problem. For the
+alphabet Σ = {0, 1, #} and n ∈ Z+ , let us consider the promise problem AEQ (n) = (Ayes (n), Ano (n)),
+2
+
+where Ayes (n) = {x#y | x = y, x, y ∈ {0, 1}n} and Ano (n) = {x#y | x 6= y, x, y ∈ {0, 1}n, H(x, y) =
+n
+2 }. (H(x, y) is the Hamming distance between x and y, which is the number of bit positions on which
+they differ.)
+Klauck [24] has proved that, for any language, the state complexity of exact quantum/classical
+finite automata, which is a general model of one-way quantum finite automata, is not less than the
+state complexity of 1DFA. Therefore, it is interesting and important to find out whether the result
+still holds for interesting cases of promise problems or not1 . Applying the communication complexity
+result from [11, 12] to finite automata, for any n ∈ Z+ , we prove that promise problem AEQ (n) can be
+solved by an exact 1QCFA with n quantum basis states and O(n) classical states, whereas the sizes
+of the corresponding 1DFA are 2Ω(n) .
+As the next we will consider state complexity of the language L(p) = {akp | k ∈ Z+ }. It is well
+know that, for any p ∈ Z+ , each 1DFA and 1NFA accepting L(p) has at least p states. Ambainis
+and Freivalds [4], proved, using a non-constructive method, that L(p) can be recognized by a one-way
+
+measure-once quantum finite automaton (MO-1QFA) with one-sided error ε with poly 1ε · log p basis
+p
+states (where poly(x) is some polynomial in x). This bound was improved to O( log
+ε3 ) in [8] and to
+4 logε2p in [5]. That is the best result known for such a mode of acceptance and it is an interesting open
+problem whether this bound can be much improved. If p is a prime, L(p) can not be recognized by any
+one-way probabilistic finite automaton (1PFA) with less than p states [4]. For the case that p is not
+a prime, Mereghetti el at. [30] showed that the number of states of a 1PFA necessary and sufficient
+α2
+α1 α2
+αs
+αs
+1
+for accepting the language L(p) with isolated cut point is pα
+1 + p2 + · · · + ps , where p1 p2 · · · ps
+is the prime factorization of p. Mereghetti el at. [30] also proved that L(p) can be recognized by a 2
+basis states MO-1QFA with isolated cut point. However, this mode of acceptance often leads to quite
+different state complexity outcome than one-sided error and error probability acceptance modes.
+Concerning two-way finite automata, for any prime p, p states are necessary and sufficient for
+accepting L(p) on two-way deterministic finite automata (2DFA) and two-way nondeterministic finite
+automata (2NFA) [29]. For the case that p is not prime, the number of states necessary and sufficient
+α2
+α1 α2
+αs
+αs
+1
+for accepting L(p) on 2DFA and 2NFA is pα
+1 + p2 + · · · + ps [29], where p1 p2 · · · ps is the prime
+factorization of p. Yakaryilmaz and Cem Say [44] showed that there exists a 7-state one-way finite
+automaton with restart (1QFA ) which accepts L(p) with one-sided error ε and expected running
+time O( 1ε sin−2 ( πp )|w|), where |w| is the length of input w. For any n-state 1QFA M1 with expected
+running time t(|w|), Yakaryilmaz and Cem Say [44] also proved that there exists a 2QCFA M2 with
+n quantum basis states, O(n) classical states, and with expected runtime O(t(|w|)), such that M2
+accepts every input string w with the same probability as M1 does. Therefore, L(p) can be recognized
+with one-sided error ε by a 2QCFA with 7 quantum basis states and a constant number of classical
+states.
+In this paper we prove that the language L(p) can be recognized with one-sided error ε in a linear
+expected running time O( 1ε p2 |w|) by a 2QCFA A(p, ε) with 2 quantum basis states and a constant
+number of classical states. We also show that the number of states needed for accepting L(p) on a
+p
+polynomial time 2PFA is at least 3 (log p)/b, where b is a constant.
+The problem of checking whether the length of input string is equal to a given constant m ∈ Z+ ,
+
+1 Ambainis and Yakaryilmaz showed in [6] that there is a very special case in which the superiority of quantum
+computation to classical one cannot be bounded.
+
+3
+
+is extensively studied in literatures as well. For any m ∈ Z+ and any finite alphabet Σ, it is obvious
+that the number of states of a 1DFA for accepting the language C(m) = {w | w ∈ Σm } is at least m.
+Freivalds [15] showed that there is an ε error probability 1PFA accepting C(m) with O(log2 m) states.
+Ambainis and Freivalds [4] proved that C(m) can be recognized by an MO-1QFA with O(log m)
+quantum basis states. Yakaryilmaz and Cem Say [44] showed that there exists a 7-state 1QFA
+M which accepts C(m) with one-sided error ε and expected running time O( 1ε 2m |w|) which is an
+exponential of m. The 1QFA M can only work efficiently on a very small m.
+In this paper we prove that the language C(m) can be recognized with one-sided error ε in expected
+running time O( 1ε m2 |w|4 ) by a 2QCFA A(m, ε) with 2 quantum basis states and a constant number
+of classical states. The expected running time is a polynomial of m and |w|. We show also that the
+p
+number of states needed for accepting C(m) on a polynomial 2PFA is at least 3 (log m)/b, where b is
+a constant.
+Since 1QCFA and 2QCFA have both quantum and classical states, it is interesting to ask when
+there is some trade-off between these two kinds of states. We prove such a trade-off property for
+the case a 1QCFA accepts the language L(p). Namely, it holds that for any integer p with prime
+Q
+αi
+αs
+1 α2
+factorization p = pα
+1 p2 · · · ps (s > 1), for any partition I1 , I2 of {1, . . . , s}, and for q1 =
+i∈I1 pi
+Q
+αi
+and q2 = i∈I2 pi , the language L(p) can be recognized with a one-sided error ε by a 1QCFA
+Q
+P
+i
+A(q1 , q2 , ε) with O(log q1 ) = O( i∈I1 αi log pi ) quantum basis states and O(q2 ) = O( i∈I2 pα
+i )
+classical states.
+The paper is structured as follows. In Section 2 some basic concepts and notations are introduced
+and automata models involved are described in some details. State complexities for the string equality
+problems will be discussed in Section 3. State succinctness for two families of regular languages is
+explored in Section 4. A trade-off property for 1QCFA is demonstrated in Section 5. Finally, Section
+6 contains a conclusion and suggestions for further research.
+
+2
+
+Preliminaries
+
+We introduce in this section some basic concepts and also notations concerning quantum information processing and afterwards also the models of 1QCFA and 2QCFA. Concerning more on quantum
+information processing we refer the reader to [19, 38], and concerning more on classical and quantum
+automata [19, 20, 22, 35, 39].
+
+2.1
+
+Preliminaries of quantum information processing
+
+According to quantum mechanical principles, to each closed quantum system S, a Hilbert space
+HS is associated and states of S correspond to vectors of the norm one of HS . In case HS is an ndimensional vector space then it has a basis (actually infinite many of them) consisting of n mutually
+orthogonal vectors. We will mostly denote such a basis and its vectors by
+{|ii}ni=1 .
+
+4
+
+In such a case any vector of HS can be uniquely expressed as a superposition
+|ψi =
+
+n
+X
+i=1
+
+αi |ii,
+
+(1)
+
+where αi ’s are complex numbers, called probability amplitudes, that satisfy the following, so-called
+Pn
+normalization, condition i=1 |αi |2 = 1. If the state |ψi is measured with respect to the above basis,
+then the state collapses to one of the states |ii and to a particular state |i0 i with the probability |αi0 |2 .
+i0 is then the outcome (discrete) received into the classical world.
+Each evolution step of a finite n dimensional quantum system is specified by a unitary n× n matrix
+U and changes any current state |φi into the state U |φi.
+To extract some information from a quantum state |ψi a measurement has to be performed. We will
+consider here mostly measurements defined by a set {Pm } of so-called projective operators/matrices,
+where indices m refer to the potential classical outcomes of measurements, with the property:
+(
+Pi
+i = j,
+Pi Pj =
+(2)
+0
+i 6= j,
+that, in addition, satisfies the following completeness condition
+n
+X
+
+Pi = I.
+
+(3)
+
+i=1
+
+In case a state |ψi is measured with respect to the set of projective operators {Pm }, then the classical
+outcome m is obtained with the probability
+p(m) = kPm |ψik2 ,
+
+(4)
+
+and then the state |ψi “collapses” into the state
+Pm |ψi
+p
+.
+p(m)
+
+(5)
+
+A projective measurement {Pm } is usually specified by an observable M , a Hermitian matrix that
+has a so called spectral decomposition
+X
+M=
+mPm ,
+(6)
+m
+
+where m are mutually different eigenvalues of M and each Pm is a projector into the space of eigenvectors associated to the eigenvalue m.
+
+2.2
+
+Preliminaries on semi-quantum finite automata
+
+2QCFA were introduced by Ambainis and Watrous [3] and explored also by Yakaryilmaz, Qiu,
+Zheng and others [36, 44, 45, 46, 47, 48]. Informally, a 2QCFA can be seen as a 2DFA with an access
+to a quantum memory for states of a fixed Hilbert space upon which at each step either a unitary
+operation is performed or a projective measurement and the outcomes of which then probabilistically
+determine the next move of the underlying 2DFA.
+5
+
+Definition 1. A 2QCFA A is specified by a 9-tuple
+A = (Q, S, Σ, Θ, δ, |q0 i, s0 , Sacc , Srej )
+
+(7)
+
+where:
+1. Q is a finite set of orthonormal quantum basis states.
+2. S is a finite set of classical states.
+3. Σ is a finite alphabet of input symbols and let Σ′ = Σ ∪ {|c, $}, where c| will be used as the left
+end-marker and $ as the right end-marker.
+4. |q0 i ∈ Q is the initial quantum state.
+5. s0 is the initial classical state.
+6. Sacc ⊂ S and Srej ⊂ S, where Sacc ∩ Srej = ∅ are sets of the classical accepting and rejecting
+states, respectively.
+7. Θ is a quantum transition function
+Θ : S \ (Sacc ∪ Srej ) × Σ′ → U (H(Q)) ∪ O(H(Q)),
+
+(8)
+
+where U(H(Q)) and O(H(Q)) are sets of unitary operations and projective measurements on the
+Hilbert space generated by quantum states from Q.
+8. δ is a classical transition function. If the automaton A is in the classical state s, its tape head
+is scanning a symbol σ and its quantum memory is in the quantum state |ψi, then A performs
+quantum and classical transitions as follows.
+(a) If Θ(s, σ) ∈ U (H(Q)), then the unitary operation Θ(s, σ) is applied on the current state
+|ψi of quantum memory to produce a new quantum state. The automaton performs, in
+addition, the following classical transition function
+δ : S \ (Sacc ∪ Srej ) × Σ′ → S × {−1, 0, 1}.
+
+(9)
+
+If δ(s, σ) = (s′ , d), then the new classical state of the automaton is s′ and its head moves
+in the direction d.
+(b) If Θ(s, σ) ∈ O(H(Q)), then the measurement operation Θ(s, σ) is applied on the current
+state |ψi. Suppose the measurement Θ(s, σ) is specified by operators {P1 , . . . , Pn } and
+its corresponding classical outcome is from the set NΘ(s,σ) = {1, 2, · · · , n}. The classical
+transition function δ can be then specified as follow
+δ : S \ (Sacc ∪ Srej ) × Σ′ × NΘ(s,σ) → S × {−1, 0, 1}.
+
+(10)
+
+In such a case, if i is the classical outcome of the measurement, then the current quantum
+state |ψi is changed to the state Pi |ψi/kPi |ψik. Moreover, if δ(s, σ)(i) = (s′ , d), then the
+new classical state of the automaton is s′ and its head moves in the direction d.
+The automaton halts and accepts (rejects) the input when it enters a classical accepting (rejecting) state (from Sacc (Srej )).
+6
+
+The computation of a 2QCFA A = (Q, S, Σ, Θ, δ, |q0i, s0 , Sacc , Srej ) on an input w ∈ Σ∗ starts
+with the string cx$
+| on the input tape. At the start, the tape head of the automation is positioned on
+the left end-marker and the automaton begins the computation in the classical initial state and in the
+initial quantum state. After that, in each step, if its classical state is s, its tape head reads a symbol
+σ and its quantum state is |ψi, then the automaton changes its states and makes its head movement
+following the steps described in the definition.
+The computation will end whenever the resulting classical state is in Sacc ∪ Srej . Therefore,
+similarly to the definition of accepting and rejecting probabilities for 2QFA [26], the accepting and
+rejecting probabilities P r[A accepts w] and P r[A rejects w] for an input w are, respectively, the sums
+of all accepting probabilities and all rejecting probabilities before the end of computation on the input
+w.
+Remark 1. 1QCFA are one-way versions of 2QCFA [45]. In this paper, we only use 1QCFA in which
+a unitary transformation is applied in every step after scanning a symbol and an measurement is performed after scanning the right end-marker. Such model is an measure-once 1QCFA and corresponds
+to a variant of MO-1QFA.
+Three basic modes of language acceptance to be considered here are the following ones: Let L ⊂ Σ∗
+and 0 < ε ≤ 21 . A finite automaton A recognizes L with a one-sided error ε if, for w ∈ Σ∗ ,
+1. ∀w ∈ L, P r[A accepts w] = 1, and
+2. ∀w ∈
+/ L, P r[A rejects w] ≥ 1 − ε.
+Let 0 < ε < 12 . A finite automaton A recognizes L with an error probability ε if, for w ∈ Σ∗ ,
+1. ∀w ∈ L, P r[A accepts w] ≥ 1 − ε, and
+2. ∀w ∈
+/ L, P r[A rejects w] ≥ 1 − ε.
+Let 0 < λ < 1. A language L is said to be accepted by a finite automation A with an isolated cut
+point λ if there exists δ > 0, for w ∈ Σ∗ , such that
+1. ∀w ∈ L, P r[A accepts w] ≥ λ + δ, and
+2. ∀w ∈
+/ L, P r[A accepts w] ≤ λ − δ.
+Obviously, for 0 < ε < 12 , one-sided error acceptance is stricter than an error probability acceptance
+and the error probability acceptance is stricter than an isolated cut point acceptance.
+Language acceptance is a special case of so called promise problem solving. A promise problem is
+a pair A = (Ayes , Ano ), where Ayes , Ano ⊂ Σ∗ are disjoint sets. Languages may be viewed as promise
+problems that obey the additional constraint Ayes ∪ Ano = Σ∗ .
+A promise problem A = (Ayes , Ano ) is solved by an exact 1QCFA A if
+1. ∀w ∈ Ayes , P r[A accepts w] = 1, and
+2. ∀w ∈ Ano , P r[A rejects w] = 1.
+7
+
+3
+
+State complexities for strings equality problems
+
+Strings equality problem is a basic problem in communication complexity [25] defined as follows.
+Let Alice and Bob be the two communicating parties. Alice is given as an input x ∈ {0, 1}n and Bob
+is given as an input y ∈ {0, 1}n. They wish to compute the value of the function EQ(x, y) defined to
+be 1 if x = y and 0 otherwise.
+We use a promise problem to model the promise version of strings equality problem studied in
+[11, 12]. For the alphabet Σ = {0, 1, #} and n ∈ Z+ , let us consider the promise problem AEQ (n) =
+(Ayes (n), Ano (n)), where Ayes (n) = {x#y | x = y, x, y ∈ {0, 1}n} and Ano (n) = {x#y | x 6= y, x, y ∈
+{0, 1}n, H(x, y) = n2 }.
+Theorem 1. The promise problem AEQ (n) can be solved by an exact 1QCFA A(n) with n quantum
+basis states and O(n) classical states, whereas the sizes of the corresponding 1DFA are 2Ω(n) .
+1. Read the left end-marker c,
+| perform Us on the initial quantum state |1i, change its
+classical state to δ(s0 , c)
+| = s1 , and move the tape head one cell to the right.
+2. Until the currently scanned symbol σ is not #, do the following:
+2.1 Apply Θ(si , σ) = Ui,σ to the current quantum state.
+2.2 Change the classical state si to si+1 and move the tape head one cell to the right.
+3. Change the classical state sn+1 to s1 and move the tape head one cell to the right.
+4. While the currently scanned symbol σ is not the right end-marker $, do the following:
+2.1 Apply Θ(si , σ) = Ui,σ to the current quantum state.
+2.2 Change the classical state si to si+1 and move the tape head one cell to the right.
+5. When the right end-marker is reached, perform Uf on the current quantum state, measure
+the current quantum state with M = {Pi = |iihi|}ni=1 . If the outcome is |1i, accept the
+input; otherwise reject the input.
+Figure 1: Description of the behavior of A(n) when solving the promise problem AEQ (n).
+Proof. Let x = x1 · · · xn and y = y1 · · · yn with x, y ∈ {0, 1}n. Let us consider a 1QCFA A(n) with n
+quantum basis states {|ii : i = 1, 2, . . . , n}. A(n) will start in the quantum state |1i = (1, 0, . . . , 0)T .
+We use classical states si ∈ S (1 ≤ i ≤ n + 1) to point out the positions of the tape head that
+will provide some information for quantum transformations. If the classical state of A(n) will be si
+(1 ≤ i ≤ n) that will mean that the next scanned symbol of the tape head is the i-th symbol of x(y)
+and sn+1 means that the next scanned symbol of the tape head is #($). The automaton proceeds as
+shown in Figure 1, where
+Us |1i = √1n
+
+Pn
+
+i=1 |ii;
+
+Ui,σ |ii = (−1)σ |ii and Ui,σ |ji = |ji for j 6= i;
+P
+P
+Uf ( ni=1 αi |ii) = ( √1n ni=1 αi )|1i + · · · .
+8
+
+Transformations Us and Uf are unitary. The first column of Us is √1n (1, . . . , 1)T and the first row
+of Uf is √1n (1, . . . , 1).
+Pn
+The quantum state after scanning the left end-marker is |ψ1 i = Us |1i = i=1 √1n |ii, the quanPn
+tum state after Step 2 is |ψ2 i = i=1 √1n (−1)xi |ii, and the quantum state after Step 4 is |ψ3 i =
+Pn
+xi +yi
+√1
+|ii. The quantum state after scanning the right end-marker is therefore
+i=1 n (−1)
+|ψ4 i = Uf
+
+n
+X
+1
+√ (−1)xi +yi |ii
+n
+i=1
+
+!
+
+
+
+
+
+=
+
+
+
+(−1)x1 +y1
+
+
+(−1)x2 +y2 
+1 
+
+
+= Uf √ 
+..
+
+n
+
+.
+xn +yn
+(−1)
+
+1 Pn
+xi +yi
+i=1 (−1)
+n
+
+..
+.
+..
+.
+
+
+
+
+
+
+
+.
+
+
+(11)
+
+(12)
+
+P
+If the input string w ∈ Ayes (n), then xi = yi for 1 ≤ i ≤ n and | n1 ni=1 (−1)xi +yi |2 = 1. The
+amplitude of |1i is 1, and that means |ψ4 i = |1i. Therefore the input will be accepted with probability
+1 at the measurement in Step 5.
+If the input string w ∈ Ano (n), then H(x, y) = n2 . Therefore the probability of getting outcome
+Pn
+|1i in the measurement in Step 5 is | n1 i=1 (−1)xi +yi |2 = 0.
+
+The deterministic communication complexity for the promise version of strings equality problem
+is at least 0.007n [11, 12]. Therefore, the sizes of the corresponding 1DFA are 2Ω(n) [25].
+
+4
+
+State succinctness for 2QCFA
+
+State succinctness for 2QCFA was explored by Yakaryilmaz, Zheng and others [44, 46]. In [46],
+Zheng et al. showed the state succinctness for polynomial time 2QCFA for families of promise problems and for exponential time 2QCFA for a family of languages. In this section, we show the state
+succinctness for linear time 2QCFA and polynomial time 2QCFA for two families of languages.
+
+4.1
+
+State succinctness for the language L(p)
+
+Theorem 2. For any p ∈ Z+ and 0 < ε ≤ 21 , the language L(p) can be recognized with one-sided error
+ε by a 2QCFA A(p, ε) with 2 quantum basis states and a constant number of classical states (neither
+depending on p nor on ε) in a linear expected running time O( 1ε p2 n), where n is the length of input.
+Proof. The main idea of the proof is as follows: We consider a 2QCFA A(p, ε) with 2 orthogonal
+quantum basis states |q0 i and |q1 i. A(p, ε) starts computation in the initial quantum state |q0 i and
+with the tape head on the left end-marker. Every time when A(p, ε) reads a symbol ‘a’, the current
+quantum state is rotated by the angle πp . When the right end-marker $ is reached, A(p, ε) measures
+the current quantum state. If the resulting quantum state is |q1 i, the input string is rejected, otherwise
+the automaton proceeds as shown in Figure 2, where
+9
+
+Repeat the following ad infinity:
+1. Move the tape head to the right of the left end-marker.
+2. Until the scanned symbol is the right end-marker, apply Up to the current quantum state
+and move the head one cell to the right.
+3 Measure the current quantum state in the basis {|q0 i, |q1 i}.
+3.1 If quantum outcome is |q1 i, reject the input.
+3.2 Otherwise apply Up,ε to the current quantum state |q0 i.
+4 Measure the quantum state in the basis {|q0 i, |q1 i}. If the result is |q0 i, accept the input;
+otherwise apply a unitary operation to change the quantum state from |q1 i to |q0 i and
+start a new iteration.
+Figure 2: Description of the behavior of A(p, ε) when recognizing the language L(p).
+
+Up =
+
+cos πp
+sin πp
+
+− sin πp
+cos πp
+
+!
+
+
+
+√1
+ √ p2 /4ε
+and Up,ε = 
+p2 /4ε−1
+√
+2
+p /4ε
+
+√2
+
+p /4ε−1
+− √ 2
+
+p /4ε
+.
+√ 12
+
+(13)
+
+p /4ε
+
+Lemma 3. If the input w ∈ L(p), then the quantum state of A(p, ε) after Step 2 is one of the quantum
+states ±|q0 i.
+Proof. If w ∈ L(p), then |w| = n = kp, where k ∈ Z+ . Starting with the state |q0 i, A(p, ε) changes
+its quantum state to |qi = (Up )n |q0 i after Step 2, where
+!n
+!
+− sin nπ
+cos πp − sin πp
+cos nπ
+n
+p
+p
+|qi = (Up ) |q0 i =
+|q0 i
+(14)
+|q0 i =
+sin πp
+sin nπ
+cos πp
+cos nπ
+p
+p
+=
+
+cos kπ
+sin kπ
+
+− sin kπ
+cos kπ
+
+!
+
+|q0 i = ±|q0 i.
+
+(15)
+
+Lemma 4. If the input w 6∈ L(p), then A(p, ε) rejects w after Step 3 with a probability at least 4/p2 .
+Proof. Suppose n = |w| = kp + i, where k ∈ Z+ and i ∈ {1, 2, · · · , p − 1}. The quantum state of
+A(p, ε) after Step 2 will be
+!n
+!
+cos πp − sin πp
+cos nπ
+− sin nπ
+n
+p
+p
+|qi = (Up ) |q0 i =
+|q0 i
+(16)
+|q0 i =
+cos πp
+cos nπ
+sin πp
+sin nπ
+p
+p
+=
+
+cos iπ
+p
+sin iπ
+p
+
+− sin iπ
+p
+cos iπ
+p
+
+!
+
+|q0 i = cos
+
+The probability of observing |q1 i is sin2 iπ
+p in Step 3.
+
+10
+
+iπ
+iπ
+|q0 i + sin |q1 i.
+p
+p
+
+(17)
+
+Let f (x) = sin(xπ) − 2x. We have f ′′ (x) = −π 2 sin(xπ) ≤ 0 when x ∈ [0, 1/2]. Therefore, f (x)
+is concave in the interval [0, 1/2], and f (0) = f (1/2) = 0. So, for any x ∈ [0, 1/2], f (x) ≥ 0, that is
+sin(xπ) ≥ 2x. Therefore,
+ 2
+4
+2
+2 iπ
+2 π
+sin
+= 2.
+(18)
+≥ sin
+≥
+p
+p
+p
+p
+Lemma 5. If the input w ∈ L(p), then A(p, ε) accepts w after Step 4 with the probability p4ε2 . If the
+input w 6∈ L(p), then A(p, ε) accepts w after Step 4 with a probability less than p4ε2 .
+Proof. If w ∈ L(p), then the quantum state of A(p, ε) after Step 2 will be |q0 i, according to Lemma
+3. After Step 3 the quantum state will be
+√ 2
+
+
+p /4ε−1
+p
+√ 12
+− √ 2
+p2 /4ε − 1
+1
+ √ p /4ε
+
+p /4ε
+p
+p
+|qi = Up,ε |q0 i = 
+|q
+i
+=
+|q
+i
++
+|q1 i.
+(19)
+
+0
+0
+p2 /4ε−1
+p2 /4ε
+p2 /4ε
+√
+√1
+p2 /4ε
+
+p2 /4ε
+
+Therefore, after the measurement in Step 4, the input is accepted with the probability p4ε2 .
+
+If w 6∈ L(p), then the probability that the quantum state of A(p, ε) after Step 2 is |q0 i is less than
+1. Therefore, A(p, ε) accepts w after Step 4 with a probability less than p4ε2 .
+In Step 4, if A(p, ε) accepts the input string, then A(p, ε) halts. Otherwise, the resulting quantum
+state of the measurement is |q1 i and an application of the operation |q0 ihq1 | results in state |q0 i in
+which then A(p, ε) starts a new iteration.
+If w ∈ L(p), then according to Lemma 5, the probability of accepting the input in one iteration is
+Pa =
+
+4ε
+p2
+
+(20)
+
+and the probability of rejecting the input in one iteration is
+Pr = 0.
+
+(21)
+
+If the whole process is repeated for ad infinitum, then the accepting probability is
+P r[A(p, ε) accepts w] =
+
+X
+i≥0
+
+(1 − Pa )i (1 − Pr )i Pa =
+
+X
+i≥0
+
+(1 − Pa )i Pa =
+
+Pa
+= 1.
+Pa
+
+(22)
+
+If w 6∈ L(p), then according to Lemmas 4 and 5, the probability of accepting the input in one
+iteration is
+4ε
+(23)
+Pa < 2
+p
+and the probability of rejecting the input in one iteration is
+Pr >
+
+4
+.
+p2
+
+(24)
+
+If the whole process is repeated indefinitely, then the probability that A(p, ε) rejects the input w is
+P r[A(p, ε) rejects w] =
+
+X
+i≥0
+
+(1 − Pa )i (1 − Pr )i Pr =
+11
+
+Pr
+Pr
+>
+Pa + Pr − Pa Pr
+Pa + Pr
+
+(25)
+
+> 4ε
+
+4
+p2
+
+4
+p2 + p2
+
+=
+
+1
+> 1 − ε.
+ε+1
+
+(26)
+
+Time analysis: Steps 1 to 4 take time O(n). The halting probability is in both cases Ω
+2
+
+
+
+ε
+p2
+
+
+
+, so
+
+the expected number of repetitions of the above process is, in both cases, O( pε ). Hence the expected
+running time of A(p, ε) is O( 1ε p2 n).
+The most important work in designing an automaton is to design its transition function. Similar
+unitary matrixes of Up (the quantum transition function after scanning a symbol of input) and proof
+methods in the previous Theorem can be found in [4, 5, 30, 8, 44]. The state complexity for L(P ) is
+relative to the error probability ε in [4, 5, 30, 8]. But in this paper the state complexity for L(P ) is
+not relative to the error probability ε, since we use a special matrix Up,ε , which is never used in other
+papers.
+Theorem 6. For any integer p, any polynomial expected running time 2PFA recognizing L(p) with
+p
+error probability ε < 12 has at least 3 (log p)/b states, where b is a constant.
+In order to prove this theorem, we need
+
+Lemma 7 ([14]). For every ε < 1/2, a > 0 and d > 0, there exists a constant b > 0 such that, for
+any integer c, if a language L is recognized with an error probability ε by a c-state 2PFA within time
+2
+and , where n = |w| is the length of input, then L is recognized by some DFA with at most cbc states.
+Proof. Assume that a c-state 2PFA A(p) recognizes L(p) with an error probability ε < 1/2 and
+also within a polynomial expected running time. According to Lemma 7, there exits a 1DFA that
+2
+recognizes L(p) with cbc states, where b > 0 is a constant. As we know, any DFA recognizing L(p)
+has at least p states. Therefore,
+p
+2
+cbc ≥ p ⇒ bc2 log c ≥ log p ⇒ c3 > (log p)/b ⇒ c > 3 (log p)/b.
+
+4.2
+
+(27)
+
+State succinctness for the language C(m)
+
+Theorem 8. For any m ∈ Z+ and 0 < ε ≤ 12 , the language C(m) can be recognized with one-sided
+error ε by a 2QCFA A(m, ε) with 2 quantum basis states and a constant number of classical states
+(neither depending on m nor on ε) in a polynomial expected running time O( 1ε m2 n4 ), where n is the
+length of input.
+
+Proof. The main idea of the proof is as follows: we consider a 2QCFA A(m, ε) with 2 orthogonal
+quantum basis states |q0 i and |q1 i. A(m, ε) starts computation with the initial quantum state |q0 i.
+When A(m, ε) reads the left end-marker c,
+| the current quantum state will be rotated by the angle
+√
+− 2mπ and every time when A(m, ε) reads a new symbol σ ∈ Σ, the state is rotated by the angle
+√
+√
+α = 2π (notice that 2mπ = mα). When the right end-marker $ is reached, A(m, ε) measures the
+
+12
+
+Repeat the following ad infinity:
+1. Move the tape head to the left end-marker, read the end-marker c,
+| apply Uc| on |q0 i, and
+move the tape head one cell to the right.
+2. Until the scanned symbol is the right end-marker, apply Uα to the current quantum state
+and move the tape head one cell to the right.
+3.0 When the right end-marker is reached, measure the quantum state in the basis {|q0 i, |q1 i}.
+3.1 If quantum outcome is |q1 i, reject the input.
+3.2 Otherwise repeat the following subroutine two times:
+3.2.1 Move the tape head to the first symbol right to the left end-marker.
+3.2.2 Until the currently read symbol is one of the end-markers simulate a coin-flip
+and move the head right (left) if the outcome of the coin-flip is “head” (“tail”).
+4. If the above process ends both times at the right end-marker, apply Um,ε to the current
+quantum state and measure the quantum state in the basis {|q0 i, |q1 i}. If the result is
+|q0 i, accept the input; otherwise apply a unitary operation to change the quantum state
+from |q1 i to |q0 i and start a new iteration.
+Figure 3: Description of the behavior of A(m, ε) when recognizing the language Lm .
+current quantum state with projectors {|q0 ihq0 |, |q1 ihq1 |}. If the resulting quantum state is |q1 i, the
+input string w is rejected, otherwise, the automaton proceeds as shown in Figure 3, where
+!
+!
+√
+√
+√
+√
+sin m 2π
+cos 2π − sin 2π
+cos m 2π
+√
+√
+√
+√
+, Uα =
+,
+(28)
+Uc| =
+− sin m 2π cos m 2π
+sin 2π
+cos 2π
+
+
+√ 1
+ √ 2m2 /ε
+Um,ε = 
+2m2 /ε−1
+√
+2
+2m /ε
+
+√ 2
+
+2m /ε−1
+− √ 2
+
+2m /ε
+.
+1
+√ 2
+
+(29)
+
+2m /ε
+
+Lemma 9. If the input w ∈ C(m), then the quantum state of the above automaton A(m, ε), after
+Step 2, is |q0 i.
+Proof. For w ∈ C(m), we have |w| = m. Starting with the state |q0 i, A(m, ε) changes its quantum
+state after processing the whole input after Step 2 to
+!m
+!
+√
+√
+√
+√
+cos m 2π
+sin m 2π
+cos 2π − sin 2π
+m
+√
+√
+√
+√
+|q0 i
+(30)
+|qi = (Uα ) Uc| |q0 i =
+cos 2π
+sin 2π
+− sin m 2π cos m 2π
+!
+!
+√
+√
+√
+√
+cos m 2π
+cos m 2π − sin m 2π
+sin m 2π
+√
+√
+√
+√
+|q0 i
+(31)
+=
+sin m 2π
+− sin m 2π cos m 2π
+cos m 2π
+!
+1 0
+=
+|q0 i = |q0 i.
+(32)
+0 1
+
+13
+
+Lemma 10. [46] If the input w 6∈ C(m), then A(p, ε) rejects w after Step 3.1 with a probability at
+least 1/(2(m − n)2 + 1).
+Lemma 11. [46] A coin flipping can be simulated by a 2QCFA using two basis states |q0 i and |q1 i.
+Lemma 12. Suppose that the length of input |w| = n. If w ∈ C(m), then A(m, ε) accepts w after
+ε
+Step 4 with the probability 2m2 (n+1)
+2 . If w 6∈ C(m), then A(m, ε) accepts w, after Step 4, with a
+ε
+probability less than 2m2 (n+1)2 .
+Proof. If w ∈ C(m), then the quantum state of A(m, ε) after Step 2 will be |q0 i, according to Lemma
+9. In Step 3.2 two random walks start at cell 1 and stop at cell 0 (with the left end-marker c)
+| or at
+the cell n + 1 (with the right end-marker $). It is known, from the Markov chains theory, that the
+1
+probability of reaching cell n + 1 is n+1
+(see Chapter 14.2 in [18]). Therefore, the probability that the
+1
+quantum state of A(m, ε) is |q0 i after Step 3.2 will be (n+1)
+2.
+The quantum state of A(m, ε) after Step 4 will therefore be
+√ 2
+
+
+2m /ε−1
+√ 12
+− √ 2
+
+
+2m /ε
+2m /ε
+|qi = Um,ε |q0 i =  √ 2
+ |q0 i
+2m /ε−1
+1
+√
+√
+2m2 /ε
+2m2 /ε
+p
+2
+2m /ε − 1
+1
+= p
+|q0 i + p
+|q1 i.
+2
+2m /ε
+2m2 /ε
+
+(33)
+
+(34)
+
+ε
+The input is therefore accepted after the measurement in Step 4 with the probability 2m2 (n+1)
+2.
+
+If w 6∈ C(m), then the probability that after Step 2 the quantum state of A(m, ε) is |q0 i is less
+ε
+than 1. Therefore, A(m, ε) accepts w, after Step 4, with a probability less than 2m2 (n+1)
+2.
+In Step 4, if A(m, ε) accepts the input string, then A(m, ε) halts. Otherwise, the resulting quantum
+state after the measurement is |q1 i and an application of the operator |q0 ihq1 | results in state |q0 i in
+which then A(m, ε) starts a new iteration.
+Suppose that the length of input w is n. If w ∈ C(m), then according to Lemma 12, the probability
+of accepting the input in one iteration is
+Pa =
+
+ε
+ε
+=
+2m2 (n + 1)2
+2m2 (m + 1)2
+
+(35)
+
+and the probability of rejecting the input in one iteration is
+Pr = 0.
+
+(36)
+
+If the whole process is repeated for infinity, the accepting probability is
+P r[A(m, ε) accepts w] =
+
+X
+i≥0
+
+(1 − Pa )i (1 − Pr )i Pa =
+
+X
+i≥0
+
+(1 − Pa )i Pa =
+
+Pa
+= 1.
+Pa
+
+(37)
+
+If w 6∈ C(m), then according to Lemmas 10 and 12, the probability of accepting the input in one
+iteration is
+ε
+Pa <
+(38)
+2
+2m (n + 1)2
+14
+
+and the probability of rejecting the input in one iteration is
+Pr >
+
+1
+.
+2(m − n)2 + 1
+
+(39)
+
+If the whole process is repeated indefinitely, then the probability that A(p, ε) rejects the input w is
+P r[A(p, ε) rejects w] =
+
+X
+i≥0
+
+>
+
+(1 − Pa )i (1 − Pr )i Pr =
+
+1
+2(m−n)2 +1
+ε
+1
+2m2 (n+1)2 + 2(m−n)2 +1
+
+1
+= (2(m−n)2 +1)ε
+2m2 (n+1)2
+
+Pr
+Pr
+>
+Pa + Pr − Pa Pr
+Pa + Pr
+
+(40)
+
+1
+> 1 − ε.
+ε+1
+
+(41)
+
++1
+
+>
+2
+
++1
+In the above inequality we have used the fact that 0 < 2(m−n)
+2m2 (n+1)2 < 1 for any m > 0 and n > 0.
+
+Time analysis: The expected running time of Steps 1 to 4 is O(n2 ) time. The halting probability
+
+is in both cases Ω m2εn2 , and therefore the expected number of repetitions of the above process is,
+2 2
+in both cases, O( m εn ). Hence the expected running time of A(m, ε) is O( 1ε m2 n4 ).
+The matrices (quantum transition function) used in the previous Theorem are modifications of the
+ones used in [3]. Similar proof methods can be found in [3, 46, 47].
+Remark 2. Using the above theorem and the intersection property of languages recognized by 2QCFA
+[36], it is easy to improve the result from [46] related to the promise problem2 Aeq (m) to a language
+Leq (m) = {am bm } = Leq ∩ C(2m), where the language Leq = {an bn | n ∈ N}. Therefore, the open
+problem from [46] is solved.
+It is obvious that the number of states of a 1DFA to accept the language C(m) is at least m. Using
+a similar proof as of Theorem 6, we get:
+Theorem 13. For any integer m, any polynomial expected running time 2PFA recognizing C(m) with
+p
+error probability ε < 12 has at least 3 (log m)/b states, where b is a constant.
+
+The sizes of 1PFA and 1QFA recognizing languages L(p) or C(m) with an error ε depend on the
+error ε in most of the papers. For example, in [5], the size of MO-1QFA accepting L(p) with one-sided
+error ε is 4 logε2p . If ε < p4 , the state complexity advantage of MO-1QFA disappears. However, in
+our model, the sizes of 2QCFA do not depend on the error ε, which means that 2QCFA have state
+advantage for any ε > 0.
+
+5
+
+A trade-off property of 1QCFA
+
+Quantum resources are expensive and hard to deal with. One can expect to have only very limited
+number of qubits in current quantum system. In some cases, one cannot expect to have enough qubits
+to solve a given problem (or to recognize a given language). It is therefore interesting to find out
+whether there are some trade-off between needed quantum and classical resources. We prove in the
+following that it is so in some cases. Namely, we prove that there exist trade-offs in case 1QCFA are
+used to accept the language L(p).
+2 See page 102 in [46].
+
+15
+
+αs
+1 α2
+Theorem 14. For any integer p ∈ Z+ with prime factorization p = pα
+1 p2 · · · ps (s > 1), for any
+Q
+Q
+αi
+i
+partition I1 , I2 of {1, . . . , s}, and for q1 = i∈I1 pα
+i and q2 =
+i∈I2 pi , the language L(p) can be
+P
+recognized with one-sided error ε by a 1QCFA A(q1 , q2 , ε) with O(log q1 ) = O( i∈I1 αi log pi ) quantum
+Q
+i
+basis states and O(q2 ) = O( i∈I2 pα
+i ) classical states.
+
+Proof. Obviously, gcd (q1 , q2 ) = 1 and therefore L(p) = L(q1 ) ∩ L(q2 ). According to [5], the language
+L(q1 ) can be recognized with one-sided error ε by an MO-1QFA with 4 logε2q1 quantum basis states.
+It is well known that the language L(q2 ) can be recognized by a q2 -state 1DFA. A q1 -state MO-1QFA
+can be simulated by a 1QCFA with q1 quantum basis states and 3 classical states [45]. A q2 -state
+1DFA can be simulated by 1QCFA with 1 quantum state and q2 + 1 classical states [45]. Now we have
+to use the following lemma
+Lemma 15. [45] Let a language L1 be recognized with one-sided error ε1 by a 1QCFA A1 with q1
+quantum basis states and c1 classical states. Let a language L2 be recognized with one-sided error ε2
+by a 1QCFA A2 with q2 quantum basis states and c2 classical states. Then the language L1 ∩ L2 can
+be recognized with one-sided error ε1 + ε2 − ε1 ε2 by a 1QCFA A with q1 q2 quantum basis states and
+c1 c2 classical states.
+According to Lemma 15, the language L(p) = L(q1 ) ∩ L(q2 ) can be recognized with one-sided error
+P
+ε by a 1QCFA A(q1 , q2 , ε) with O(log q1 ) = O( i∈I1 αi log pi ) quantum basis states and O(q2 ) =
+Q
+i
+O( i∈I2 pα
+i ) classical states.
+
+6
+
+Concluding remarks
+
+We have explored the state complexity of 1QCFA a family of promise problems. For any n ∈ Z+ ,
+we have proved that the promise problem AEQ (n), modeling the strings equality problem of length
+n with restriction, can be solved by an exact 1QCFA A(n) with 2n quantum basis states and O(n)
+classical states, whereas the sizes of the corresponding 1DFA are 2Ω(n) . Afterwards, we have shown
+state succinctness results of 2QCFA for two basic and extensively studied families of regular languages.
+Namely, L(p) and C(m). We have proved that 2QCFA can be remarkably more concise than their
+corresponding classical counterparts and we have also solved one open problem from [46]. At last, we
+have proved that there exist various trade-offs for 1QCFA, which respect to the numbers of quantum
+and classical states needed for the family of languages L(p).
+Some possible problems for future work are:
+1. It has been proved [24] that exact 1QCFA have not state complexity advantage over 1DFA in
+recognizing a language. How about exact 2QCFA vs. 2DFA?
+2. It would be interesting to find out more trade-off properties of 1QCFA or 2QCFA.
+
+Acknowledgements
+We would like to thank Matej Pivoluska for stimulating discussions. The first and second authors
+acknowledge support of the Employment of Newly Graduated Doctors of Science for Scientific Ex16
+
+cellence project/grant (CZ.1.07./2.3.00/30.0009) of Czech Republic. The third author acknowledges
+support of the National Natural Science Foundation of China (Nos. 61272058, 61073054).
+
+References
+[1] A. Ambainis, A. Nayak, A. Ta-Shma and U. Vazirani, Dense quantum coding and quantum
+automata, Journal of the ACM 49 (4) (2002) 496–511.
+[2] A. Ambainis, The complexity of probabilistic versus deterministic finite automata, Proceedings of the International Symposium on Algorithms and Computation (ISAAC96), LNCS
+1178 (1996) 233–239.
+[3] A. Ambainis and J. Watrous, Two-way finite automata with quantum and classical states,
+Theoretical Computer Science 287 (2002) 299–311.
+[4] A. Ambainis and R. Freivalds, One-way quantum finite automata: strengths, weaknesses and
+generalizations, in: Proceedings of the 39th Annual Symposium on Foundations of Computer
+Science, IEEE Computer Society Press, Palo Alfo, California, USA (1998) 332–341.
+[5] A. Ambainis and N. Nahimovs, Improved constructions of quantum automata, Theoretical
+Computer Science 410 (2009) 1916–1922.
+[6] A. Ambainis and A. Yakaryilmaz, Superiority of exact quantum automata for promise problems, Information Processing Letters 112 (7) (2012) 289–291.
+[7] A. Bertoni, C. Mereghetti and B. Palano, Small size quantum automata recognizing some
+regular languages. Theoretical Computer Science 340 (2005) 394–407.
+[8] A. Bertoni, C. Mereghetti and b. Palano. Some formal tools for analyzing quantum automata,
+Theoretical Computer Science 356 (2006) 14–25.
+[9] J.C. Birget, State-complexity of finite-state devices, state compressibility and incompressibility, Math. Systems Theory 26 (1993) 237–269.
+[10] A. Brodsky and N. Pippenger, Characterizations of 1-way quantum finite automata, SIAM
+Journal on Computing 31 (2002) 1456–1478.
+[11] H. Buhrman, R. Cleve and A. Wigderson, Quantum vs. classical communication and computation, Proceedings of 30th Annual ACM Symposium on Theory of Computing (1998) 63–68
+.
+[12] H. Buhrman, R. Cleve, S. Massar and R. de Wolf, Nonlocality and Communication Complexity, Rev. Mod. Phys. 82 (2010) 665–698
+[13] M. Chrobak, Finite Automata and Unary Languages, Theoretical Computer Science 47 (3)
+(1986) 149–158 .
+[14] C. Dwork and L. Stockmeyer, A time-complexity gap for two-way probabilistic finite state
+automata, SIAM J. Comput. 19 (1990) 1011–1023.
+17
+
+[15] R. Freivalds, On the growth of the number of states in result of determinization of probabilistic finite automata, Automatic Control and Computer Sciences 3 (1982) 39–42.
+[16] R. Freivalds, Non-constructive methods for finite probabilistic automata, International Journal of Foundations of Computer Science 19 (3) (2008) 565–580.
+[17] R. Freivalds, M. Ozols and L. Mancinska, Improved constructions of mixed state quantum
+automata, Theoretical Computer Science, 410 (20) (2009) 1923–1931.
+[18] W. Feller, An Introduction to Probability Theory and its Applications, Vol. I, Wiley, New
+York (1967).
+[19] J. Gruska, Quantum Computing, McGraw-Hill, London (1999).
+[20] J. Gruska, Descriptional complexity issues in quantum computing, J. Automata, Languages
+Combin. 5 (3) (2000) 191–218.
+[21] J. Gruska, D. W. Qiu, and S. G. Zheng, Communication complexity of promise problems
+and their applications to finite automata, arXiv:1309.7739 (2013).
+[22] J. E. Hopcroft and J. D. Ullman, Introduction to Automata Theory, Languages, and Computation, Addision-Wesley, New York (1979).
+[23] G. A. Kiraz, Compressed Storage of Sparse Finite-State Transducers, Proceedings of CIAA
+2001, Springer LNCS 2214 (2001) 109–121.
+[24] H. Klauck, On quantum and probabilistic communication: Las Vegas and one-way protocols,
+Proceedings of the 32th STOC (2000) 644-651.
+[25] E. Kushilevitz, Communication Complexity, Advances in Computers 44 (1997) 331–360.
+[26] A. Kondacs and J. Watrous, On the power of quantum finite state automata, in: Proceedings
+of the 38th IEEE Annual Symposium on Foundations of Computer Science (1997) 66–75.
+[27] F. Le Gall, Exponential separation of quantum and classical online space complexity, in:
+Proceedings of SPAA’06 (2006) 67–73.
+[28] G. Liu, C. Martin-Vide, A. Salomaa and S. Yu, State complexity of basic operations combined
+with reversal, Information and Computation 206 (2008) 1178–186.
+[29] C. Mereghetti and G. Pighizzini, Two-way automata simulations and unary languages, J.
+Autom. Lang. Comb. 5 (2000) 287–300.
+[30] C. Mereghetti, B. Palano and G. Pighizzini, Note on the Succinctness of Deterministic,
+Nondeterministic, Probabilistic and Quantum Finite Automata. RAIRO-Inf. Theor. Appl.
+35 (2001) 477–490.
+[31] C. Mereghetti and B. Palano, On the size of one-way quantum finite automata with periodic
+behaviors, Theoretical Informatics and Applications 36 (2002) 277–291.
+[32] M. Milani and G. Pighizzini, Tight bounds on the simulation of unary probabilistic automata
+by deterministic automata, J. Automata, Languages and Combinatorics 6 (2001) 481–492.
+18
+
+[33] P. Mateusa, D. W. Qiu and L. Z. Li, On the complexity of minimizing probabilistic and
+quantum automata, Information and Computation 218 (2012) 36–53.
+[34] C. Moore and J. P. Crutchfield, Quantum automata and quantum grammars, Theoretical
+Computer Science 237 (2000) 275–306.
+[35] A. Paz, Introduction to Probabilistic Automata, Academic Press, New York (1971).
+[36] D. W. Qiu, Some Observations on Two-Way Finite Automata with Quantum and Classical
+States, ICIC 2008, LNCS 5226 (2008) 1–8.
+[37] M. O. Rabin and D. Scott, Finite automata and their decision problems, IBM J. Research
+and Development, 3(2) (1959) 115–125.
+[38] M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information, Cambridge University Press, Cambridge (2000).
+[39] D. W. Qiu, L. Z. Li, P. Mateus and J. Gruska, Quantum finite automata, J.C. Wang, Editor,
+CRC Handbook of Finite State Based Models and Applications, CRC Press (2012) 113–144.
+[40] A. Salomaa, On the reducibility of events represented in automata. In Annales Academiae
+Scientiarum Fennicae, volume Series A of I. Mathematica (1964) 353.
+[41] S. Yu, Q. Zhuang and K. Salomaa The state complexity of some basic operations on regular
+languages, Theoretical Computer Science 125 (1994) 315–328.
+[42] S. Yu, State Complexity: Recent Results and Open Problems, Fundamenta Informaticae 64
+(2005) 471–480.
+[43] A. Yakaryilmaz and A. C. Cem Say, Unbounded-error quantum computation with small
+space bounds, Information and Computation 209 (2011) 873–892.
+[44] A. Yakaryilmaz and A. C. Cem Say, Succinctness of two-way probabilistic and quantum finite
+automata, Discrete Mathematics and Theoretical Computer Science 12 (4) (2010) 19–40.
+[45] S.G. Zheng, D.W. Qiu, L.Z. Li and J. Gruska, One-way finite automata with quantum and
+classical states, In: H. Bordihn, M. Kutrib, and B. Truthe (Eds.), Dassow Festschrift 2012,
+LNCS 7300 (2012) 273–290.
+[46] S. G. Zheng, D. W. Qiu, J. Gruska, L. Z. Li and P. Mateus, State succinctness of two-way
+finite automata with quantum and classical states, Theoretical Computer Science, to appear.
+Also arXiv:1202.2651 (2012).
+[47] S. G. Zheng, D. W. Qiu and L. Z. Li, Some languages recognized by two-way finite automata
+with quantum and classical states, International Journal of Foundation of Computer Science,
+23 (5) (2012) 1117–1129.
+[48] S. G. Zheng, J. Gruska and D. W. Qiu. Power of the interactive proof systems with verifiers
+modeled by semi-quantum two-way finite automata, arXiv:1304.3876 (2013).
+
+19
+
+

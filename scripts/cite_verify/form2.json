@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://link.springer.com",
+    "name": "The complexity of probabilistic versus deterministic finite",
+    "snippet": "by A Ambainis · 1996 · Cited by 42 — Theorem 1 There exists a probabilistic finite automaton with n states such that the smallest equivalent deterministic finite automaton contains D( 2 ~os- ). Read more",
+    "host_name": "link.springer.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net",
+    "name": "The Complexity of Probabilistic versus Quantum Finite Automata",
+    "snippet": "... equivalent deterministic nite automaton contains ( 2 n log log n log n ) states . Keywords: Automata theory, the complexity of nite automata , probabilistic ...",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org",
+    "name": "1-way quantum finite automata",
+    "snippet": "by A Ambainis · 1998 · Cited by 413 — Assume that there is a word x such that M contains states q1, q2 satisfying: 1. q1 6= q2,. 2 . If M starts in the state q1 and reads x, it passes to q2,. Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com",
+    "name": "Information and Computation",
+    "snippet": "Feb 18, 2011 — No PTM using space o( log log n ) can recognize LNH with unbounded error. Fact 2 . No 1PTM using space o(log n) can recognize LNH with unbounded ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "Feb 18, 2011",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.numdam.org",
+    "name": "Uncountable classical and quantum complexity classes",
+    "snippet": "by M Dimitrijevs · 2018 — 2 (d) in [24]), F(n) < c · log n for some constant c. Therefore, we use O( log log n ) space to find F(n). Remark that when the number F(n) is. Read more",
+    "host_name": "www.numdam.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.bjmc.lu.lv",
+    "name": "Four Collaborations with R¯usin¸š Freivalds",
+    "snippet": "by A AMBAINIS — was an example where probabilistic automata can solve the problem with O( log2 n log log n . ) states but deterministic automata require n states (Freivalds, ... Read more",
+    "host_name": "www.bjmc.lu.lv",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org",
+    "name": "Tally Languages Accepted by Monte Carlo Pushdown Automata",
+    "snippet": "... contains only regular languages [LP81]. We prove ... Regularity of One-Letter Languages Acceptable by 2 -Way Finite Probabilistic Automata ... Languages recognizable ...",
+    "host_name": "www.semanticscholar.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.math.ias.edu",
+    "name": "Abstracts: Combinatorics and Complexity Theory",
+    "snippet": "p_o) be the probability that I contains the origin conditioned on the ... In the deterministic nonadaptive setting, we have a $\\frac{1}{ 2 }{n \\choose 2 ... Read more",
+    "host_name": "www.math.ias.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ir.cwi.nl",
+    "name": "Looking for Pairs that Hard to Separate: A Quantum Approach",
+    "snippet": "that easy pairs can be separated by those automata using O ( log (log (n ))) states . ... No 2 -state non- deterministic MCQFA with real entries can sepa- ... using 2 ...",
+    "host_name": "ir.cwi.nl",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

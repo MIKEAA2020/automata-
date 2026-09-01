@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/1507.01988",
+    "name": "arXiv:1507.01988v2 [cs.FL] 4 Jul 2018",
+    "snippet": "by A Ambainis · 2015 · Cited by 104 — 4.5. 2 Emptiness problems and problems regarding isolated cutpoint . We continue with five emptiness problems and two problems regarding isolated ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Optimal-lower-bounds-for-quantum-automata-and-codes-Nayak/ca86a3524b766f97850e04c78a3a4cda00a75a55",
+    "name": "[PDF] Optimal lower bounds for quantum automata and",
+    "snippet": "Complex. 2019. The two -way finite automaton with quantum and classical states (2QCFA), defined by Ambainis ... Read more",
+    "host_name": "www.semanticscholar.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/2183905_The_class_of_languages_recognizable_by_1-way_quantum_finite_automata_is_not_closed_under_union",
+    "name": "The class of languages recognizable by 1-way quantum finite",
+    "snippet": "... state automata (1qfa's and 2qfa's), which are the quantum analogues of deterministic , nondeterministic and probabilistic 1-way and 2 -way finite state automata .",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dspace.lu.lv/bitstreams/c3a79b5a-4257-4b37-a843-ad16a8e8d6d8/download",
+    "name": "Unconventional Finite Automata and Algorithms",
+    "snippet": "by K Balodis · 2016 — We also show an optimal 2 - state ultrametric automaton. In the fourth chapter we consider two-way frequency automata . We intro- duce their definition and show ... Read more",
+    "host_name": "dspace.lu.lv",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2605.10682",
+    "name": "On the Simulation Cost of Quantum Finite Automata",
+    "snippet": "by Z Chen · 2026 — A two -way finite automaton with quantum and classical states , abbreviated. 2QCFA, is used in the standard sense of Ambainis and Watrous [5]: a ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2023.7",
+    "name": "Improved Algorithm and Lower Bound for Variable Time",
+    "snippet": "by A Ambainis · 2023 · Cited by 14 — Andris Ambainis . Variable time amplitude amplification and quantum algorithms for linear algebra problems. In Christoph Dürr and Thomas Wilke, ... Read more",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/220284267_Quantum_Automata_with_Open_Time_Evolution",
+    "name": "(PDF) Quantum Automata with Open Time Evolution",
+    "snippet": "... Lower Bounds for One-Way. Quantum Automata . Lecture Notes in Computer Science 1893, pp. 132–140,. Springer (2000). [ 2 ] Andris Ambainis , Martin Beaudry, Marats ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://quantumalgorithms.org/chap-lowerbounds.html",
+    "name": "Chapter 14 Lower bounds on query complexity of quantum",
+    "snippet": "Recall from the Polynomial method that one needs at least n/ 2 n / 2 queries ... Ambainis , Andris. 2002. “Quantum Lower Bounds by Quantum Arguments ... Read more",
+    "host_name": "quantumalgorithms.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cgi.cse.unsw.edu.au/~eptcs/Published/NCMA2023/Proceedings.pdf",
+    "name": "EPTCS 388 Non-Classical Models of Automata and",
+    "snippet": "Sep 15, 2023 — ... 2 still provides the desired lower bound , which was checked by a ... Okhotin, “ Deterministic one-way simulation of two -way deterministic finite ... Read more",
+    "host_name": "cgi.cse.unsw.edu.au",
+    "rank": 8,
+    "date": "Sep 15, 2023",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.academia.edu/2875151/Complexity_theory_for_splicing_systems",
+    "name": "(PDF) Complexity theory for splicing systems",
+    "snippet": "2 . An example of two minimal DFAs for finite languages whose sizes are 6 and 5, respectively, where state 5 above and state 4 below are sink states . Read more",
+    "host_name": "www.academia.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

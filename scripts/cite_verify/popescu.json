@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://claralacroce.github.io/static/LacroceClara_PhDthesis.pdf",
+    "name": "The approximate minimization problem of weighted finite",
+    "snippet": "by C Lacroce · 2022 · Cited by 1 — We reformulate the problem in terms of low-rank approximation of infinite Hankel matrices and apply Adamyan - Arov - Krein (AAK) approximation theory to solve it. Read more 193 pages",
+    "host_name": "claralacroce.github.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2206.00172",
+    "name": "arXiv:2206.00172v1 [cs.FL] 1 Jun 2022",
+    "snippet": "by C Lacroce · 2022 · Cited by 1 — In fact, the celebrated Adamyan - Arov - Krein (AAK) theory provides a way, based on properties of Hankel operators and complex functions, to find ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2206.00172",
+    "name": "Towards an AAK Theory Approach to Approximate",
+    "snippet": "First, we need to reformulate the approximation problem in terms of noncommutative Hankel operators and noncommutative functions, in order to apply results from ... Read more",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://centaur.reading.ac.uk/104927/9/104927%20VoR.pdf",
+    "name": "IDA and Hankel operators on Fock spaces - CentAUR",
+    "snippet": "by Z Hu · 2023 · Cited by 22 — We introduce a new space IDA of locally integrable functions whose integral distance to holomorphic functions is finite, and use it to completely ... Read more 41 pages",
+    "host_name": "centaur.reading.ac.uk",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eudml.org/doc/165355",
+    "name": "Multi-analytic operators on Fock spaces.",
+    "snippet": "by G Popescu · 1995 · Cited by 196 — Multi-analytic operators on Fock spaces . Gelu Popescu · Mathematische Annalen (1995). Volume: 303, Issue: 1, page 31-46; ISSN: 0025-5831; 1432-1807/e. Access ... Read more",
+    "host_name": "eudml.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/397048664_Small_Hankel_Operators_on_Fock_Spaces",
+    "name": "Small Hankel Operators on Fock Spaces",
+    "snippet": "Hankel operators with anti-holomorphic symbols are studied for a large class of weighted Fock spaces on ℂn . The weights defining these Hilbert spaces are ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://researchportal.helsinki.fi/en/publications/ida-and-hankel-operators-on-fock-spaces",
+    "name": "IDA and Hankel operators on Fock spaces",
+    "snippet": "by Z HU · 2023 · Cited by 22 — Abstract. We introduce a new space IDA of locally integrable functions whose integral distance to holomorphic functions is finite, and use it to completely ... Read more",
+    "host_name": "researchportal.helsinki.fi",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://encyclopediaofmath.org/wiki/Hankel_operator",
+    "name": "Hankel operator",
+    "snippet": "Feb 15, 2024 — A Hankel operator can be defined as an operator whose matrix has the form (αj+k)j,k≥0 (such matrices are called Hankel matrices, cf. also Padé ... Read more",
+    "host_name": "encyclopediaofmath.org",
+    "rank": 7,
+    "date": "Feb 15, 2024",
+    "favicon": ""
+  }
+]

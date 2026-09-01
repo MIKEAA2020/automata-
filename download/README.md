@@ -7,8 +7,9 @@ modified**.
 | Version | File | Status | Contents |
 |---------|------|--------|----------|
 | v1 | `automata_unified_revised.tex` (in `upload/`, backup in `scripts/pre_fix_backup.tex`) | frozen (original) | original manuscript as reviewed |
-| v2 | `automata_unified_revised_fixed.tex` / `.pdf` | **FROZEN 2026-09-01** (read-only, md5 `287b28e5…`) | review findings A1 + B1–B7 applied |
-| v3 | `automata_unified_revised_v3.tex` / `.pdf` | current latest | A2–A6 + C1 + global bold-Σ (`\bm{\Sigma}`) applied; compiles to 234 pp., 8 residual overfull boxes (none > 12.4 pt) |
+| v2 | `automata_unified_revised_fixed.tex` / `.pdf` | FROZEN 2026-09-01 (read-only, md5 `287b28e5…`) | review findings A1 + B1–B7 applied |
+| v3 | `automata_unified_revised_v3.tex` / `.pdf` | FROZEN 2026-09-01 (read-only, md5 `eec4bad1…`) | A2–A6 + C1 + global bold-Σ (`\bm{\Sigma}`); 234 pp. |
+| v4 | `automata_unified_revised_v4.tex` / `.pdf` | **current latest** | three flagged citations + two positioning sentences; C2 + C3; D1–D3; E1–E5; AAK proof-check precision edits; 233 pp. |
 
 ## Companion documents
 
@@ -17,35 +18,73 @@ modified**.
 - `novelty_assessment_automata_unified.docx` — deep-web novelty assessment of
   the framework (20 queries, 8 literature families; verdict: framework-level
   novelty High, three citation gaps to close).
+- `aak_multiletter_proof_check.docx` — dedicated line-level proof check of
+  `thm:aak-multiletter`, its scalar anchor `thm:aak-equality`, and its
+  dependency cone (verdict: sound; two precision edits, two observations,
+  all applied in v4; external corroboration via Lacroce LearnAut 2022).
 
-## v3 change log (relative to v2)
+## v4 change log (relative to v3)
 
-- **A2** — `thm:independence(iv)`: modular witness language switched to the
-  delimiter-free unary form `L_N = {1^n : n ≡ 0 mod N}`; "exactly N" now
-  justified by the N Myhill–Nerode residue classes.
-- **A3** — `thm:stream-lb-binary`: numeric claim corrected, ratio exceeds
-  0.23 first at `L = 4` (0.2387), not `L = 3` (0.218).
-- **A4** — `prop:renyi-limits(iii)`: invalid "fixed operator" justification
-  replaced by a two-step continuity argument (matrix-power continuity on the
-  support, then monotone convergence for the fixed limit operator) with
-  explicit sandwiched-Rényi citations (Müller-Lennert et al.; Frank–Lieb,
-  both added to the bibliography).
-- **A5** — revision-seam text ("previous version of this claim", "upgrades
-  the earlier…") rewritten in self-contained terms; "Correction" label
-  removed from the Exact Results list.
-- **A6** — `prop:lsyncu-quadratic`: garbled pair-automaton "nested sets"
-  justification replaced by a citation of the Moore lemmas
-  (`lem:tension` with `U={s,t}`, cross-machine form `lem:moore-separation`),
-  with an honest note that pair-node distinctness alone gives
-  `binom(M,2)`, not `M−1`.
-- **C1** — typesetting pass: the two page-overflowing admissible-value items
-  of `def:type-signature` converted to displayed multi-line lists; five
-  further overfull displays/paragraphs displayed or restructured; regime
-  table narrowed; `microtype` + `\emergencystretch{2em}` loaded. Overfull
-  boxes: 151 (v1) → 52 (v2) → **8 (v3)**, none above 12.4 pt.
-- **Bold Σ** — all 113 covariance-matrix occurrences (`\Sigma_\pi`,
-  `\Sigma_p`, `\Sigma_\eta`, `\Sigma_F`, and fiber variants) now set as
-  `\bm{\Sigma}` (matrix nature emphasized, avoids the B7 symbol collision);
-  alphabet `Σ` and summation uses untouched.
+- **Citations (novelty-report gaps closed)** — six verified references added
+  and cited in the introduction's two new positioning paragraphs: Shalizi &
+  Crutchfield 2002 (ACS 5:1–5); Marzen & Crutchfield, arXiv:1412.2859;
+  Geiger, Petrov, Kubin & Koeppl, IEEE TAC 60(4):1010–1022, 2015; Geiger,
+  Comput. Sci. Rev. 59:100802, 2026; Balle, Lacroce, Panangaden, Precup &
+  Rabusseau, ICALP 2021 (LIPIcs 198:118); Lacroce, Balle, Panangaden &
+  Rabusseau, MSCS 34:807–833, 2024. Attribution corrections found during
+  verification: the IB–causal-states paper is by Shalizi & Crutchfield (not
+  Still), and arXiv 1412.2859 is by Marzen & Crutchfield.
+- **Positioning sentences** — retention: extends the causal-state program to
+  controlled input-driven transductions and tracks the full budget-M gap
+  curve (vs. the bottleneck-for-causal-states and KL-aggregation lines).
+  Grounding: transports the AAK program for weighted automata from weighted
+  languages to transductions, separates unrestricted vs. Hankel-restricted
+  feasible sets, multiletter extension conditional.
+- **D1** — `thm:exp-gap`: Ambainis bound now attributed to Theorem 1 of
+  ISAAC'96 with the PFA/DFA statement made explicit; added the
+  Freivalds-2008 nuance (logarithmic regime reached non-constructively,
+  strongest form on Artin's conjecture; no unconditional exponential value).
+  Form `S(k)=Ω(2^{k log log k / log k})` verified against the paper's
+  official abstract.
+- **C2** — font-shape warning `TU/lmr/m/scit` eliminated: `\textsc` problem
+  names (`RationalExpCompare`, `PosSLP`) wrapped in `\textup` at all sites
+  (trigger: small caps inside the italic proposition body, line 6081).
+- **C3** — abstract compressed from ~170 lines / 10+ displays to three
+  paragraphs with inline math only; a temporal-protocols summary paragraph
+  added to the introduction ("Components of the framework").
+- **D2** — availability statement softened: programs, machine tables, outputs,
+  and the Lean fragment "will be made available upon publication"; explicitly
+  not part of the present package.
+- **D3** — new `rem:computational-conventions` (distinct-machine counting up
+  to renaming, minimality by Moore refinement, lexicographic tie-breaking,
+  named structured subclasses, arithmetic precision, search protocols), with
+  five cross-references at the enumeration sites.
+- **E1** — repeated scope statements consolidated: `rem:grounding-aak`,
+  `rem:grounding-unrestricted-restricted`, `rem:grounding-supremum-organization`,
+  the second half of `cor:grd-schatten`, and `rem:grounding-interpretations`
+  now cross-reference `thm:spectral-grounding`/`thm:aak-equality` instead of
+  re-displaying; retention-instantiation and conclusion finite-prefix
+  sentences now point to `rem:prefixes-versus-states`.
+- **E2** — exponent-layer duplicates converted to cross-reference anchors:
+  `def:dmax-exponent` and `thm:grounding-alpha-infty` now name
+  `def:dmax` / `thm:grounding-vertex` as the single maintained copies.
+- **E3** — `meta:boolean(ii)`: added the note that discounted-prefix laws
+  force `S = I*` in the right-closed case, so the sandwich never bites there.
+- **E4** — `ex:onestep-not-congruence`: added the transient-state scope note
+  (stationary support is the absorbing pair; structural point unaffected).
+- **E5** — (1) `prop:lumpability` converse: `τ_K` now defined by the displayed
+  intertwining with well-definedness derived; (2) `def:com-rd-gap`: attainment
+  justified (finitely many machines up to renaming); (3)
+  `thm:passive-realizable`: "all sufficiently large M" qualifier copied up
+  from `cor:stream-all-M`; (4) "Myhill–Nerode" standardized at four remaining
+  bare-"Nerode" sites; (5) comma splice in `meta:monotone(ii)` fixed.
+- **AAK proof-check precision edits** — `thm:aak-multiletter`: third
+  hypothesis tied to the transported operator `U H_ν U*` with the required
+  distance identity displayed; proof now shows the full transport chain and
+  notes the (retained) redundancy of the intertwining clause;
+  `thm:aak-equality`: parenthetical that the canonical one-letter unitary
+  satisfies hypothesis (a) automatically.
 
-Verification: `scripts/verify_v3.py` — 51/51 checks PASS.
+Verification: `scripts/verify_v4.py` — 47/47 checks PASS; tectonic compile
+exit 0 (233 pp., 1.09 MiB, 0 undefined refs, no font warnings; 9 overfull
+boxes, 8 inherited from v3, worst 12.4 pt).

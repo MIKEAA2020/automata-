@@ -1,0 +1,1381 @@
+Succinctness of two-way probabilistic and quantum finite
+automata⋆
+Abuzer Yakaryılmaz and A.C. Cem Say
+
+arXiv:0903.0050v2 [cs.CC] 22 Dec 2009
+
+Boğaziçi University, Department of Computer Engineering,
+Bebek 34342 İstanbul, Turkey
+abuzer,say@boun.edu.tr
+December 22, 2009
+
+Abstract. We prove that two-way probabilistic and quantum finite automata (2PFA’s and 2QFA’s)
+can be considerably more concise than both their one-way versions (1PFA’s and 1QFA’s), and two-way
+nondeterministic finite automata (2NFA’s). For this purpose, we demonstrate several infinite families of
+regular languages which can be recognized with some fixed probability greater than 12 by just tuning the
+transition amplitudes of a 2QFA (and, in one case, a 2PFA) with a constant number of states, whereas
+the sizes of the corresponding 1PFA’s, 1QFA’s and 2NFA’s grow without bound. We also show that
+2QFA’s with mixed states can support highly efficient probability amplification. The weakest known
+model of computation where quantum computers recognize more languages with bounded error than
+their classical counterparts is introduced.
+
+1
+
+Introduction
+
+In recent years, the research effort on quantum versions of finite automata has mainly focused on oneway models, with the study of two-way quantum finite automata (2QFA’s), which are synonymous
+with constant space quantum Turing machines, receiving relatively less attention. In their seminal
+paper, Kondacs and Watrous [KW97] proved that 2QFA’s recognize all regular languages with zero
+error, and the language Leq = {an bn | n ≥ 0} with any desired error bound ǫ > 0, in time O( 1ǫ |w|),
+2
+using O( 1ǫ ) states, where w is the input string. Since two-way probabilistic finite automata
+(2PFA’s) can decide Leq only in exponential time [Fre81,KF90,DS92], this established the superiority
+of 2QFA’s over 2PFA’s. Parallelling work by Aharonov et al. [AKN98] on quantum circuits with
+mixed states, Ambainis and Watrous [AW02] introduced an alternative model, the two-way finite
+automaton with quantum and classical states (2QCFA), which includes a constant-size quantum part
+which may be in a mixed state, but requires the tape head position to be classical. Yakaryılmaz
+and Say [YS09a] noted that conventional methods of probability amplification give significantly
+inefficient results when applied to 2QFA’s, and presented methods which can be used to decide Leq
+with error bound ǫ in as low as O(|w|) steps (i.e. with runtime independent of ǫ), and with as low
+as O(log2 ( 1ǫ ) log log( 1ǫ )) states.
+Issues of succinctness, as exemplified above, constitute a rich subtopic of automata theory
+[DS90,KF90,AF98,MPP01,ANTSV02,FOM09,YS09a]. In this paper, we examine how the combination of two-wayness and (quantum or classical) probabilistic transitions affects succinctness. As
+our main result, we demonstrate several infinite families of regular languages which can be recognized with some fixed probability greater than 12 by just tuning the transition amplitudes of a 2QFA
+⋆
+
+A preliminary version of this paper was presented at the AutoMathA Plenary Conference 2009, in Liège, Belgium
+and this work was partially supported by the Scientific and Technological Research Council of Turkey (TÜBİTAK)
+with grant 108142 and the Boğaziçi University Research Fund with grant 08A102.
+
+(and, in one case, a 2PFA) with a constant number of states, whereas the sizes of the corresponding
+one-way machines, and two-way nondeterministic finite automata (2NFA’s) grow without bound.
+The Kondacs-Watrous model of quantum finite automaton (to be called, from now on, KWQFA),
+which allows measurements of a restricted type, rather than the full set sanctioned by quantum
+theory, has been proven to be weaker in terms of language recognition power [KW97], probability
+amplification capability [AF98], and, in some cases at least, succinctness [ANTSV02], than the
+corresponding classical model, in the one-way case. More general models, such as the 2QCFA,
+employing mixed states, are able to simulate the corresponding classical probabilistic automata
+efficiently in both the one-way and two-way settings, and to recognize some languages that 2PFA’s
+cannot [AW02]. We show that 2QFA’s with mixed states can support highly efficient probability
+amplification, surpassing the best known methods for 2KWQFA’s recognizing these languages.
+We introduce a new model of quantum automaton, named the two-way quantum finite automaton with reset. This is an enhancement to the 2KWQFA, endowing it with the capability of resetting
+the position of the tape head to the left end of the tape in a single move during the computation.
+We use this model both in the proof of our main result, and in the demonstration of our probability
+amplification techniques. We mostly focus on a restricted form of these machines, called the one–way
+quantum finite automaton with restart (1QFA ), which can switch only to the initial state during
+left resets, and cannot perform single-step left or stationary moves. We give evidence that this is
+the weakest known model of computation where quantum computers recognize more languages with
+bounded error than their classical counterparts.
+The rest of this paper is structured as follows: Section 2 contains the definitions and some basic
+facts about our new model that will be used throughout the paper. In Section 3, we prove some
+key lemmata about the relationship between one–way quantum finite automata with and without
+restart, and examine the class of languages recognized with bounded error by 1QFA ’s. Our main
+succinctness result is presented in Section 4. In Section 5, we present several algorithms that improve
+previous results about the efficiency of probability amplification in 2KWQFA’s and 2QCFA’s. In
+Section 6, we investigate the computational power of probabilistic finite automata with restart.
+Section 7 is a conclusion.
+
+2
+
+Preliminaries
+
+Watrous [Wat97] notes that a 2KWQFA algorithm he presents for recognizing a nonregular language
+is remarkably costly in terms of probability amplification, and states that this problem stems from
+the fact that 2KWQFA’s cannot “reset” themselves during execution to repeatedly carry out the
+same computation. The 2QCFA model provides one way of solving this problem, by having a classical
+part, in addition to the quantum register. We present an alternative 2QFA model, employing only
+quantum states, whose only difference from the 2KWQFA is the existence of an additional “reset
+move” in its repertory. Section 2.1 contains the definitions of this and the other models that will
+be examined in the paper. Section 2.2 describes some facts which will make the analyses of the
+algorithms in later sections easier.
+2.1
+
+Definitions
+
+Let Σ be an input alphabet, not containing the end–marker symbols ¢ and $, and let Γ = Σ ∪ {¢, $}
+be the tape alphabet.
+
+A 2-way quantum finite automaton with reset (2QFAx) is a 7-tuple
+M = (Q, Σ, δ, q0 , Qacc , Qrej , Qreset = ∪q∈Qnon Qx
+q ),
+
+(1)
+
+where
+1. Q = {q0 , . . . , qn } is the finite set of states;
+2. δ is the transition function, described below;
+3. q0 ∈ Q is the initial state;
+4. Qacc is the set of accepting states;
+5. Qrej is the set of rejecting states;
+6. Qnon = Q \ (Qacc ∪ Qrej ∪ Qreset ) is the set of nonhalting and nonresetting states;
+7. Qreset is the union of disjoint reset sets, i.e., each Qx
+q∈Qnon contains reset states that cause the
+computation to restart with state q, as described below.
+We assume that the states in Qnon have smaller indices than other members of Q; qi ∈ Qnon for
+0 ≤ i < |Qnon |.
+The configurations of a 2QFAx are pairs of the form (state, head position). Initially, the head
+is on the left end-marker ¢, and so the machine starts computation in the superposition |q0 , 0i.
+The transition function of a 2QFAx working on an input string w ∈ Σ ∗ , (that is, a tape
+containing w = ¢w$,) is required to induce a unitary operator Uδw on the Hilbert space ℓ2 (Q × Z|w| ),
+since quantum machines can exist in superpositions of more than one configuration.
+In all 2QFAx’s described in this paper, every transition entering the same state involves the tape
+head moving in the same direction (left, right, or stationary). With this simplification, considering
+the Hilbert space ℓ2 (Q), a syntactically correct 2QFAx (that is, one where Uδw is unitary for every
+w,) can be specified easily by just providing a unitary operator Uσ : ℓ2 (Q) → ℓ2 (Q) for each symbol
+σ ∈ Γ . More formally,
+′
+′
+(2)
+δ(q, σ, q , dq′ ) = hq |Uσ |qi
+is the amplitude with which the machine currently in state q and scanning symbol σ will jump to
+′
+state q and move the head in direction dq′ . Here, dq′ ∈ {−1, 0, 1} is the direction of the tape head
+′
+′
+determined by q . For the remaining directions, all transitions with target q have amplitude zero.
+Apart from the left reset capability, 2QFAx’s are identical to 2KWQFA’s. In the following, we
+focus on this new capability, and refer the reader to [KW97] for detailed coverage of the technical
+properties of 2KWQFA’s.
+In each step of its execution, a 2QFAx undergoes two linear operations: The first one is a unitary
+transformation of the current superposition according to δ, and the second one is a measurement.
+The observable describing this measurement process is designed so that the outcome of any observation is one of “accept”, “reject”, “continue without resetting”, or “reset with state q”, for any
+q ∈ Qnon . Formally, we use the observable O, corresponding to the decomposition
+E = Eacc ⊕ Erej ⊕ Enon ⊕ Ereset−0 ⊕ Ereset−1 ⊕ · · · ⊕ Ereset−(k−1) ,
+where k = |Qnon |, and for a given input w,
+1. the set of all configurations of the 2QFAx is Q × Z|w| ;
+2. E = span{|ci | c ∈ Q × Z|w| };
+3. Eacc = span{|ci | c ∈ Qacc × Z|w| };
+4. Erej = span{|ci | c ∈ Qrej × Z|w| };
+
+(3)
+
+5. Enon = span{|ci | c ∈ Qnon × Z|w| };
+6. Ereset−i = span{|ci | c ∈ Qx
+qi ∈Qnon × Z|w| } (0 ≤ i ≤ k − 1).
+The probability of each outcome is determined by the amplitudes of the relevant configurations in
+the present superposition. The contribution of each configuration to this probability is the modulus
+squared of its
+instance, the outcome “reset with state qi ” will be measured with
+P amplitude. For
+2 , where α is the amplitude of configuration c. If “accept” or “reject” is
+|α
+|
+probability c∈Qx
+c
+c
+qi ×Z|w|
+measured, the computation halts. If “continue without resetting” is measured, the machine continues
+running from a superposition of the nonhalting and nonresetting configurations, obtained by normalizing the projection of the superposition before the measurement onto span{|ci|c ∈ Qnon × Z|w| }.
+If “reset with state qi ” is measured, the tape head is reset to point to the left end-marker, and
+the machine continues from the superposition |qi , 0i in the next step. Note that the decoherence
+associated with this measurement means that the system allows mixed states.
+A 2QFAx M is said to recognize a language L with error bounded by ǫ if M’s computation
+results in “accept” being measured for all members of L with probability at least 1 − ǫ, and “reject”
+being measured for all other inputs with probability at least 1 − ǫ.
+A 2-way quantum finite automaton with restart (2QFA ) is a restricted 2QFAx in which the
+“reset moves” can target only the original start state of the machine, that is, in terms of Equation
+x
+1, all the Qx
+q of a 2QFA are empty, with the exception of Qq0 , represented as Qrestart .
+The two-way probabilistic finite automaton (2PFA) is the classical probabilistic counterpart of
+2KWQFA’s; see [Kaņ91] for the details. A one-way probabilistic finite automaton (1PFA) [Rab63]
+is a 2PFA in which the head moves only to the right in every step. A rational 1PFA [Tur69] is a
+1PFA where all entries in the transition matrices are rational numbers.
+Other variants of two-way automata with reset that will be examined in this paper are
+1. A one-way (Kondacs-Watrous) quantum finite automaton with reset (1QFAx) is a restricted
+2QFAx which uses neither “move one square to the left” nor “stay put” transitions, and whose
+tape head is therefore classical,
+2. A one-way (Kondacs-Watrous) quantum finite automaton with restart (1QFA ) is a 1QFAx
+where the reset moves can target only the original start state, and,
+3. A one-way probabilistic finite automaton with restart (1PFA ) is a 1PFA which has been enhanced with the capability of resetting the tape head to the left end-marker and swapping to
+the original start state.
+A one-way (Kondacs-Watrous) quantum finite automaton (1KWQFA) [KW97] is a 2KWQFA
+which moves its tape head only to the right in every step.
+A well–known two-way mixed–state model is the 2QCFA [AW02]. Formally, a 2-way finite automaton with quantum and classical states (2QCFA) is a 9-tuple
+M = (Q, S, Σ, Θ, δ, q0 , s0 , Sacc , Srej ),
+where
+1. Q = {q0 , . . . , qn1 } is the finite set of the quantum states;
+2. S = {s0 , . . . , sn2 } is the finite set of the classical states;
+3. Θ and δ govern the machine’s behavior, as described below;
+4. q0 ∈ Q is the initial quantum state;
+5. s0 ∈ S is the initial quantum state;
+
+(4)
+
+6. Sacc ⊂ S is the set of classical accepting states;
+7. Srej ⊂ S is the set of classical rejecting states.
+The functions Θ and δ specify the evolution of the quantum and classical parts of M, respectively.
+Both functions take the currently scanned symbol σ ∈ Γ and current classical state s ∈ S as
+arguments. Θ(s, σ) is either a unitary transformation, or an orthogonal measurement. In the first
+case, the new classical state and tape head direction (left, right, or stationary) are determined by
+δ, depending on s and σ. In the second case, when an orthogonal measurement is applied on the
+quantum part, δ determines the new classical state and the tape head direction using the result of
+that measurement, as well as s and σ. The quantum and classical parts are initialized with |q0 i and
+s0 , respectively, and the tape head starts on the first cell of the tape, on which ¢w$ is written for
+a given input string w ∈ Σ ∗ . During the computation, if an accepting or rejecting state is entered,
+the machine halts with the relevant response to the input string.
+Note that like the 1QFAx, and unlike the 2QFA and the 2QFAx, the tape head position of a
+2QCFA is classical, (that is, there are no superpositions with the head in more than one position
+simultaneously,) meaning that the machine can be implemented using a quantum part of constant
+size.
+
+2.2
+
+Basic facts
+
+We start by stating some basic facts concerning automata with restart, which will be used in later
+sections.
+A segment of computation which begins with a (re)start, and ends with a halting or restarting
+configuration will be called a round. Clearly, every automaton with restart which makes nontrivial
+use of its restarting capability will run for infinitely many rounds on some input strings. Throughout
+this paper, we make the assumption that our two-way automata do not contain infinite loops within
+a round, that is, the computation restarts or halts with probability 1 in a finite number steps for
+each round.
+Everywhere in this section, R will stand for a finite state automaton with restart, and w ∈ Σ ∗
+will represent an input string using the alphabet Σ.
+Definition 1.
+• pacc (R, w), prej (R, w), and prestart (R, w) denote the probabilities that R will accept, reject, or
+restart, respectively, on input w, in the first round.
+• Pacc (R, w) and Prej (R, w) denote the overall acceptance and rejection probabilities of w by R,
+respectively.
+Moreover, phalt (R, w) = pacc (R, w) + prej (R, w).
+Lemma 1.
+Pacc (R, w) =
+
+1
+p (R,w)
+1 + prej
+acc (R,w)
+
+; Prej (R, w) =
+
+1
+(R,w)
+1 + ppacc
+rej (R,w)
+
+.
+
+(5)
+
+Proof.
+Pacc (R, w) =
+
+∞
+X
+i=0
+
+(1 − pacc (R, w) − prej (R, w))i pacc (R, w)
+
+
+1
+= pacc (R, w)
+1 − (1 − pacc (R, w) − prej (R, w))
+pacc (R, w)
+=
+pacc (R, w) + prej (R, w)
+1
+=
+.
+prej (R,w)
+1 + pacc (R,w)
+
+
+
+Prej (R, w) is calculated in the same way.
+p
+
+(R,w)
+
+rej
+Lemma 2. The language L ⊆ Σ ∗ is recognized by R with error bound ǫ > 0 if and only if pacc
+(R,w) ≤
+
+prej (R,w) pacc (R,w)
+pacc (R,w)
+ǫ
+ǫ
+/ L. Furthermore, if pacc
+1−ǫ when w ∈ L, and prej (R,w) ≤ 1−ǫ when w ∈
+(R,w) ( prej (R,w) ) is at most
+
+ǫ, then Pacc (R, w) (Prej (R, w)) is at least 1 − ǫ.
+
+Proof. This follows from Lemma 1, since, for all p ≥ 0, ǫ ∈ [0, 12 ),
+ǫ
+1
+≥1−ǫ⇔p≤
+, and
+1+p
+1−ǫ
+p≤ǫ⇒
+
+1
+≥ 1 − ǫ.
+1+p
+
+(6)
+(7)
+
+Lemma 3. Let p = phalt (R, w), and let s(w) be the maximum number of steps in any branch of a
+round of R on w. The worst-case expected runtime of R on w is
+1
+(s(w)).
+p
+
+(8)
+
+Proof. The worst-case expected running time of R on w is
+∞
+X
+1
+1
+(i + 1)(1 − p)i (p)(s(w)) = (p)(s(w)) 2 = (s(w)).
+p
+p
+
+(9)
+
+i=0
+
+Lemma 4. Any one-way automaton with restart with expected runtime t can be simulated by a
+corresponding two-way automaton without restart in expected time no more than 2t.
+Proof. The program of the two-way machine (R2 ) is identical to that of the one-way machine with
+restart (R1 ), except for the fact that each restart move of R1 is imitated by R2 by moving the head
+one square per step all the way to the left end-marker. This causes the runtimes of the i nonhalting
+rounds in the summation in Equation (9) in Lemma 3 to increase by a factor of 2.
+
+We will now give a quick review of the technique of probability amplification. Suppose that we
+are given a machine (with or without reset) A, which recognizes a language L with error bounded
+by ǫ, and we wish to construct another machine which recognizes L with a much smaller, but still
+′
+positive, probability of error, say, ǫ . It is well known1 that one can achieve this by running A
+O(log( ǫ1′ )) times on the same input, and then giving the majority answer as our verdict about the
+membership of the input string in L.
+Suppose that the original machine A needs to be run 2k + 1 times for the overall procedure to
+work with the desired correctness probability. Two counters can be used to count the acceptance
+and rejection responses, and the overall computation accepts (rejects) when the number of recorded
+acceptances (rejections) reaches k + 1. To implement these counters in the finite automaton setting,
+we need to “connect” (k + 1)2 copies of A, {Ai,j | 0 ≤ i, j ≤ k}, where the subscripts indicate the
+values of the two counters, i.e., the states of Ai,j encode the information that A has accepted i
+times and rejected j times in its previous runs. The new machine M is constructed from the Ai,j
+as follows:
+– The start state of M is the start state of A0,0 ;
+– Upon reaching any accept state of Ai,j (0 ≤ i, j < k), M moves the head back to the left
+end-marker and then switches to the start state of Ai+1,j ;
+– Upon reaching any reject states of Ai,j (0 ≤ i, j < k), M moves the head back to the left
+end-marker and then switches to the start state of Ai,j+1 ;
+– The accept states of M are the accept states of Ak,j (0 ≤ j < k);
+– The reject states of M are the reject states of Ai,k (0 ≤ i < k).
+Lemma 5. If language L ⊆ Σ ∗ is recognized by R with a fixed error bound ǫ > 0, then for any
+′
+′
+positive error bound ǫ < ǫ, there exists a finite automaton with reset, R , recognizing L . Moreover,
+′
+if R has n states and its (expected) runtime is O(s(|w|)), then R has O(log2 ( ǫ1′ )n) states, and its
+(expected) runtime is O(log( ǫ1′ )s(|w|)), where w is the input string.
+Proof. Follows easily from the above description.
+Finally, we note the following relationship between the computational powers of the 2QCFA and
+the 1QFAx.
+Lemma 6. For any 1QFAx M1 with n states and expected runtime t(|w|), there exists a 2QCFA
+M2 with n quantum states, O(n) classical states, and expected runtime O(t(|w|)), such that M2
+accepts every input string w with the same probability that M1 accepts w.
+Proof. We utilize the 2QCFA’s ability of making arbitrary orthogonal measurements. Given a
+1QFAx M1 , we construct a 2QCFA M2 with the same set of quantum states. On each tape
+square, M2 first performs the unitary transformation associated with the current symbol by the
+program of M1 . It then makes a measurement (over the space spanned by the set of quantum
+′
+states) using an observable O , which is formed by replacing each subspace of the form Ereset−i in
+the observable O (Equation 3) of M1 2 by its subspaces
+{Ereset−i−qi1 ⊕ Ereset−i−qi2 ⊕ · · · ⊕ Ereset−i−qim },
+1
+2
+
+See, for instance, pages 369-370 of [Sip06].
+Since the head is classical, the observable is redefined to be a decomposition of the space spanned by just the set
+of states.
+
+where {qi1 , qi2 , · · · , qim } = Qx
+qi , and Ereset−i−qij = span{|qij i}. The outcome associated with
+Ereset−i−qij is simply the name of qij .
+M2 takes the action specified below according to the result of this observation:
+1. “continue without resetting”: move the head one square to the right,
+2. “accept”: accept,
+3. “reject”: reject,
+4. “qij ”: enter a classical state that moves the head left until the left end-marker ¢ is seen, and
+perform a unitary transformation that transforms the quantum register from state qij to qi .
+
+3
+
+Computational power of 1QFA ’s
+
+In this section, we focus on the 1QFA , which turns out to be the simplest and most restricted
+known model of quantum computation that is strictly superior in terms of bounded-error language
+recognition to its classical counterpart.
+Our first result shows that 1QFA ’s can simulate any 1PFA with small state cost, albeit
+with great slowdown. Note that no such relation is known between the 2KWQFA and its classical
+counterpart, the 2PFA.
+Theorem 1. Any language L ⊆ Σ ∗ recognized by an n-state 1PFA with error bound ǫ can be
+recognized by a 2n + 4-state 1QFA with the same error bound. Moreover, if the expected runtime of
+the 1PFA is O(s(|w|)), then the expected runtime of the 1QFA is O(l2|w| s2 (|w|)) for a constant
+l > 1 depending on n, where w is the input string.
+Proof. Let P be an n-state 1PFA recognizing L with error bound ǫ. We will construct a 2n+4-state
+′
+1QFA M recognizing the same language with error bound ǫ ≤ ǫ.
+′
+By adding two more states, sacc and srej , to P, we obtain a new 1PFA , P , where the halting
+of the computation in each round is postponed to the last symbol, $, on which the overall accepting
+and rejecting probabilities are summed up into sacc and srej , respectively. Therefore, for any given
+input string w ∈ Σ ∗ , the value of sacc and srej are pacc (P, w) and prej (P, w), respectively, at the
+end of the first round.
+By using the method described in [YS09b], each stochastic matrix can be converted to a unitary
+one with twice the size as shown in the template
+
+1
+(A | B)
+l
+,
+U=
+D
+where A is the original stochastic matrix; the columns of B, corresponding to newly added states,
+are filled in to ensure that each row of (A | B) is pairwise orthogonal to the others, and has the
+same length l, which depends only on the dimension of A, and the entries of D are then selected to
+make U a unitary matrix.
+′
+Each transition matrix of P can be converted to a (2n + 4) × (2n + 4)-dimensional unitary
+matrix according to this template. These are the transition matrices of M. The state set of M can
+be specified as follows:
+1. The states corresponding to sacc and srej are the accepting and rejecting states, qacc and qrej ,
+respectively,
+
+′
+
+2. the states corresponding to the non-halting and non-restarting states of P are non-halting and
+non-restarting states, and,
+3. all remaining states are restarting states.
+The initial state of M is the state corresponding to the initial state of P.
+When M runs on input string |w|, the amplitudes of qacc and qrej , the only halting states of M,
+|w|+2
+|w|+2
+pacc (P, w) and 1l
+prej (P, w), respectively. Therefore,
+at the end of the first round are 1l
+when w ∈ L,
+p2rej (P, w)
+ǫ2
+prej (M, w)
+= 2
+,
+≤
+pacc (M, w)
+pacc (P, w)
+(1 − ǫ)2
+and similarly, when w ∈
+/ L,
+
+p2 (P, w)
+pacc (M, w)
+ǫ2
+= 2acc
+.
+≤
+prej (M, w)
+(1 − ǫ)2
+prej (P, w)
+By solving the equation
+
+′
+
+ǫ2
+ǫ
+=
+,
+1 − ǫ′
+(1 − ǫ)2
+
+we obtain
+′
+
+ǫ =
+The expected runtime of P is
+
+ǫ2
+≤ ǫ.
+1 − 2ǫ + 2ǫ2
+
+1
+∈ O(s(|w|)),
+pacc (P, w) + prej (P, w)
+and so the expected runtime of M is
+2|w|+4
+
+(l)
+
+1
+< 3 (l)2|w|+4
+2
+pacc (P, w) + p2rej (P, w)
+
+
+
+1
+pacc (P, w) + prej (P, w)
+
+2
+
+∈ O(l2|w| s2 (|w|)).
+
+Corollary 1. 1QFA ’s can recognize all regular languages with zero error.
+To establish the strict superiority of 1QFA ’s over 1PFA ’s, we will make use of the following
+concepts.
+An automaton M is said to recognize a language L with positive one-sided unbounded error if
+every input string w ∈ L is accepted by M with nonzero probability, and every w ∈
+/ L is rejected by
+M with probability 1. An automaton M is said to recognize a language L with negative one-sided
+unbounded error if every input string w ∈ L is accepted by M with probability 1, and every w ∈
+/L
+is rejected by M with nonzero probability.
+For an automaton M recognizing a language L, we define the gap function, gM : N → [0, 1],
+such that gM (n) is the difference between the minimum acceptance probability of a member of L
+with length at most n and the maximum acceptance probability of a non-member of L with length
+at most n3 .
+3
+
+The definition of gM is due to Bertoni and Carpentieri [BC01], who call it the “error function.”
+
+Lemma 7. If a language L is recognized by a 1KWQFA M with positive (negative) one-sided
+unbounded error such that gM (n) ≥ c−n for some c > 1, then for all ǫ ∈ (0, 12 ), L is recognized by
+some 1QFA having three more states than M with positive (negative) one-sided error ǫ in expected
+time O( 1ǫ c|w| |w|).
+Proof. We consider the case of positive one-sided error. The adaptation to the other case is trivial.
+′
+′
+M is converted into a 1QFA Mǫ as follows. Mǫ starts by branching to two equiprobable paths,
+path1 and path2 , at the beginning of the computation. path1 imitates the computation of M, except
+that all reject states that appear in its subpaths are replaced by restart states. Regardless of the
+form of the input, path2 moves right with amplitude √1c , (and so restarts the computation with
+the remaining probability,) on every input symbol. When it arrives at the√right end-marker, path2
+√
+rejects with amplitude ǫ, and restarts the computation with amplitude 1 − ǫ.
+When w ∈
+/ L,
+ǫ
+′
+′
+pacc (Mǫ , w) = 0, and prej (Mǫ , w) = |w| ,
+2c
+and so the input is rejected with probability 1. When w ∈ L,
+′
+
+pacc (Mǫ , w) ≥
+
+1
+ǫ
+′
+, and prej (Mǫ , w) = |w| ,
+|w|
+2c
+2c
+
+and so the input is accepted with error bound ǫ > 0 due to Lemma 2, since
+′
+
+prej (Mǫ , w)
+≤ ǫ.
+pacc (M′ǫ , w)
+′
+
+′
+
+Since phalt (Mǫ , w) is always greater than 2cǫ|w| , the expected runtime of Mǫ is O( 1ǫ c|w| |w|).
+Lemma 8. If a language L is recognized by a 1KWQFA M with positive (negative) one-sided
+bounded error such that gM (n) ≥ c−1 for some c > 1, then for all ǫ ∈ (0, 12 ), L is recognized by some
+1QFA having three more states than M with positive (negative) one-sided error ǫ in expected time
+O( 1ǫ c|w|).
+Proof. The construction is almost identical to that in Lemma
+√ 7, except that path2 rejects with
+√
+amplitude ǫ, and restarts the computation with amplitude 1 − ǫ immediately on the left endǫ
+. Hence, the
+marker, thereby causing every input to be rejected with the constant probability 2c
+′
+1
+expected runtime of Mǫ turns out to be O( ǫ c|w|).
+Lemma 7 is a useful step towards an eventual characterization of the class of languages that
+are recognized with one-sided bounded error by 1QFA ’s, since full classical characterizations are
+known [YS09c] for the classes of languages recognized by one-sided unbounded error by several
+1QFA models, including the 1KWQFA.
+A language L is said to belong to the class S=
+rat [Tur69,Mac93] if there exists a rational 1PFA
+that accepts all and only the members of L with probability 21 .
+Theorem 2. For every language L ∈ S=
+rat , there exists a number n such that for all error bounds
+ǫ > 0, there exist n-state 1QFA ’s that recognize L and L with one-sided error bounded by ǫ.
+
+Proof. For a language L in S=
+rat , let P be the rational 1PFA associated by L as described above.
+Turakainen [Tur69] showed that there exists a constant b > 1 such that for any string w ∈
+/ L, the
+probability that P accepts w cannot be in the interval ( 21 − b−|w|, 12 + b−|w|). By using the method
+described in [YS09c], we can convert P to a 1KWQFA M recognizing L with one-sided unbounded
+error, so that M accepts any w ∈ L with probability greater than c−|w| , for a constant c > b. We
+can conclude with Lemma 7.
+R
+S=
+rat contains many well-known languages, such as, Leq , Lpal = {w | w = w }, Ltwin = {wcw |
+w ∈ {a, b}∗ }, Lmult = {x#y#z | x, y, z are natural numbers in binary notation and x × y = z},
+n
+2
+Lsquare = {an bn | n > 0}, Lpower = {an b2 }, and all polynomial languages, [Tur82] defined as
+p (n1 ,··· ,nk )
+
+{an1 1 · · · ank k b11
+
+· · · bpr r (n1 ,··· ,nk ) | pi (n1 , · · · , nk ) ≥ 0},
+
+where a1 , · · · , ak , b1 , · · · , br are distinct symbols, and each pi is a polynomial with integer coefficients.
+Note that Theorem 2 and Lemma 6 answer a question posed by Ambainis and Watrous [AW02]
+about whether Lsquare and Lpower can be recognized with bounded error by 2QCFA’s affirmatively.
+Corollary 2. The class of languages recognized by 1QFA ’s with bounded error properly contains
+the class of languages recognized by 1PFA ’s.
+Proof. This follows from Theorems 1 and 2, Lemma 4, and the fact [DS92] that Lpal cannot be
+recognized with bounded error by 2PFA’s.
+Since general 1QFA’s are known to be equivalent in language recognition power to 1PFA’s, one
+has to consider a two-way model to demonstrate the superiority of quantum computers over classical
+ones. The 2QCFA is known [AW02] to be superior to its classical counterpart, the 2PFA, also by
+virtue of Lpal . Recall that, by Lemma 6, 2QCFA’s can simulate 1QFA ’s easily, and we do not know
+of a simulation in the other direction.
+
+4
+
+Conciseness of 2QFA’s with mixed states and 2PFA’s
+
+In this section, we demonstrate several infinite families of regular languages which can be recognized
+with some fixed probability greater than 21 by just tuning the transition amplitudes of a 1QFA with
+a constant number of states, whereas the sizes of the corresponding 1QFA’s, 1PFA’s, and 2NFA’s
+grow without bound. One of our constructions can be adapted easily to show that 1PFA ’s, (and,
+equivalently, 2PFA’s), also possess the same advantage over those machines.
+Definition 2. For an alphabet Σ containing symbol a, and m ∈ Z+ , the family of languages Am is
+defined as
+Am = {ua | u ∈ Σ ∗ , |u| ≤ m}.
+Note that Ambainis et al. [ANTSV02] report that any Nayak one-way quantum finite automaton4
+that recognizes Am with some fixed probability greater than 12 has 2Ω(m) states.
+4
+
+This is a 1QFA model of intermediate power, subsuming the 1KWQFA, but strictly weaker than the most general
+models ([Pas00,Cia01], and one-way versions of 2QCFA’s,) which recognize any regular language with at most the
+same state cost as the corresponding DFA.
+
+Theorem 3. Am is recognized by a 6-state 1QFA Mm,ǫ for any error bound ǫ > 0. Moreover, the
+2m
+expected runtime of Mm,ǫ on input w is O( 1ǫ
+|w|).
+
+Proof. Let Mm,ǫ = {Q, Σ, δ, q0 , Qacc , Qrej , Qrestart } be a 1QFA with Qnon = {q0 , q1 }, Qacc = {A},
+Qrej = {R}, Qrestart = {I1 , I2 }. Mm,ǫ contains the transitions
+p
+2m+5
+U¢ |q0 i = ǫ|q1 i + ǫ 2 |Ri + 1 − ǫ2 − ǫ2m+5 |I1 i
+r
+1
+1
+Ua |q0 i = ǫ|q0 i +
+− ǫ2 |I1 i + √ |I2 i
+2
+2
+r
+1
+1
+− ǫ2 |I1 i − √ |I2 i
+Ua |q1 i = ǫ|q0 i +
+2
+2
+r
+1
+1
+UΣ\{a} |q0 i = ǫ|q1 i +
+− ǫ2 |I1 i + √ |I2 i
+2
+2
+r
+1
+1
+− ǫ2 |I1 i − √ |I2 i
+UΣ\{a} |q1 i = ǫ|q1 i +
+2
+2
+U$ |q0 i = |Ai
+U$ |q1 i = |Ri
+
+and the transitions not mentioned above can be completed easily, by extending each Uσ to be
+unitary.
+On the left end-marker, Mm,ǫ rejects with probability ǫ2m+5 , goes on to scan the input string
+with amplitude ǫ, and restarts immediately with the remaining probability. States q0 and q1 implement the check for the regular expression Σ ∗ a, but the machine restarts with probability 1 − ǫ2 on
+all input symbols during this check.
+′
+′
+If w = uσ for u ∈ Σ ∗ , and σ 6= a, the input is rejected with probability 1, since pacc (Mm,ǫ , w) =
+0.
+If w = ua for u ∈ Σ ∗ ,
+pacc (Mm,ǫ , w) = ǫ2|w|+2 , prej (Mm,ǫ , w) = ǫ2m+5 .
+Hence, if w ∈ Am ,
+and if w ∈
+/ Am ,
+
+pacc (Mm,ǫ , w) ≥ ǫ2m+4 ,
+pacc (Mm,ǫ , w) ≤ ǫ2m+6 .
+p
+
+(M
+
+,w)
+
+p
+
+(M
+
+,w)
+
+m,ǫ
+m,ǫ
+or pacc
+is not greater than ǫ. Thus, by
+In both cases, the corresponding ratio prej
+acc (Mm,ǫ ,w)
+rej (Mm,ǫ ,w)
+Lemma 2, we conclude that Mm,ǫ recognizes Am with error bounded by ǫ. Since phalt (Mm,ǫ , w) is
+2m
+|w|).
+always greater than ǫ2m+5 , the expected runtime of Mm,ǫ is O( 1ǫ
+
+By a theorem of Rabin [Rab63], for any fixed error bound, if a language L is recognized with
+bounded error by a 1PFA with n states, then there exists a deterministic finite automaton (DFA)
+that recognizes L with 2O(n) states. Parallelly, Freivalds et al. [FOM09] note that one-way quantum
+finite automata with mixed states are no more than superexponentially more concise than DFA’s.
+These facts can be used to conclude that a collection of 1PFA’s (or 1QFA’s) with a fixed common
+
+number of states that recognize an infinite family of languages with a fixed common error bound
+less than 21 , à la the two-way quantum automata of Theorem 3, cannot exist, since that would imply
+the existence of a similar family of DFA’s of fixed size. By the same reasoning, the existence of such
+families of 2NFA’s can also be overruled.
+The reader should note that there exists a bounded-error 1PFA (and therefore, a 2PFA5 ,) for
+Am , which one can obtain simply by replacing each transition amplitude of 1QFA Mm,ǫ defined
+in Theorem 3 by the square of its modulus. This establishes the fact that 2PFA’s also possess the
+succinctness advantage discussed above over 1PFA’s, 1QFA’s and 2NFA’s.
+We proceed to present two more examples.
+Definition 3. For m ∈ Z+ , the language family Bm ⊆ {a}∗ is defined as
+Bm = {ai | i mod (m) ≡ 0}.
+Theorem 4. For any error bound ǫ > 0, there exists a 7-state 1QFA Mm,ǫ which accepts any
+w ∈ Bm with certainty, and rejects any w ∈
+/ Bm with probability at least 1−ǫ. Moreover, the expected
+π
+runtime of Mm,ǫ on w is O 1ǫ sin−2 ( m
+)|w| .
+
+Proof. We will construct a 4-state 1KWQFA recognizing Bm with positive one-sided unbounded
+error, as described in [AF98]. Let Mm = (Q, Σ, δ, q0 , Qacc , Qrej ) be 1KWQFA with Qnon = {q0 , q1 },
+Qacc = {A}, Qrej = {R}. Mm contains the transitions
+U¢ |q0 i = |q0 i
+
+π
+π
+)|q0 i + sin( )|q1 i
+m
+m
+π
+π
+Ua |q1 i = − sin( )|q0 i + cos( )|q1 i
+m
+m
+U$ |q0 i = |Ri
+Ua |q0 i = cos(
+
+U$ |q1 i = |Ai,
+
+and the transition amplitudes not listed above are filled in to satisfy unitarity. Mm begins compuπ
+tation at the |q0 i-axis, and performs a rotation by angle m
+in the |q0 i-|q1 i plane for each a it reads.
+π
+Therefore, the value of the gap function, gMm , is not less than sin2 ( m
+) for |w| > 0. By Lemma
+B
+with
+positive
+one-sided
+bounded error and
+8, there exists a 7-state 1QFA Mm,ǫ recognizing
+m
+
+1
+−2 π
+whose expected runtime is O ǫ sin ( m )|w| . By swapping the accepting and rejecting states of
+Mm,ǫ , we can get the desired machine.
+Definition 4. For an alphabet Σ, and m ∈ Z+ , the language family Cm is defined as
+Cm = {w ∈ Σ ∗ | |w| = m}.
+Theorem 5. For any error bound ǫ > 0, there exists a 7-state 1QFA Mm,ǫ which accepts any
+w ∈ Cm with certainty, and rejects any w ∈
+/ Cm with probability at least 1−ǫ. Moreover, the expected
+runtime of Mm,ǫ on w is O( 1ǫ 2m |w|).
+5
+
+See Section 6 for an examination of the relationship between the computational powers of the 1PFA and the 2PFA.
+
+Proof. We will contruct a 4-state 1KWQFA recognizing Cm with positive one-sided unbounded
+error. Let Mm = (Q, Σ, δ, q0 , Qacc , Qrej ) be 1KWQFA with Qnon = {q0 , q1 }, Qacc = {A}, Qrej =
+{R}. Mm contains the transitions
+s
+
+ m+1
+m+1
+1
+1
+1
+1
+|Ri
+|q1 i +
+−
+U¢ |q0 i = √ |q0 i + √
+2
+2
+2
+2
+1
+1
+Uσ∈Σ |q0 i = √ |q0 i + √ |Ri
+2
+2
+Uσ∈Σ |q1 i = |q1 i
+1
+1
+U$ |q0 i = √ |Ai + √ |Ri
+2
+2
+1
+1
+U$ |q1 i = − √ |Ai + √ |Ri
+2
+2
+with the amplitudes of the transitions not mentioned above filled in to ensure unitarity.
+
+ |w|+1
+Mm encodes the length of the input string in the amplitude of state q0 , which equals √12
+just before the processing of the right end-marker. The desired length m is “hardwired” into the
+amplitudes of q1 . For a given input string w ∈ Σ ∗ , if w ∈ Cm , then the amplitudes of states q0 and
+q1 are equal, and the quantum Fourier transform (QFT) [KW97] performed on the right end-marker
+sets the amplitude of A to 0. Therefore, w is rejected with certainty. If w ∈ Cm , then the accepting
+probability is equal to
+!2
+
+
+
+
+1 |w|+2
+1 m+2
+√
+− √
+,
+2
+2
+and it is minimized when |w| = m + 1, which gives us the inequality
+ m+6
+1
+.
+gMm (w) >
+2
+By Lemma 8, there exists a 7-state 1QFA Mm,ǫ
+ recognizing Cm with positive one-sided bounded
+1 m
+error and whose expected runtime is O ǫ 2 |w| . By swapping the accepting and rejecting states
+of Mm,ǫ , we can get the desired machine.
+Note that, unlike what we had with Theorem 3, the QFA’s of Theorems 4 and 5 cannot be
+converted so easily to 2PFA’s. In fact, we can prove that there exist no 2PFA families of fixed size
+which recognize Bm and Cm with fixed one-sided error less than 12 , like those QFA’s: Assume that
+such a 2PFA family exists. Switch the accept and reject states to obtain a family for the complements
+of the languages. The 2PFA’s thus obtained operate with cutpoint 0. Obtain an equivalent 2NFA
+with the same number of states by converting all transitions with nonzero weight to nondeterministic
+transitions. But there are only finitely many 2NFA’s of this size, meaning that they cannot recognize
+our infinite family of languages.
+
+5
+
+Efficient Probability Amplification
+
+Many automaton descriptions in this paper, and elsewhere in the theory of probabilistic and quantum automata, describe not a single algorithm, but a general template which one can use for
+
+building a machine Mǫ that operates with a desired error bound ǫ. The dependences of the runtime
+and number of states of Mǫ on 1ǫ are measures of the complexity of the probability amplification
+process involved in the construction method used. Viewed as such, the constructions described in
+the theorems in Section 4 are maximally efficient in terms of the state cost, with no dependence on
+the error bound. In this section, we present improvements over previous results about the efficiency
+of probability amplification in 2QFA’s.
+5.1
+
+Improved algorithms for Leq
+
+In classical computation, one only needs to sequence O(log( 1ǫ )) identical copies of a given probabilistic automaton with one sided error p < 1 to run on the same input in order to obtain a
+machine with error bound ǫ. Yakaryılmaz and Say [YS09a] noted that this method of probability
+amplification does not yield efficient results for 2KWQFA’s; the number of machine copies required
+to reduce the error to ǫ can be as high as ( 1ǫ )2 . The most succinct 2KWQFA’s for Leq produced
+by alternative methods developed in [YS09a] have O(log2 ( 1ǫ ) log log( 1ǫ )) states, and runtime linear
+in the size of the input w. In Appendix A, we present a construction which yields (exponential
+time) 1QFA ’s that recognize Leq within any desired error bound ǫ, with no dependence of the
+state set size on ǫ. Ambainis and Watrous [AW02] present a method which can be used to build
+2QCFA’s that recognize Leq also with constant state set size, where the “tuning” of the automaton
+for a particular error bound is achieved by setting some transition amplitudes appropriately, and
+the expected runtime of those machines is O(|w|4 ). We now show that the 2QFA formalism allows
+more efficient probability amplification.
+Theorem 6. There exists a constant n, such that, for any ǫ > 0, an n-state 2QFA which recognizes
+Leq with one-sided error bound ǫ within O( 1ǫ |w|) expected runtime can be constructed, where w is
+the input string.
+Proof. We start with Kondacs and Watrous’ original 2KWQFA [KW97] MN , which recognizes Leq
+with one-sided error N1 , for any integer N > 1. After a deterministic test for membership of a∗ b∗ , MN
+branches to N computational paths, each of which perform a QFT at the end of the computation.
+Set N = 2. M2 accepts all members of Leq with probability 1. Non-members of Leq are rejected
+′
+with probability at least 12 . We convert M2 to a 2QFA Mǫ by changing the target states of the
+QFT as follows:
+r
+r
+1
+ǫ
+1−ǫ
+|Accepti +
+|Restarti
+path1 → √ |Rejecti +
+2
+2
+2
+r
+r
+ǫ
+1−ǫ
+1
+|Accepti +
+|Restarti
+path2 → − √ |Rejecti +
+2
+2
+2
+where the amplitude of each path is √12 . For a given input w ∈ Σ ∗ ,
+′
+
+1. if w is not of the form a∗ b∗ , then prej (Mǫ , w) = 1;
+′
+′
+2. if w is of the form a∗ b∗ and w ∈
+/ L, then prej (Mǫ , w) = 21 , and pacc (Mǫ , w) = 2ǫ ;
+′
+′
+3. if w ∈ L, then prej (Mǫ , w) = 0 and pacc (Mǫ , w) = ǫ.
+′
+
+(Mǫ ,w)
+= ǫ, we can conclude with Lemma 2.
+It is easily seen that the error is one-sided. Since ppacc(M
+′
+rej
+ǫ ,w)
+Moreover, the minimum halting probability occurs in the third case above, and so the expected
+′
+runtime of Mǫ is O( 1ǫ |w|).
+
+Theorem 7. For any ǫ ∈ (0, 21 ), there exists a 2QFAx with O(log( 1ǫ )) states that recognizes Leq
+with one-sided error bound ǫ in O(log( 1ǫ )|w|) steps, where w is the input string.
+Proof. Let M2 be the 2KWQFA recognizing Leq with one-sided error bound 21 mentioned in the
+proof of Theorem 6. Then, a 2QFAx that is constructed by sequentially connecting O(log( 1ǫ )) copies
+of M2 , so that the input is accepted only if it is accepted by all the copies, and rejected otherwise,
+can recognize Leq with one-sided error bound ǫ.
+5.2
+
+An improved algorithm for Lpal
+
+Ambainis and Watrous [AW02] present a 2QCFA construction which decides Lpal in expected time
+|w|
+|w|) with error bounded by ǫ > 0, where w is the input string. (Watrous [Wat98] describes
+O( 1ǫ
+a 2KWQFA which accepts all members of the complement of Lpal with probability 1, and fails to
+halt for all palindromes; it is not known if 2KWQFA’s can recognize this language by halting for
+all inputs.) We will now present a 1QFA construction, which, by Lemma 6, can be adapted to
+yield 2QCFA’s with the same complexity, which reduces the dependence of the Ambainis-Watrous
+method on the desired error bound considerably.
+Theorem 8. For any ǫ > 0, there exists a 15-state 1QFA Mǫ which accepts any w ∈ Lpal with
+certainty, and rejects any w ∈
+/ Lpal with probability at least 1 − ǫ. Moreover, the expected runtime
+of Mǫ on w is O( 1ǫ 3|w| |w|).
+Proof. We will first construct a modified version of the 1KWQFA algorithm of Lāce et al. [LSDF09]
+for recognizing the nonpalindrome language. The idea behind the construction is that we encode
+both the input string and its reverse into the amplitudes of two of the states of the machine, and
+then perform a substraction between these amplitudes using the QFT [LSDF09]. If the input is not
+a palindrome, the two amplitudes do not cancel each other completely, and the nonzero difference
+is transferred to an accept state. Otherwise, the accepting probability will be zero.
+Let M = (Q, Σ, δ, q0 , Qacc , Qrej ) be 1KWQFA with Qnon = {p1 , p2 , q0 , q1 , q2 , q3 } , Qacc = {A},
+Qrej = {Ri | 1 ≤ i ≤ 5}. The transition function of M is shown in Figure 1. As before, we assume
+that the transitions not specified in the figure are filled in to ensure that the Uσ are unitary.
+path2 and path1 encode the input string and its reverse [Rab63,Paz71] into the amplitudes of
+states q2 and p2 , respectively. If the input is w = w1 w2 · · · wl , then the values of these amplitudes
+just before the transition associated with the right end-marker in the first round are as follows:
+q |w|
+2
+(0.wl wl−1 · · · w1 )2 , and
+– State p2 has amplitude √12
+3
+q |w|
+2
+– state q2 has amplitude √12
+(0.w1 w2 · · · wl )2 .
+3
+q
+The factor of 23 is due to the “loss” of amplitude necessitated by the fact that the originally nonunitary encoding matrices of [Rab63,Paz71] have to be “embedded” in a unitary matrix [YS09b].
+Note that the symbols a and b are encoded by 0 and 1, respectively.
+If w ∈ Lpal , the acceptance probability is zero. If w ∈ Lpal , the acceptance probability is
+minimized by strings which are almost palindromes, except for a single defect in the middle, that
+is, when |w| = 2k for k ∈ Z+ , wi = w2k−i+1 , where 1 ≤ i ≤ k − 1, and wk 6= wk+1 , so,
+ 
+1 1 |w|
+gM (w) ≥
+.
+8 3
+
+Fig. 1. Specification of the transition function of M
+Paths
+
+U¢ , Ua
+
+path1
+
+U¢ |q0 i = √12 |p1 i + √12 |q1 i
+q
+Ua |p1 i = 23 |p1 i − √13 |R1 i
+
+Ub
+
+Ub |p1 i = √16 |p1 i + √16 |p2 i + √13 |R1 i + √13 |R2 i
+q
+Ua |p2 i = √16 |p1 i + √16 |p2 i + √13 |R1 i + √13 |R2 i Ub |p2 i = 23 |p2 i − √13 |R1 i
+
+Ua |q1 i = √16 |q1 i + √16 |q3 i − √13 |R3 i + √13 |R4 i Ub |q1 i = √16 |q1 i + √16 |q2 i − √13 |R3 i + √13 |R4 i
+q
+q
+path2 Ua |q2 i = 23 |q2 i + √1 |R5 i
+Ub |q2 i = 23 |q2 i + √13 |R3 i
+3
+q
+q
+Ua |q3 i = 23 |q3 i + √13 |R3 i
+Ub |q3 i = 23 |q3 i + √13 |R5 i
+U$
+path1
+
+U$ |p1 i = |R1 i
+U$ |p2 i = √12 |Ai + √12 |R2 i
+U$ |q1 i = |R3 i
+
+path2 U$ |q2 i = − √1 |Ai + √1 |R2 i
+2
+
+2
+
+U$ |q3 i = |R4 i
+
+By Lemma 7, there exists a 15-state 1QFA Mǫ recognizing Lpal with positive one-sided bounded
+error, whose expected runtime is O( 1ǫ 3|w| |w|). By swapping accepting and rejecting states of Mm ,
+we can get the desired machine.
+Note that the technique used in the proof above can be extended easily to handle bigger input
+alphabets by using the matrices defined on Page 169 of [Paz71], and the method of simulating
+stochastic matrices by unitary matrices described in [YS09b].
+
+6
+
+1PFA vs. 2PFA
+
+It is interesting to examine the power of the restart move in classical computation as well. Any
+1PFA which runs in expected t steps can be simulated by a 2PFA which runs in expected 2t
+steps (see Lemma 4). We ask in this section whether the restart move can substitute the “left”
+and “stationary” moves of a 2PFA without loss of computational power. Since every polynomialtime 2PFA recognizes a regular language, which can of course be recognized by using only “right”
+moves, we focus on the best-known example of a nonregular language that can be recognized by an
+exponential-time 2PFA.
+Theorem 9. There exists a natural number k, such that for any ǫ > 0, there exists a k-state 1PFA
+Pǫ recognizing language Leq with error bound ǫ and expected runtime O(( ǫ22 )|w| |w|), where w is the
+input string.
+2
+
+Proof. We will construct the 1PFA Pǫ as follows: Let x = ǫ2 . The computation splits into three
+paths called path1 , path2 , and path3 with equal probabilities on symbol ¢. All three paths, while
+performing their main tasks, parallelly check whether the input is of the form a∗ b∗ , if not, all paths
+simply reject. The main tasks of the paths are as follows:
+
+• path1 moves on with probability x and restarts with probability 1 − x when reading symbols a
+and b. After reading the right end-marker $, it accepts with probability with 1.
+• path2 moves on with probability x2 and restarts with probability 1 − x2 when reading symbol
+a. On b’s, it continues with the “syntax” check. After reading the $, it rejects with probability
+ǫ
+ǫ
+2 and restarts with probability 1 − 2 .
+• path3 is similar to path2 , except that the transitions of symbols a and b are interchanged.
+
+If the input is of the form am bn , then the accept and reject probabilities of the first round are
+calculated as
+
+1
+ǫ 2m
+pacc (Pǫ , w) = xm+n , and prej (Pǫ , w) =
+x + x2n .
+3
+6
+If m = n, then
+prej (Pǫ , w)
+= ǫ.
+pacc (Pǫ , w)
+If m 6= n (assume without loss of generality that m = n + d for some d ∈ Z+ ) , then
+x2n+d
+2
+2
+2
+2 xd
+pacc (Pǫ , w)
+=
+< xd ≤ x
+=
+prej (Pǫ , w)
+ǫ x2n+2d + x2n
+ǫ x2d + 1
+ǫ
+ǫ
+By replacing x =
+
+ǫ2
+, we can get
+2
+
+pacc (Pǫ , w)
+< ǫ.
+prej (Pǫ , w)
+
+By using Lemma 2, we can conclude that Pǫ recognizes Leq with error bound ǫ.
+Since phalt (Pǫ , w) is always greater than 31 x|w| , the expected runtime of the algorithm is O(( ǫ22 )|w| |w|),
+where w is the input string.
+
+7
+
+Concluding remarks
+
+By a theorem of Dwork and Stockmeyer [DS90], for a fixed ǫ < 12 , if L is recognized by a O(n)–time
+2
+2PFA with c states within error probability ǫ, then L is also recognized by a DFA with cbc states,
+where the number b depends on the constant hidden in the big-O. The two-way machines of Section
+4 can be seen to have such factors that grow with m in the expressions for their time complexities;
+this is how the machines described in that section achieve their huge superiority in terms of the
+state cost over the other models that they are compared with.
+It is known [YS09b] that 2KWQFA’s can recognize some nonstochastic languages (i.e. those
+which cannot be recognized by 2PFA’s) in the unbounded error setting. On the other hand, we
+conjecture that 2QFA’s with classical head position, such as the 2QCFA, cannot recognize any nonstochastic language. Therefore, it is an interesting question whether 2QFAx’s (or possibly an even
+more general 2QFA model allowing head superposition) can recognize any nonstochastic language
+with bounded error or not.
+Some other open questions related to this work are:
+1. Can 1QFA ’s simulate 2QCFA’s?
+2. Are 1PFA ’s (with just “restart” and “right” moves) equivalent in power to 2PFA’s in the
+bounded-error setting, as hinted by Section 6?
+3. Does there exist an analogue of the Dwork-Stockmeyer theorem mentioned above for two-way
+quantum finite automata?
+
+Acknowledgements
+We are grateful to Andris Ambainis and John Watrous for their helpful comments on earlier versions
+of this paper. We also thank Rūsiņš Freivalds for kindly providing us a copy of reference [LSDF09].
+
+References
+AF98.
+
+Andris Ambainis and Rūsiņš Freivalds. 1-way quantum finite automata: strengths, weaknesses and generalizations. In FOCS’98: Proceedings of the 39th Annual Symposium on Foundations of Computer Science,
+pages 332–341, Palo Alto, California, 1998.
+AKN98.
+Dorit Aharonov, Alexei Kitaev, and Noam Nisan. Quantum circuits with mixed states. In Proceedings
+of the Thirtieth Annual ACM Symposium on Theory of Computing, pages 20–30, New York, NY, USA,
+1998. ACM.
+ANTSV02. Andris Ambainis, Ashwin Nayak, Amnon Ta-Shma, and Umesh Vazirani. Dense quantum coding and
+quantum finite automata. Journal of the ACM, 49(4):496–511, 2002.
+AW02.
+Andris Ambainis and John Watrous. Two–way finite automata with quantum and classical states. Theoretical Computer Science, 287(1):299–311, 2002.
+BC01.
+Alberto Bertoni and Marco Carpentieri. Regular languages accepted by quantum automata. Information
+and Computation, 165(2):174–182, 2001.
+Cia01.
+Massimo Pica Ciamarra. Quantum reversibility and a new model of quantum automaton. In FCT
+’01: Proceedings of the 13th International Symposium on Fundamentals of Computation Theory, pages
+376–379, London, UK, 2001. Springer-Verlag.
+DS90.
+Cynthia Dwork and Larry Stockmeyer. A time complexity gap for two-way probabilistic finite-state
+automata. SIAM Journal on Computing, 19(6):1011–1123, 1990.
+DS92.
+Cynthia Dwork and Larry Stockmeyer. Finite state verifiers I: The power of interaction. Journal of the
+ACM, 39(4):800–828, 1992.
+FOM09.
+Rūsiņš Freivalds, Māris Ozols, and Laura Mančinska. Improved constructions of mixed state quantum
+automata. Theoretical Computer Science, 410(20):1923–1931, 2009.
+Fre81.
+Rūsiņš Freivalds. Probabilistic two-way machines. In Jozef Gruska and Michal Chytil, editors, Proceedings
+of the International Symposium on Mathematical Foundations of Computer Science, volume 118 of Lecture
+Notes in Computer Science, pages 33–45. Springer, 1981.
+Kaņ91.
+Jānis Kaņeps. Stochasticity of the languages acceptable by two-way finite probabilistic automata. Discrete
+Mathematics and Applications, 1:405–421, 1991.
+KF90.
+Jānis Kaņeps and Rūsiņš Freivalds. Minimal nontrivial space complexity of probabilistic one-way Turing
+machines. In Proceedings on Mathematical Foundations of Computer Science, volume 452 of Lecture Notes
+in Computer Science, pages 355–361, 1990.
+KW97.
+Attila Kondacs and John Watrous. On the power of quantum finite state automata. In FOCS’97:
+Proceedings of the 38th Annual Symposium on Foundations of Computer Science, pages 66–75, Miami,
+Florida, 1997.
+LSDF09.
+Lelde Lāce, Oksana Scegulnaja-Dubrovska, and Rūsiņš Freivalds. Languages recognizable by quantum
+finite automata with cut-point 0. presented at the 35th International Conference on Current Trends in
+Theory and Practice of Computer Science, SOFSEM, 2009.
+Mac93.
+Ioan Macarie. Closure properties of stochastic languages. Technical report, University of Rochester,
+Rochester, NY, USA, 1993.
+MPP01.
+Carlo Mereghetti, Beatrice Palano, and Giovanni Pighizzini. Note on the succinctness of deterministic,
+nondeterministic, probabilistic and quantum finite automata. Theoretical Informatics and Applications,
+35(5):477–490, 2001.
+Pas00.
+Kathrin Paschen. Quantum finite automata using ancilla qubits. Technical report, University of Karlsruhe,
+2000.
+Paz71.
+Azaria Paz. Introduction to Probabilistic Automata. Academic Press, New York, 1971.
+Rab63.
+Michael O. Rabin. Probabilistic automata. Information and Control, 6:230–243, 1963.
+Sip06.
+Michael Sipser. Introduction to the Theory of Computation, 2nd edition. Thomson Course Technology,
+United States of America, 2006.
+Tur69.
+Paavo Turakainen. On languages representable in rational probabilistic automata. Annales Academiae
+Scientiarum Fennicae, Ser.A, (439):4–10, 1969.
+
+Tur82.
+
+Wat97.
+Wat98.
+YS09a.
+YS09b.
+
+YS09c.
+
+A
+
+Paavo Turakainen. Discrete Mathematics, volume 7 of Banach Center Publications, chapter Rational
+stochastic automata in formal language theory, pages 31–44. PWN-Polish Scientific Publishers, Warsaw,
+1982.
+John Watrous. On the power of 2-way quantum finite state automata. Technical Report CS-TR-19971350, University of Wisconsin, 1997. Also available at citeseer.ist.psu.edu/article/watrous97power.html.
+John Watrous. Space-bounded quantum computation. PhD thesis, University of Wisconsin - Madison,
+USA, 1998.
+Abuzer Yakaryılmaz and A. C. Cem Say. Efficient probability amplification in two-way quantum finite
+automata. Theoretical Computer Science, 410(20):1932–1941, 2009.
+Abuzer Yakaryılmaz and A. C. Cem Say. Languages recognized with unbounded error by quantum finite
+automata. In CSR’09: Proceedings of the Fourth International Computer Science Symposium in Russia,
+volume 5675 of Lecture Notes in Computer Science, pages 356–367, 2009.
+Abuzer Yakaryılmaz and A. C. Cem Say. Quantum finite automata with one-sided unbounded error.
+Technical report, 2009. arXiv:0902.2081v1.
+
+A 1QFA algorithm for Leq
+
+Theorem 10. For any ǫ > 0, there exists a 15-state 1QFA Mǫ , which accepts any w ∈ Leq with
+certainty, and rejects
+w∈
+/ Leq with probability at least 1 − ǫ. Moreover, the expected runtime of
+√ any
+1
+|w|
+Mǫ on w is O( ǫ (2 2) |w|) .
+Proof. We will contruct a 12-state 1KWQFA recognizing Leq with positive one-sided unbounded
+error. Let M = (Q, Σ, δ, q0 , Qacc , Qrej ) be 1KWQFA with Qnon = {p0 , p1 , p2 , q0 , q1 , q2 } , Qacc =
+{A1 , A2 , A3 }, Qrej = {R1 , R2 , R3 }. The transition function of M is shown in Figure 2. As before, we
+assume that the transitions not specified in the figure are filled in to ensure that the Uσ are unitary.
+
+Fig. 2. Specification of the transition function of M
+Paths
+
+U¢ , Ua
+U¢ |q0 i = √12 |p0 i + √12 |q0 i
+
+Ub
+
+Ua |p0 i = 21 |p1 i + 21 |R1 i + √12 |R2 i Ub |p0 i = |A1 i
+path1 Ua |p1 i = 21 |p1 i + 21 |R1 i − √1 |R2 i Ub |p1 i = √12 |p2 i + √12 |R1 i
+2
+
+Ua |p2 i = |A1 i
+Ua |q0 i = √12 |q1 i + √12 |R3 i
+path2 Ua |q1 i = √1 |q1 i − √1 |R3 i
+2
+
+Ua |q2 i = |A2 i
+
+2
+
+Ub |p2 i = √12 |p2 i − √12 |R1 i
+
+U$
+U$ |p0 i = |R1 i
+U$ |p1 i = |A1 i
+U$ |p2 i = √12 |R2 i + √12 |A2 i
+
+Ub |q0 i = |A2 i
+U$ |q0 i = |R3 i
+Ub |q1 i = 12 |q2 i + 21 |R2 i + √12 |R3 i U$ |q1 i = |A3 i
+Ub |q2 i = 12 |q2 i + 21 |R2 i − √12 |R3 i U$ |q2 i = √12 |R2 i − √12 |A2 i
+
+As seen in the figure, M branches to two paths on the left end-marker. All paths rejects immediately if the input w ∈ {a, b}∗ is the empty string, and accepts with nonzero probability, say α, if
+it is of the form ({a, b}∗ \ a∗ b∗ ) ∪ a+ ∪ b+ . Otherwise, w = am bn (m, n > 0), and the amplitudes of
+the paths just before the transition associated with the right end-marker in the first round are as
+follows:
+– State p2 has amplitude √12 ( 21 )m ( √12 )n ,
+– state q2 has amplitude √12 ( √12 )m ( 12 )n .
+
+If m = n, then the accepting probability is zero. If m 6= n (assume that m = n + d for some d ∈ Z+ ),
+then the accepting probability is equal to
+
+ m+n+1 
+
+ d !
+
+ 2  m+2n+1
+
+1 d−2
+1
+1 n
+1
+1 m
+1
+√
+1− √
+− √
++
+=
+2
+2
+2
+2
+2
+2
+{z
+}|
+|
+{z
+}
+3|w|
+1
++1
+> 16
+>( 21 ) 2
+Since α is always greater than this value,
+
+  3|w| +5
+1 2
+,
+gM (|w|) >
+2
+for |w| > 0. By Lemma 7, there exists a 15-state 1QFA √
+Mǫ recognizing Leq with positive onesided bounded error and whose expected runtime is O( 1ǫ (2 2)|w| |w|). By swapping accepting and
+rejecting states of Mm , we can get the desired machine.
+
+

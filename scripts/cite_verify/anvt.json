@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://www.researchgate.net/profile/Andris-Ambainis/publication/221443789_Quantum_Finite_Automata/links/540eead40cf2d8daaacf33de/Quantum-Finite-Automata.pdf",
+    "name": "QUANTUM FINITE AUTOMATA Andris Ambainis",
+    "snippet": "1. Space efficiency of QFAs. QFAs can be exponentially smaller than any classical automaton recognizing the same language. This was first shown by Ambainis and ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/quant-ph/9802062",
+    "name": "1-way quantum finite automata",
+    "snippet": "by A Ambainis · 1998 · Cited by 413 — Lecture Notes in Computer Science, 1178:233-239, 1996 . [ 2 ] A. Ambainis , A. Nayak , U. Vazirani , On the space-efficiency of 1-way quantum finite automata ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1404.1689v4",
+    "name": "Potential of quantum finite automata with exact acceptance",
+    "snippet": "Nov 25, 2014 — ... states , whereas the sizes of the corresponding DFAs are at least 2 k + 1 2 ^{k+1} . In order to get a quantum speed-up ( space efficiency ) ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "Nov 25, 2014",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/3785029_1-way_quantum_finite_automata_strengths_weaknesses_andgeneralizations",
+    "name": "1-way quantum finite automata: strengths, weaknesses",
+    "snippet": "... space-efficiency of 1-way quantum finite automata . Article. Apr 1998. Andris Ambainis ; U V Vazirani · A Nayak · View · Finite Markov Chain. Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/cs/9911009",
+    "name": "arXiv:cs/9911009v1 [cs.CC] 16 Nov 1999",
+    "snippet": "by A Ambainis · 1999 · Cited by 258 — We introduce 2 -way finite automata with quantum and classical states (2qcfa's). ... interesting that such extreme examples of space-efficiency /precision trade- ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/0909.1428v5",
+    "name": "Exponentially more concise quantum recognition of non-",
+    "snippet": "... space-efficiency of 1QFA compared with other one-way automata . The first important result is by Ambainis and Freivalds [ 2 ] , who proved that MO-1QFA need ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]

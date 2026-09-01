@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://link.springer.com/chapter/10.1007/978-3-540-73208-2_18",
+    "name": "Non-constructive Methods for Finite Probabilistic Automata",
+    "snippet": "by R Freivalds · 2007 · Cited by 8 — Download book PDF Conference on Developments in. The result is presented in two versions. Ambainis, A.: The complexity of probabilistic versus deterministic  ...",
+    "host_name": "link.springer.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.worldscientific.com/doi/10.1142/S0129054108005826?srsltid=AfmBOoq4R-MUlFIvIkZM44B_xj4bCtAm75w_fUsVnKZqNRpJPWM6FtnP",
+    "name": "NON-CONSTRUCTIVE METHODS FOR FINITE",
+    "snippet": "The result is presented in two versions. The first version depends on Artin's Conjecture (1927) in Number Theory. The second version does not depend on ...",
+    "host_name": "www.worldscientific.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/235418276_Non-constructive_Methods_for_Finite_Probabilistic_Automata",
+    "name": "Non-constructive Methods for Finite Probabilistic Automata",
+    "snippet": "Jul 12, 2026 — Ambainis and R. Freivalds that quantum finite automata with pure states can have an exponentially smaller number of states than deterministic  ...",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "Jul 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0304397509000723/pdf?md5=8be18b6fb1eec8f2950540842af21d40&pid=1-s2.0-S0304397509000723-main.pdf",
+    "name": "Improved constructions of mixed state quantum automata",
+    "snippet": "by R Freivalds · 2009 · Cited by 17 — Ambainis and R. Freivalds that quantum finite automata with pure states can have an exponentially smaller number of states than deterministic finite automata .  ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/quant-ph/9802062",
+    "name": "1-way quantum finite automata",
+    "snippet": "by A Ambainis · 1998 · Cited by 413 — Freivalds , On the growth of the number of states in result of determinization of probabilistic finite automata . Automatic Control and Computer Sciences ...",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.academia.edu/19854991/Krist%C4%ABne_C%C4%ABpola_Andris_Pakulis_and_R%C5%ABsin%C5%A1_Freivalds_Experiments_in_Complexity_of_Probabilistic_and_Ultrametric_Automata_SOFSEM_2015_p_120_123",
+    "name": "(PDF) Kristīne Cīpola, Andris Pakulis, and Rūsinš Freivalds",
+    "snippet": "Abstract. We try to compare the complexity of deterministic, nonde- terministic, probabilistic and ultrametric finite automata for the same language. We do not ...",
+    "host_name": "www.academia.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0304397509000723",
+    "name": "Improved constructions of mixed state quantum automata",
+    "snippet": "by R Freivalds · 2009 · Cited by 17 — Ambainis and R. Freivalds that quantum finite automata with pure states can have an exponentially smaller number of states than deterministic ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inspirehep.net/literature/2976519",
+    "name": "Exact results for accepting probabilities of quantum automata",
+    "snippet": "by A Ambainis · 2003 · Cited by 32 — In this paper, we determine the maximum probabilities achieved by QFAs for several languages. In particular, we show that any language that is ...",
+    "host_name": "inspirehep.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

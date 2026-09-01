@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1304.6603",
+    "name": "[1304.6603] Optimal Kullback-Leibler Aggregation via",
+    "snippet": "by BC Geiger · 2013 · Cited by 42 — Abstract:In this paper, we present a method for reducing a regular, discrete-time Markov chain (DTMC) to another DTMC with a given, ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1304.6603v3",
+    "name": "Optimal Kullback-Leibler Aggregation via Information",
+    "snippet": "In this paper, we present a method for reducing a regular, discrete-time Markov chain (DTMC) to another DTMC with a given, typically much smaller number of ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/1304.6603",
+    "name": "Optimal Kullback-Leibler Aggregation via Information",
+    "snippet": "by BC Geiger · 2013 · Cited by 41 — Abstract—In this paper, we present a method for reducing a regular, discrete-time Markov chain (DTMC) to another DTMC. Read more",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1701.05009",
+    "name": "Optimal Kullback-Leibler Aggregation in Mixture Density",
+    "snippet": "by AS Dalalyan · 2017 · Cited by 1 — The main focus is on statistical properties with respect to the Kullback - Leibler loss. We establish risk bounds taking the form of sharp oracle ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1601.05686",
+    "name": "Optimal exponential bounds for aggregation of estimators",
+    "snippet": "by C Butucea · 2016 · Cited by 15 — We study the problem of model selection type aggregation with respect to the Kullback - Leibler divergence for various probabilistic models. Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2608.15472",
+    "name": "[2608.15472] Optimal Lower Bounds for Networked",
+    "snippet": "by A Pal · 2026 — We show that networked information aggregation on a gaussian instance in our worst case family incurs an \\ell-error lower bounded by \\Omega(1/\\ ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=wTjUgd8AAAAJ&citation_for_view=wTjUgd8AAAAJ:YsMSGLbcyi4C",
+    "name": "https://scholar.google.com/citations?view_op=view_",
+    "snippet": "No information is available for this page. Learn why",
+    "host_name": "scholar.google.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1099-4300/23/8/974",
+    "name": "Information Bottleneck Analysis by a Conditional Mutual",
+    "snippet": "by T Tezuka · 2021 · Cited by 9 — Task-nuisance decomposition describes why the information bottleneck loss I(z;x)−βI(z;y) is a suitable objective for supervised learning.",
+    "host_name": "www.mdpi.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,824 @@
+Improved constructions for succinct affine
+automata
+Abuzer Yakaryılmaz1,2[0000−0002−2372−252X]
+
+arXiv:2106.16197v1 [cs.FL] 30 Jun 2021
+
+1
+
+Center for Quantum Computer Science, University of Latvia, Rı̄ga, Latvia
+2
+QWorld Association, Tallinn, Estonia, https://qworld.net
+abuzer@lu.lv
+
+Abstract. Affine finite automata (AfA) can be more succinct than probabilistic and quantum finite automata when recognizing some regular languages with bounded-error. In this paper, we improve previously known
+constructions given for the succinctness of AfAs in three ways. First, we
+replace some of fixed error bounds with arbitrarily small error bounds.
+Second, we present new constructions by using less states than the previous constructions. Third, we show that any language recognized by a
+nondeterministic finite automaton (NFA) is also recognized by boundederror AfAs having one more state, and so, AfAs inherit all succinct results
+by NFAs. As a special case, we also show that any language recognized by
+a NFA is recognized by AfAs with zero error if the number of accepting
+path(s) for each member is exactly the same number.
+Keywords: succinctness · state complexity · affine automata · quantum
+automata · probabilistic automata · linear systems · bounded error · onesided error · zero error
+
+1
+
+Introduction
+
+Probabilistic finite automaton (PFA) [20,19] is a linear system implementing
+non-negative transitions by preserving ℓ1 -norm where a probabilistic state is
+represented as a non-negative real-valued column vector with entry summation
+1. Similarly, quantum finite automaton (QFA) [21,4] is also a linear system but
+it implements complex-valued transitions by preserving ℓ2 -norm where a (pure)
+quantum state is represented as a complex-valued vector with length 1. Implementing both positive and negative valued transitions creates interference and so
+some transitions may disappear, which brings certain computational advantages
+to QFAs over PFAs, e.g., bounded-error QFAs can be exponentially more succinct than bounded-error PFAs [1], or nondeterministic QFAs are more powerful
+than nondeterministic finite automaton (NFA) [25].
+One may ask whether it is possible to use interference3 classically. The idea
+of using negative transition values for classical systems dates back to sixties. Turakainen [22] defined generalized automaton (GA) as a linear system implementing real-valued transitions without any restrictions. The language recognition by
+3
+
+We refer the reader to [8] for certain discussions about interference with historical
+remarks.
+
+2
+
+A. Yakaryılmaz
+
+GAs are defined based on cutpoints, and bounded-error language recognition has
+never been considered.
+After reading the whole input, the final state of a GA is represented as a
+column vector with real-valued entries. To calculate the accepting value, this
+vector is multiplied with a pre-defined real-valued row vector (with the same
+dimension). In other words, each state contributes to the accepting value by a
+real-valued weight:
+
+fG (x) = w · vf = (w1
+
+w2
+
+···
+
+
+
+
+α1
+n
+ α2  X
+ 
+wi · αi ,
+wn ) ·  .  =
+ .. 
+i=1
+
+αn
+
+where G is the GA, x is the input, fG (x) is the accepting value of G on x, w
+is the pre-defined weights, and vf is the final state. Remark that for PFAs, w
+contains only 0s and as, where 1s are corresponding to the accepting states.
+In the above, fG (x) is in R. On the other hand, an accepting probability
+is in [0, 1]. One way to observe each state with some probabilities when in vf
+(similar to PFAs and QFAs) is making a normalization with respect to ℓ1 -norm.
+For QFAs, some measurement operators are applied to the quantum state, and
+then, the different outcomes are observed with some probabilities. For classical
+case, we define an operator called weighting [6] produces the outcomes with
+probabilities based on their normalized values in ℓ1 . Here we should remark
+that, on contrary to measurement operators, weighting is a non-linear operator.
+Affine finite automaton (AfA) is a new and quantum-like generalization of
+PFA which evolves linearly followed by a non-linear weighting operator [6]. An
+affine state can have arbitrary real numbers but the summation of them must
+be 1 similar to the probabilistic state.
+The computational power of AfAs and their generalizations have been examined and compared with their probabilistic and quantum counterparts in a series of papers [23,5,9,18,12,24,10,11,13,14]. In the unbounded-error and boundederror language recognition modes, AfAs are more powerful than PFAs and QFAs,
+where the latter models recognize all and only stochastic and regular languages,
+respectively [20,19,16,27,17]. In the nondeterministic language recognition mode,
+PFAs can be seen as nondeterministic finite automata (NFAs), and so they recognize all and only regular languages. On the other hand, the class of languages
+recognized by nondeterministic QFAs is a superset of regular languages known
+as co-exclusive stochastic languages [19,25]. On contrary to bounded-error and
+unbounded-error cases, nondeterministic AfAs are equivalent to nondeterministic QFAs [6].
+Regarding the state complexity, bounded-error PFAs can be exponentially
+more succinct than deterministic finite automata (DFAs) [20,19,2]; and, boundederror QFAs can be exponentially more succinctness than bounded-error PFAs
+[1,4]. On the other hand, bounded-error AfAs can be more succinct than boundederror PFAs and QFAs and the gap can be super-exponential [5,24,13]. A similar
+
+Improved constructions for succinct affine automata
+
+3
+
+gap between DFAs and bounded-error PFAs and between bounded-error PFAs
+and bounded-error QFAs can only be obtained on promise problems [3,7].
+In this paper, we improve previously known constructions given for the succinctness of AfAs in three ways. In the next section, we give the definitions and
+notations used throughout the paper. In Section 3, we quickly review the simulations by AfAs that we refer in the rest of paper. In Section 4, we give our
+constructions for three-state AfAs. In Section 5, we present our results on NFAs.
+
+2
+
+Preliminaries
+
+We assume the reader familiar with the basic of automata theory. Throughout
+the paper, we denote the input alphabet as Σ not including ¢ (the left endmarker) and $ (the right end-marker), and we denote Σ ∪ {¢, $} as Σ̃. For a
+given input x ∈ Σ, x̃ denotes ¢x$. For a given string x, |x| is its length; for a
+numeric value α, |α| is the absolute value of α; and, for a vector v, |v| is ℓ1 -norm
+of v. For a non-empty string x, x[i] denotes its i-th symbol, where 1 ≤ i ≤ |x|.
+For a given matrix A, A[i, j] is its entry at the i-th row and j-th column; and,
+for a given vector v, v[i] is its i-th entry and ζ(v) is the summation of all entries.
+For an automaton M and input string x, fM (x) is the accepting probability of
+M on x.
+An affine state is a real-valued column vector with entry summation 1. An
+affine operator is a real-valued square matrix where each column is an affine state.
+If we use only non-negative values, then an affine state is a probabilistic state
+(also called stochastic vector) and an affine operator is a probabilistic operator
+(also called stochastic matrix).
+An n-state affine finite automaton (AfA)4 M is a 5-tuple
+M = (S, Σ, {Aσ | σ ∈ Σ̃}, sI , Sa ),
+where
+– S = {s1 , . . . , sn } is the set of states,
+– Aσ is the affine operator when reading symbol σ ∈ Σ̃,
+– sI ∈ S is the initial state, and
+– Sa ⊆ S is the set of accepting state(s).
+Let x ∈ Σ ∗ be the input with length m. The automaton M starts in affine
+state v0 , which is the elementary basis eI in Rn . If x is the empty string, then
+the final state is vf = A$ A¢ v0 . Otherwise, the final state is calculated as
+vf = A$ Ax[m] Ax[m−1] · · · Ax[1] A¢ v0 .
+The input is accept with probability
+fM (x) =
+4
+
+P
+
+si ∈Sa |vf [i]|
+
+|vf |
+
+.
+
+We use lowercase “f” to emphasis non-linear behaviours of the automaton.
+
+4
+
+A. Yakaryılmaz
+
+If we use only non-negative transition values, then we obtain a probabilistic
+finite automaton (PFA). If we use only 0s and 1s, then we obtain a deterministic
+finite automaton (DFA).
+A language L ⊆ Σ ∗ is said to be recognized by an automaton M with error
+/ L,
+bound ǫ < 12 if (i) for each x ∈ L, fM (x) ≥ 1 − ǫ and (ii) for each x ∈
+fM (x) ≤ ǫ.
+A language L ⊆ Σ ∗ is said to be recognized by an automaton M with positive
+one-sided error bound ǫ < 1 if (i) for each x ∈ L, fM (x) ≥ 1 − ǫ and (ii) for each
+x∈
+/ L, fM (x) = 0.
+A language L ⊆ Σ ∗ is said to be recognized by an automaton M with negative
+one-sided error bound ǫ < 1 if (i) for each x ∈ L, fM (x) = 1 and (ii) for each
+x∈
+/ L, fM (x) < ǫ.
+When ǫ = 0, then it is called zero error.
+We call an automaton ((positive/negative) one-sided) bounded-error, if it
+recognizes its language in the specified error mode with some error bounds.
+
+3
+
+Simulations
+
+We review the basic simulations by AfAs. We start with a generic case.
+3.1
+
+A sequence of matrix-vector multiplication
+
+Let v0 be a real-valued n-dimensional column vector and let A1 , . . . , Ak be some
+(n × n)-dimensional real-valued linear operators. We define affine vector v0′ and
+affine operator A′i (1 ≤ i ≤ k) as
+
+
+
+
+v0′ = 
+
+
+v0 [1]
+..
+.
+v0 [n]
+1 − ζ(v0 )
+
+
+
+
+
+
+
+
+···
+cn [0] 0
+
+..
+.. 
+..
+
+.
+.
+.
+and A′i = 
+,
+ c1 [n]
+···
+cn [n] 0 
+1 − ζ(c1 ) · · · 1 − ζ(cn ) 1
+
+
+c1 [0]
+..
+.
+
+where cj is the j-th column of Ai , where 1 ≤ j ≤ n. Then, for given vf =
+Ak Ak−1 · · · A1 v0 , we can have
+
+
+
+
+vf′ = A′k A′k−1 · · · A′1 v0′ = 
+
+3.2
+
+vf [1]
+..
+.
+vf [n]
+1 − ζ(vf )
+
+
+
+
+
+.
+
+
+Trivial case for PFAs
+
+It is trivial that any n-state PFA is an n-state AfA. So, PFAs and DFAs cannot
+be more succinct than bounded-error AfAs.
+
+Improved constructions for succinct affine automata
+
+3.3
+
+5
+
+Rational exclusive stochastic languages
+
+Let L be a language defined by an n-state rational-valued PFA P and a cutpoint
+λ ∈ [0, 1] as given below:
+L = {w | fP (w) 6= λ}.
+Based on the simulation given in Section 3.1, it was shown [24] that L is recognized by an (n + 1)-state integer-valued AfA as follows:
+– each x ∈ L is accepted by the AfA with probability no less than 13 , and,
+– each x ∈
+/ L is accepted by the AfA with zero probability.
+3.4
+
+Exact simulation of QFAs
+
+Any given n-state QFA can be simulated exactly by a (n2 + 1)-state AfA [24].
+The computation of a QFA is linear. By tensoring the computation with itself,
+the probabilities can be directly accessed on the state vectors. Each complex
+number can be represented by two real numbers, but the tensoring vectors have
+some redundancy and so n2 -dimensional real-valued vectors can be obtained
+from n-dimentional quantum state. The rest of the proof is due to Section 3.1.
+If the QFA is real-valued, we still do not know any better bound.
+Potentially bounded-error QFAs can be quadratically more succinct than
+bounded-error AfAs, but it is open whether QFAs can be more succinct than
+AfAs or whether any n-state QFA can be simulated by a Θ(n)-state or o(n)-state
+AfAs.
+
+4
+
+Three-state AfAs
+
+In this section, we give improved constructions of 3-state AfAs for some unary
+languages.
+We start with the well-known counting problem: COUNTm = {am } for some
+m ≥ 0. It was shown [24] that the language COUNTm is recognized by a 2-state AfA
+with (negative) one-sided error bound 31 . We decrease the error bound arbitrarily
+by using one more state.
+Theorem 1. The language COUNTm is recognized by a 3-state AfA with (negative)
+1
+one-sided error bound 2t+1
+for some t ∈ Z+ .
+Proof. The affine states are s1 , s2 , and s3 , where s1 is the initial and only
+accepting state. The initial affine state is v0 = (1 0 0)T . After reading ¢, the
+affine state is set to
+
+ 
+ 
+1
+1 0 0
+1
+v1 =  m  =  m 1 0   0  .
+−m
+−m 0 1
+0
+
+6
+
+A. Yakaryılmaz
+
+For each symbol a, the value of e2 (resp., e2 ) is decreased (resp., increased) by
+1 by using the following operator
+
+
+
+ 
+ 
+1 0 0
+1
+1 0 0
+1
+Aa =  −1 1 0  , i.e.,  t − 1  =  −1 1 0   t  .
+1 0 1
+1−t
+1 0 1
+−t
+Let l be the length of the input. Then, the affine state before reading $ is
+
+
+1
+vl+1 =  m − l  .
+l−m
+After reading $ symbol, the values of e2 and e3 are multiplied by t:
+
+ 
+
+
+1
+1 −t −t
+1
+vf =  t(m − l)  =  0
+t
+0m − l.
+t(l − m)
+0
+0
+t
+l−m
+If l = m, then vf = v0 and the input is accepted with probability 1. Otherwise,
+1
+.
+⊓
+⊔
+|m − l| ≥ 1, and so, the accepting probability is at most
+2t + 1
+It is clear that the number of states required by bounded-error PFAs and
+QFAs recognizing COUNTm increases when m increases. Similar to AfAs, two-way
+QFAs can recognize COUNTm with a few states in polynomial expected time in m
+[26].
+We will continue with language MODp = {aj·p | j ∈ N} for some prime number
+p. This language is recognized by QFAs with O(log p) states and bounded-error
+PFAs require at least p states [1]. Previously, the bound for AfA was given by
+using the simulation given in Section 3.4 [24]. Here, we show that we can indeed
+use only 3 states.
+Theorem 2. The language MODp is recognized by a 3-state AfA with (negative)
+cot(π/p)
+for some t > 1.
+one-sided error bound
+t
+Proof. We use the single qubit algorithm given for this problem [1]. By help of
+one more state, we will trace the computation by affine states, which also helps
+us to decrease the accepting probability arbitrarily for the non-members.
+Let {s1 , s2 , s3 } be our states and let θ = 2π
+p be our rotation angle. We
+T
+start in affine state v0 = (1 0 0) and we apply the identity operator when
+reading symbol ¢. Then, for each symbol a, we apply the following operator that
+implements the counter-clockwise rotation with angle θ on the unit circle by
+using s1 and s2 :
+
+
+cos θ − sin θ 0
+Aa =  sin θ cos θ 0  ,
+α1
+α2 1
+
+Improved constructions for succinct affine automata
+
+7
+
+where α1 = 1 − cos θ − sin θ and α2 = 1 + sin θ − cos θ.
+Let l be the length of input. Before reading dollar symbol, the affine state is
+
+
+cos(lθ)
+
+sin(lθ)
+vl+1 = 
+1 − cos(lθ) − sin(lθ)
+After reading $ symbol, the final affine state is set to
+
+
+cos(lθ)
+.
+t sin(lθ)
+vf = 
+1 − cos(lθ) − t sin(lθ)
+For members, vf = v0 and so the input is accepted with probability 1. For
+non-members, the ratio
+cos( πp )
+π
+| cos(lθ)|
+= cot( ),
+≥
+| sin(lθ)|
+sin( πp )
+p
+where the bound is obtained when
+l≡
+
+p−1
+2
+
+mod p or l ≡
+
+p+1
+2
+
+mod p,
+
+i.e., the rotating vector is at its closest points to the x-axis. Thus, the accepting
+cot(π/p)
+.
+⊓
+⊔
+probability is less than
+t
+We close this section with a promise problem given in [3]: For any k ∈ Z+ ,
+MOD2k = (0MOD2k, 1MOD2k),
+k
+
+k
+
+where 0MOD2k = {aj·2 | j ≡ 0 mod 2} and 1MOD2k = {aj·2 | j ≡ 1 mod 2}.
+This promise problem is solved by 2-state QFAs with zero error [3], and different
+types of classical automata require 2k+1 states to solve it [7].
+By using simulation in Section 3.4, it was given in [24] that 5-state AfA can
+solve this problem with zero error. We believe that 2-state AfAs cannot solve
+this problem with zero error. Here we give a 3-state AfAs with zero error.
+Theorem 3. For a given k ∈ Z+ , the promise problem 0MOD2k is solved by an
+AfA with zero error.
+π
+Proof. The 2-state QFA algorithm uses a rotation with angle k+1 on the unit
+2
+circle [3]:
+  k
+  k
+
+
+
+ k
+ 
+2 symbols
+1 2 symbols
+0 2 symbols
+−1 2k symbols
+0
+1
+−−−−−−−→
+−−−−−−−→
+−−−−−−−→
+−−−−−−−→
+.
+0
+1
+0
+−1
+0
+Thus, the outcomes alternates between the states “0”or 
+“1” foreachblock of
+1
+−1
+k
+2 symbols. Remark that the measurement results for
+and
+are the
+0
+0
+
+8
+
+A. Yakaryılmaz
+
+same. But, if we use the simulation given in Section 3.1, the affine states for
+members of 0MOD2k will be
+ 
+
+
+1
+−1
+ 0  and  0  ,
+0
+2
+which are different each other.
+π
+π
+Instead of the rotating with angle k+1 , we use a rotation with angle k .
+2
+2
+Then, we will have the following cycle:
+  k
+
+
+  k
+
+
+1 2 symbols
+−1 2k symbols
+1 2 symbols
+−1
+−−−−−−−→
+−−−−−−−→
+−−−−−−−→
+.
+0
+0
+0
+0
+Quantumly, we visit two states having the same statistics (i.e., they are identical
+and no measurement can separate them.). But, they are different vectors. Now,
+we use the simulation given in Section 3.1, and so we have the following affine
+states before reading $ symbol for the members of 0MOD2k and for the members
+of 1MOD2k
+ 
+
+
+1
+−1
+ 0  and  0  ,
+0
+2
+respectively. After reading $ symbol, we half the value of s3 and add the other
+half to the value of s1 (such trick was used before in [18]). Then, these two affine
+states becomes
+ 
+ 
+1
+0
+ 0  and  0  ,
+0
+1
+respectively. We make s1 the only the accepting state, and so two different cases
+can be separated with zero error.
+⊓
+⊔
+
+5
+
+Simulating NFAs
+
+When the cutpoint is picked as 0, then the given PFA in Section 3.3 turns out
+to be a NFA, where each non-zero transition corresponds to a nondeterministic
+choice (transition). Thus, any succinctness result for NFAs can be obtained for
+AfAs having one more state with one-sided error bound 23 . (To obtain a better
+error bound, we can tensor a few copies of the same automaton, which increases
+the number of states polynomially.)
+Here, we present a pedagogically easier construction and more importantly
+with arbitrarily small error bounds without increasing the previous state bound.
+We also show that if the number of accepting path(s) are the same (e.g., one)
+for each member, then the error is zero.
+An NFA does not use end-markers but use ε-transition(s). By using the left
+end-marker, all ε-transition(s) without reading any symbol at the beginning of
+
+Improved constructions for succinct affine automata
+
+9
+
+computation can be replaced with the transitions defined for the left end-marker.
+All other ε-transition(s) can also be removed by defining new transitions (without
+using any extra states). When using the right end-marker, NFAs may save at
+most one state, since any NFA using the right end-marker can be simulated by
+a NFA without the right end-marker by using one extra state: each transition
+going to an accepting state when reading the right end-marker goes to this new
+state, which will be the single accepting state.
+We represent the computation of an n-state NFA, say N , on a given input
+x ∈ Σ ∗ linearly, where |x| = l and n > 1. We assume that N does not have any
+ε-transitions and it uses the left end-marker. We use integer-valued vectors to
+represent the states of N and zero-one matrices to represent the transitions of
+N.
+We assume that the set of states of N is S = {s1 , . . . , sn } and s1 is the initial
+state. Let Sa ⊆ S be the set of accepting state(s). The vector v0 = (1 0 · · · 0)T
+represents the initial “nondeterministic” state. For each symbol σ ∈ Σ ∪ {¢},
+we define the “nondeterministic” operator Aσ where Aσ [j, i] is 1 if there is a
+transition from si to sj when reading symbol σ, and it is 0, otherwise. Thus, the
+final nondeterministic state of N on x can be calculated as
+vl+1 = Ax[l] · · · Ax[1] A¢ v0 .
+Here vl+1 contains non-negative integers. A nice property of this presentation is
+that the value for si represents the number of nondeterministic path(s) ending
+in si at the end. Remark that some paths may be terminated before, which will
+not be counted on vl+1 .
+By using the construction in Section 3.1, we can design an (n + 1)-state AfA
+M such that its affine state before reading the right end-marker is
+
+
+vl [1]
+
+
+..
+
+
+′
+.
+vl+1
+=
+.
+ vl [n] 
+1 − ζ(vl )
+P
+Let α =
+si ∈Sa vl [i], i.e., the summation of all entries corresponding to the
+′
+accepting state(s) of N . The AfA M maps vl+1
+to
+
+
+
+tα
+ −tα 
+
+
+ 1 
+
+
+′
+vf =  0 
+
+
+ .. 
+ . 
+0
+
+after reading the right end-marker for some t ∈ Z+ . The accepting states of M
+are {s1 , s2 }. If x ∈ L, then α is a positive integer and so x is accepted with
+
+10
+
+A. Yakaryılmaz
+
+probability no less than
+
+2t
+, which means that the error can be at most
+2t + 1
+
+1
+. If x ∈
+/ L, then α = 0 and so it is accepted with probability 0.
+2t + 1
+
+Theorem 4. Let L be a language recognized by an n-state NFA, where n > 1.
+Then, L is also recognized by an (n+1)-state AfA with arbitrarily small (positive)
+one-sided error bound.
+Suppose that the NFA has a single accepting path for each member. Then,
+α is 1 for the members and it is 0 for the non-members. Thus, we can design an
+zero-error AfA by setting the final affine state as
+
+
+α
+ 0 
+
+
+1 − α
+
+
+vf′ =  0 
+
+
+ .. 
+ . 
+0
+after reading the right end-marker. It is easy to see that the accepting probability
+is 1 (resp., 0) for each member (resp., non-member).
+Theorem 5. Let L be a language recognized by an n-state NFA such that each
+member is accepted on exactly one nondeterministic path, where n > 1. Then, L
+is also recognized by an (n + 1)-state AfA with zero error.
+Corollary 1. Let L be a language recognized by an n-state NFA such that each
+member is accepted on exactly k > 1 nondeterministic paths, where n > 1. Then,
+L is also recognized by an (n + 1)-state AfA with zero error.
+Proof. The only modification in the above proof is on the final state as
+ α 
+ k 
+ 0 
+
+
+1 − α 
+
+
+′
+vf = 
+k
+ 0 
+
+
+ .. 
+ . 
+0
+
+since
+
+α
+is 1 for the members, and 0, otherwise.
+k
+
+⊓
+⊔
+
+Remark that zero-error PFAs and QFAs cannot be more succinct than DFAs
+[15]. Thus, zero-error AfAs can be exponentially more succinct than zero-error
+PFAs and QFAs due to the following witness languages.
+The language MODXORk [13] is formed by the strings
+{0, 1}t x1 {0, 1}2k−1 x2 {0, 1}2k−1 · · · xm {0, 1}2k−1 ,
+
+Improved constructions for succinct affine automata
+
+11
+
+L
+where t < 2k, m > 0, each xi ∈ {0, 1} for 1 ≤ i ≤ m, and m
+i=1 xi = 1. It was
+shown [13] that MODXORk for k > 0 is recognized by a (2k + 1)-state AfA with
+zero error. Due to Theorem 5, the same results can also be obtained by designing
+a 2k-state NFA, which accepts each member on a single path.
+Compared to MODXORk, the language ENDk = {{0, 1}∗1{0, 1}n−1} is much
+simpler, and we know that it is recognized by an n-state NFA, which accepts
+each member on a single path, and any DFA (and so any zero-error QFA) requires
+at least 2n states.
+Corollary 2. The language ENDk is recognized by an (n + 1)-state AfA with zero
+error.
+
+Acknowledgements
+Yakaryılmaz was partially supported by the ERDF project Nr. 1.1.1.5/19/A/005
+“Quantum computers with constant memory”.
+
+References
+1. Ambainis, A., Freivalds, R.: 1-way quantum finite automata: strengths, weaknesses
+and generalizations. In: FOCS’98. pp. 332–341. IEEE (1998)
+2. Ambainis, A.: The complexity of probabilistic versus deterministic finite automata.
+In: ISAAC’96. LNCS, vol. 1178, pp. 233–238. Springer (1996)
+3. Ambainis, A., Yakaryılmaz, A.: Superiority of exact quantum automata for promise
+problems. Information Processing Letters 112(7), 289–291 (2012)
+4. Ambainis, A., Yakaryılmaz, A.: Automata: From mathematics to applications.
+Tech. Rep. 1507.01988, arXiv (2015), to appear in Automata and Quantum Computing edited by Jean-Èric Pin
+5. Belovs, A., Montoya, J.A., Yakaryılmaz, A.: On a conjecture by Christian Choffrut.
+Int. J. Found. Comput. Sci. 28(5), 483–502 (2017)
+6. Dı́az-Caro, A., Yakaryılmaz, A.: Affine computation and affine automaton. In:
+Computer Science — Theory and Applications. LNCS, vol. 9691, pp. 1–15. Springer
+(2016), arXiv:1602.04732
+7. Geffert, V., Yakaryılmaz, A.: Classical automata on promise problems. Discrete
+Mathematics & Theoretical Computer Science 17(2), 157–180 (2015)
+8. Hirvensalo, M.: Interference as a computational resource: a tutorial. Natural Computing 17(1), 201–219 (2018)
+9. Hirvensalo, M., Moutot, E., Yakaryılmaz, A.: On the computational power of
+affine automata. In: Language and Automata Theory and Applications. LNCS,
+vol. 10168, pp. 405–417. Springer (2017)
+10. Hirvensalo, M., Moutot, E., Yakaryılmaz, A.: On the computational power of affine
+automata. In: Unconventional Computation and Natural Computation. LNCS, vol.
+11493, pp. 108–121 (2019)
+11. Hirvensalo, M., Moutot, E., Yakaryılmaz, A.: Computational limitations of
+affine automata and generalized affine automata. Natural Computing (2021),
+https://doi.org/10.1007/s11047-020-09815-1
+
+12
+
+A. Yakaryılmaz
+
+12. Ibrahimov, R., Khadiev, K., Prūsis, K., Yakaryılmaz, A.: Error-free affine, unitary,
+and probabilistic OBDDs. In: Descriptional Complexity of Formal Systems. LNCS,
+vol. 10952, pp. 175–187. Springer (2018), arXiv:1703.07184
+13. Ibrahimov, R., Khadiev, K., Prūsis, K., Yakaryılmaz, A.: Error-free affine, unitary, and probabilistic OBDDs. International Journal of Foundations of Computer
+Science (2021), https://doi.org/10.1142/S0129054121500246
+14. Khadieva, A., Yakaryı̄lmaz, A.: Affine automata verifiers. Tech. Rep. 2104.11192,
+arXiv (2021)
+15. Klauck, H.: On quantum and probabilistic communication: Las vegas and one-way
+protocols. In: STOC’00: Proceedings of the thirty-second annual ACM symposium
+on Theory of computing. pp. 644–651 (2000)
+16. Kondacs, A., Watrous, J.: On the power of quantum finite state automata. In:
+FOCS’97. pp. 66–75 (1997)
+17. Li, L., Qiu, D., Zou, X., Li, L., Wu, L., Mateus, P.: Characterizations of one-way
+general quantum finite automata. Theoretical Computer Science 419, 73–91 (2012)
+18. Nakanishi, M., Khadiev, K., Prūsis, K., Vihrovs, J., Yakaryılmaz, A.: Exact affine
+counter automata. In: 15th International Conference on Automata and Formal
+Languages. EPTCS, vol. 252, pp. 205–218 (2017), arXiv:1703.04281
+19. Paz, A.: Introduction to Probabilistic Automata. Academic Press, New York (1971)
+20. Rabin, M.O.: Probabilistic automata. Information and Control 6, 230–243 (1963)
+21. Say, A.C., Yakaryılmaz, A.: Quantum finite automata: A modern introduction. In:
+Computing with New Resources, pp. 208–222. Springer (2014)
+22. Turakainen, P.: Generalized automata and stochastic languages. Proceedings of the
+American Mathematical Society 21, 303–309 (1969)
+23. Villagra, M., Yakaryılmaz, A.: Language recognition power and succintness of affine
+automata. In: Unconventional Computation and Natural Computation. LNCS,
+vol. 9726, pp. 116–129. Springer (2016)
+24. Villagra, M., Yakaryılmaz, A.: Language recognition power and succinctness of
+affine automata. Natural Computing 17(2), 283–293 (2018)
+25. Yakaryılmaz, A., Say, A.C.C.: Languages recognized by nondeterministic quantum
+finite automata. Quantum Information & Computation 10(9&10), 747–770 (2010)
+26. Yakaryılmaz, A., Say, A.C.C.: Succinctness of two-way probabilistic and quantum
+finite automata. Discrete Mathematics & Theoretical Computer Science 12(2),
+19–40 (2010)
+27. Yakaryılmaz, A., Say, A.C.C.: Unbounded-error quantum computation with small
+space bounds. Information and Computation 279(6), 873–892 (2011)
+
+

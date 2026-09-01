@@ -1,0 +1,22 @@
+{
+  "code": 200,
+  "data": {
+    "description": "",
+    "external": {},
+    "html": "<html><head>\n<title>\nInformation Bottlenecks, Causal States, and Statistical Relevance Bases </title>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"./index.css\">\n</head>\n<body>\n<h3>Information Bottlenecks, Causal States, and Statistical Relevance Bases:\nHow to Represent Relevant Information in Memoryless Transduction</h3>\n\nCosma Rohilla Shalizi and James P. Crutchfield<br>\nSanta Fe Institute<br>\n1399 Hyde Park Rd.<br>\nSanta Fe, NM 87501, USA<br><br>\n\n<p align=\"justify\"><b>ABSTRACT: </b>Discovering relevant, but possibly hidden, variables is a key step in\nconstructing useful and predictive theories about the natural world.\nThis brief note explains the connections between three approaches to\nthis problem: the recently introduced information-bottleneck method,\nthe computational mechanics approach to inferring optimal models,\nand Salmon's statistical relevance basis.\n</p><hr>\n\nC. R. Shalizi and J. P. Crutchfield, \"Information Bottlenecks, Causal States, and Statistical Relevance Bases:\nHow to Represent Relevant Information in Memoryless Transduction\", Advances in Complex Systems <b>5</b> (2002) 1-5.\n<br> <a href=\"../../papers/ibcssrb.ps.gz\">[ps.gz]</a>= 40kb\n<a href=\"../../papers/ibcssrb.ps\">[ps]</a>= 93kb\n<a href=\"../../papers/ibcssrb.pdf\">[pdf]</a>= 127kb <br>\nSanta Fe Insitute Working Paper <a href=\"http://www.santafe.edu/sfi/publications/wpabstract/200007035\">00-07-035</a>. \n<a href=\"http://arxiv.org/abs/nlin.AO/0006025\">arXiv.org/abs/nlin.AO/0006025</a>.\n\n<!--last modified 16 april 2004 srk--->\n\n\n</body></html>",
+    "httpStatus": 200,
+    "httpStatusText": "OK",
+    "metadata": {},
+    "title": "Information Bottlenecks, Causal States, and Statistical Relevance Bases",
+    "url": "https://csc.ucdavis.edu/~cmg/compmech/pubs/ibcssrb.htm",
+    "usage": {
+      "tokens": 424
+    }
+  },
+  "meta": {
+    "usage": {
+      "tokens": 424
+    }
+  },
+  "status": 20000
+}

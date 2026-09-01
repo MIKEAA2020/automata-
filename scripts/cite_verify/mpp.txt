@@ -1,0 +1,793 @@
+Theoretical Informatics and Applications
+Theoret. Informatics Appl. 35 (2001) 477–490
+
+NOTE ON THE SUCCINCTNESS OF DETERMINISTIC,
+NONDETERMINISTIC, PROBABILISTIC
+AND QUANTUM FINITE AUTOMATA ∗
+
+Carlo Mereghetti 1, Beatrice Palano 2
+and Giovanni Pighizzini 3
+Abstract. We investigate the succinctness of several kinds of unary
+automata by studying their state complexity in accepting the family
+{Lm } of cyclic languages, where Lm = {akm | k ∈ N}. In particular,
+we show that, for any m, the number of states necessary and sufficient
+for accepting the unary language Lm with isolated cut point on one-way
+α2
+α1 α2
+αs
+αs
+1
+probabilistic finite automata is pα
+1 + p2 + · · · + ps , with p1 p2 · · · ps
+being the factorization of m. To prove this result, we give a general state
+lower bound for accepting unary languages with isolated cut point on the
+one-way probabilistic model. Moreover, we exhibit one-way quantum
+finite automata that, for any m, accept Lm with isolated cut point and
+only two states. These results are settled within a survey on unary
+automata aiming to compare the descriptional power of deterministic,
+nondeterministic, probabilistic and quantum paradigms.
+
+Mathematics Subject Classification. 68Q10, 68Q19, 68Q45.
+
+Keywords and phrases: Deterministic, nondeterministic, probabilistic, quantum unary finite
+automata.
+∗ Partially supported by M.I.U.R. COFIN, under the project “Linguaggi formali e automi:
+
+teoria e applicazioni”. A preliminary version of this paper was presented at the Third International Workshop on Descriptional Complexity of Automata, Grammars and Related
+Structures held in Vienna, Austria, July 20 – 22, 2001.
+1 Dipartimento di Informatica, Sist. e Com., Università degli Studi di Milano – Bicocca,
+via Bicocca degli Arcimboldi 8, 20126 Milano, Italy; e-mail: mereghetti@disco.unimib.it
+2 Dipartimento di Informatica, Università degli Studi di Torino, c.so Svizzera 185,
+10149 Torino, Italy; e-mail: beatrice@di.unito.it
+3 Dipartimento di Scienze dell’Informazione, Università degli Studi di Milano, via Comelico 39,
+20135 Milano, Italy; e-mail: pighizzi@dsi.unimi.it
+c EDP Sciences 2002
+
+478
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+Introduction
+Several characterizations of the class of regular languages in terms of finite state
+automata are studied in the literature. Besides the traditional deterministic and
+nondeterministic models, alternating, probabilistic and, more recently, quantum
+finite automata are considered. Equivalence results point out that determinism,
+nondeterminism and alternation, in one-way or two-way form, exactly capture the
+class of regular languages [4, 11, 23, 24]. The same happens if we consider one-way
+probabilistic automata working with isolated cut point [22]. Surprisingly enough
+(measure-once) one-way quantum finite automata working with isolated cut point
+are proved to single out a proper subclass of regular languages, namely, group (or
+reversible) languages [3].
+Starting from these considerations, it is natural to investigate the succinctness
+of representing regular languages by using different kinds of automata. In fact,
+as one may easily argue, their descriptional power turns out to be very different.
+The first and simplest example of this phenomenon can be observed by comparing
+one-way deterministic and nondeterministic automata. It is well known that, for
+any integer n, 2n states are necessary [16, 18] and sufficient [23] for one-way deterministic automata to simulate n-state one-way nondeterministic automata. A
+lot of papers tackles this kind of descriptional complexity issues. For instance, the
+following are the costs, in terms of states, of simulating different n-state automata
+n
+by one-way deterministic automata [4,22–24]: one-way alternating automata: 22 ,
+2
+two-way deterministic automata: nn , two-way nondeterministic automata: 2n ,
+one-way probabilistic automata with ε-isolated cut point: (1 + 1/(2ε))n−1 . The
+optimality of such costs is studied in [1, 4, 16, 18].
+Many interesting results are also obtained on the restricted class of unary automata, i.e., automata
+on a single letter input alphabet. For instance,
+ √ working
+
+n ln n
+we know that Θ e
+states are needed to simulate unary n-state one-way
+nondeterministic or two-way deterministic finite automata by one-way determinism [5]. This simulation cost is extended to two-way nondeterministic finite automata in [15]. Further results concerning acceptance of unary languages are
+proved in [14] for two-way nondeterministic automata and in [17] for one-way
+probabilistic automata.
+In this paper, we survey and enrich this line of research by exhibiting some
+other differences in the succinctness of several kinds of automata. In particular,
+we compare these models by considering their ability of accepting unary regular
+languages.
+It is well known that each one-way deterministic and nondeterministic automaton accepting an ultimately properly χ-cyclic unary language4 must have at least χ
+states. Here, we show that, in the case of probabilistic automata working with isoα2
+α1 α2
+αs
+αs
+1
+lated cut point, this lower bound reduces to pα
+1 +p2 +· · ·+ps , where p1 p2 · · · ps
+is the factorization of χ. This latter result extends and generalizes to all integers
+4 As we recall in Section 1, a unary language L ⊆ a∗ is ultimately properly χ-cyclic if χ is the
+
+smallest positive integer such that an ∈ L ⇔ an+χ ∈ L, for any n exceeding a fixed value.
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+479
+
+χ and to all unary languages, lower bounds given in [2, 17] for some particular
+χ-cyclic languages with particular values of χ. It is interesting to observe that the
+same lower bound holds true for unary two-way deterministic and nondeterministic
+automata [14].
+As a further step, we show that our lower bound is optimal by using the family
+{Lm } of cyclic languages, with Lm = {akm | k ∈ N}. Precisely, for any m, we
+exhibit a one-way probabilistic automaton that accepts Lm with isolated cut point
+α2
+α1 α2
+αs
+αs
+1
+and exactly pα
+1 + p2 + · · · + ps states, being m = p1 p2 · · · ps .
+Finally, we again use languages Lm to test the effective power of quantum. In
+fact, we prove that each language Lm can be accepted by a one-way quantum finite
+automaton with isolated cut point and only two states. This result gives added
+evidence of the fact that, in some cases, quantum machines lead to meaningful
+advantages when compared with classical computational devices.
+The paper is organized as follows: in Section 1, we define the different models
+of unary automata we shall be dealing with. In Section 2, we first survey known
+results on the state complexity of one-way and two-way deterministic and nondeterministic unary automata. Then, we prove the above claimed state lower bound
+for one-way probabilistic automata accepting unary languages with isolated cut
+point, and its optimality by means of the family {Lm }. Finally, in Section 3, we
+exhibit 2-state one-way quantum automata accepting Lm with isolated cut point.
+An Appendix is added where some operations on one-way quantum automata are
+introduced. Such operations are needed to show that, by adding one new state,
+one-way quantum automata can always be regarded as having cut point 1/2 (exactly as in the probabilistic case).
+
+1. Preliminaries
+The greatest common divisor and least common multiple of integers a1 , . . . , as
+are denoted, respectively, by gcd(a1 , . . . , as ) and lcm(a1 , . . . , as ). We recall that,
+by the Fundamental Theorem of Arithmetic, any integer m > 1 admits a factorαs
+1 α2
+ization as m = pα
+1 p2 · · · ps , for p1 , p2 , . . . , ps primes and α1 , α2 , . . . , αs positive
+integers, which is unique except for the order in which the primes occur. The
+natural logarithm is denoted by ln.
+∗
+Given a complex
+√ number z ∈ C, its complex conjugate is denoted by z , and its
+modulus is |z| = zz ∗ . Let V be a vector space of finite dimension n on C. The inner product of vectors x, y ∈ V, with x = (x1 , x2 , . . . , xn ) and y = (y1 ,p
+y2 , . . . , yn ),
+Pn
+∗
+is defined as h x, y i = i=1 xi yi . The norm of x is defined as k xk = h x, x i.
+A complex matrix M is said to be:
+Boolean: whenever its entries are either 0 or 1.
+Stochastic: whenever its entries are reals from the interval [0, 1] and each row
+sum equals 1.
+Unitary: whenever M M H = I = M H M , where M H is the transpose conjugate of M and I is the identity matrix.
+
+480
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+In what follows, we quickly outline the types of finite automata we shall be dealing
+with. For extensive presentations, the reader is referred to [10] for deterministic
+and nondeterministic automata, to [20] for probabilistic automata, and to [7,8] for
+quantum automata.
+The “hardware” of a one-way finite automaton (1fa, for short) A consists of
+an input tape which is scanned by an input head moving one position right at
+each move, plus a finite state control whose states are from the set {q1 , q2 , . . ., qn }.
+Here, we are interested in A being a unary automata, which means that its input
+alphabet has a single letter, say “a”. Unary devices accept unary languages, i.e.,
+sets in the form L ⊆ a∗ . Our unary 1fa A can be formally written as a triple
+A = (π, U, η), where η ∈ {0, 1}n is the characteristic column vector of the final (or
+accepting) states, while π and U have different forms depending on the nature of
+A. Precisely, A can be:
+Nondeterministic (1nfa): π ∈ {0, 1}n is the characteristic row vector of the
+initial state, U is an n × n boolean transition matrix whose (i, j)th entry is
+1 if and only if A moves from the state qi to the state qj upon reading “a”.
+Deterministic (1dfa): as above, except that U is boolean stochastic.
+Probabilistic (1pfa): π ∈ [0, 1]n is a stochastic row vector representing the
+initial probability distribution of the states, U is an n×n stochastic transition
+matrix whose (i, j)th entry is the probability that A moves from the state qi
+to the state qj upon reading “a”.
+Quantum (1qfa): π ∈ Cn , with k π k = 1, is the row vector of the initial
+amplitudes of the states, U is an n × n unitary transition matrix whose
+(i, j)th entry is a complex number of modulus not exceeding 1 representing
+the amplitude that A moves from the state qi to the state qj upon reading “a”.
+Let us see how these models accept unary languages. If A is a unary 1dfa or 1nfa,
+then the accepted language is defined as
+LA = {ak | k ∈ N and πU k η ≥ 1}·
+For what concerns the probabilistic and quantum paradigms, we first need to define
+the acceptance probability for a string.
+Let A be a unary 1pfa. The probability that A accepts the input string ak is
+defined as
+pA (ak ) = πU k η.
+Instead, if A is a unary 1qfa, such a probability writes as
+pA (ak ) =
+
+X
+
+|(πU k )j |2 ,
+
+{j | ηj =1}
+
+where the subscript j denotes the jth vector component. For the sake of precision,
+this way of evaluating the acceptance probability is for measure-once 1qfa’s [3,19].
+In the literature, measure-many 1qfa’s are also considered [2, 3, 9] for which the
+acceptance probability is “slightly more complicated” since it has to be measured
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+481
+
+and updated at each step of the computation. In this work, we are concerned only
+with measure-once model and hence this attribute will always be understood.
+Thus, if A is a 1pfa or 1qfa, the language accepted by A with cut point λ is the
+set
+LA,λ = {ak | k ∈ N and pA (ak ) > λ}·
+A unary language L is said to be accepted by A with isolated cut point λ, if
+there exists ε > 0 such that, for any ak ∈ L (ak 6∈ L), we have pA (ak ) ≥ λ + ε
+(≤ λ − ε). In the literature of 1pfa’s, it is customarily assumed λ = 1/2 which
+is not a severe assumption since any 1pfa can always be transformed into an
+equivalent 1pfa having cut point 1/2 (maintaining isolation around the cut point,
+if it exists) by adding one new state. This fact can be proved by using standard
+composition operations on 1pfa’s [20]. In the Appendix, we show how to adapt
+such composition operations to the quantum case. This enables us to prove that
+even 1qfa’s can always be transformed into equivalent 1qfa’s having cut point 1/2
+provided we add one new state.
+It is well known that the class of languages accepted with isolated cut point
+on 1pfa’s coincides with that of regular languages [22]. On the other hand, quite
+surprisingly, we know from [3] that the class of languages accepted with isolated
+cut point on 1qfa’s is a proper subclass of regular languages, namely, group (or
+reversible) languages [21].
+We will also consider two-way deterministic and nondeterministic automata
+(2dfa’s and 2nfa’s, resp.). Without going into the details of their definition, for
+which the reader is referred to [10], we just recall that two-way automata are the
+natural generalization where the input head is allowed to move back and forth on
+the input tape.
+A unary language L is χ-cyclic, for some integer χ > 0, whenever, for any n ≥ 0,
+an ∈ L if and only if an+χ ∈ L. Moreover, L is properly χ-cyclic if and only if it
+is χ-cyclic, but not χ0 -cyclic, for any χ0 < χ.
+It is well-known that (infinite) unary regular languages form ultimately periodic
+sets, as stated in the following
+Theorem 1.1. Let L be a unary regular language. Then, there exist two integers
+ν ≥ 0, χ > 0 such that, for any n ≥ ν, an ∈ L if and only if an+χ ∈ L.
+To emphasize the periodicity of a language L as in Theorem 1.1, we say that L
+is ultimately χ-cyclic. L is properly ultimately χ-cyclic if and only if it is ultimately
+χ-cyclic, but not ultimately χ0 -cyclic, for any χ0 < χ. Notice that L is accepted
+by a 1dfa whose transition digraph consists of a path of ν states joined to a cycle
+of χ states.
+As a consequence of simulation results in [5, 15], if L is accepted
+ √ bya 1nfa or
+2
+2nfa with n states, then we can assume ν = O(n ) and χ = O e n ln n . On the
+other hand, in [17] it is proved that, for some languages accepted with isolated cut
+point by n-state 1pfa’s, χ has the same upper limitation but ν can be dramatically
+bounded, namely, by a constant.
+
+482
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+2. Comparing the size of deterministic, nondeterministic
+and probabilistic automata.
+An optimal lower bound for 1pfa’s
+In this section, we start analyzing how the number of states may vary by using
+deterministic, nondeterministic and probabilistic automata to accept unary inputs.
+As benchmark languages, we consider a very simple family of cyclic languages.
+For any m > 1, we let
+Lm = {akm | k ∈ N}·
+As a general result, one can easily state the following optimal bound on the size
+of the simplest machines we are considering:
+Proposition 2.1. For any integer m > 0, m states are necessary and sufficient
+for accepting Lm on 1dfa’s and 1nfa’s.
+For more sophisticated automata, the number of states necessary and sufficient
+for Lm is known for particular values of m.
+For prime m, the results are summarized in the following:
+Theorem 2.2. For any prime p, p states are necessary and sufficient for accepting
+Lp on
+• 2dfa’s and 2nfa’s [14];
+• 1pfa’s with isolated cut point [2].
+In other words, Theorem 2.2 says that Lp is “so hard” that neither two-way motion
+nor nondeterminism nor probabilism can help in lowering the number of states of
+the trivial 1dfa for Lp consisting of a simple cycle of p states.
+On the other hand, there exists a family of Lm languages for which two-way
+motion or probabilism exponentially decreases the number of states. To define
+such a family, we need the function
+F (n) = max{lcm(x1 , . . . , xs ) | x1 , . . . , xs > 0 are integers and x1 + · · · + xs = n}·
+This function is well known in the realm of combinatorics [12, 13, 26], and has a
+great importance in the study of simulation costs between unary automata [5, 15].
+Evaluating its growth rate is known as Landau’s problem [12, 13, 25, 26]. Several
+approximations for F (n) are given in the literature. The best one is contained
+in [25] and leads to the following estimation which suffices to our purposes:
+ √
+
+Lemma 2.3. F (n) = Θ e n ln n .
+We also recall from [25] that F (n) attains its maximal values on x1 , . . . , xs
+being mutually coprime.
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+483
+
+Now, we are ready to introduce the family {LF (n) } for which the following state
+requirements are known from the literature:
+Theorem 2.4. For any integer n > 0, n states are necessary and sufficient for
+accepting LF (n) on
+• 2dfa’s and 2nfa’s [14];
+• 1pfa’s with isolated cut point [17].
+Summing up, we have singled out two paradigmatic opposite situations. In the
+first one, corresponding to languages Lp , automata added features do not yield
+smaller devices at all. In the second, corresponding to languages LF (n) , two-way
+motion and probabilism lead to automata which are exponentially more succinct.
+At this point, a natural question arises: what can we say on the size of automata
+accepting languages Lm when no particular form is assumed for m? The answer
+is provided in [14] for two-way deterministic and nondeterministic automata (in
+αs
+1 α2
+what follows, pα
+1 p2 · · · ps denotes integer factorization):
+αs
+1 α2
+Theorem 2.5. For any integer m = pα
+1 p2 · · · ps , the number of states necessary
+α2
+αs
+1
+and sufficient for accepting Lm on 2dfa’s and 2nfa’s is pα
+1 + p2 + · · · + ps .
+
+Thus, we are left to examine the size of 1pfa’s accepting Lm with isolated cut
+point. To this purpose, we are now going to prove a state lower bound for 1pfa’s
+accepting general unary languages with isolated cut point. Then, we will design
+a minimal 1pfa that accepts Lm with isolated cut point, and whose size matches
+such a lower bound thus witnessing its optimality.
+As it can be shown, the results in the literature collected in Theorem 2.2 and
+in Theorem 2.4 concerning the optimal size of 1pfa’s accepting Lm , for particular
+values of m, turn out to be a direct consequence of what we are about to prove.
+We begin with some considerations on the structure of 1pfa’s (see [20]). A
+unary 1pfa A = (π, U, η) is basically a (homogeneous) Markov chain. Hence, we
+can classify its states as transient or ergodic: a state q is transient if and only if
+there exists a state p 6= q such that p is reachable from q (by reading some input
+symbols), but q is not reachable from p. If q is not transient, then it is ergodic.
+The set of ergodic states is partitioned into ergodic classes: two ergodic states q
+and p belong to the same class if and only if p can be reached from q.
+We can associate with the 1pfa A = (π, U, η) the transition graph G = (Q, E),
+where Q = {q1 , q2 , . . . , qn } is the set of states of A, and E ⊆ Q × Q is the set
+of pairs (qi , qj ) such that the (i, j)th entry of U is greater than 0, i.e., there
+is a nonzero probability of reaching qj from qi upon reading an input symbol.
+Hence, the ergodic classes are easily seen to be the strongly connected components of the graph obtained from G by restricting to ergodic states. The period
+of an ergodic class is the greatest common divisor of the lengths of the cycles in the
+
+484
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+corresponding strongly connected component. It suites our goal to prove that:
+Lemma 2.6. Given an n-state 1pfa A = (π, U, η), let {d1 , d2 , . . . , dk } be the set
+of periods of its ergodic classes. Then:
+(i) d1 + d2 + · · · + dk ≤ n;
+(ii) if A accepts a language L with cut point λ isolated by ε, then L is ultimately
+d-cyclic, for d = lcm(d1 , d2 , . . . , dk ).
+Proof. Point (i) follows trivially from the graph-theoretic view of ergodic classes
+given before this lemma.
+For point (ii), we use an approach similar to that adopted in the proof
+of [17] (Th. 5). We mainly need a property of stochastic matrices (see, e.g. [6])
+which, applied to our 1pfa A, ensures the existence of the limit matrix
+U = lim (U d )m .
+m→∞
+
+(1)
+
+Such a limit implies the following fact: for each 1 ≤ i, j ≤ n, let U dm ij (Uij ) denote
+the (i, j)th entry of U dm (U). Then, for any δ > 0, there exists an integer m such
+that, for any m > m, we have |U dm ij − Uij | < δ. Roughly speaking, for sufficiently
+large values of m, we can substitute U dm with U “committing an arbitrarily small
+error.”
+Let am be an input string for the 1pfa A. By definition, A accepts am with
+probability pA (am ) = πU m η. We can obviously write m as m = dbm/dc + r, with
+r = m mod d, and this yields
+πU m η = πU dbm/dc+r η = πU dbm/dc U r η.
+By considering this equation in the light of limit (1), we get the existence of an
+integer m̃ such that, for any m > m̃
+|πU m η − πUU r η| = |πU dbm/dc U r η − πUU r η| < ε,
+
+(2)
+
+where ε is the radius of the interval which isolates cut point λ on our 1pfa A.
+Let us repeat this reasoning by giving the string am+d as input to A. The probability that A accepts am+d now writes as pA (am+d ) = πU m+d η. By observing
+that (m + d) mod d = m mod d = r, we can write m + d = db(m + d)/dc + r, and
+this yields
+πU m+d η = πU db(m+d)/dc+r η = πU db(m+d)/dc U r η.
+Again, this equation can be seen in the light of limit (1) thus obtaining that, for
+any m > m̃
+|πU m+d η − πUU r η| = |πU db(m+d)/dc U r η − πUU r η| < ε.
+
+(3)
+
+By considering inequalities (2) and (3) at once, one easily gets that, for any m > m̃
+|πU m η − πU m+d η| < 2ε.
+
+(4)
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+485
+
+Now, recall that A accepts the language L with cut point λ isolated by ε. This,
+by definition, means that, for any m
+|pA (am ) − λ| = |πU m η − λ| > ε,
+which, together with (4), easily leads to obtain that, for any m > m̃
+πU m η > λ
+| {z }
+
+if and only if
+
+pA (am )
+
+πU m+d η > λ.
+| {z }
+pA (am+d )
+
+In other words, we have proved that, for any m > m̃, the string am belongs to L
+if and only if am+d belongs to L. So L is ultimately d-cyclic.
+At this point, we are ready to prove the claimed general state lower bound for
+1pfa’s accepting unary languages with isolated cut point:
+Theorem 2.7. Let L be a unary language which is ultimately properly χ-cyclic,
+αs
+1 α2
+with χ = pα
+1 p2 · · · ps . Then, the number of ergodic states of any 1pfa accepting L
+α2
+αs
+1
+with isolated cut point is at least pα
+1 + p2 + · · · + ps .
+Proof. Suppose that L is accepted with isolated cut point by a 1pfa A having
+n ergodic states. From Lemma 2.6, we get that L is ultimately d-cyclic, where
+d = lcm(d1 , d2 , . . . , dk ), di is the period of the ith ergodic class of A, and d1 +
+d2 + · · · + dk ≤ n. On the other hand, L is ultimately properly χ-cyclic. Hence, χ
+must divide d, i.e.
+αs
+1 α2
+lcm(d1 , d2 , . . . , dk ) = d = hχ = h pα
+1 p2 · · · ps ,
+
+for some h ≥ 1. By this equation and the definition of lcm, we can write
+t
+Y
+αs
+1 α2
+lcm(d1 , d2 , . . . , dk ) =
+pγi i = h pα
+1 p2 · · · ps ,
+i=1
+
+for a suitable t ≥ s and γi = max {logpi dj | 1 ≤ j ≤ k and pi divides dj } denoting
+the highest power of prime pi in the factorizations of d1 , d2 , . . . , dk . Thus, for each
+γi
+i
+1 ≤ i ≤ s, pα
+i divides the corresponding pi which, in turn, is a factor of some of
+αi
+dj ’s, and this clearly implies that pi ≤ dj for some 1 ≤ j ≤ k. It may happen
+αi
+i
+that two or more pα
+i ’s divide the same dj . In this case, such pi ’s being mutually
+coprime divisors of dj , their sum does not exceed dj itself.
+i
+All this reasoning enables us to bound above the sum of pα
+i ’s as
+α2
+αs
+1
+n ≥ d1 + d2 + · · · + dk ≥ pα
+1 + p2 + · · · + ps ,
+
+whence the claimed result follows.
+
+486
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+Let us now turn to 1pfa’s accepting languages Lm with isolated cut point.
+Clearly, we can apply Theorem 2.7 and obtain the following state lower bound:
+αs
+1 α2
+For any integer m = pα
+1 p2 · · · ps , any 1pfa accepting Lm with isolated
+α1
+αs
+2
+cut point must have at least p1 + pα
+2 + · · · + ps ergodic states.
+α2
+αs
+1
+Yet, pα
+1 + p2 + · · · + ps states are also sufficient. We are going to show this by
+informally designing a 1pfa A accepting Lm with isolated cut point and exactly
+α2
+αs
+1
+pα
+1 + p2 + · · · + ps states.
+The transitions of A are deterministic. In particular, its states are arranged
+α2
+αs
+1
+into s disjoint cycles C1 , C2 , . . . , Cs of lengths pα
+1 , p2 , . . . , ps , respectively. On
+each cycle Cj , a state cj is chosen as initial and final state, while all the other
+α
+states are nonfinal. Hence, the cycle Cj can be seen as a pj j -state 1dfa accepting
+αj
+strings whose lengths are multiple of pj . Finally, A has an initial distribution
+which assigns probability 1/s with the initial state of each cycle, namely states
+c1 , c2 , . . . , cs , and null probabilities to the remaining states.
+α
+Consider the input string an . If n is a multiple of m, i.e., a multiple of each pj j ,
+then an is easily seen to be accepted by A with probability 1. On the other hand,
+if m does not divide n, then there must exist at least one cycle Cj which does
+not accept an . Hence, it is not hard to see that the probability that A accepts an
+1
+cannot exceed 1 − 1/s. Thus, by setting λ = 1 − 2s
+, we can conclude that A
+α1
+1
+αs
+2
+accepts Lm with cut point λ isolated by ε = 2s and p1 + pα
+2 + · · · + ps states, all
+of which are easily seen to be ergodic. It may be worth noting that ε is inversely
+proportional to the number of factors of m.
+
+All this reasoning proves the following theorem which also shows that the optimality of the lower bound given in Theorem 2.7 is witnessed by languages Lm :
+αs
+1 α2
+Theorem 2.8. For any integer m = pα
+1 p2 · · · ps , the number of states necessary
+and sufficient for accepting Lm with isolated cut point on 1pfa’s is
+α2
+αs
+1
+pα
+1 + p2 + · · · + ps .
+
+3. Two states are enough for accepting Lm
+on quantum automata
+To sum up the results so far obtained, we have that:
+αs
+1 α2
+For any integer m = pα
+1 p2 · · · ps , accepting Lm requires exactly m
+α2
+αs
+1
+states on 1dfa’s and 1nfa’s, while pα
+1 + p2 + · · · + ps states are necessary and sufficient on 2dfa’s, 2nfa’s, and 1pfa’s with isolated cut point.
+
+In this section, we show that adopting the quantum paradigm on 1fa’s leads to
+incredibly small devices for Lm . In fact:
+Theorem 3.1. For any integer m > 0, Lm can be accepted with isolated cut point
+by a 1qfa with two states.
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+487
+
+Proof. We use a construction which is similar to that presented in [2]. We define
+the 2-state 1qfa
+
+
+
+π 
+π
+i sin
+cos
+m
+m 
+
+
+
+
+ , η = (1, 0) .
+A=
+π = (1, 0), U = 
+
+
+π
+π
+i sin
+cos
+m
+m
+One can easily verify that U is a unitary matrix, and that
+
+πn
+πn 
+i sin
+cos
+m
+m 
+
+.
+Un = 
+
+πn
+πn 
+i sin
+cos
+m
+m
+Thus, as stated in Section 1, the probability that A accepts the string an amounts
+to
+ πn 
+X
+pA (an ) =
+|(πU n )j |2 = cos2
+·
+m
+{j | ηj =1}
+
+Such pA is a function of period m, i.e., pA (an ) = pA (an+m ) for any n ≥ 0, and its
+maximum value 1 is attained if and only if n is a multiple of m. Moreover, it is not
+hard to see that, on n’s which are not multiple of m, we have pA (an ) ≤ pA (a) < 1.
+In other words, our 1qfa A accepts with certainty the strings in Lm , while the
+acceptance probability for the strings not in Lm is bounded above by pA (a) < 1.
+Thus, we can set λ = (1+pA(a))/2 and ε = (1−pA(a))/2, and conclude that Lm
+is accepted by the 2-state 1qfa A with cut point λ isolated by ε. It may be worth
+noting that ε is asymptotically inversely proportional to m, for m → +∞.
+We would like to end with a quick comment emphasizing how the nature of
+automata evolution influences the size of automata.
+The 1qfa A that we construct in the proof of Theorem 3.1 is “parametrized
+by m”, in the sense that m shows up explicitly in the amplitudes of the transition
+matrix U . So, the quantum paradigm enables us to transfer information on the
+language, namely m, directly into automaton evolution. Moreover, we are also
+able to fully take advantage of this fact since the resulting automaton is incredibly
+small.
+Something similar, but less evident, happens with probabilistic mode. Even in
+the 1pfa for Lm built in Section 2 we store some information on Lm into automaton
+dynamics. In fact, what explicitly appears is the number s of prime factors of m
+that fixes the initial probability distribution. Again, the resulting automaton is
+smaller than 1dfa’s or 1nfa’s for Lm .
+On the contrary, deterministic and nondeterministic paradigms have such a
+“simple” dynamics that the only place to store information on Lm is the set of
+states, preparing exactly m states.
+
+488
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+Appendix
+Here, we prove that any 1qfa working with a given isolated cut point can always
+be transformed into an equivalent 1qfa with isolated cut point 1/2 by adding only
+one new state. We prove this property for unary 1qfa’s, but its extension to 1qfa’s
+working on general input alphabets is straightforward.
+We first need some operations on 1qfa’s. Recall that with pA : N → [0, 1] we
+denote the acceptance
+probability of the 1qfa A = (π, U, η) defined, for any n ∈ N,
+P
+as pA (an ) = {j | ηj =1} |(πU n )j |2 .
+Proposition 3.2. Let A = (πA , UA , ηA ) and B = (πB , UB , ηB ) be two 1qfa’s.
+(i) There exists a 1qfa A with the same number of states as A such that pA =
+1 − pA .
+(ii) For any nonnegative reals α, β satisfying α + β = 1, there exists a 1qfa
+αA + βB such that pαA+βB = αpA + βpB , and whose number of states is
+the sum of the number of states of A plus the number of states of B.
+Proof.
+(i) Define A = (πA , UA , ¬η
+¬η is the bitwise negation of η.
+√
+√ A ), where
+(ii) Define αA + βB = (( απA , βπB ), UA ⊕ UB , (ηA , ηB )), where
+
+UA ⊕ UB =
+
+UA
+0
+
+0
+UB
+
+
+
+is the direct sum of the matrices UA and UB .
+In both cases, it is easy to verify that we construct a well-defined 1qfa inducing
+the desired acceptance probability.
+These operations enable us to show that:
+Proposition 3.3. For any unary language L accepted by a 1qfa A with cut point λ
+isolated by ε, there exists a 1qfa C accepting L with isolated cut point 1/2 and one
+new state more than A.
+Proof. In what follows, we use the 1-state 1qfa U = ((1), 1, (1)) whose acceptance
+probability is pU (an ) = 1, for each n ∈ N. Two cases arise in our proof, depending
+on the value of λ:
+• λ < 1/2: By Proposition 3.2(ii), we can construct the 1qfa
+C=
+
+1 − 2λ
+1
+A+
+U.
+2(1 − λ)
+2(1 − λ)
+
+It is easy to see that C accepts L with cut point 1/2 isolated by ε/(2(1 − λ)).
+• λ > 1/2: By Proposition 3.2(i), we can construct the 1qfa A accepting
+the complement language Lc = {a}∗ \L with cut point λ = 1 − λ < 1/2
+isolated by ε. Now, we can operate as in the previous point, thus using
+
+DETERMINISTIC, NONDETERMINISTIC, PROBABILISTIC, QUANTUM AUTOMATA
+
+489
+
+Proposition 3.2(ii) to construct the 1qfa
+C=
+
+1
+1 − 2λ
+A+
+U.
+2(1 − λ)
+2(1 − λ)
+
+Such a 1qfa accepts the language Lc with cut point 1/2 isolated by ε/(2(1 −
+λ)). In turn, it is easy to verify that C = C is easily seen to accept L with
+cut point 1/2 isolated by ε/(2(1 − λ)).
+In both cases, the resulting 1qfa C has only one new state more than A, as one
+may easily verify by considering Proposition 3.2.
+
+References
+[1] A. Ambainis, The complexity of probabilistic versus deterministic finite automata, in Proc.
+7th International Symposium on Algorithms and Computation (ISAAC). Springer, Lecture
+Notes in Comput. Sci. 1178 (1996) 233-238.
+[2] A. Ambainis and R. Freivalds, 1-way quantum finite automata: Strengths, weaknesses and
+generalizations, in Proc. 39th Annual Symposium on Foundations of Computer Science
+(FOCS). IEEE Computer Society Press (1998) 332-342.
+[3] A. Brodsky and N. Pippenger, Characterizations of 1-way quantum finite automata, Techn.
+Rep. 99-03. Univ. of British Columbia, Dept. of Computer Science (1999).
+[4] A. Chandra, D. Kozen and L. Stockmeyer, Alternation. J. ACM 28 (1981) 114-133.
+[5] M. Chrobak, Finite automata and unary languages. Theoret. Comput. Sci. 47 (1986) 149158.
+[6] F. Gantmacher, Applications of Theory of Matrices. Interscience Pub., New York (1959).
+[7] J. Gruska, Quantum Computing. McGraw-Hill, London, New York (1999).
+[8] J. Gruska, Descriptional complexity issues in quantum computing. J. Autom. Lang. Comb
+5 (2000) 191-218.
+[9] A. Kondacs and J. Watrous, On the power of quantum finite state automata, in Proc. 38th
+Annual Symposium on Foundations of Computer Science (FOCS). IEEE Computer Society
+Press (1997) 66-75.
+[10] J. Hopcroft and J. Ullman, Introduction to Automata Theory, Languages, and Computation.
+Addison-Wesley, Reading, MA (1979).
+[11] R. Ladner, R. Lipton and L. Stockmeyer, Alternating pushdown and stack automata. SIAM
+J. Comput. 13 (1984) 135-155.
+[12] E. Landau, Uber die Maximalordung der Permutationen gegebenen Grades. Archiv. der
+Math. und Phys. 3 (1903) 92-103.
+[13] E. Landau, Handbuch der lehre von der verteilung der primzahlen. I. Teubner, Leipzig,
+Berlin (1909).
+[14] C. Mereghetti and G. Pighizzini, Two-Way automata simulations and unary languages. J.
+Autom. Lang. Comb. 5 (2000) 287-300.
+[15] C. Mereghetti and G. Pighizzini, Optimal simulations between unary autom. SIAM J. Comput. 30 (2001) 1976-1992.
+[16] A. Meyer and M. Fischer, Economy of description by automata, grammars, and formal systems, in Proc. 12th Annual Symposium on Switching and Automata Theory. East Lansing,
+Michigan (1971) 188-191.
+[17] M. Milani and G. Pighizzini, Tight bounds on the simulation of unary probabilistic automata
+by deterministic automata, in Pre-Proc. Descriptional Complexity of Automata, Grammars
+and Related Structures (DCAGRS), Techn. Rep. 555. Univ. of Western Ontario, Canada,
+Dept. Comp. Sci., J. Autom. Lang. and Comb. (2000).
+
+490
+
+C. MEREGHETTI, B. PALANO AND G. PIGHIZZINI
+
+[18] E. Moore, On the bounds for state-set size in the proofs of equivalence between deterministic,
+nondeterministic, and two-way finite automata. IEEE Trans. Comput. C-20 (1971) 12111214.
+[19] C. Moore and J. Crutchfield, Quantum automata and quantum grammars. Theoret. Comput.
+Sci. 237 (2000) 275-306.
+[20] A. Paz, Introduction to Probabilistic Automata. Academic Press, New York, London (1971).
+[21] J.E. Pin, On Languages Accepted by finite reversible automata, in Proc. of the 14th International Colloquium on Automata, Languages and Programming (ICALP). Springer-Verlag,
+Lecture Notes in Comput. Sci. 267 (1987) 237-249.
+[22] M. Rabin, Probabilistic automata. Inform. and Control 6 (1963) 230-245.
+[23] M. Rabin and D. Scott, Finite automata and their decision problems. IBM J. Res. Develop.
+3 (1959) 114-125. Also in: E.F. Moore, Sequential Machines: Selected Papers. AddisonWesley, Reading, MA (1964).
+[24] J. Shepherdson, The reduction of two-way automata to one-way automata. IBM J. Res.
+Develop. 3 (1959) 198-200. Also in: E.F. Moore, Sequential Machines: Selected Papers.
+Addison-Wesley, Reading, MA (1964).
+∗ . Acta Arithmetica 37 (1980) 321-331.
+[25] M. Szalay, On the maximal order in Sn and Sn
+[26] P. Turán, Combinatorics, partitions, group theory, edited by B. Serge, Colloquio Internazionale sulle Teorie Combinatorie. Acc. Naz. dei Lincei, Rome (1976) 181-200.
+Communicated by J. Hromkovic.
+Received December 13, 2001. Accepted March 15, 2002.
+
+To access this journal online:
+www.edpsciences.org
+
+

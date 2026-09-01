@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.worldscientific.com/doi/10.1142/S0219525902000481?srsltid=AfmBOor5GSWd3Hg9PVdtEfEoQx-sDwg_8yed5JAff8wKmTssB9c_aGQk",
+    "name": "INFORMATION BOTTLENECKS, CAUSAL STATES, AND",
+    "snippet": "This brief note explains the connections between three approaches to this problem: the recently introduced information-bottleneck method, the computational ...",
+    "host_name": "www.worldscientific.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://csc.ucdavis.edu/~cmg/compmech/pubs/ibcssrb.htm",
+    "name": "Information Bottlenecks, Causal States, and Statistical Relevance",
+    "snippet": "This brief note explains the connections between three approaches to this problem: the recently introduced information-bottleneck method, the computational ...",
+    "host_name": "csc.ucdavis.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2401.03279v2",
+    "name": "On three papers by Jurgens & Crutchfield, and on the basic structure",
+    "snippet": "Nov 12, 2025 · the “mixed states” become precisely the causal states introduced in [7] , when their set is minimized. Crutchfield, “Divergent Predictive  ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sfi-edu.s3.amazonaws.com/sfi-edu/production/uploads/sfi-com/dev/uploads/filer/b2/95/b295d8e0-4a3d-4d28-af51-ff289551c708/07-08-024.pdf",
+    "name": "[PDF] Optimal Causal Inference - AWS",
+    "snippet": "Using a framework (Still and Crutchfield, 2007) the information bottleneck method (IB) we analyze the trade-offs between model complexity, approximation ...",
+    "host_name": "sfi-edu.s3.amazonaws.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.siam.org/publications/siam-news/articles/dynamics-information-and-organization-the-origins-of-computational-mechanics",
+    "name": "Dynamics, Information, and Organization: The Origins of  - SIAM.org",
+    "snippet": "Oct 1, 2019 · of James Crutchfield. a complex system's architecture lies in its causal states. A causal state is a set of histories, each of which leads to ...",
+    "host_name": "www.siam.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Information-Bottleneck-Approach-to-Predictive-Still/1973a1c2f857f2b0192725d845aefb4b4fa592f8",
+    "name": "Information Bottleneck Approach to Predictive Inference",
+    "snippet": "Information Bottlenecks, Causal States, and Statistical Relevance Bases: How to Represent Relevant Information in memoryless transduction · C. ShaliziJ.",
+    "host_name": "www.semanticscholar.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sfipress.org/78-crutchfield-1994",
+    "name": "78-crutchfield-1994 - SFI Press",
+    "snippet": "James Crutchfield's 1994 paper can be seen as a novel approach in the statistical description of complexity measures, but with a key distinction that has ...",
+    "host_name": "www.sfipress.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dblp.org/pid/16/6123",
+    "name": "James P. Crutchfield - DBLP",
+    "snippet": "Apr 23, 2026 · Information Bottlenecks, Causal States, and Statistical Relevance Bases: How to Represent Relevant Information in memoryless transduction.",
+    "host_name": "dblp.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,1691 @@
+Automata and Quantum Computing
+Andris Ambainis and Abuzer Yakaryılmaz*
+University of Latvia, Faculty of Computing, Raina bulv. 19, Rı̄ga, LV-1586, Latvia
+emails: ambainis@lu.lv and abuzer@lu.lv
+
+arXiv:1507.01988v2 [cs.FL] 4 Jul 2018
+
+July 5, 2018
+
+1h0
+
+Abstract. Quantum computing is a new model of computation, based on quantum physics. Quantum computers can be exponentially faster than conventional computers for problems such as factoring. Besides full-scale quantum computers, more restricted models such as quantum versions
+of finite automata have been studied. In this paper, we survey various models of quantum finite
+automata and their properties. We also provide some open questions and new directions for researchers.
+2010 Mathematics Subject Classification: 68Q10, 68Q12, 68Q15, 68Q19,68Q45
+Key words: quantum finite automata, probabilistic finite automata, nondeterminism, bounded error,
+unbounded error, state complexity, decidability and undecidability, computational complexity
+
+Contents
+1
+2
+3
+4
+
+Introduction
+Mathematical background
+Preliminaries
+One-way QFAs
+4.1 Simulations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2 Succinctness results . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3 Bounded-error language recognition in restricted models . . . . . . . . .
+4.4 Unbounded-error, nondeterminism, and alternation . . . . . . . . . . . .
+4.5 Decidability and undecidability results . . . . . . . . . . . . . . . . . . .
+4.5.1 Equivalence and minimization. . . . . . . . . . . . . . . . . . . .
+4.5.2 Emptiness problems and problems regarding isolated cutpoint. . .
+4.5.3 Other problems. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5 Two-way QFAs
+5.1 2-way QFAs with classical head . . . . . . . . . . . . . . . . . . . . . .
+
+2
+3
+6
+7
+10
+12
+13
+14
+15
+15
+16
+17
+17
+17
+
+* A. Yakaryılmaz worked on the chapter when he was in Boğaziçi University in Turkey, University of Latvia,
+and LNCC in Brazil.
+
+2
+
+A. Ambainis, A. Yakaryılmaz
+
+5.1.1 Bounded-error language recognition. . . . . . . . . . . . . . . .
+5.1.2 Succinctness results. . . . . . . . . . . . . . . . . . . . . . . . .
+5.1.3 Other results. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.2 2-way QFAs with quantum head . . . . . . . . . . . . . . . . . . . . . .
+5.2.1 Bounded-error language recognition. . . . . . . . . . . . . . . .
+5.2.2 Unbounded-error language recognition. . . . . . . . . . . . . . .
+5.2.3 Undecidability of emptiness problem. . . . . . . . . . . . . . . .
+6 Other models and results
+7 Concluding remarks
+References
+
+18
+20
+20
+20
+21
+22
+23
+23
+26
+27
+
+1 Introduction
+Quantum computing combines quantum physics and computer science, by studying computational models based on quantum physics (which is substantially different from conventional physics) and building quantum devices which implement those models. If a
+quantum computer is built, it will be able to solve certain computational problems much
+faster than conventional computers.
+The best known examples of such problems are factoring and discrete logarithm.
+These two number theoretic problems are thought to be very difficult for conventional
+computers but can be solved efficiently (in polynomial time) on a quantum computer
+[94]. Since several widely used cryptosystems (such as RSA and Diffie-Hellman) are
+based on the difficulty of factoring or discrete logarithm, a quantum computer would be
+able to break those cryptosystems, shaking up the foundations of cryptography.
+Another, equally surprising discovery was made in 1996, by Lov Grover [50] who
+designed a quantum algorithm√that solves a general exhaustive search problem with N
+possible solutions in time O( N ). This provides a quadratic speedup for a range of
+search problems, from problems that are solvable in polynomial time classically to NPcomplete problems.
+Many other quantum algorithms have been discovered since then. (More information
+can be found in surveys [13, 72] and the “Quantum Algorithm Zoo” website [57].)
+Given that finite automata are one of the most basic models of computation, it is
+natural to study them in the quantum setting. Soon after the discovery of Shor’s factoring
+algorithm [94], the first models of quantum finite automata (QFAs) appeared [62, 71]. A
+number of different models and questions about the power of QFAs and their properties
+have been studied since then.
+In this chapter, we cover most of this work. We particularly focus on the results which
+show advantages of QFAs over their classical1 counterparts because those results show
+how “quantumness” adds power to the computational models.
+We note that some of early research on QFAs also claimed that, in some contexts,
+QFAs can be weaker than their classical counterparts. This was due to the first definitions
+1 In the context of quantum computing, “classical” means “non-quantum”. For finite automata, this usually
+means deterministic or probabilistic automaton.
+
+Automata and Quantum Computing
+
+3
+
+of QFAs being too restricted [102]. Quantum computation is a generalization of classical
+computation [101] and QFAs should be able to simulate classical finite automata, if we
+define QFAs in sufficiently general way. Therefore, we particularly emphasize the most
+general model of QFAs that fully reflect the power of quantum computation.
+We begin with an introductory section (Sec. 2) on basics of quantum computation for
+readers who are not familiar with it. Then, we give the basic notation and conventions
+used throughout this chapter (Sec. 3). After that, Sec. 4 presents the main results on
+1-way QFAs and Sec. 5 presents the main results on 2-way QFAs. Each of those sections
+covers different models of QFAs that have been proposed, the classes of languages that
+they recognize, the state complexity in comparison to the corresponding classical models,
+and decidability and undecidability results. In Sec. 6, we describe the results about QFAs
+in less conventional models or settings (for example, interactive proof systems with a QFA
+verifier or QFAs augmented with extra resources beyond the usual quantum model). We
+conclude with a discussion of directions for future research in Sec. 7.
+We also refer the reader to [90] for an introductory paper on quantum automata and to
+[83] for another survey on quantum automata, and to
+http://publication.wikia.com/wiki/Quantum automata
+for a list of published papers on quantum automata.
+
+2 Mathematical background
+In this section, we review the basics of quantum computation. We refer the reader to [76]
+for more information.
+Quantum systems. The simplest way towards understanding the quantum model is
+by thinking of as a generalization of probabilistic systems. If we have a probabilistic
+system with m possible states 1, 2, . . . , m, we can describe it by a probability distribution
+p1 , . . . , pm over those m possibilities. The probabilities pi must be nonnegative real
+numbers and satisfy p1 + · · · + pm = 1. In the quantum case, the probabilities p1 , . . . , pm
+are replaced by amplitudes α1 , . . . , αm . The amplitudes can be complex numbers and
+must satisfy |α1 |2 + · · · + |αm |2 = 1.
+More formally, let us consider a quantum systems with m basis states (for some finite m) which we denote by |q1 i, |q2 i, . . . , |qm i. A state of such a system is a linear
+combination of basis states with complex coefficients (called amplitudes)
+|ψi = α1 |q1 i + α2 |q2 i + · · · + αm |qm i
+
+(2.1)
+
+that must satisfy |α1 |2 + · · · + |αm |2 = 1. We say that |ψi is a superposition of |q1 i,
+. . ., |qm i. For example, if we have a system with 2 basis states |0i and |1i, some of the
+possible superpositions are 45 |0i + 35 |1i, 54 |0i − 35 |1i, and √12 |0i + √12 |1i.
+
+4
+
+A. Ambainis, A. Yakaryılmaz
+
+We can view a |ψi as a vector consisting of amplitudes:
+
+
+α1
+ α2 
+
+
+|ψi =  .  .
+ .. 
+αm
+
+Then, the basis states |qi i are vectors with 1 in the ith component and 0 everywhere
+else and (2.1) can
+p be interpreted as the addition of vectors. The length of the vector
+|ψi is kψk =
+|α1 |2 + · · · + |αm |2 . Thus, in vector language, the requirement that
+|α1 |2 + · · · + |αm |2 = 1 is equivalent to just saying that kψk = 1. That is, a quantum
+state is a vector of length 1.
+Unitary transformations. A transformation on a quantum state is specified by a
+transformation matrix U . If the state before the transformation is |ψi, the state after
+the transformation is U |ψi. A transformation is valid (allowed by the rules of quantum
+physics) if and only if kψk = 1 implies kU |ψik = 1. Transformation matrices which
+satisfy this constraint are called unitary.
+A transformation U can be also specified by describing U |q1 i, . . . , U |qm i. Then, for
+any |ψi = α1 |q1 i + α2 |q2 i + · · · + αm |qm i, we have
+U |ψi = α1 U |q1 i + α2 U |q2 i + · · · + αm U |qm i.
+For example, if we have a system with 2 basis states |0i and |1i, we can specify a transformation H by saying that H maps
+1
+1
+1
+1
+|0i → √ |0i + √ |1i and |1i → √ |0i − √ |1i.
+2
+2
+2
+2
+
+(2.2)
+
+This determines how H acts on superpositions of |0i and |1i, For example, (2.2) implies
+that H maps 54 |0i − 35 |1i to
+
+
+
+
+1
+7
+1
+1
+3
+1
+1
+4
+√ |0i + √ |1i −
+√ |0i − √ |1i = √ |0i + √ |1i.
+5
+5
+2
+2
+2
+2
+5 2
+5 2
+Measurements. To obtain information about a quantum state, we have to measure
+it. The simplest measurement is observing |ψi = α1 |q1 i + α2 |q2 i + · · · + αm |qm i
+with respect to |q1 i, . . . , |qm i. It gives |qj i with probability |αj |2 . (kψk = 1 guarantees
+that probabilities of different outcomes sum to 1.) After the measurement, the state of
+the system changes to |qj i and repeating the measurement gives the same state |qj i. For
+example, observing 45 |0i+ 53 |1i gives 0 with probability ( 45 )2 = 16
+25 and 1 with probability
+9
+( 53 )2 = 25
+.
+Partial measurement. In the context of QFAs, it may be the case that we only need
+to know whether the state qi is an accepting state or not. In this case, we can perform
+a partial measurement. Let Q1 , . . . , Qk be a partition of {q1 , q2 , . . . , qm } into disjoint
+subsets. Then, measuring a state |ψi = α1 |q1 i + α2 P
+|q2 i + · · · + αm |qm i with respect to
+this partition gives result Qi with probability pi = qj ∈Qi |αj |2 and the state after the
+measurement is
+X αj
+√ |qj i.
+pi
+qj ∈Qi
+
+Automata and Quantum Computing
+
+5
+
+For example, if the quantum state is 21 |1i + 12 |2i + 21 |3i + 21 |4i and the partition is Q1 =
+{1, 2} and Q2 = {3, 4}, a partial measurement would give the result Q1 with probability
+( 12 )2 + ( 12 )2 = 12 and that state after the measurement is
+1
+1
+√ |1i + √ |2i.
+2
+2
+Such a measurement tells whether a QFA accepts a string and, at the same time, preserves
+the part of the quantum state which consists of accepting states (or the part of the quantum
+state which consists of nonaccepting states).
+Dirac notation. As already mentioned above, we can view a quantum state |ψi as
+a vector consisting of amplitudes.
+hψ| denotes the conjugate transpose of this vector:
+
+hψ| = α∗1 α∗2 · · · α∗m , where α∗i denotes the conjugate transpose of the complex
+number αi . (If αi is real, then α∗i = αi .) If we multiply |ψi with hψ| (according to the
+usual rules for matrix multiplication), we get a m × m matrix:
+
+
+α1 α∗1 α1 α∗2 · · · α1 α∗m
+ α2 α∗1 α2 α∗2 · · · α2 α∗m 
+
+
+|ψihψ| = 
+.
+..
+..
+..
+..
+
+
+.
+.
+.
+.
+αm α∗1
+
+αm α∗2
+
+· · · αm α∗m
+
+This is the density matrix of the state ψ.
+Mixed states. A mixed state (or mixture) (pj , |ψj i) is a probabilistic combination
+of
+P
+several quantum states |ψj i, with probabilities pj (where pj ⩾ 0 for all j and j pj = 1).
+For such a state, its density matrix is just the sum of density matrices of |ψj i, weighted
+by their respective probabilities:
+ρ=
+
+X
+j
+
+pj |ψj ihψj |.
+
+If we measure a mixed state (pj , |ψj i), the probabilities of different measurement outcomes can be calculated from the density matrix ρ. Thus, ρ provides a complete description of a mixed state: there may be multiple decompositions (pj , |ψj i) that give the same
+matrix ρ but they are all equivalent with respect to any measurement that we may perform.
+Superoperators. In general, we can perform a sequence of unitary transformations
+and measurements on a quantum state, with each transformation possibly depending on
+the results of the previous measurements. Such sequence is called a completely positive
+superoperator or CPSO.
+Alternatively, a completely positive superoperator can be described by a sequence of
+Pk
+m × m matrices E = {E1 , . . . , Ek } (called Kraus operators) such that i=1 Ei† Ei = I.
+Such a CPSO maps a mixed state with the density matrix ρ to a mixed state with the
+Pk
+density matrix ρ′ = E(ρ) = i=1 Ei ρEi† .
+The two definitions are equivalent: for any sequence of unitary transformations and
+measurements, there is a set of Kraus operators E1 , . . . , Ek which produces the same result and the other way around. A bistochastic quantum operation, say E = {E1 , . . . , Em },
+Pk
+Pk
+is a special kind of superoperator satisfying both i=1 Ei† Ei = I and i=1 Ei Ei† = I.
+
+6
+
+A. Ambainis, A. Yakaryılmaz
+
+3 Preliminaries
+Basic notations: Throughout the chapter,
+• Σ is the input alphabet not containing the end markers ¢ and $ and Σ̃ = Σ ∪ {¢, $}.
+• For a given string w, |w| is the length of w, wi is the ith symbol of w, and w̃
+represents the string ¢w$.
+• Q is the set of internal states, where q1 is the initial state. Qa ⊆ Q is the set of
+accepting states.
+• fM (w) is the accepting probability (or the accepting value) of M on the string w.
+• For a given vector (row or column) v, v[i] is the ith entry of v.
+• For a given matrix A, A[i, j] is the (i, j)th entry of A.
+Language recognition: Let M be a machine and λ ∈ R. The language L ⊆ Σ∗ recognized by M with (strict) cutpoint or nonstrict cutpoint λ is defined as
+L = {w ∈ Σ∗ | fM (w) > λ} or L = {w ∈ Σ∗ | fM (w) ⩾ λ}, respectively.
+
+The language L ⊆ Σ∗ is said to be recognized by M withunbounded error if there exists
+a cutpoint λ such that L is recognized by M with strict or nonstrict cutpoint λ.
+In the followings, we assume that fM (w) ∈ [0, 1] ∀w ∈ Σ∗ . The language L ⊆ Σ∗
+recognized by M with positive or negative one-sided unbounded error is defined as
+L = {w ∈ Σ∗ | fM (w) > 0} or L = {w ∈ Σ∗ | fM (w) = 1}, respectively.
+
+The language L ⊆ Σ∗ is said to be recognized by M with error bound ǫ (0 ⩽ ǫ < 12 ) if
+(i) fM (w) ⩾ 1 − ǫ when w ∈ L and (ii) fM (w) ⩽ ǫ when w ∈
+/ L. This notion is also
+known as recognition with bounded error. Moreover, in the case of positive one-sided
+bounded error, fM (w) = 0 when w ∈
+/ L; and, in the case of negative one-sided bounded
+error, fM (w) = 1 when w ∈ L.
+Transition amplitudes and probabilities: In both probabilistic and quantum finite automata [85, 80, 62], the transition values (probabilities or amplitudes) are traditionally
+allowed to be in R and in C, respectively. On the other hand, the transition values of Turing machines (TMs) [43, 15, 100] are often selected from the restricted subsets of R or
+C. For example, for probabilistic Turing machines, it is often assumed that, at each step,
+there are two possible choices and the machine chooses each of them with probability 1/2.
+In this chapter, we assume the most general model possible. That is, unless specified
+otherwise, the transition...values of probabilistic (or quantum) machines are supposed to
+be in R (or C). We use R, C̃, and A to denote the computable real numbers, efficiently
+computable complex numbers, and algebraic numbers, respectively [15, 100].
+Classical finite automata: We will compare quantum automata with following models
+of classical automata:
+• deterministic finite automaton (DFA),
+• nondeterministic finite automaton (NFA),
+• probabilistic finite automaton (PFA), and,
+• generalized finite automaton (GFA) of Turakainen [95].
+
+Automata and Quantum Computing
+
+7
+
+The first three models are quite widely known. Each of them can be studied both in 1-way
+version (where the head of the automaton moves from the left to the right) and in 2-way
+version (where the automaton is allowed to move in both direction). We refer to 1-way
+models as 1DFA, 1NFA and 1PFA and to 2-way models as 2DFA, 2NFA and 2PFA.
+A 1-way probabilistic finite automaton (1PFA) [85] can be described by a 5-tuple
+P = (Q, Σ, {Aσ | σ ∈ Σ̃}, q1 , Qa ), where Aσ is the transition matrix, i.e. Aσ [j, i] is the
+probability of the transition from state qi to state qj when
+P reading symbol σ. We require
+that all Aσ are stochastic: Aσ [j, i] ⩾ 0 and, for any i, j Aσ [j, i] = 1.
+The computation of a 1PFA can be traced by a probability vector v in which v[i] is the
+probability of being in state qi . For a given input string w ∈ Σ∗ , w̃ = ¢w$ is read symbol
+by symbol, vi = Aw̃i vi−1 , where 1 ⩽ i ⩽ |w̃| and v0 is the initial state vector whose first
+entry is equal to 1. The acceptance probability of P on string w is defined as
+X
+fP (w) =
+v|w̃| [i].
+qi ∈Qa
+
+If we allow the transition matrices Aσ to be arbitrary matrices consisting of arbitrary
+real numbers, we obtain a generalized finite automaton (GFA) [95]. Then, the range of
+fG (·) is real numbers and it is called accepting value instead of accepting probability.
+1DFAs, 1NFAs, 2DFAs, 2NFAs and 1PFAs with bounded error all recognize the same
+class of languages: regular languages REG. On the other hand, 2PFAs can recognize
+some nonregular languages [41] with bounded error, such as UPAL = {an bn | n > 0},
+but requires exponential expected runtime [39].
+The languages recognized by 1PFAs with cutpoint (nonstrict cutpoint) form the class
+of stochastic languages (co-stochastic languages), denoted as S (coS). S ∪ coS forms the
+class of unbounded-error stochastic languages (uS). 1GFAs are equivalent to 1PFAs: the
+classes of languages recognized by 1GFAs with cutpoint and nonstrict cutpoint are also S
+and coS, respectively [95]. This equivalence makes 1GFAs useful for proving facts about
+1PFA. Moreover, any language L, defined as L = {w | fP (w) 6= 12 } for a 1PFA P, is
+called exclusive stochastic language and S6= denotes the class of all such languages. The
+=
+complement of S6= is denoted S= . The class S=
+Q is a subset of S defined by 1PFAs with
+6=
+rational-valued transitions. The class SQ is defined similarly.
+
+4 One-way QFAs
+A number of different definitions of one-way QFAs (1QFAs) have been proposed over the
+years. They can all be described in a similar framework, by specifying a 5-tuple
+(Σ, Q, {Tσ | σ ∈ Σ̂}, q1 , R),
+with the following specifications:
+• Q is a finite set of (classical) states. The (quantum)P
+state of a 1QFA can be any
+superposition of basis states {|qi | q ∈ Q}: |ψi = q∈Q αq |qi. In mixed state
+models, the 1QFA can also be in a mixture (pi , |ψi i) of such states.
+• |ψ0 i = |q1 i is the initial state of the 1QFA.
+
+8
+
+A. Ambainis, A. Yakaryılmaz
+
+• For each symbol σ ∈ Σ̃, we have a corresponding transformation Tσ on 1QFA’s
+current state. In simpler models, Tσ is a unitary transformation, denoted Uσ . In
+more general models, Tσ can be a sequence of unitary transformations and measurements, with the next operations in the sequence depending on the previous
+ones.
+• R is a rule for determining how the 1QFA accepts the strings. Typically, R is
+specified by a set of accepting states (Qa ⊆ Q) and measuring the final state of the
+QFA in the standard basis. If an accepting state q ∈ Qa is obtained, the automaton
+accepts. Otherwise the automaton rejects.
+The models differ in the set of transitions Tσ and acceptance rules R that are allowed.
+Example. Let p be an odd number. Consider the following 1QFA M in one symbol
+alphabet Σ = {a}. The set of states is Q = {q1 , q2 } and the initial state is |ψ0 i =
+|q1 i. The transformations on the end-markers are identities and the transformation Ua
+that corresponds to reading a is defined by
+Ua |q1 i
+Ua |q2 i
+
+2π
+=
+cos φ|q1 i + sin φ|q2 i
+, where φ =
+.
+= − sin φ|q1 i + cos φ|q2 i
+p
+
+The acceptance rule R is as follows: At the end of computation, we measure the state. If
+the result is q1 , we accept. Otherwise, we reject. (In other words, we have Qa = {q1 }.)
+The initial state is |q1 i. After reading the first symbol a, the quantum state becomes
+|ψ1 i = cos φ|q1 i + sin φ|q2 i. After reading the second symbol a, it becomes
+Ua |ψ1 i =
+=
+=
+
+cos φ Ua |q1 i + sin φ Ua |q2 i
+cos φ(cos φ|q1 i + sin φ|q2 i) + sin φ(− sin φ|q1 i + cos φ|q2 i)
+cos 2φ|q1 i + sin 2φ|q2 i.
+
+We can show that each next application of Ua also rotates the state in the plane formed by
+|q1 i, |q2 i by an angle of φ = 2π
+p , as shown in Figure 1. Thus, we have
+
+Figure 1. 2 state 1QFA M
+
+Lemma 4.1. [9] After reading aj , the state of M is cos
+
+
+
+2πj
+p
+
+
+
+|q1 i + sin
+
+
+
+2πj
+p
+
+
+
+|q2 i.
+
+Automata and Quantum Computing
+
+9
+
+2 2πj
+Therefore, M accepts aj with probability cos2 ( 2πj
+p ). If p divides j, cos ( p ) =
+cos2 0 = 1. Otherwise, cos2 ( 2πj
+p ) < 1. So, for any odd p > 2, M recognizes
+
+MODp = {ai |p divides i}
+
+(4.1)
+
+with negative one-sided error bound cos2 ( πp ).
+Models. We now describe some important 1QFA models in the order from the most
+restrictive to the most general. Let w be the input string.
+(1) Moore-Crutchfield quantum finite automaton (MCQFA) [71] is the most restricted
+of known QFA models. In this model, the transformations Tσ ’s have to be unitary
+(Uσ ). The acceptance rule R is of the form described above. We measure the state
+of the QFA after reading w̃ and accept if the measurement gives q ∈ Qa .
+(2) Kondacs-Watrous quantum finite automaton (KWQFA) [62] is a model in which
+Tσ ’s still have to be unitary (Uσ ) but the acceptance rule R involves measurements
+after every step. The state set Q is partitioned into the set of accepting states Qa ,
+the set of rejecting states Qr , and the set of non-halting states Qn , i.e. Q = Qa ∪
+Qr ∪Qn . After reading each symbol w̃i , we perform a partial measurement whether
+the state is in Qa , Qr , or Qn . If Qa (Qr ) is obtained, the computation is terminated
+and the input string is accepted (rejected). If Qn is obtained, the computation is
+continued by reading the next symbol w̃i+1 when i < |w̃|, and the computation is
+terminated and the input string is rejected when i = |w̃|.
+(3) Latvian quantum finite automaton (LaQFA) [5] is a model in which each Tσ can be
+a sequence U1 , M1 , . . ., Um , Mm consisting of unitary transformations U1 , . . . , Um
+and measurements M1 , . . . , Mm . It is required that the transformations in the sequence are independent of the outcomes of measurements Mi (1 ⩽ i ⩽ m). The
+acceptance is by measuring the state of the QFA after reading w̃ and accepting if
+the measurement gives q ∈ Qa .
+(4) Nayak quantum finite automaton (NaQFA) [74] combines KWQFA and LaQFA.
+The transformations Tσ ’s of NaQFA as for LaQFA, the acceptance rule R is as for
+KWQFA. Bistochastic quantum finite automaton (BiQFA) [49] is a generalization
+of NaQFA such that the transformations Tσ ’s can be bistochastic quantum operations and the acceptance rule R is as for KWQFA.
+(5) General one-way quantum finite automaton (1QFA) [54, 113] allows each Tσ to
+be a sequence U1 , M1 , . . ., Um , Mm of unitary transformations and measurements.
+Moreover, each transformation Ui or measurement Mi can depend on the outcomes
+of previous measurements Mi−1 . This is the most general model. It has been discovered several times in different but equivalent forms: quantum finite automaton
+with ancilla qubits (QFA-A) [79], fully quantum finite automaton (CiQFA) [32],
+quantum finite automaton with control language (QFA-CL) [21], and one-way finite automaton with quantum and classical states (1QCFA) [122].
+Why do we have so many models? Initially, researchers did not recognize the power
+that comes from performing sequences of unitary transformations and measurements. For
+this reason, the first models of QFAs were defined in an unnecessarily restrictive form.
+Which is the right model? Physically, we can perform any sequence of measurements
+and unitary transformations. Hence, 1QFAs should be the main model. Among the more
+restricted models, MCQFA and LaQFA can be motivated by the fact that measuring the
+
+10
+
+A. Ambainis, A. Yakaryılmaz
+
+quantum state during each transformation Ta may be difficult. Because of that, it may
+be interesting to consider models in which measurements are restricted. One natural restriction is to allow only one measurement at the end of the computation, as in MCQFA.
+The other possibility is to allow intermediate measurements after each Ta , as long as the
+rest of computation does not depend on their outcomes. Such measurements are easier
+to realize than general measurements (for example, this is the case in liquid state NMR
+quantum computing [75]). This leads to LaQFA.
+There is no compelling physical motivation behind KWQFAs and NaQFAs. These
+models allow to stop the computation depending on the result of an intermediate measurement. If we are able to do that, it is natural that we also allow the next transformations to
+depend on the measurement outcome - which leads to the most general model of 1QFAs.
+
+4.1 Simulations
+In this section, we present some basic simulation results that relate the power of 1QFA
+to the power of their classical counterparts. First, any probabilistic automaton can be
+transformed into an equivalent QFA, if the model of QFA is sufficiently general.
+Theorem 4.2. For a given n-state 1PFA P, there exists an n-state 1QFA M such that
+fP (w) = fM (w) for any w ∈ Σ∗ .
+This result easily follows from the fact that stochastic operators (transformation Aσ in
+a 1PFA) are a special case of superoperators (used by 1QFAs). The proof of the theorem
+can be found in [54, 113, 90] but it has been known as a folklore result in quantum
+computing community long before that. The same result is also valid in many other
+settings, for example, for probabilistic and quantum Turing machines [100].
+The second simulation shows how to convert a 1QFA to a GFA with a quadratic increase in the number of internal states.
+Theorem 4.3. [71, 64, 113] For a given n-state 1QFA M, there exists a n2 -state GFA G
+such that fM (w) = fG (w) for any w ∈ Σ∗ .
+Proof. If we apply a superoperator, say E, to a quantum system in a state ρ, the new state
+Pk
+is ρ′ = E(ρ) = i=1 Ei ρEi† . From this expression, one can see that the entries of the
+density matrix ρ′ are linear combinations of the entries of ρ.
+We can linearize the computation of a given 1QFA (with a quadratic increase in the
+size of the set of states [113]) in a following way. We transform the density matrix into
+a real-valued vector, replacing each complex entry of the density matrix with two realvalued elements of the vector. We choose the transition matrices Aσ of the 1GFA so
+that they transform this vector in the same way as the superoperators Tσ of the 1QFA
+transform the density matrix.
+Due to the equivalence between 1GFAs and 1PFAs, this simulation result is very useful. For example, it is used to show the equivalence of 1PFAs and 1QFAs in the unbounded
+error case (Sec. 4.4) and various decidability and undecidability results (Sec. 4.5).
+
+Automata and Quantum Computing
+
+11
+
+In the bounded-error case, 1QFAs can recognize only regular languages (similarly to
+1PFAs). The pure state version of this result was first shown for KWQFA in [62], with
+the bounds on the number of states shown in [7].
+Theorem 4.4. [62, 7] If a language L is recognized by an n-state 1QFA with pure states
+(e.g. MCQFAs and 1KWQFAs) with bounded error, then it can be recognized by a 1DFA
+with 2O(n) states.
+Proof. Let M be the minimal 1DFA that recognizes L and let N be the number of states
+of M. Let q1 and q2 be two states of M. Then, there is a string w such that reading w in
+one of states q1 , q2 leads to an accepting state and reading it in the other state leads to a
+rejecting state.
+Let M′ be a 1QFA that recognizes L. Let w1 , w2 be strings after reading which
+M is in states q1 , q2 and |ψ1 i, |ψ2 i be the states of M′ after reading w1 , w2 . Let T
+be the sequence of transformations that corresponds to reading w (including the final
+measurement that produces the answer that says whether M′ accepts or rejects the input
+string w). If M′ correctly recognizes L, then applying T to one of |ψ1 i, |ψ2 i leads to a
+“yes” answer with probability at least 2/3 and applying T to the other state leads to a “no”
+answer with probability at least 2/3. The next lemma provides a necessary condition for
+that.
+Lemma 4.5. [15] Let
+|ψ1 i =
+
+n
+X
+i=1
+
+αi |ii and |ψ2 i =
+
+n
+X
+i=1
+
+βi |ii.
+
+Then, for any T , the probabilities of T producing “yes” answer on |ψ1 i, |ψ2 i differ by
+at most kψ1 − ψ2 k where
+v
+u n
+uX
+kψ1 − ψ2 k = t
+|αi − βi |2 .
+i=1
+
+Hence, if a 1-way pure state QFA M′ with n-dimensional state space recognizes L,
+there must be N pure states |ψ1 i, . . . , |ψN i in n dimensions such that kψi − ψj k ⩾ 1/3
+for all i, j : i 6= j. Such sets of states are known as quantum fingerprints and quite tight
+bounds for the maximum number of quantum fingerprints in n dimensions are known
+[31]. In particular, we know that N = 2O(n) .
+We now sketch the proof of a similar result for the general case. Simulations of general
+1QFAs by DFAs can be found in several papers (for example, [66]) but we also provide
+an upper bound on the number of states.
+Theorem 4.6. If a language is recognized by an n-state 1QFA with mixed states (e.g.
+2
+1QFA) with bounded error, then it can be recognized by a 1DFA with 2O(n ) states.
+Proof. The proof is similar to the previous theorem but now we have to answer the question: how many mixed states ρi can one construct so that, for any i 6= j, there is a
+
+12
+
+A. Ambainis, A. Yakaryılmaz
+
+sequence of transformations T that produces different outcomes (“yes” in one case and
+“no” in the other case) with probability at least 2/3?
+2
+The answer is that the number of such ρi in n dimensions is at most 2O(n ) . This
+follows from the fact that a mixed state in n dimensions can be expressed as a mixture
+(pl , |ψl i) of at most n pure states. We can then approximate each of |ψl i by a state |ψl′ i
+from an ǫ-net for the unit sphere in n dimensions. (An ǫ-net is a set of states S such
+that, for any |ψi, there exists |ψ ′ i ∈ S : kψ − ψ ′ k ⩽ ǫ.) Since one can construct an
+2
+ǫ-net with 2O(n) states, there will be (2O(n) )n = 2O(n ) choices for the set of states
+(|ψ1 i, |ψ2 i, . . . , |ψn i). We also need to use another ǫ-net for (p1 , . . . , pn ) but the size of
+2
+this ǫ-net is 2O(n) = 2o(n ) .
+
+4.2 Succinctness results
+In [7], it was shown that 1QFAs can indeed be exponentially more succinct than 1PFAs.
+Let p be a prime and consider the language PRIMEp defined by (4.1).
+Theorem 4.7. [7] (i) If p is a prime, any 1PFA recognizing MODp has at least p states.
+(ii) For any ǫ > 0, there is a MCQFA with O(log(p)) states recognizing MODp with error
+bound ǫ.
+We now describe the construction of [7] (in a simplified form due to [9]). Let Mk , for
+k ∈ {1, . . . , p−1}, be the two state MCQFA given in Lemma 4.1 for φ = 2πk
+p . Thus, Mk
+
+2 2πjk
+2
+accepts aj with probability cos2 ( 2πjk
+p ). If p divides j, then cos ( p ) = cos 0 = 1.
+For j that are not divisible by p, about half of them are accepted with probability less
+belongs to one of the intervals [2πm + π4 , 2πm + 3π
+than 12 . (This happens if 2πjk
+p
+4 ] or
+5π
+7π
+j
+[2πm + 4 , 2πm + 4 ].) That is, each of the MCQFAs Mk distinguishes a ∈ Lp from
+many (but not all) aj ∈
+/ Lp . We now combine O(log n) of the Mk ’s into one MCQFA
+M which distinguishes aj ∈ Lp from all aj ∈
+/ Lp .
+Let k1 , . . . , kd be a sequence of d numbers, for an appropriately chosen d = O(log p).
+The set of states of M consists of 2d states q1,1 , q1,2 , q2,1 , q2,2 , . . ., qd,1 , qd,2 . The
+transformation for a is defined by
+
+Ua (qi,1 ) = cos
+
+2ki π
+2ki π
+|qi,1 i + sin
+|qi,2 i,
+p
+p
+
+Ua (qi,2 ) = − sin
+
+2ki π
+2ki π
+|qi,1 i + cos
+|qi,2 i.
+p
+p
+
+That is, on states |qi,1 i, |qi,2 i, M acts in the same way as Mki .
+The starting state is |q1,1 i. The transformation U¢ can be any unitary transformation
+that satisfies U¢ |q1,1 i = |ψ0 i where |ψ0 i = √1d (|q1,1 i + |q2,1 i + · · · + |qd,1 i) and U$ can
+be any unitary transformation that satisfies U$ |ψ0 i = |q1,1 i. The set of accepting states
+Qa consists of one state q1,1 .
+If p divides j, then, by Lemma 4.1, the transformation (Ua )j maps |qi,1 i to itself.
+Since this happens for every i, the state |ψ0 i is also left unchanged by (Ua )j . Thus, U$
+maps |ψ0 i to |q1,1 i, the only accepting state.
+
+Automata and Quantum Computing
+
+13
+
+If j is not divisible by p, we have the following result:
+Theorem 4.8. [9] There is a choice of d = 2 log 2p
+ǫ values k1 , . . . , kd ∈ {1, . . . , p − 1}
+such that the MCQFA M described above rejects all aj ∈
+/ Lp with probability at least
+1 − ǫ.
+The proof of this theorem is nonconstructive: It was shown in [9] that a random choice
+k1 , . . . , kd works with a high probability. An explicit construction of k1 , . . . , kd for a
+slightly larger d = O(log2+3ǫ p) also given in [9]. Constructing an explicit set k1 , . . . , kd
+such that d = O(log p) and M recognizes MODp is still an open problem, which is linked
+to estimating exponential sums in number theory [29].
+Currently, it is also open what is the biggest possible advantage of general 1QFAs over
+1PFAs or 1DFAs. By Theorem 4.6, 1QFAs with n states can be simulated by 1DFAs with
+2
+2O(n ) states. On the other hand, [42, 44] gives a 1QFA with n states for a language in
+an 2Ω(n log n) symbol alphabet that requires 2Ω(n log n) states on 1DFAs and 1PFAs. (The
+paper [42] also claims a similar result for a language in a 4-symbol alphabet but the proof
+of that appears to be either incomplete or incorrect.)
+There has been a substantial amount of further work on the state complexity of 1QFAs.
+We highlight some results:
+(1) [70] Any
+√ periodic language with period n in a unary alphabet can be recognized
+by a (2 6n)-state MCQFA with bounded error.
+(2) [20]
+qThere exists a language with period n in a one-symbol alphabet that requires
+Ω( logn n ) states to be recognized by MCQFAs.
+
+(3) [22] If the l1 norm of the Fourier transform of the characteristic function of L (for
+a periodic L in one-symbol alphabet) is small, a 1QFA with a smaller number of
+states is possible.
+There are also some negative results for restricted models. For example, there is a language that is recognized by a 1DFA with n states but it requires 2Ω(n) states for NaQFAs
+[10]. Due to Theorem 4.4, no such result is possible for the more general models.
+
+4.3 Bounded-error language recognition in restricted models
+For language recognition with bounded error, we can put the models of QFAs in the order
+from the weakest to the strongest:
+1QFA
+QFA-CL
+MCQFA < LaQFA < KWQFA ⩽ NaQFA ⩽ BiQFA < QFA-A ≡ 1DFA.
+CiQFA
+1QCFA
+
+(4.2)
+
+It is open whether the inclusions KWQFA⩽ NaQFA and NaQFA⩽ BiQFA are strict.
+The class of languages recognized by MCQFAs with bounded error (RMO) is exactly
+the class of group languages [18, 30, 71]. (See [81] for the definition and the details
+about group languages.) Belovs et al. [14] have shown that the power of MCQFAs can be
+
+14
+
+A. Ambainis, A. Yakaryılmaz
+
+increased by reading multiple symbols at a time. However, even in this case, they cannot
+recognize all regular languages [14, 84].
+Similar to MCQFAs, a complete characterization of the class of languages recognized
+by LaQFAs (BLaQAL) was obtained by algebraic techniques [5]. Namely, BLaQAL
+is equal to the class whose syntactic monoid is in BG, i.e. block groups. Therefore,
+BMO ⊂ BLaQAL. On the other hand, BLaQAL is a proper subset of the class of languages recognized by KWQFAs with bounded error, i.e. BMM, since BMM contains
+{a{a, b}∗} [5] which is not in BLaQAL.
+The classes of languages recognizable by other models of 1QFAs have not been characterized so well (and it is not clear whether they even have simple characterizations).
+While 1KWQFAs recognize more languages than MCQFAs and LaQFAs, they cannot
+recognize some regular languages [62], for example, {{a, b}∗a} ∈
+/ BMM.
+Researchers [7, 30, 49] have also shown that if a minimal 1DFA has some certain
+properties, called forbidden constructions, then its language cannot be recognized by
+KWQFAs for any or for some error bounds. Using forbidden constructions, it was also
+shown that BMM is not closed under intersection or union [8]. Moreover, KWQFAs can
+recognize more languages if the error bound gets closer to 12 [6].
+NaQFAs and BiQFA share many of the properties of 1KWQFAs in the bounded error
+setting [69, 49]. In [49], it was shown that any language recognized by a BiQFA with
+bounded error is in the language class ER which is a proper subset of REG.
+The relative power of various models has also been studied for subclasses of regular
+languages. For unary regular languages, LaQFAs (and all models that are more powerful
+than LaQFAs) recognize all unary regular languages since all unary regular languages
+are in BG language variety [48]. MCQFAs cannot recognize all unary regular languages
+because they cannot recognize any finite language.
+If we restrict ourselves to R1 languages, another proper subclass of regular languages,
+the computational powers of KWQFA, NaQFA, and BiQFA become equivalent [49].
+
+4.4 Unbounded-error, nondeterminism, and alternation
+In the unbounded error setting, the language recognition power of 1PFAs and 1QFAs (and
+GFAs) are equivalent. This result is followed by combining Theorems 4.2 and 4.3 and the
+simulation of GFAs by 1PFAs given in [95]. That is, due to Theorem 4.2, any language
+recognized by a 1PFA with cutpoint is also recognized by a 1QFA with cutpoint; due to
+Theorem 4.3, any language recognized by a 1QFA is also recognized by a GFA; and any
+language recognized by a GFA with cutpoint is stochastic [95]. Therefore, the class of
+languages recognized by 1QFAs with unbounded error is uS = S ∪ coS [113]. Note that
+it is still an open problem whether S is closed under complementation (page 158 of [80]).
+Unlike in the bounded error case, KWQFAs are sufficient to achieve equivalence with
+1PFAs in the unbounded error setting [109]. For weaker models of QFAs, MCQFAs can
+recognize a proper subset of uS with unbounded error [71, 17] and the class of languages
+recognized by MCQFAs with cutpoint is not closed under complement. Moreover, if a
+1
+for some polynomial
+language is recognized by a MCQFA and the isolation gap is p(n)
+p, then it is a regular language [17]. For LaQFAs, it is still an open problem whether they
+can recognize every stochastic language with a cutpoint.
+
+Automata and Quantum Computing
+
+15
+
+Nondeterministic version of quantum models are defined by fixing the error type to
+positive one-sided unbounded error [3]. That is, all strings accepted with non-zero probability forms the language recognized by the nondeterministic quantum model. Remark
+that the same definition also works for classical models.
+1NQFAs are the nondeterministic version of 1QFAs. NQAL denotes the class of languages recognized by 1NQFAs [110]. The first result on the power of 1NQFAs was that
+1NQFAs can recognize some nonregular languages such as NEQ = {w ∈ {a, b}∗ | |w|a 6=
+|w|b } [17, 30]. A complete characterization of NQAL was given in [110]: NQAL = S6= .
+Similarly to the unbounded-error case, the most restricted 1NQFA model recognizing
+all languages in S6= is nondeterministic KWQFAs. Moreover, since any unary language in
+S6= is regular (Page 89 of [88]), 1NQFAs and 1NFAs have the same computational power
+on unary languages.
+Setting error type to negative one-sided unbounded error (M must accept all x ∈ L
+with probability 1 and reject every x ∈
+/ L with a non-zero probability), we obtain oneway universal QFAs (1UQFAs). A language L is recognized by a 1UQFA if and only if
+its complement is recognizable by a 1NQFA.
+Recently, alternating quantum models were introduced as a generalization of nondeterministic quantum model [105] and it was shown that one-way alternating QFAs with
+ε-moves2 can recognize any recursively enumerable language. Their one-way variants are
+also powerful: they can recognize NP-complete problem SUMSETSUM and some nonregu2
+lar and nonstochastic unary languages like {an | n ⩾ 0} with only two alternations and
+PSPACE-complete problem SUBSETSUM-GAME with unlimited alternation [107, 36].
+
+4.5 Decidability and undecidability results
+In this section, we consider decidability and complexity of various problems involving
+one-way QFAs whose transitions are defined using computable numbers or a subset of
+computable numbers (e.g. rational or algebraic numbers).
+4.5.1 Equivalence and minimization. Two automata A1 and A2 are said to be equivalent if fA1 (x) = fA2 (x) for all input strings x ∈ Σ∗ and they are said to be l-equivalent
+if fA1 (x) = fA2 (x) for all input strings x ∈ Σ∗ of length at most l. It is known that
+[80, 97] any two GFAs G1 and G1 with n1 and n2 states are equivalent if and only if they
+are (n1 + n2 − 1)-equivalent.3 Due to Theorem 4.3, any n-state 1QFA can be converted
+to an equivalent n2 -state GFA. Therefore, it follows that two 1QFAs M1 and M2 with
+n1 and n2 states are equivalent, if and only if they are (n21 + n22 − 1)-equivalent (see also
+[30, 64, 65].) Since there is a polynomial time algorithm for checking the equivalence of
+two GFAs with rational amplitudes [97], this implies that the equivalence of two 1QFAs
+with rational amplitudes can be checked in polynomial time.
+The minimization of a given 1QFA with algebraic numbers is decidable: there is an
+algorithm that takes a 1QFA as an input and then outputs a minimal size 1QFA that is
+equivalent to A [68]. Moreover, the algorithm runs in exponential space if the transitions
+2 The automaton can spend more than one step on each symbol.
+3 The method presented in [97] was given for 1PFAs but it can be easily applied to any linearized one-way
+computational model (see also bilinear machine given in [64]).
+
+16
+
+A. Ambainis, A. Yakaryılmaz
+
+of 1QFAs are rational numbers [67, 82]. In [23], the problem of finding the minimum
+MCQFA for a unary periodic language (given by a vector that describes which strings
+belong to the language) was studied and it was shown that the minimum MCQFA can be
+constructed in exponential time.
+4.5.2 Emptiness problems and problems regarding isolated cutpoint. We continue
+with five emptiness problems and two problems regarding isolated cutpoints. Let A be an
+automaton and λ be a cutpoint.
+(1) Given A and λ ∈ [0, 1], is there any w ∈ Σ∗ , fA (w) ⩾ λ?
+(2) Given A and λ ∈ [0, 1], is there any w ∈ Σ∗ , fA (w) ⩽ λ?
+(3) Given A and λ ∈ [0, 1], is there any w ∈ Σ∗ , fA (w) = λ?
+(4) Given A and λ ∈ [0, 1], is there any w ∈ Σ∗ , fA (w) > λ?
+(5) Given A and λ ∈ [0, 1], is there any w ∈ Σ∗ , fA (w) < λ?
+(6) Given A and λ ∈ (0, 1), is the cutpoint isolated?
+(7) Given A, is there a cutpoint λ′ which is isolated?
+All of these problems are known to be undecidable for 1PFAs with rational-valued transitions and rational cutpoints [80, 16, 19, 26]. Since 1PFAs are a restricted form of
+1QFAs, it follows that Problems 1-6 are undecidable for general 1QFAs with rationalvalued transitions and rational cutpoints, and Problem 7 is undecidable for general 1QFAs
+with rational-valued transitions.
+On the other hand, the situation is not straightforward for the restricted one-way QFAs
+([27, 37]): Problems 1-3 are undecidable for MCQFAs with rational-valued transitions
+and rational cutpoints. However, Problems 4-6 are decidable for MCQFAs with algebraicvalued transitions and algebraic cutpoints, and Problem 7 is decidable for MCQFAs with
+algebraic-valued transitions.
+Furthermore, Problems 1-3 remain undecidable for 13-state MCQFAs with rationalvalued transitions and an input alphabet of size 7 [37] and for 25-state MCQFAs with
+rational-valued transitions and binary alphabet [53]. If algebraic transitions are allowed,
+the number of states in undecidability results for MCQFAs can be decreased by 6.
+For KWQFAs, Problems 4 and 5 are undecidable for algebraic-valued transitions and
+rational cutpoints due to [55, 109, 113, 56]: given a fixed rational cutpoint λ ∈ [0, 1], a
+1PFA P with algebraic-valued transitions can be transformed into a KWQFA M with
+algebraic-valued transitions so that for any string x, if fP (x) < λ, fP (x) = λ, or
+fP (x) > λ, then fM (x) < λ, fM (x) = λ, or fM (x) > λ, respectively. Therefore,
+the undecidability results for 1PFAs imply similar undecidability results for KWQFAs
+regarding Problems 4 and 5 [55, 56].
+Currently, it is open whether Problems 4 and 5 are decidable for LaQFAs and whether
+Problems 6 and 7 are decidable for the models between MCQFAs and general 1QFAs.
+In [34], a promise version of the emptiness problem for 1PFAs was considered, with
+a promise that either the automaton accepts at least one input w ∈ Σ∗ with probability at
+least 1 − ǫ or the accepting probability is at most ǫ for all w ∈ Σ∗ , where ǫ < 12 . It was
+shown that this problem is undecidable for 1PFAs with rational-valued transitions. This
+implies that the same problem is also undecidable for 1QFAs.
+Recently, the emptiness problem for alternating QFAs, i.e. whether the given automaton defines an empty set or not, was examined in [36], with the following results: (i) the
+problem is decidable for NQFAs with algebraic-valued transitions on general alphabet
+
+Automata and Quantum Computing
+
+17
+
+and UQFAs with computable-valued transitions on unary alphabets, but, (ii) it is undecidable for UQFAs on general alphabets and alternating 1QFAs on unary alphabets, where
+both of them are defined with rational-valued transitions.
+4.5.3 Other problems. In [80] (Theorem 6.17 on Page 190), the problem of deciding
+whether the stochastic language recognized by a 1PFA P with cutpoint λ is regular
+(or context-free) was shown to be undecidable for 1PFAs with rational-valued transitions and a rational λ ∈ [0, 1). By the discussion above, the same problem is undecidable for 1QFAs with rational-valued transitions and rational cutpoints and KWQFAs
+with algebraic-valued transitions and rational cutpoints.
+A k-QFA classifier [23] is a system of k QFAs (M1 , . . . , Mk ) on an alphabet Σ such
+that each Mi accepts at least one string with probability bigger than 21 and there is no
+string which is accepted by both Mi and Mj (for some i, j : i 6= j) with probability
+bigger than 12 . A complete k-QFA classifier is a k-QFA classifier such that each string
+is accepted by exactly one QFA with probability bigger than 12 . It was shown that [23]
+for any k ⩾ 2, it is decidable whether (M1 , . . . , Mk ) is a k-QFA classifier. On the other
+hand, it is undecidable whether (M1 , . . . , Mk ) is a complete k-QFA classifier.
+In [25], two polynomial-time algorithms were given for KWQFAs on a unary alphabet
+Σ = {a} with rational-valued transitions. A KWQFA M on a unary alphabet can be
+viewed as a quantum Markov chains. Then, its non halting subspace decomposes into the
+ergodic and the transient subspaces (see [7, 25] for the details). The first algorithm of [25]
+computes the dimensions of these subspaces. The second algorithm
+decides whether fM
+
+has a period of d ⩾ 0 such that ∀k ∈ N fM (ak ) = fM (ak+d ) .
+
+5 Two-way QFAs
+A two-way model has a read-only input tape on which the given input, say w, is written
+between ¢ (the left end-marker) and $ (the right end-marker) symbols. The tape square
+on which w̃i is written is indexed by i, where 1 ⩽ i ⩽ |w̃|.
+A two-way QFA can be defined either as a fully quantum machine or a classical machine augmented with a finite-size quantum register (memory). The former one is known
+as two-way QFAs with quantum head (2QFAs), and the latter one is known as two-way
+QFAs with classical head (2QCFAs).
+
+5.1 2-way QFAs with classical head
+A 2-way QFA with classical head (2QCFA), also known as two-way finite automaton
+with quantum and classical states [11], is a 2-way automaton augmented with a quantum
+register. The computation is governed classically. In each step, the classical part applies
+a quantum operator to the quantum register and then updates itself by also taking into
+account any measurement outcome obtained from the quantum part.
+Formally, a 2QCFA M is an 8-tuple M = (S, Q, Σ, δ, q1 , s1 , sa , sr ), where
+
+18
+
+A. Ambainis, A. Yakaryılmaz
+
+• S is the set of states for the classical part and Q is the set of basis states for the
+quantum part;
+• δ is a transition function (consisting of δc and δq that governs the classical part and
+the quantum part of the machine, described in more detail below);
+• s1 ∈ S and q1 ∈ Q are the initial states for the classical and the quantum part,
+respectively;
+• sa ∈ S and sr ∈ S (sa 6= sr ) are the accepting and the rejecting states, respectively.
+Each step of M has two stages: a quantum transition (δq ) and then a classical transition (δc ):
+• The classical state s ∈ S \ {sa , sr } and the input symbol σ ∈ Σ̃ determine an
+action δq (s, σ) that is performed on the quantum register. This action can be a
+unitary transformation or a projective measurement.
+• Then, the computation is continued classically. If δq (s, σ) was a unitary transformation, then the classical transition δc (s, σ) is an element of S × {−1, 0, +1}
+specifying a new classical state and a movement of the tape head (left, stay, or right,
+respectively). If δq (s, σ) is a measurement, the classical transition δc (s, σ, τ ) is also
+an element of S × {−1, 0, +1} but is defined by a triple (c, σ, τ ) which includes
+the outcome τ of the measurement on the quantum part.
+At the beginning of the computation, the head is on the left end-marker, the classical
+state is s1 , and the quantum state is |q1 i. The computation is terminated and the input is
+accepted (resp., rejected) when M enters the state sa (resp., sr ). It is obvious that any
+2PFA can be simulated by a 2QCFA.
+A particular case of a 2QCFA is a 1QFA with restart: it reads the input from the
+left to the right in one-way mode, and if the computation does not halt (does not enter
+an accepting or rejecting state), the computation is restarted after reading the right endmarker [111]. Its probabilistic counterpart is 1PFA with restart.
+5.1.1 Bounded-error language recognition. Unlike one-way models, 2QCFAs are more
+powerful than their classical counterpart (2PFAs) [11]:
+• the language EQ = {w ∈ a, b∗ | |w|a = |w|b } can be recognized by 2QCFAs in
+polynomial expected time [11] but can be recognized by 2PFAs only in exponential
+time [41, 39];
+• the language PAL = {w ∈ {a, b}∗ | w = wr } can be recognized by 2QCFAs in
+exponential expected time but cannot be recognized by 2PFAs (and more generally,
+by Turing machines with working tape of size o(log n)) at all.
+We now describe 2QCFAs for these languages. Both of them execute an infinite loop
+with two parts. The first part is quantum and the second part is classical.
+2QCFA for EQ: The 2QCFA M1 has two quantum states {q1 , q2 }.
+• In the quantum part, M1 starts in state |q1 i in its quantum register and reads w
+from left to right. Each time when M1 reads a, it applies a rotation by an angle
+√
+2π in the real |q1 i-|q2 i √
+plane in a counterclockwise direction. When M1 reads
+b, it applies a rotation by 2π in the clockwise direction. When M1 arrives at the
+right end-marker, the quantum register is measured in computational basis and the
+input is rejected if |q2 i is observed.
+
+Automata and Quantum Computing
+
+19
+
+If w ∈ EQ, the rotations in both directions cancel out and the final quantum state
+is exactly |q1 i. Therefore, w is never rejected. If w ∈
+/ EQ, then the final quantum
+state is always away from |q1 i-axis and the resulting rejecting probability
+can be
+√
+1
+2π). See Figure
+bounded from below by 2|w|
+2 (a nice property of rotation angle
+2 for some details of the quantum phase.
+
+Figure 2. Some details of the quantum phase, partially taken from [90]
+• In the classical part, M1 performs a classical procedure (two consecutive random
+walks on the string w and then k consecutive coin flips) that results in accepting w
+1
+2
+with probability 2k |w|
+2 for some k > 1, using expected time O(|w| ).
+
+If w ∈ EQ, w is accepted with probability 1 in O(|w|4 ) expected time, through the classical part of the loop. If w ∈
+/ EQ, the probability of rejection in the quantum part of the
+loop is larger than the probability of accepting in the classical part, i.e., w is rejected with
+k
+a probability at least 2k2+2 > 12 in O(|w|2 ) expected time.
+2QCFA for PAL: The 2QCFA M2 has three quantum states {q1 , q2 , q3 }.
+• It starts the quantum phase in state |q1 i and reads the input from left to right twice.
+In the first read, it applies
+
+
+
+
+4 3 0
+4 0 3
+1
+1
+−3 4 0  and Ub =  0 5 0 
+Ua =
+5
+5
+0 0 5
+−3 0 4
+
+for each a and b, respectively. In the second reading, it applies inverses of the
+matrices, respectively. Then, the quantum register is fully measured with respect
+|q1 i, |q2 i, |q3 i and the input is rejected if the result is not |q1 i. So, if w is palindrome, the state ends in |q1 i, i.e.
+Uw|w| · · · Uw2 Uw1 |q1 i,
+|q1 i = Uw−1
+Uw−1
+· · · Uw−1
+1
+|w|
+|w|−1
+
+and so w is not rejected. Otherwise, the computation does not return to the initial
+quantum state exactly, which is away from |q1 i by at least a value exponential small
+in the length of input, and the input is rejected with a probability at least 25−|w| (due
+to the certain properties of Ua and Ub , see [11] for the details).
+• Similar to M1 , in the classical phase the input is accepted with a sufficiently small
+probability, i.e. 2−4k|w| for some k > 1.
+
+20
+
+A. Ambainis, A. Yakaryılmaz
+
+Thus, M2 accepts w with probability 1 if w ∈ PAL and rejects w with a probability at
+16k
+least 16k+25
+> 21 , otherwise.
+We note that M2 only uses rational-valued amplitudes. On the other hand, allowing
+arbitrary real numbers does not help 2PFAs for recognizing PAL [40].
+6=
+These results have been generalized in [111], by showing that all languages in S=
+Q ∪SQ
+can be recognized by KWQFAs with restart (and so by 2QCFAs) with bounded error.
+∗
+S=
+Q contains many well-known languages: EQ, PAL, TWIN = {wcw | w ∈ {a, b} },
+2
+n
+SQAURE = {an bn | n > 0}, POWER = {an b2 | n > 0}, the word problem of finitely
+generated free groups, all polynomial languages defined in [96], and MULT = {x#y#z |
+x, y, z are natural numbers in binary notation and x × y = z}. Note that KWQFA with
+restart is the most restricted of known two-way QFA models that is more powerful than
+its classical counterpart (1PFA with restart).
+5.1.2 Succinctness results. 2QFAs can also be more succinct than their one-way versions and their classical counterparts [111, 118]. The main result is that for any m > 0,
+MODm (the complement of language MODm defined in (4.1)) can be recognized by a 1QFA
+with restart (and so by a 2QCFA) with a constant number of states for any one-sided error
+bound. On the other hand, the number of states required by bounded-error 2PFAs increases when m gets bigger. This also implies a similar gap between 2QCFAs and 1QFA:
+due to Theorem 4.6, a 1QFA with a constant number of states can be simulated by a
+1DFA (and, hence, 2PFA) with a constant number of states (where the constant may be
+exponentially larger).
+5.1.3 Other results. In [86], the simulation of a restricted bounded-error 2QCFA by
+weighted automata was presented. No other “non-trivial” upper bound is known for
+bounded-error 2QCFAs. On the other hand, it was shown that, if we allow arbitrary
+transition amplitudes (including non-computable ones), bounded-error 2QCFAs can recognize uncountably many languages in polynomial time [91]. This is an evidence that
+2QFAs can be very sensitive to the type of numbers that we use as transition amplitudes.
+
+5.2 2-way QFAs with quantum head
+The definition of 2QFAs with quantum head is technically more difficult than that of
+2QCFAs. Because of that, we only provide an informal definition and an example of a
+2QFA and refer the reader to [113] for the remaining details.
+Let M be an n-state 2-way automaton with the set of states {q1 , . . . , qn } and let
+w be an input string. Then, the possible configurations of M on the input w can be
+described by pairs (qi , j) consisting of automaton’s internal state i : 1 ⩽ i ⩽ n and the
+location j : 1 ⩽ j ⩽ |w̃| in the input string which the automaton is currently reading.
+A probabilistic automaton (2PFA) can be in a probability distribution of the classical
+configurations during its computation. A 2QFA can be in a quantum state with the basis
+states |qi , ji. The evolution of a 2QFA governed by quantum operators (measurements,
+unitary operators, superoperators, etc.).
+M evolves according to a transition rule which depends on the current state qi and
+the symbol w̃j at the current location. For example, if M evolves unitarily, we have local
+
+Automata and Quantum Computing
+
+21
+
+transitions of the form
+|q, ji →
+
+X
+
+q′ ∈{q1 ,...,qn },c∈{−1,0,1}
+
+(q,w̃ )
+
+αq′ ,c j |q ′ , j + ci
+
+(5.1)
+
+where c ∈ {−1, 0, 1} corresponds to moving left, staying in place, or moving right and the
+(q,w̃ )
+transition amplitudes αq′ ,c j depend on the state q before the transition and the symbol
+w̃j that the automaton reads. By combining those transitions for all q and j, we get
+an operator UM (w) that describes the evolution of the whole state space of M . This
+operator UM (w) must be unitary for any w ∈ Σ∗ . This implies a finite list of constraints
+(q,w̃ )
+on the amplitudes αq′ ,c j in the local transition rules (5.1), known as the well-formedness
+conditions [103, 113].
+To stop the computation, we perform a partial measurement on QFA’s quantum state
+after each application of UM (w), with respect to the partition of basis states into the set
+of accepting states Qa , the set of rejecting states Qr , and the set of non-halting states Qn .
+If the result is Qa (resp., Qr ), the computation is terminated and the input is accepted
+(resp., rejected). Otherwise, the computation is continued.
+The model above is the first 2QFA model, called two-way KWQFA (2KWQFA) [62].
+Although some interesting results obtained based on this model, it is still open whether
+2KWQFAs can simulate 2PFAs. The Hilbert space can also be evolved by superoperators
+[113], and then 2QFAs can simulate both 2QCFAs and 2PFAs exactly.
+If the head of a 2QFA is not allowed to move to left, then we obtain a 1.5-way QFA
+(1.5QFA). Here “1.5” emphases that the head is quantum and so it can be in more than
+one position during the computation.
+5.2.1 Bounded-error language recognition. As described above, 2QFAs and 1.5QFAs
+can be in a superposition over different locations of the input tape instead of only being
+in a superposition of states. This enables them to use the length of input as a counter. We
+present a linear-time 1.5-way KWQFA for the language EQ using this idea.
+1.5-way KWQFA for EQ: Our automaton M has 5 states {q1 , q2 , qw , qa , qr }, with
+q1 as the starting state. To determine whether the input should be accepted, we use the
+following measurement: if the computation is in a configuration containing qa (resp., qr ),
+then the input is accepted (resp., rejected). Otherwise, the computation goes on.
+The transitions are defined as follows4 :
+• On the left end-marker, the starting state |q1 i is mapped to √12 |q1 i + √12 |q2 i and
+the head of M moves one square to the right;
+• On symbol a, M performs the mapping: |q1 i → |qw i, |qw i → |q1 i, |q2 i → |q2 i,
+staying in place if the state after the transformation is |qw i and moving to the right
+otherwise;
+• On symbol b, M performs the mapping: |q2 i → |qw i, |qw i → |q2 i, |q1 i → |q1 i,
+staying in place if the state after the transformation is |qw i and moving to the right
+otherwise;
+• On the right end-marker, M maps |q1 i → √12 |qa i + √12 |qr i and |q2 i → √12 |qa i −
+√1 |qr i.
+2
+4 All transitions that are omitted below are not significant and so they can be arbitrary by guaranteeing that
+the related operator is unitary.
+
+22
+
+A. Ambainis, A. Yakaryılmaz
+
+An example run of the machine is given in Figure 3, in which each arrow represents a
+single step and it is clear that after the second step the head places on the different squares
+of the tape until the end of the computation where they meet again and so they affect each
+other.
+
+Figure 3. An example run of M
+To analyze how M works, we observe that, on the left end-marker, it enters the state
+
+√1 |q1 i + √1 |q2 i. Every a symbol results in the q1 component moving to the right in 2
+2
+2
+steps and the q2 component moving to the right in 1 step. Every b results in q1 moving to
+
+the right in 1 step and q2 moving to the right in 2 steps. If |w|a = |w|b , the automaton
+reaches the right end-marker at the same time in q1 and q2 . If |w|a 6= |w|b , one of
+components reaches the end-marker earlier than the other.
+In the first case, applying the transformation on the right end-marker gives the configuration
+ 
+
+
+1
+1
+1
+1
+|qa , |w̃|i + |qr , |w̃|i +
+|qa , |w̃|i − |qr , |w̃|i = |qa , |w̃|i.
+2
+2
+2
+2
+So, the input is accepted with probability 1. In the second case, we have |q1 i → √12 |qa i +
+√1 |qr i and |q2 i → √1 |qa i − √1 |qr i applied on the right end-marker at different times
+2
+2
+2
+and, in each case, qa and qr are obtained (observed) with equal probability. Thus, the
+input is accepted with probability 1/2.
+The probability of accepting x ∈
+/ EQ can be decreased from 1/2 to 1/k, for arbitrary
+k [62, 108], with the number of states in the automaton increasing to O(k 2 ) using the
+construction of [62] and to O(logc k) using the construction of [108].
+Currently we do not know any language separating 2QCFAs and 2QFA or any language requiring exponential expected time by two-way QFAs. Also, even though 1.5KWQFAs can recognize non-regular languages (such as EQ), it is not known whether they can
+recognize all regular languages with bounded error. It is also open whether 2QFAs can
+recognize a nonstochastic language with bounded error.
+5.2.2 Unbounded-error language recognition. The superiority of 2QFAs also holds in
+the unbounded error case. The language
+NH = {ax bay1 bay2 b · · · ayt b | x, t, y1 , . . . , yt ∈ Z+ and ∃k (1 ⩽ k ⩽ t), x =
+
+k
+X
+i=1
+
+yi }
+
+Automata and Quantum Computing
+
+23
+
+is nonstochastic [73] but is recognized by 1.5-way KWQFAs [109, 113] (by a generalization of the technique used by 1.5-way KWQFAs for EQ in the previous section).
+This shows a superiority over probabilistic automata because 2PFAs cannot recognize
+any nonstochastic language [59]. In fact, 1.5-way KWQFAs can recognize most of the
+nonstochastic languages defined in literature [38, 45]. We note that the best known upper bound (in terms of complexity classes) for unbounded-error 2QFAs (with algebraicvalued transitions) is P ∩ L2 [100]. (Also see [117] for certain relations and upper bounds
+were defined on the running time of 2KWQFAs under different recognition modes.)
+5.2.3 Undecidability of emptiness problem. 1.5KWQFAs have the capability of checking successive equalities, e.g. an ban ban ban · · · (see [104]). This leads to the following
+result: The emptiness problem for one-way KWQFAs (with algebraic-valued transitions)
+is undecidable [4]. This is shown by a reduction from the halting problem for one-register
+machines, which is known to be undecidable.
+
+6 Other models and results
+Interactive proof systems. An interactive proof system consists of two parties: the
+prover with an unlimited computational power and the verifier who is computationally
+limited. Both parties are given an input w and can send messages to one another. We say
+that a language L has an interactive proof system if there is a strategy for the verifier with
+the following two properties:
+(a) If w ∈ L, there exists a strategy for the prover such that, given a prover who acts
+according to this strategy, the verifier accepts with probability at least 2/3;
+(b) If w ∈
+/ L, then, for any prover’s strategy, the verifier rejects with probability at least
+2/3.
+QIP(M) denotes the class of all languages which have quantum interactive proof systems
+with verifiers of type M . Obviously, if L is recognizable by type M machine, it has a
+trivial interactive proof system in which the verifier runs its algorithm for recognizing L
+and disregards the prover. Thus, QIP(M) can be much larger than M .
+For finite automata, BMM is smaller than REG but QIP(KWQFA) = REG. For 2-way
+automata, we have the upper bound QIPC̃ (poly-time 2KWQFA) ⊆ NP [77].
+In the multiprover version of this model (denoted QMIP(·)), the verifier can ask question to multiple provers and he is guaranteed that the provers do not interact one with
+another. Then, we know [115]:
+• CFL ⊆ QMIPC̃ (KWQFA) ⊆ NE,
+• QMIPC̃ (poly-time 2KWQFA) = NEXP, and
+• every recursively enumerable language is in QMIPC̃ (2KWQFA),
+where CFL and NE are the classes of context-free languages and languages recognizable
+in time 2O(n) .
+It is interesting to compare this with the classical case where NEXP is equal to the
+class of all languages that have interactive proofs with a polynomial time Turing machine
+as the verifier (which is a much stronger model than a 2KWQFA).
+
+24
+
+A. Ambainis, A. Yakaryılmaz
+
+An Arthur-Merlin (AM) proof system is an interactive proof system in which all of the
+verifier’s probabilistic choices are visible to the prover. Thus, the prover has a complete
+information about the computational state of the verifier. In the quantum version, the verifier has a quantum register and the outcome is sent to the prover whenever it is measured
+(so that the prover still has a complete information about the state of the verifier).
+If the verifier is a 2QCFAs and all the transitions are restricted with rational numbers,
+we have the following results [106]:
+• AMQ (2QCFA) contains ASPACE(n) ∪ PSPACE and some NEXP-complete languages,5 and,
+• every recursively enumerable language is in weak-AMQ (2QCFA) where the prefix “weak-” denotes the class of languages having a proof system where the nonmembers do not need to be rejected with high probability.
+The first result should be contrasted with the fact that weak-AM(2PFA) is a proper
+subset of P [40] and the second result should be compared with the fact that every recursively enumerable language is in weak-IP(2PFA) [34] (which is a similar result but uses
+a stronger computational model: IP instead of AM).
+If we allow real and computable real numbers as amplitudes, AMR (2QCFA) contains
+all languages and AM...
+R (2QCFA) is equivalent to the class of recursive languages [91].
+Moreover, it was shown that AMA (poly-time 2QCFA) contains a language that is not in
+AMR (poly-time 2pfa) [120].
+Before closing this item, we also refer [98, 78] for further results on weaker QFA
+verifiers in different set-ups.
+Debate systems. A debate system is a generalization of IP system where the verifier
+interacts with a prover (who tries to convince the verifier that the input w ∈ L) and a
+refuter (who tries to prove that the input w ∈
+/ L). If w ∈ L, there should be a strategy for
+the prover such that, regardless of the refuter’s strategy, the verifier accepts with probability at least 2/3. If w ∈
+/ L, the refuter should have a strategy such that, for any prover’s
+strategy, the verifier rejects with probability at least 2/3.
+The debate version of AMQ (2QCFA) has been shown to contain all recursive languages [114]. In contrast, the debate version of AMQ (2PFA) is a subset of NP [33].
+Postselection. Postselection is the ability to discard some outcomes at the end of
+the computation and to make the decision based on the surviving outcomes (even though
+these outcomes might be occurring with a very small probability). For example, if we
+have a QFA with 3 basis states |q1 i, |q2 i, |q3 i, we could discard the |q3 i part of the final
+state of the QFA and make the accept/reject decision based on the part of the final state
+which consists of |q1 i and |q2 i.
+Postselection is not possible physically but is interesting as a thought experiment. It
+has been studied for both quantum circuits [1] and quantum automata [93, 112]. It has
+been shown that 1QFAs (1PFA) with postselection have the same computational power as
+1QFAs (1PFAs) with restart.
+Closed Timelike curves. Similar to postselection, closed timelike curves (CTC) are
+a model which is impossible physically but is interesting as a thought experiment. A
+CTC is a device which allows to send information back in time, to previous steps of the
+computation, as long as this does not result in inconsistencies in the computation.
+5 The proof of AM
+
+Q (2QCFA) contains PSPACE will appear in an extended version of [106].
+
+Automata and Quantum Computing
+
+25
+
+In [92, 89], 1QFAs and 1PFAs with capability of sending one classical bit from the
+end of the computation to the beginning of the computation through a CTC have been
+examined. Surprisingly, it was shown that such 1QFAs can simulate 1QFAs with postselection, and vice versa, when their transitions are restricted to rational numbers. The
+same result was obtained also for 1PFAs even for arbitrary transition probabilities.
+Promise problems. Promise problems are computational tasks where the goal is to
+separate two languages L1 , L2 : L1 ∩ L2 = ∅ (the automaton must accept all w ∈ L1 ,
+reject all w ∈ L2 and is allowed to output any answer for w ∈
+/ L1 ∪L2 ). Promise problems
+allow to show separations between types of automata which are equivalent in the standard
+setting of recognizing languages.
+For example, for the case of exact computation (no error allowed), 1QFAs cannot be
+more concise than 1PFAs [61]. On the other hand, for promise problems, the superiority
+of 1QFAs over 1PFAs can be unbounded [12]: There exists an infinite family of promise
+problems which can be solved exactly by tuning transition amplitudes of a two-state MCQFA, while the size of the corresponding classical automata grows to infinity [87, 47].
+Recently, this result was generalized in [51] and [24] and further succinctness results
+were given in [121, 46, 52, 118].
+Several results about the computational power of QFAs on promise problems have
+been obtained in [87, 46]. For example, there is a binary promise problem solvable by
+a Las Vegas 1QFA and a unary promise problem solvable by a bounded-error 1QFA,
+but none of them can be solved by any bounded-error 1PFA. (For language recognition,
+these one-way models are of equal power and recognize exactly REG.) Moreover, there
+is a promise problem solvable by an exact 2QCFA in exponential expected time, but not
+by any bounded-error sublogarithmic space probabilistic Turing machine. No similar
+example is known for language recognition. Additionally, in [119], a particular subset
+of promise problems solvable by one-way classical and quantum models was considered,
+and certain separation results were obtained.
+Advice. In computation with advice, the automaton is provided extra information
+called advice which depends on the length of the input w but not on the particular w.
+Advice is a well known notion in the complexity theory but has not been studied
+much in the setting of QFAs. The first model was introduced in [116] but was based on
+KWQFAs6 . As a result, some regular languages were shown not to be recognized by this
+model, with advice of up to linear size. Recently, this framework was generalized in [63],
+which can be a good starting point for studying QFAs with advice.
+Determining the bias of a coin. In [2], the state complexities of 1QFAs and 1PFAs
+were compared for the problem of determining the bias of a coin, if it is known that the
+coin lands “heads” with probability either p or p + ǫ for some known p and ǫ. A 1QFA
+can distinguish between the two cases with a number
+ that is independent of p
+ of states
+states [2]. Recently, it was
+and ǫ while any bounded-error 1PFA must have Ω p(1−p)
+ǫ
+also proven
+ that [60]
+ there is no 1QFA having the following property: simultaneously for
+every ǫ∈ − 12 , 21 \ {0}, given access to an infinite sequence of coin tosses, if the coin is
+1
+2 + ǫ -biased then the automaton spends at least 2/3 of its time guessing “biased”, and
+if the coin is fair then the automaton spends at least 2/3 of its time guessing “fair”.
+6 Also, note that the usage of advice defined in [116] is different than the usual definition for classical finite
+automata [35].
+
+26
+
+A. Ambainis, A. Yakaryılmaz
+
+Learning theory. The problem of learning probability distributions produced by QFA
+sources, i.e. identifying an unknown QFA from examples of its behavior, was studied
+in [58]. Information-theoretically, QFAs can be learned from a polynomial number of
+examples, similarly to classical hidden Markov models. However, computationally, the
+problem is as hard as learning noisy parities, a very difficult problem in computational
+learning theory [28].
+
+7 Concluding remarks
+Quantum finite automata (QFAs) combine the theory of finite automata with quantum
+computing. Many different models and aspects of QFAs have been studied and this research topic has recently celebrated its 20 years.
+There are some contexts in which quantum models are of the same power as classical
+models (for example, language recognition power of 1QFAs with bounded or unbounded
+error) or have similar properties as classical models (for example, undecidability of the
+emptiness problem for 1-way automata). On the other hand, there are many cases in which
+quantum models are superior to classical models (for example, succinctness results for almost all models, nondeterministic language recognition power, and language recognition
+power of 2QFAs with bounded or unbounded error). Besides these, there are still many
+research questions that are still open.
+Among restricted one-way QFAs, LaQFAs deserve a special attention. Moreover, it
+would be interesting to find more examples where QFAs can be substantially smaller
+than DFAs and PFAs. So far, most examples are periodic languages over unary alphabet
+(e.g. [7, 70]) or their simple generalizations. This raises a question: for what non-unary
+languages do QFAs achieve a quantum advantage in a non-trivial way? Investigating the
+state complexity of “non-uniform” QFAs is another interesting direction (see [99] as an
+example to measure the state complexity (of the restricted QFA models) by fixing the
+input length).
+Compared to one-way models, two-way QFA models have not been widely examined and there are many open problems related to them. Furthermore, promise problems,
+interactive proof systems, and computation with advice are new hot topics having connections with computational complexity. Further research on them will likely provide
+new insights. Another promising direction is connections of QFAs with algebra and using
+algebraic methods to study the power of QFAs.
+
+Acknowledgements
+We are grateful to A. C. Cem Say and John Watrous for their helpful comments on the
+subject matter of this chapter. We would like to thank our anonymous referee for his/her
+helpful comments and Narad Nampersad for his suggestions to improve the language of
+the chapter. We also would like to thank Marats Golovkins, Paulo Mateus, Emmanuel Je-
+
+Automata and Quantum Computing
+
+27
+
+andel, Carlo Mereghetti, Farid Ablayev, Daowen Qiu, Jozef Gruska, and James P. Crutchfield for kindly answering our questions.
+A. Yakaryılmaz would like to sincerely thank his PhD. supervisor A. C. Cem Say
+for introducing him to the field of quantum computation and for their collaborative work
+where he has learned a lot and gained a great deal of experience.
+A. Ambainis was supported by ERC Advanced Grant MQC and FP7 FET Proactive project QALGO. A. Yakaryılmaz was partially supported by TÜBİTAK with grant
+108E142, CAPES with grant 88881.030338/2013-01, ERC Advanced Grant MQC, and
+FP7 FET projects QALGO and QCS.
+======================================================
+
+References
+[1] S. Aaronson. Quantum computing, postselection, and probabilistic polynomial-time. Proceedings of the Royal Society A, 461(2063):3473–3482, 2005. 24
+[2] S. Aaronson and A. Drucker. Advice coins for classical and quantum computation. In ICALP
+(1), volume 6755 of LNCS, pages 61–72, 2011. (arXiv:1101.5355). 25
+[3] L. M. Adleman, J. DeMarrais, and M.-D. A. Huang. Quantum computability. SIAM Journal
+on Computing, 26(5):1524–1540, 1997. 15
+[4] M. Amano and K. Iwama. Undecidability on quantum finite automata. In STOC, pages
+368–375. ACM, 1999. 23
+[5] A. Ambainis, M. Beaudry, M. Golovkins, A. Ķikusts, M. Mercer, and D. Thérien. Algebraic
+results on quantum automata. Theory of Computing Systems, 39(1):165–188, 2006. 9, 14
+[6] A. Ambainis, R. Bonner, R. Freivalds, and A. Ķikusts. Probabilities to accept languages
+by quantum finite automata. In COCOON, volume 1627 of LNCS, pages 174–183, 1999.
+(arXiv:quant-ph/9904066). 14
+[7] A. Ambainis and R. Freivalds. 1-way quantum finite automata: strengths, weaknesses and
+generalizations. In FOCS, pages 332–341. IEEE, 1998. (arXiv:quant-ph/9802062). 11, 12,
+14, 17, 26
+[8] A. Ambainis, A. Ķikusts, and M. Valdats. On the class of languages recognizable by 1-way
+quantum finite automata. In STACS, volume 2010 of LNCS, pages 75–86, 2001. 14
+[9] A. Ambainis and N. Nahimovs. Improved constructions of quantum automata. Theoretical
+Computer Science, 410(20):1916–1922, 2009. 8, 12, 13
+[10] A. Ambainis, A. Nayak, A. Ta-Shma, and U. Vazirani. Dense quantum coding and quantum
+finite automata. Journal of the ACM, 49(4):496–511, 2002. 13
+[11] A. Ambainis and J. Watrous. Two–way finite automata with quantum and classical states.
+Theoretical Computer Science, 287(1):299–311, 2002. 17, 18, 19
+[12] A. Ambainis and A. Yakaryılmaz. Superiority of exact quantum automata for promise problems. Information Processing Letters, 112(7):289–291, 2012. 25
+[13] D. Bacon and W. van Dam. Recent progress in quantum algorithms. Communications of the
+ACM, 53(2):84–93, 2010. 2
+
+28
+
+A. Ambainis, A. Yakaryılmaz
+
+[14] A. Belovs, A. Rosmanis, and J. Smotrovs. Multi-letter reversible and quantum finite automata. In Developments in Language Theory, volume 4588 of LNCS, pages 60–71, 2007.
+13, 14
+[15] E. Bernstein and U. Vazirani. Quantum complexity theory. SIAM Journal on Computing,
+26(5):1411–1473, 1997. 6, 11
+[16] A. Bertoni. The solution of problems relative to probabilistic automata in the frame of the
+formal languages theory. In GI-4.Jahrestagung, volume 26 of LNCS, pages 107–112, 1975.
+16
+[17] A. Bertoni and M. Carpentieri. Analogies and differences between quantum and stochastic
+automata. Theoretical Computer Science, 262(1-2):69–81, 2001. 14, 15
+[18] A. Bertoni and M. Carpentieri. Regular languages accepted by quantum automata. Information and Computation, 165(2):174–182, 2001. 13
+[19] A. Bertoni, G. Mauri, and M. Torelli. Some recursive unsolvable problems relating to isolated
+cutpoints in probabilistic automata. In ICALP, volume 52 of LNCS, pages 87–94, 1977. 16
+[20] A. Bertoni, C. Mereghetti, and B. Palano. Lower bounds on the size of quantum automata
+accepting unary languages. In ICTCS, volume 2841, pages 86–96, 2003. 13
+[21] A. Bertoni, C. Mereghetti, and B. Palano. Quantum computing: 1-way quantum automata.
+In DLT, volume 2710 of LNCS, pages 1–20, 2003. 9
+[22] A. Bertoni, C. Mereghetti, and B. Palano. Small size quantum automata recognizing some
+regular languages. Theoretical Computer Science, 340(2):394–407, 2005. 13
+[23] A. Bertoni, C. Mereghetti, and B. Palano. Some formal tools for analyzing quantum automata. Theoretical Computer Science, 356(1):14–25, 2006. 16, 17
+[24] M. P. Bianchi, C. Mereghetti, and B. Palano. Complexity of promise problems on classical and quantum automata. In Gruska Festschrift, volume 8808 of LNCS, pages 161–175.
+Springer International Publishing, 2014. 25
+[25] M. P. Bianchi and B. Palano. Behaviours of unary quantum automata. Fundamenta Informaticae, 104(1–2):1–15, 2010. 17
+[26] V. D. Blondel and V. Canterini. Undecidable problems for probabilistic automata of fixed
+dimension. Theory of Computing Systems, 36(3):231–245, 2003. 16
+[27] V. D. Blondel, E. Jeandel, P. Koiran, and N. Portier. Decidable and undecidable problems
+about quantum automata. SIAM Journal on Computing, 34(6):1464–1473, 2005. 16
+[28] A. Blum, M. Furst, M. Kearns, and R. J. Lipton. Cryptographic primitives based on hard
+learning problems. In CRYPTO, volume 773 of LNCS, pages 278–291, 1993. 26
+[29] J. Bourgain. Estimates on exponential sums related to Diffie-Hellman distributions. Geometric and Functional Analysis, 15:1–34, 2005. 13
+[30] A. Brodsky and N. Pippenger. Characterizations of 1-way quantum finite automata. SIAM
+Journal on Computing, 31(5):1456–1478, 2002. 13, 14, 15
+[31] H. Buhrman, R. Cleve, J. Watrous, and R. de Wolf. Quantum fingerprinting. Physical Review
+Letters, 87(16):167902, 2001. 11
+[32] M. P. Ciamarra. Quantum reversibility and a new model of quantum automaton. In FCT,
+volume 2138 of LNCS, pages 376–379, 2001. 9
+[33] A. Condon. Computational Models of Games. MIT Press, 1989. 24
+[34] A. Condon and R. J. Lipton. On the complexity of space bounded interactive proofs (extended abstract). In FOCS, pages 462–467, 1989. 16, 24
+
+Automata and Quantum Computing
+
+29
+
+[35] C. Damm and M. Holzer. Automata that take advice. In MFCS, pages 149–158, 1995. 25
+[36] H. G. Demirci, M. Hirvensalo, K. Reinhardt, A. C. C. Say, and A. Yakaryılmaz. Classical and
+quantum realtime alternating automata. In NCMA, volume 282 of books@ocg.at. Austrian
+Computer Society, 2014. 15, 16
+[37] H. Derksen, E. Jeandel, and P. Koiran. Quantum automata and algebraic groups. Journal of
+Symbolic Computation, 39(3–4):357–371, 2005. 16
+[38] P. D. Diêu. Criteria of representability of languages in probabilistic automata. Cybernetics
+and Systems Analysis, 13(3):352–364, 1977. 23
+[39] C. Dwork and L. Stockmeyer. A time complexity gap for two-way probabilistic finite-state
+automata. SIAM Journal on Computing, 19(6):1011–1123, 1990. 7, 18
+[40] C. Dwork and L. Stockmeyer. Finite state verifiers I: The power of interaction. Journal of
+the ACM, 39(4):800–828, 1992. 20, 24
+[41] R. Freivalds. Probabilistic two-way machines. In MFCS, volume 118 of LNCS, pages 33–45,
+1981. 7, 18
+[42] R. Freivalds. Super-exponential size advantage of quantum finite automata with mixed states.
+In ISAAC, volume 5369 of LNCS, pages 931–942, 2008. 13
+[43] R. Freivalds and M. Karpinski. Lower space bounds for randomized computation. In ICALP,
+volume 820 of LNCS, pages 580–592, 1994. 6
+[44] R. Freivalds, M. Ozols, and L. Mančinska. Improved constructions of mixed state quantum
+automata. Theoretical Computer Science, 410(20):1923–1931, 2009. 13
+[45] R. Freivalds, A. Yakaryılmaz, and A. C. C. Say. A new family of nonstochastic languages.
+Information Processing Letters, 110(10):410–413, 2010. 23
+[46] A. Gainutdinova and A. Yakaryılmaz. Unary probabilistic and quantum automata on promise
+problems. Quantum Information Processing, 17(2):28, 2018. 25
+[47] V. Geffert and A. Yakaryılmaz. Classical automata on promise problems. Discrete Mathematics & Theoretical Computer Science, 17(2):157–180, 2015. 25
+[48] M. Golovkins, private communication, September 2012. 14
+[49] M. Golovkins, M. Kravtsev, and V. Kravcevs. Quantum finite automata and probabilistic
+reversible automata: R-trivial idempotent languages. In MFCS, volume 6907 of LNCS, pages
+351–363, 2011. 9, 14
+[50] L. Grover. A fast quantum mechanical algorithm for database search. In STOC, pages 212–
+219. ACM, 1996. 2
+[51] J. Gruska, D. Qiu, and S. Zheng. Potential of quantum finite automata with exact acceptance.
+Int. J. Found. Comput. Sci., 26(3):381–398, 2015. 25
+[52] J. Gruska, D. Qiu, and S. Zheng. Generalizations of the distributed Deutsch-Jozsa promise
+problem. Mathematical Structures in Computer Science, 27(3):311–331, 2017. 25
+[53] M. Hirvensalo. Improved undecidability results on the emptiness problem of probabilistic
+and quantum cut-point languages. In SOFSEM, volume 4362 of LNCS, pages 309–319,
+2007. 16
+[54] M. Hirvensalo. Quantum automata with open time evolution. International Journal of Natural Computing, 1(1):70–85, 2010. 9, 10
+[55] E. Jeandel. Indécidabilité sur les automates quantiques. Master’s thesis, ENS Lyon, 2002.
+Available at ftp://ftp.ens-lyon.fr/pub/LIP/Rapports/DEA/DEA2002/DEA2002-02.ps.gz. 16
+
+30
+
+A. Ambainis, A. Yakaryılmaz
+
+[56] E. Jeandel, private communication, September 2012. 16
+[57] S. Jordan. Quantum algorithm zoo. Available at http://math.nist.gov/quantum/zoo/. 2
+[58] B. Juba. On learning finite-state quantum sources. Quantum Information & Computation,
+12(1–2):105–118, 2012. 26
+[59] J. Kaņeps. Stochasticity of the languages acceptable by two-way finite probabilistic automata. Discrete Mathematics and Applications, 1:405–421, 1991. 23
+[60] G. Kindler and R. O’Donnell. Quantum automata cannot detect biased coins, even in the
+limit. In ICALP, volume 80 of LIPIcs, pages 15:1–15:8. Schloss Dagstuhl–Leibniz-Zentrum
+fuer Informatik, 2017. 25
+[61] H. Klauck. On quantum and probabilistic communication: Las Vegas and one-way protocols. In STOC, pages 644–651. ACM, 2000. (See also http://www.thi.informatik.unifrankfurt.de/ klauck/stoc00.ps). 25
+[62] A. Kondacs and J. Watrous. On the power of quantum finite state automata. In FOCS, pages
+66–75. IEEE, 1997. 2, 6, 9, 11, 14, 21, 22
+[63] U. Küçük, A. C. C. Say, and A. Yakaryılmaz. Finite automata with advice tapes. International Journal of Foundations of Computer Science, 25(8):987–1000, 2014. 25
+[64] L. Li and D. Qiu. Determining the equivalence for one-way quantum finite automata. Theoretical Computer Science, 403(1):42–51, 2008. 10, 15
+[65] L. Li and D. Qiu. A note on quantum sequential machines. Theoretical Computer Science,
+410(26):2529–2535, 2009. 15
+[66] L. Li, D. Qiu, X. Zou, L. Li, L. Wu, and P. Mateus. Characterizations of one-way general
+quantum finite automata. Theoretical Computer Science, 419:73–91, 2012. 11
+[67] P. Mateus, private communication, October 2012. 16
+[68] P. Mateus, D. Qiu, and L. Li. On the complexity of minimizing probabilistic and quantum
+automata. Information and Computation, 218:36–53, 2012. 15
+[69] M. Mercer. Lower bounds for generalized quantum finite automata. In LATA, volume 5196
+of LNCS, pages 373–384, 2008. 14
+[70] C. Mereghetti and B. Palano. On the size of one-way quantum finite automata with periodic
+behaviors. Theoretical Informatics and Applications, 36(3):277–291, 2002. 13, 26
+[71] C. Moore and J. P. Crutchfield. Quantum automata and quantum grammars. Theoretical
+Computer Science, 237(1-2):275–306, 2000. 2, 9, 10, 13, 14
+[72] M. Mosca. Quantum algorithms. In Encyclopedia of Complexity and Systems Science, pages
+7088–7118. Springer, 2010. 2
+[73] M. Nasu and N. Honda. A context-free language which is not acceptable by a probabilistic
+automaton. Information and Control, 18(3):233–236, 1971. 23
+[74] A. Nayak. Optimal lower bounds for quantum automata and random access codes. In FOCS,
+pages 369–376. IEEE, 1999. 9
+[75] C. Negrevergne, T. S. Mahesh, C. A. Ryan, M. Ditty, F. C.-R. W. Power1, N. Boulant,
+T. Havel, D. G. Cory, and R. Laflamme. Benchmarking quantum control methods on a
+12-qubit system. Physical Review Letters, 96(17):170501, 2006. 10
+[76] M. A. Nielsen and I. L. Chuang. Quantum Computation and Quantum Information. Cambridge University Press, 10th edition, 2011. 3
+
+Automata and Quantum Computing
+
+31
+
+[77] H. Nishimura and T. Yamakami. An application of quantum finite automata to interactive
+proof systems. Journal of Computer and System Sciences, 75(4):255–269, 2009. 23
+[78] H. Nishimura and T. Yamakami. Interactive proofs with quantum finite automata. Theor.
+Comput. Sci., 568:1–18, 2015. 24
+[79] K. Paschen. Quantum finite automata using ancilla qubits. Technical report, University of
+Karlsruhe, 2000. (http://digbib.ubka.uni-karlsruhe.de/volltexte/documents/756861). 9
+[80] A. Paz. Introduction to Probabilistic Automata. Academic Press, New York, 1971. 6, 14,
+15, 16, 17
+[81] J.-E. Pin. On the language accepted by finite reversible automata. In ICALP, volume 267 of
+LNCS, pages 237–249, 1987. 13
+[82] D. Qiu, private communication, October 2012. 16
+[83] D. Qiu, L. Li, P. Mateus, and J. Gruska. Handbook on Finite State based Models and Applications, chapter Quantum finite automata. Discrete Mathematics and Its Applications.
+Chapman and Hall/CRC, 2012. 3
+[84] D. Qiu and S. Yu. Hierarchy and equivalence of multi-letter quantum finite automata. Theoretical Computer Science, 410(30-32):3006–3017, 2009. 14
+[85] M. O. Rabin. Probabilistic automata. Information and Control, 6:230–243, 1963. 6, 7
+[86] M. V. P. Rao and V. Vinay. Quantum finite automata and weighted automata. Technical
+Report arXiv:quant-ph/0701144, 2007. 20
+[87] J. Rashid and A. Yakaryılmaz. Implications of quantum automata for contextuality. In CIAA,
+volume 8587 of LNCS, pages 318–331. Springer, 2014. (arXiv:1404.2761). 25
+[88] A. Salomaaa and M. Soittola. Automata-Theoretic Aspects of Formal Power Series. Texts
+and monographs in computer science. Springer-Verlag (New York), 1978. 15
+[89] A. C. C. Say and A. Yakaryılmaz. Computation with multiple CTCs of fixed length and
+width. Natural Computing, 11(4):579–594, 2012. 25
+[90] A. C. C. Say and A. Yakaryılmaz. Quantum finite automata: A modern introduction. In
+Gruska Festschrift, volume 8808 of LNCS, pages 208–222. Springer International Publishing, 2014. 3, 10, 19
+[91] A. C. C. Say and A. Yakaryılmaz. Magic coins are useful for small-space quantum machines.
+Quantum Information & Computation, 17(11&12):1027–1043, 2017. 20, 24
+[92] A. C. C. Say and A. Yakaryılmaz. Computation with narrow CTCs. In UC, volume 6714 of
+LNCS, pages 201–211, 2011. 25
+[93] O. Scegulnaja-Dubrovska, L. Lāce, and R. Freivalds. Postselection finite quantum automata.
+In UC, volume 6079 of LNCS, pages 115–126, 2010. 24
+[94] P. W. Shor. Algorithms for quantum computation: Discrete logarithms and factoring. In
+FOCS, pages 124–134. IEEE, 1994. 2
+[95] P. Turakainen. Generalized automata and stochastic languages. Proceedings of the American
+Mathematical Society, 21:303–309, 1969. 6, 7, 14
+[96] P. Turakainen. Rational stochastic automata in formal language theory. In Discrete Mathematics, volume 7 of Banach Center Publications, pages 31–44. PWN, 1982. 20
+[97] W.-G. Tzeng. A polynomial-time algorithm for the equivalence of probabilistic automata.
+SIAM Journal on Computing, 21(2):216–227, 1992. 15
+
+32
+
+A. Ambainis, A. Yakaryılmaz
+
+[98] M. Villagra and T. Yamakami. Quantum and reversible verification of proofs using constant
+memory space. In Theory and Practice of Natural Computing, volume 8890 of LNCS, pages
+144–156. Springer, 2014. 24
+[99] M. Villagra and T. Yamakami. Quantum state complexity of formal languages. In DCFS,
+volume 9118 of LNCS, pages 280–291. Springer, 2015. 26
+[100] J. Watrous. On the complexity of simulating space-bounded quantum computations. Computational Complexity, 12(1-2):48–84, 2003. 6, 10, 23
+[101] J. Watrous. Encyclopedia of Complexity and System Science, chapter Quantum computational complexity. Springer, 2009. Also available at arXiv:0804.3401. 3
+[102] J. Watrous, private communication, May 2009. 3
+[103] A. Yakaryılmaz. Classical and Quantum Computation with Small Space Bounds. PhD thesis,
+Boğaziçi University, 2011. (arXiv:1102.0378). 21
+[104] A. Yakaryılmaz. Superiority of one-way and realtime quantum machines. Theoretical Informatics and Applications, 46(4):615–641, 2012. 23
+[105] A. Yakaryılmaz. One-counter verifiers for decidable languages. In CSR, volume 7913 of
+LNCS, pages 366–377. Springer, 2013. 15
+[106] A. Yakaryılmaz. Public qubits versus private coins. In The Proceedings of Workshop
+on Quantum and Classical Complexity, pages 45–60. University of Latvia Press, 2013.
+ECCC:TR12-130. 24
+[107] A. Yakaryılmaz. Quantum alternation. Lobachevskii Journal of Mathematics, 37(6):637–
+649, 2016. 15
+[108] A. Yakaryılmaz and A. C. C. Say. Efficient probability amplification in two-way quantum
+finite automata. Theoretical Computer Science, 410(20):1932–1941, 2009. 22
+[109] A. Yakaryılmaz and A. C. C. Say. Languages recognized with unbounded error by quantum
+finite automata. In CSR, volume 5675 of LNCS, pages 356–367, 2009. 14, 16, 23
+[110] A. Yakaryılmaz and A. C. C. Say. Languages recognized by nondeterministic quantum finite
+automata. Quantum Information and Computation, 10(9&10):747–770, 2010. 15
+[111] A. Yakaryılmaz and A. C. C. Say. Succinctness of two-way probabilistic and quantum finite
+automata. Discrete Mathematics and Theoretical Computer Science, 12(4):19–40, 2010. 18,
+20
+[112] A. Yakaryılmaz and A. C. C. Say. Probabilistic and quantum finite automata with postselection. Technical Report arXiv:1102.0666, 2011. (A preliminary version of this paper appeared
+in the Proceedings of Randomized and Quantum Computation (satellite workshop of MFCS
+and CSL 2010), pages 14-24, 2010.). 24
+[113] A. Yakaryılmaz and A. C. C. Say. Unbounded-error quantum computation with small space
+bounds. Information and Computation, 279(6):873–892, 2011. 9, 10, 14, 16, 20, 21, 23
+[114] A. Yakaryılmaz, A. C. C. Say, and H. G. Demirci. Debates with small transparent quantum
+verifiers. International Journal of Foundations of Computer Science, 27(2):283, 2016. 24
+[115] T. Yamakami. Constant-space quantum interactive proofs against multiple provers. Information Processing Letters, 114(11):611–619, 2014. 23
+[116] T. Yamakami. One-way reversible and quantum finite automata with advice. Information
+and Computation, 239:122–148, 2014. 25
+[117] T. Yamakami. Complexity bounds of constant-space quantum computation - (extended abstract). In DLT, volume 9168 of LNCS, pages 426–438. Springer, 2015. 23
+
+Automata and Quantum Computing
+
+33
+
+[118] S. Zheng, J. Gruska, and D. Qiu. On the state complexity of semi-quantum finite automata.
+In LATA, volume 8370 of LNCS, pages 601–612, 2014. 20, 25
+[119] S. Zheng, L. Li, D. Qiu, and J. Gruska. Promise problems solved by quantum and classical
+finite automata. Theor. Comput. Sci., 666:48–64, 2017. 25
+[120] S. Zheng, D. Qiu, and J. Gruska. Power of the interactive proof systems with verifiers modeled by semi-quantum two-way finite automata. Information and Computation, 241:197–
+214, 2015. 24
+[121] S. Zheng, D. Qiu, J. Gruska, L. Li, and P. Mateus. State succinctness of two-way finite
+automata with quantum and classical states. Theoretical Computer Science, 499:98–112,
+2013. 25
+[122] S. Zheng, D. Qiu, L. Li, and J. Gruska. One-way finite automata with quantum and classical
+states. In H. Bordihn, M. Kutrib, and B. Truthe, editors, Languages Alive: Essays dedicated
+to Jürgen Dassow on the Occasion of His 65th Birthday, volume 7300 of LNCS Festschrift
+Series, pages 273–290. Springer, 2012. 9
+
+

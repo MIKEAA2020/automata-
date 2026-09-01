@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ICALP.2021.118",
+    "name": "Optimal Spectral-Norm Approximate Minimization of Weighted",
+    "snippet": "by B Balle · 2021 · Cited by 9 — Approximate Minimization of Weighted Finite Automata Authors Borja Balle, Clara Lacroce. Logo , Prakash Panangaden. Logo , Doina Precup, Guillaume Rabusseau",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/optimal-approximate-minimization-of-oneletter-weighted-finite-automata/9733CA9F3079F9186103F8515DE86D96",
+    "name": "Optimal approximate minimization of one-letter weighted",
+    "snippet": "by C Lacroce · 2024 · Cited by 2 — In this paper, we study the approximate minimization problem of weighted finite automata (WFAs): to compute the best possible approximation ... Read more",
+    "host_name": "www.cambridge.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://dagstuhl.sunsite.rwth-aachen.de/opus/frontdoor.php?source_opus=14187",
+    "name": "Optimal Spectral-Norm Approximate Minimization",
+    "snippet": "by B Balle · 2021 · Cited by 9 — . ICALP .2021.118, author = {Balle, Borja and Lacroce, Clara and Panangaden, Prakash and Precup, Doina and Rabusseau, Guillaume}, title = {{ Optimal . Minimization ...",
+    "host_name": "dagstuhl.sunsite.rwth-aachen.de",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2102.06860",
+    "name": "Optimal Spectral-Norm Approximate Minimization of",
+    "snippet": "by B Balle · 2021 · Cited by 9 — Optimal Spectral-Norm Approximate Minimization of Weighted Finite Automata . Authors :Borja Balle, Clara Lacroce, Prakash Panangaden, Doina Precup ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://claralacroce.github.io/static/LacroceClara_PhDthesis.pdf",
+    "name": "The approximate minimization problem of weighted finite",
+    "snippet": "by C Lacroce · 2022 · Cited by 1 — In this thesis, we leverage classical results from the theory of Hankel operators to tackle the approximate minimization problem and its applications to ... Read more 193 pages",
+    "host_name": "claralacroce.github.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v153/lacroce21a.html",
+    "name": "Extracting Weighted Automata for Approximate Minimization in",
+    "snippet": "by C Lacroce · 2021 · Cited by 8 — In this paper we study the approximate minimization problem for language modelling. We assume we are given some language model as a black box. Read more",
+    "host_name": "proceedings.mlr.press",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drops.dagstuhl.de/entities/volume/LIPIcs-volume-198",
+    "name": "48th International Colloquium on Automata, Languages, and",
+    "snippet": "by N Bansal · 2021 — Complete Volume Authors: Nikhil Ban sal, Emanuela Merelli, and James Worrell Languages, and Programming (ICALP 2021).",
+    "host_name": "drops.dagstuhl.de",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dblp.org/rec/conf/lics/BallePP15",
+    "name": "A Canonical Form for Weighted Automata and Applications",
+    "snippet": "Mar 24, 2023 — Borja Balle, Prakash Panangaden, Doina Precup: A Canonical Form for Weighted Automata and Applications to Approximate Minimization . Read more",
+    "host_name": "dblp.org",
+    "rank": 7,
+    "date": "Mar 24, 2023",
+    "favicon": ""
+  }
+]

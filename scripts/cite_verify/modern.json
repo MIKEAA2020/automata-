@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://arxiv.org/abs/0903.0050",
+    "name": "Succinctness of two-way probabilistic and quantum finite",
+    "snippet": "by A Yakaryilmaz · 2009 · Cited by 93 — View a PDF of the paper titled Succinctness of two-way probabilistic and quantum finite automata , by Abuzer Yakaryilmaz and A. C. Cem Say . View ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1406.4048v1",
+    "name": "Quantum finite automata: A modern introduction",
+    "snippet": "In this paper, we present several simple QFA algorithms which demonstrate the superiority of quantum computation over classical computation.",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/263163499_Quantum_Finite_Automata_A_Modern_Introduction",
+    "name": "Quantum Finite Automata: A Modern Introduction",
+    "snippet": "Jul 10, 2026 — We present five examples where quantum finite automata (QFAs) outperform their classical counterparts. Cem Say and Abuzer Yakaryılmaz??",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "Jul 10, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1102.0666v1",
+    "name": "Probabilistic and quantum finite automata with postselection'",
+    "snippet": "We prove that endowing a real-time probabilistic or quantum computer with the ability of postselection increases its computational power.",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1404.1689v4",
+    "name": "Potential of quantum finite automata with exact acceptance",
+    "snippet": "Nov 25, 2014 — In this paper the potential of quantum finite automata producing outcomes not only with a (high) probability, but with certainty (so called ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "Nov 25, 2014",
+    "favicon": ""
+  },
+  {
+    "url": "https://inspirehep.net/legacy/arxiv/1406.4048",
+    "name": "Quantum finite automata: A modern introduction",
+    "snippet": "by AC Say · Cited by 93 — We present five examples where quantum finite automata (QFAs) outperform their classical counterparts. : A modern introduction A.C. Cem Say … a ...",
+    "host_name": "inspirehep.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]

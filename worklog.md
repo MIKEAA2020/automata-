@@ -74,3 +74,27 @@ Stage Summary:
 - Novelty verdict: framework-level High (comparative syntax, type discipline, kappa ladder, protocol stratification have no found prior art); 3 citation gaps to close before submission.
 - Remaining known items: C2 (font shape warning), C3 (abstract length), D1-D3, E1-E5.
 - Next: git commit + push to https://github.com/MIKEAA2020/automata- with user PAT.
+
+---
+Task ID: 4
+Agent: Super Z (main agent)
+Task: Respond in English; always commit and push. (1) Add the three flagged citations + two positioning sentences; (2) dedicated proof check of the multiletter-AAK theorem; (3) proceed with remaining review items C2/C3, D1-D3, E1-E5. Version policy: freeze v3, new file v4.
+
+Work Log:
+- Reconstructed state from worklog + GitHub repo (local repo in sync with origin; v3 already pushed at commit 0b3a982).
+- Verified citation metadata via fresh web searches + page fetches (scripts/cite_verify/): Shalizi & Crutchfield ACS 5(2002)1-5 (NOT Still — novelty report misattribution corrected); Marzen & Crutchfield arXiv:1412.2859 (title "Circumventing the Curse of Dimensionality in Prediction: Causal Rate-Distortion for Infinite-Order Markov Processes"); Geiger/Petrov/Kubin/Koeppl IEEE TAC 60(4)2015 1010-1022; Geiger CSR 59(2026)100802; Balle/Lacroce/Panangaden/Precup/Rabusseau ICALP 2021 LIPIcs 198:118 (second author is Lacroce, not "Giraud" — corrected); Lacroce/Balle/Panangaden/Rabusseau MSCS 34(2024)807-833.
+- D1 resolved: Ambainis ISAAC'96 Theorem 1 exponent form 2^{n log log n / log n} confirmed via Springer's own snippet + RG abstract rendering (token order [n][log log n][log n]); Freivalds 2008 IJFCS 19(3):565-580 (two versions, strongest on Artin's conjecture) added for the conditional-exponential nuance; Freivalds 1981/82 O(log^2 n/log log n) and Ambainis's own 2014 recollection cross-checked.
+- Read v3 in full at line level (18,026 lines, sequential chunks; all sections).
+- AAK proof check (thm:aak-multiletter + thm:aak-equality + thm:spectral-grounding + prop:grounding-finite-section + prop:grounding-structured-zero + cor:hankel-strict + open:hankel-multiletter): all sound; verified conjugation algebra (US=S+U => US*U*=S+*), prefix-shift isometry of multiplicity |Sigma| with 1-d deficiency, AAK statement form vs Peller, Kronecker degree, indexing; 2 precision fixes (hypothesis tied to U H_nu U*, displayed transport chain) + 2 observations (intertwining redundancy, automatic one-letter unitary) applied in v4. External corroboration: Lacroce LearnAut 2022 (arXiv:2206.00172) states multiletter AAK constructive step "remains open".
+- Froze v3 (chmod 444, md5 eec4bad177aa51d45fd5c5685811740b); created v4.
+- scripts/apply_v4_fixes.py (22 edits), _pass2.py (22 edits), _pass3.py (4 edits), + 1 micro-fix: citations + positioning sentences, C2 (\textup-wrapped \textsc), C3 (abstract 3 paragraphs, 0 displays; intro temporal-protocols paragraph), D1, D2 (softened availability), D3 (rem:computational-conventions + 5 cross-refs), E1 (5 remark/corollary consolidations + 2 prefix cross-refs), E2 (def:dmax-exponent / thm:grounding-alpha-infty as anchors), E3, E4, E5 (tau_K intertwining definition, attainment, sufficiently-large-M, Myhill-Nerode standardization, comma splice), AAK precision edits, 7 new bibitems.
+- scripts/verify_v4.py: 47/47 PASS. Tectonic compile: exit 0, 233 pages, 1.09 MiB, 0 undefined refs, scit warning GONE, 9 overfull boxes (8 inherited v3 baseline, 1 new 3.5pt cosmetic in inserted paragraph, worst 12.4pt pre-existing).
+- Generated download/aak_multiletter_proof_check.docx via scripts/gen_aakcheck.js (docx skill reloaded: SKILL.md, routes/create.md, references/common-rules.md, design-system.md R1, docx-js-core.md, toc.md, scenes/report.md; R1 cover, 3-section numbering, TOC); add_toc_placeholders.py exit 0; fix_footers_novelty.py applied; postcheck.py 0 errors; LibreOffice render 10 pp.; VLM check: "No defects".
+- Updated download/README.md manifest with v4 entry + change log.
+
+Stage Summary:
+- v3 frozen; v4 = current latest: download/automata_unified_revised_v4.tex/.pdf.
+- New deliverable: download/aak_multiletter_proof_check.docx (verdict: sound, precision edits applied).
+- All review items A1-A6, B1-B7, C1-C3, D1-D3, E1-E5 now CLOSED (v2: A1+B; v3: A2-A6+C1+bold Sigma; v4: citations+positioning+C2/C3+D+E+AAK precision).
+- Citation corrections to the novelty report: IB-causal-states paper = Shalizi & Crutchfield; arXiv 1412.2859 = Marzen & Crutchfield; ICALP 2021 authors = Balle, Lacroce, Panangaden, Precup, Rabusseau.
+- Next: git add + commit + push all created documents to MIKEAA2020/automata-.

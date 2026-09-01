@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1412.2859",
+    "name": "Causal Rate-Distortion for Infinite-Order Markov Processes",
+    "snippet": "by S Marzen · 2014 · Cited by 46 — We circumvent the curse of dimensionality in rate-distortion analysis of infinite-order processes by casting predictive rate-distortion ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1412.2859v1",
+    "name": "Causal Rate-Distortion forInfinite-Order Markov Processes",
+    "snippet": "Aug 11, 2026 — Section V then describes a new algorithm for computing lossy causal states and illustrates its performance on infinite - order Markov processes . Read more",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "Aug 11, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://escholarship.org/content/qt99h4064g/qt99h4064g.pdf",
+    "name": "Predictive Rate-Distortion for Infinite-Order Markov Processes",
+    "snippet": "by S Marzen · 2014 · Cited by 46 — The challenge is compounded for infinite - order Markov processes , since conditioning on finite sequences cannot capture all of their past ... 28 pages",
+    "host_name": "escholarship.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1711.09853v1",
+    "name": "The Time-Invariant Multidimensional Gaussian Sequential",
+    "snippet": "We revisit the sequential rate - distortion (SRD) trade-off problem for vector-valued Gauss- Markov sources with mean-squared error distortion constraints.",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scispace.com/papers/correction-to-predictive-rate-distortion-for-infinite-order-l0w03x7cvk",
+    "name": "Correction to: Predictive Rate-Distortion for Infinite-Order",
+    "snippet": "This work casts predictive rate - distortion objective functions in terms of the forward- and reverse-time causal states of computational mechanics,",
+    "host_name": "scispace.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/0808.4156",
+    "name": "[0808.4156] Rate-Distortion via Markov Chain Monte Carlo",
+    "snippet": "by S Jalali · 2008 · Cited by 36 — We propose an approach to lossy source coding, utilizing ideas from Gibbs sampling, simulated annealing, and Markov Chain Monte Carlo (MCMC). Read more",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/0808.4156v2",
+    "name": "Rate-Distortion via Markov Chain Monte Carlo",
+    "snippet": "We show that the proposed algorithms achieve optimum rate - distortion performance in the limits of large number of iterations, and sequence length, when employed ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/1104.0862v3",
+    "name": "Causal Rate Distortion Function and Relations to Filtering",
+    "snippet": "In this paper, the intersection of rate distortion function (RDF) and realizable filtering theory is established by invoking the additional assumption that the ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

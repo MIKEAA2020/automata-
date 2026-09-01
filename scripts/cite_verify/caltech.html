@@ -1,0 +1,1230 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="S9ahhSTJNJrGXH8CLzN9O29lYE5sbaFyCLkdCXHU24U"/>
+
+    
+    
+    <meta name="generator" content="InvenioRDM 13.1"/>
+
+    
+    
+    
+  
+    <meta name="description" content="We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best classical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing Holevo&#39;s theorem from a new perspective. In the existing implementations of quantum computing, qubits are a very expensive resource. Moreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization is impossible in NMR quantum computing, which is perhaps the most advanced implementation of quantum computing at the moment. This motivates the study of quantum computation with restricted memory and no reinitialization, that is, of quantum finite automata. It was known that there are languages that are recognized by quantum finite automata with sizes exponentially smaller than those of corresponding classical automata. Here, we apply our technique to show the surprising result that there are languages for which quantum finite automata take exponentially more states than those of corresponding classical automata." />
+    <meta name="citation_title" content="Dense Quantum Coding and Quantum Finite Automata" />
+    <meta name="citation_author" content="Ambainis, Andris" />
+    <meta name="citation_author" content="Nayak, Ashwin" />
+    <meta name="citation_author" content="Ta-Shma, Amnon" />
+    <meta name="citation_author" content="Vazirani, Umesh" />
+    <meta name="citation_abstract_html_url" content="https://authors.library.caltech.edu/records/36h91-pre89" />
+    <meta property="og:title" content="Dense Quantum Coding and Quantum Finite Automata" />
+    <meta property="og:description" content="We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best classical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing Holevo&#39;s theorem from a new perspective. In the existing implementations of quantum computing, qubits are a very expensive resource. Moreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization is impossible in NMR quantum computing, which is perhaps the most advanced implementation of quantum computing at the moment. This motivates the study of quantum computation with restricted memory and no reinitialization, that is, of quantum finite automata. It was known that there are languages that are recognized by quantum finite automata with sizes exponentially smaller than those of corresponding classical automata. Here, we apply our technique to show the surprising result that there are languages for which quantum finite automata take exponentially more states than those of corresponding classical automata." />
+    <meta property="og:url" content="https://authors.library.caltech.edu/records/36h91-pre89" />
+    <meta property="og:site_name" content="CaltechAUTHORS" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:title" content="Dense Quantum Coding and Quantum Finite Automata" />
+    <meta name="twitter:description" content="We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best classical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing Holevo&#39;s theorem from a new perspective. In the existing implementations of quantum computing, qubits are a very expensive resource. Moreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization is impossible in NMR quantum computing, which is perhaps the most advanced implementation of quantum computing at the moment. This motivates the study of quantum computation with restricted memory and no reinitialization, that is, of quantum finite automata. It was known that there are languages that are recognized by quantum finite automata with sizes exponentially smaller than those of corresponding classical automata. Here, we apply our technique to show the surprising result that there are languages for which quantum finite automata take exponentially more states than those of corresponding classical automata." />
+
+<link rel="canonical" href="https://authors.library.caltech.edu/records/36h91-pre89">
+      
+      
+      <title>Dense Quantum Coding and Quantum Finite Automata | CaltechAUTHORS</title>
+      <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico"/>
+          <link rel="apple-touch-icon" sizes="120x120" href="/static/apple-touch-icon-120.png"/>
+          <link rel="apple-touch-icon" sizes="152x152" href="/static/apple-touch-icon-152.png"/>
+          <link rel="apple-touch-icon" sizes="167x167" href="/static/apple-touch-icon-167.png"/>
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-180.png"/>
+    
+      <link rel="stylesheet" href="/static/dist/css/3526.9fccb348ccc770df5e47.css" />
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    
+  </head>
+
+  <body data-invenio-config='{"isMathJaxEnabled": "//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"}'  itemscope itemtype="http://schema.org/WebPage" data-spy="scroll" data-target=".scrollspy-target">
+      <a id="skip-to-main" class="ui button primary ml-5 mt-5 skip-link" href="#main">Skip to main</a>
+      <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+    
+
+<div>
+<header class="theme header">
+      
+      
+    
+      
+    
+    
+  <div class="outer-navbar">
+    <div class="ui container invenio-header-container">
+      <nav id="invenio-nav" class="ui menu borderless stackable p-0">
+        <div class="item logo p-0">
+                  <a class="logo-link" href="/">
+                    <img class="ui image rdm-logo"
+                          src="/static/images/CaltechAUTHORS-by-Caltech-Library-blue-with-padding.svg"
+                          alt="CaltechAUTHORS"/>
+                  </a>
+        </div>
+
+        <div id="rdm-burger-toggle">
+          <button
+            id="rdm-burger-menu-icon"
+            class="ui button transparent"
+            aria-label="Menu"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="invenio-menu"
+          >
+            <span class="navicon"></span>
+          </button>
+        </div>
+
+        <div
+          role="menu"
+          id="invenio-menu"
+          aria-labelledby="rdm-burger-menu-icon"
+          class="ui fluid menu borderless mobile-hidden"
+        >
+          <button
+            id="rdm-close-burger-menu-icon"
+            class="ui button transparent"
+            aria-label="Close menu"
+          >
+            <span class="navicon"></span>
+          </button>
+    
+        
+          
+        
+    
+      <div class="item p-0 search-bar">
+        <div id="header-search-bar" data-options='[{"key": "communities", "text": "In this community", "value": "/communities/caltechauthors/records"}, {"key": "records", "text": "All CaltechAUTHORS", "value": "/search"}]'>
+          <div class="ui fluid search">
+            <div class="ui icon input">
+              <input
+                autocomplete="off"
+                aria-label="Search records"
+                placeholder="Search records..."
+                type="text"
+                tabindex="0"
+                class="prompt"
+                value=""
+              >
+              <button class="ui icon button right-floated search" aria-label="Search">
+                <i aria-hidden="true" class="search icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="right menu item">
+                  <div class=" item">
+                    <a role="menuitem" href="/communities">Communities</a>
+                  </div>
+
+              
+                <div class="item">
+                  <a role="menuitem" href="/me/uploads">My dashboard</a>
+                </div>
+              
+              <div class="item">
+        <form>
+            <a href="/login/?next=/records/36h91-pre89"
+               class="ui secondary basic button">
+                <i class="sign-in icon"></i>
+                Log in</a>
+            
+        </form>
+              </div>
+            </div>
+        </div>
+      </nav>
+  </div>
+</header>
+</div>
+
+  <main id="main">
+    <div class="invenio-page-body">
+  <section id="banners" class="banners" aria-label="Information banner">
+    <!-- COMMUNITY HEADER: hide it when displaying the submission request -->
+    
+      
+        
+        
+          <div
+            class="ui fluid container page-subheader-outer with-submenu compact ml-0-mobile mr-0-mobile">
+            <div class="ui container page-subheader">
+              <div class="page-subheader-element">
+                <img
+                  class="ui rounded image community-header-logo"
+                  src="https://authors.library.caltech.edu/api/communities/aedd135f-227e-4fdf-9476-5b3fd011bac6/logo"
+                  alt=""
+                />
+              </div>
+              <div class="page-subheader-element">
+                <div class="ui header">
+                  <a
+                  href="/communities/caltechauthors/records" class="ui small header">
+                    CaltechAUTHORS
+                  </a>
+                  <!-- Show the icon for subcommunities -->
+                  
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        
+      
+    
+    <!-- /COMMUNITY HEADER -->
+
+    <!-- PREVIEW HEADER -->
+    
+    <!-- /PREVIEW HEADER -->
+
+  </section>
+  
+  <div class="ui container">
+    <div class="ui relaxed grid mt-5">
+      <div class="two column row top-padded">
+
+        
+        <article
+          class="sixteen wide tablet eleven wide computer column main-record-content">
+          
+
+              
+
+              
+
+              <section id="record-info"
+                       aria-label="Publication date and version number">
+                <div class="ui grid middle aligned">
+                  <div class="two column row">
+                    <div class="left floated left aligned column">
+                      <span class="ui" title="Publication date">
+                        Published July 2002
+                      </span>
+                      <span
+                        class="label text-muted"> | Version public</span>
+                    </div>
+                    <div class="right floated right aligned column">
+
+                      
+                        <span role="note"
+                              class="ui label horizontal small neutral mb-5"
+                              aria-label="Resource type"
+                        >
+                          Journal Article
+                        </span>
+                      
+
+                      <span role="note"
+                            class="ui label horizontal small access-status metadata-only mb-5"
+                            data-tooltip="No files are available for this record."
+                            data-inverted=""
+                            aria-label="Access status"
+                      >
+                        
+                          <i class="icon tag"
+                             aria-hidden="true"></i>
+                        
+                        <span
+                          aria-label="No files are available for this record.">
+                          Metadata-only
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="ui divider hidden"></div><section id="record-title-section"
+                       aria-label="Record title and creators">
+                <h1 id="record-title"
+                    class="wrap-overflowing-text">Dense Quantum Coding and Quantum Finite Automata</h1>
+
+                
+                  <section id="creatibutors"
+                           aria-label="Creators and contributors">
+
+<div class="ui grid">
+  
+    <div class="row ui accordion affiliations">
+      <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+          <h3 class="sr-only">Creators</h3>
+          <ul class="creatibutors">
+            
+  
+  <li class="creatibutor-wrap separated">
+    <a class="ui creatibutor-link"
+      
+        data-tooltip="Institute for Advanced Study"
+      
+      href="/search?q=metadata.creators.person_or_org.name:%22Ambainis,+Andris%22"
+    >
+
+      <span class="creatibutor-name">Ambainis, Andris</span><sup class="font-tiny">1</sup></a>
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+    
+      <i class="user icon"></i>
+    
+  
+</li>
+  
+  <li class="creatibutor-wrap separated">
+    <a class="ui creatibutor-link"
+      
+        data-tooltip="California Institute of Technology"
+      
+      href="/search?q=metadata.creators.person_or_org.name:%22Nayak,+Ashwin%22"
+    >
+
+      <span class="creatibutor-name">Nayak, Ashwin</span><sup class="font-tiny">2</sup></a>
+  
+
+  
+    
+      
+        
+        <a href="https://orcid.org/0000-0002-3924-0875"
+           aria-label="Nayak, Ashwin's ORCID profile"
+           title="Nayak, Ashwin's ORCID profile">
+          <img class="ml-5 inline-id-icon"
+               src="/static/images/orcid.svg"
+               alt="ORCID icon"/>
+        </a>
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+</li>
+  
+  <li class="creatibutor-wrap separated">
+    <a class="ui creatibutor-link"
+      
+        data-tooltip="Tel Aviv University"
+      
+      href="/search?q=metadata.creators.person_or_org.name:%22Ta-Shma,+Amnon%22"
+    >
+
+      <span class="creatibutor-name">Ta-Shma, Amnon</span><sup class="font-tiny">3</sup></a>
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+    
+      <i class="user icon"></i>
+    
+  
+</li>
+  
+  <li class="creatibutor-wrap separated">
+    <a class="ui creatibutor-link"
+      
+        data-tooltip="University of California, Berkeley"
+      
+      href="/search?q=metadata.creators.person_or_org.name:%22Vazirani,+Umesh%22"
+    >
+
+      <span class="creatibutor-name">Vazirani, Umesh</span><sup class="font-tiny">4</sup></a>
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+    
+      <i class="user icon"></i>
+    
+  
+</li>
+  
+          </ul>
+      </div>
+
+        
+        
+          
+<div class="ui sixteen wide tablet three wide computer column title right aligned bottom aligned">
+  <button class="ui affiliations-button trigger button mini mr-0"
+          aria-controls="creators-affiliations"
+          data-open-text="Show affiliations"
+          data-close-text="Hide affiliations"
+          aria-expanded="false"
+  >
+    Show affiliations
+  </button>
+</div>
+
+<section class="ui sixteen wide column content" id="creators-affiliations" aria-label="Affiliations for creators">
+  <ul>
+    
+    <li>
+      1.
+
+      
+        
+        
+
+        
+          <a class="no-text-decoration"
+             href="https://ror.org/00f809463"
+             aria-label="Institute for Advanced Study's ROR profile"
+             title="Institute for Advanced Study's ROR profile"
+          >
+            <img class="ml-5 inline-id-icon"
+                 src="/static/images/ror-icon.svg"
+                 alt="ROR icon"
+            />
+          </a>
+        
+      
+
+      Institute for Advanced Study
+    </li>
+  
+    <li>
+      2.
+
+      
+        
+        
+
+        
+          <a class="no-text-decoration"
+             href="https://ror.org/05dxps055"
+             aria-label="California Institute of Technology's ROR profile"
+             title="California Institute of Technology's ROR profile"
+          >
+            <img class="ml-5 inline-id-icon"
+                 src="/static/images/ror-icon.svg"
+                 alt="ROR icon"
+            />
+          </a>
+        
+      
+
+      California Institute of Technology
+    </li>
+  
+    <li>
+      3.
+
+      
+        
+        
+
+        
+          <a class="no-text-decoration"
+             href="https://ror.org/04mhzgx49"
+             aria-label="Tel Aviv University's ROR profile"
+             title="Tel Aviv University's ROR profile"
+          >
+            <img class="ml-5 inline-id-icon"
+                 src="/static/images/ror-icon.svg"
+                 alt="ROR icon"
+            />
+          </a>
+        
+      
+
+      Tel Aviv University
+    </li>
+  
+    <li>
+      4.
+
+      
+        
+        
+
+        
+          <a class="no-text-decoration"
+             href="https://ror.org/01an7q238"
+             aria-label="University of California, Berkeley's ROR profile"
+             title="University of California, Berkeley's ROR profile"
+          >
+            <img class="ml-5 inline-id-icon"
+                 src="/static/images/ror-icon.svg"
+                 alt="ROR icon"
+            />
+          </a>
+        
+      
+
+      University of California, Berkeley
+    </li>
+  
+
+    </ul>
+</section>
+
+        
+
+    </div>
+  
+
+  
+</div>
+                  </section>
+                
+              </section><div style="margin-top: 20px">
+	      <section id="citation" aria-label="Record citation">
+
+<div id="recordCitation" data-record='{"access": {"embargo": {"active": false, "reason": null}, "files": "restricted", "record": "public", "status": "metadata-only"}, "created": "2023-08-19T09:44:12.099072+00:00", "custom_fields": {"journal:journal": {"issn": "0004-5411", "issue": "4", "pages": "496-511", "title": "Journal of the ACM", "volume": "49"}}, "deletion_status": {"is_deleted": false, "status": "P"}, "expanded": {"parent": {"access": {"owned_by": {"active": null, "blocked_at": null, "confirmed_at": null, "email": "", "id": "13", "is_current_user": false, "links": {"avatar": "https://authors.library.caltech.edu/api/users/13/avatar.svg", "records_html": "https://authors.library.caltech.edu/search/records?q=parent.access.owned_by.user:13", "self": "https://authors.library.caltech.edu/api/users/13"}, "profile": {"affiliations": "", "full_name": "Automation"}, "username": "automation", "verified_at": null}}, "communities": {"default": {"access": {"review_policy": "closed", "visibility": "public"}, "id": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "links": {"logo": "https://authors.library.caltech.edu/api/communities/aedd135f-227e-4fdf-9476-5b3fd011bac6/logo"}, "metadata": {"description": "CaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously through library and campus efforts.", "title": "CaltechAUTHORS", "type": null}, "slug": "caltechauthors"}}}}, "files": {"enabled": false}, "id": "36h91-pre89", "is_draft": false, "is_published": true, "links": {"access": "https://authors.library.caltech.edu/api/records/36h91-pre89/access", "access_grants": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/grants", "access_links": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/links", "access_request": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/request", "access_users": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/users", "communities": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities", "communities-suggestions": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities-suggestions", "draft": "https://authors.library.caltech.edu/api/records/36h91-pre89/draft", "files": "https://authors.library.caltech.edu/api/records/36h91-pre89/files", "latest": "https://authors.library.caltech.edu/api/records/36h91-pre89/versions/latest", "latest_html": "https://authors.library.caltech.edu/records/36h91-pre89/latest", "media_files": "https://authors.library.caltech.edu/api/records/36h91-pre89/media-files", "parent": "https://authors.library.caltech.edu/api/records/t08ch-28129", "parent_html": "https://authors.library.caltech.edu/records/t08ch-28129", "preview_html": "https://authors.library.caltech.edu/records/36h91-pre89?preview=1", "requests": "https://authors.library.caltech.edu/api/records/36h91-pre89/requests", "reserve_doi": "https://authors.library.caltech.edu/api/records/36h91-pre89/draft/pids/doi", "self": "https://authors.library.caltech.edu/api/records/36h91-pre89", "self_html": "https://authors.library.caltech.edu/records/36h91-pre89", "self_iiif_manifest": "https://authors.library.caltech.edu/api/iiif/record:36h91-pre89/manifest", "self_iiif_sequence": "https://authors.library.caltech.edu/api/iiif/record:36h91-pre89/sequence/default", "versions": "https://authors.library.caltech.edu/api/records/36h91-pre89/versions"}, "media_files": {"enabled": false}, "metadata": {"additional_descriptions": [{"description": "\u00a9 2002 ACM. \n\nRECEIVED JULY 2000; REVISED MAY 2002; ACCEPTED MAY 2002. \n\nA. Ambainis was supported by the Berkeley Fellowship for Graduate Studies and, in part, by NSF grant CCR-9800024; A. Nayak and U. Vazirani were supported by JSEP grant FDP 49620-97-1-0220-03-98 and NSF grant CCR-9800024. \n\nWe would like to thank Ike Chuang for showing us the 3-into-1 quantum encoding; Dorit Aharonov, Ike Chuang, Michael Nielsen, Steven Rudich, and Avi Wigderson for many interesting discussions; and the anonymous referees for their helpful comments.", "type": {"id": "additional", "title": {"de": "Sonstige", "en": "Additional Information"}}}], "creators": [{"affiliations": [{"id": "00f809463", "identifiers": [{"identifier": "00f809463", "scheme": "ror"}], "name": "Institute for Advanced Study"}], "person_or_org": {"family_name": "Ambainis", "given_name": "Andris", "identifiers": [{"identifier": "Ambainis-A", "scheme": "clpid"}], "name": "Ambainis, Andris", "type": "personal"}}, {"affiliations": [{"id": "05dxps055", "identifiers": [{"identifier": "05dxps055", "scheme": "ror"}], "name": "California Institute of Technology"}], "person_or_org": {"family_name": "Nayak", "given_name": "Ashwin", "identifiers": [{"identifier": "Nayak-A", "scheme": "clpid"}, {"identifier": "0000-0002-3924-0875", "scheme": "orcid"}], "name": "Nayak, Ashwin", "type": "personal"}}, {"affiliations": [{"id": "04mhzgx49", "identifiers": [{"identifier": "04mhzgx49", "scheme": "ror"}], "name": "Tel Aviv University"}], "person_or_org": {"family_name": "Ta-Shma", "given_name": "Amnon", "identifiers": [{"identifier": "Ta-Shma-A", "scheme": "clpid"}], "name": "Ta-Shma, Amnon", "type": "personal"}}, {"affiliations": [{"id": "01an7q238", "identifiers": [{"identifier": "01an7q238", "scheme": "ror"}], "name": "University of California, Berkeley"}], "person_or_org": {"family_name": "Vazirani", "given_name": "Umesh", "identifiers": [{"identifier": "Vazirani-Umesh-V", "scheme": "clpid"}], "name": "Vazirani, Umesh", "type": "personal"}}], "dates": [{"date": "2016-04-19", "description": "Created from EPrint\u0027s datestamp field", "type": {"id": "created", "title": {"de": "Erstellt", "en": "Created"}}}, {"date": "2021-11-10", "description": "Created from EPrint\u0027s last_modified field", "type": {"id": "updated", "title": {"de": "Aktualisiert", "en": "Updated"}}}], "description": "We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best\nclassical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing\nHolevo\u0027s theorem from a new perspective.\n\nIn the existing implementations of quantum computing, qubits are a very expensive resource.\nMoreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization\nis impossible in NMR quantum computing, which is perhaps the most advanced implementation of\nquantum computing at the moment. This motivates the study of quantum computation with restricted\nmemory and no reinitialization, that is, of quantum finite automata. It was known that there are\nlanguages that are recognized by quantum finite automata with sizes exponentially smaller than those\nof corresponding classical automata. Here, we apply our technique to show the surprising result that\nthere are languages for which quantum finite automata take exponentially more states than those of\ncorresponding classical automata.", "funding": [{"funder": {"name": "Berkeley Fellowship for Graduate Studies"}}, {"award": {"number": "CCR-9800024", "title": {"en": " "}}, "funder": {"name": "NSF"}}, {"award": {"number": "FDP 49620-97-1-0220-03-98", "title": {"en": " "}}, "funder": {"name": "Joint Science Education Project (JSEP)"}}], "identifiers": [{"identifier": "66276", "scheme": "eprintid"}, {"identifier": "10.1145/581771.581773", "scheme": "doi"}, {"identifier": "CaltechAUTHORS:20160419-112812430", "scheme": "resolverid"}], "publication_date": "2002-07", "publisher": "Association for Computing Machinery", "related_identifiers": [{"identifier": "10.1145/581771.581773", "relation_type": {"id": "describes", "title": {"de": "Beschreibt", "en": "Describes"}}, "scheme": "doi"}, {"identifier": "http://arxiv.org/abs/quant-ph/9804043", "relation_type": {"id": "describes", "title": {"de": "Beschreibt", "en": "Describes"}}, "scheme": "url"}], "resource_type": {"id": "publication-article", "title": {"de": "Zeitschriftenartikel", "en": "Journal Article"}}, "rights": [{"description": {"en": "No commercial reproduction, distribution, display or performance rights in this work are provided."}, "title": {"en": "Other"}}], "title": "Dense Quantum Coding and Quantum Finite Automata", "version": "public"}, "parent": {"access": {"owned_by": {"user": "13"}, "settings": {"accept_conditions_text": null, "allow_guest_requests": false, "allow_user_requests": false, "secret_link_expiration": 0}}, "communities": {"default": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "entries": [{"access": {"member_policy": "open", "members_visibility": "public", "record_submission_policy": "open", "review_policy": "closed", "visibility": "public"}, "children": {"allow": false}, "created": "2023-08-18T22:58:03.731607+00:00", "custom_fields": {}, "deletion_status": {"is_deleted": false, "status": "P"}, "id": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "links": {}, "metadata": {"description": "CaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously through library and campus efforts.", "page": "\u003cp\u003eCaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously as departments and library staff add available and recently published documents.\u003c/p\u003e", "title": "CaltechAUTHORS"}, "revision_id": 7, "slug": "caltechauthors", "updated": "2025-10-07T17:50:38.400491+00:00"}], "ids": ["aedd135f-227e-4fdf-9476-5b3fd011bac6"]}, "id": "t08ch-28129", "pids": {}}, "pids": {"oai": {"identifier": "oai:authors.library.caltech.edu:36h91-pre89", "provider": "oai"}}, "revision_id": 8, "stats": {"all_versions": {"data_volume": 0.0, "downloads": 0, "unique_downloads": 0, "unique_views": 110, "views": 110}, "this_version": {"data_volume": 0.0, "downloads": 0, "unique_downloads": 0, "unique_views": 110, "views": 110}}, "status": "published", "ui": {"access_status": {"description_l10n": "No files are available for this record.", "embargo_date_l10n": null, "icon": "tag", "id": "metadata-only", "message_class": "", "title_l10n": "Metadata-only"}, "additional_descriptions": [{"description": "\u00a9 2002 ACM. \n\nRECEIVED JULY 2000; REVISED MAY 2002; ACCEPTED MAY 2002. \n\nA. Ambainis was supported by the Berkeley Fellowship for Graduate Studies and, in part, by NSF grant CCR-9800024; A. Nayak and U. Vazirani were supported by JSEP grant FDP 49620-97-1-0220-03-98 and NSF grant CCR-9800024. \n\nWe would like to thank Ike Chuang for showing us the 3-into-1 quantum encoding; Dorit Aharonov, Ike Chuang, Michael Nielsen, Steven Rudich, and Avi Wigderson for many interesting discussions; and the anonymous referees for their helpful comments.", "type": {"id": "additional", "title_l10n": "Additional Information"}}], "created_date_l10n_long": "August 19, 2023", "creators": {"affiliations": [[1, "Institute for Advanced Study", "00f809463"], [2, "California Institute of Technology", "05dxps055"], [3, "Tel Aviv University", "04mhzgx49"], [4, "University of California, Berkeley", "01an7q238"]], "creators": [{"affiliations": [[1, "Institute for Advanced Study"]], "person_or_org": {"family_name": "Ambainis", "given_name": "Andris", "identifiers": [{"identifier": "Ambainis-A", "scheme": "clpid"}], "name": "Ambainis, Andris", "type": "personal"}}, {"affiliations": [[2, "California Institute of Technology"]], "person_or_org": {"family_name": "Nayak", "given_name": "Ashwin", "identifiers": [{"identifier": "Nayak-A", "scheme": "clpid"}, {"identifier": "0000-0002-3924-0875", "scheme": "orcid"}], "name": "Nayak, Ashwin", "type": "personal"}}, {"affiliations": [[3, "Tel Aviv University"]], "person_or_org": {"family_name": "Ta-Shma", "given_name": "Amnon", "identifiers": [{"identifier": "Ta-Shma-A", "scheme": "clpid"}], "name": "Ta-Shma, Amnon", "type": "personal"}}, {"affiliations": [[4, "University of California, Berkeley"]], "person_or_org": {"family_name": "Vazirani", "given_name": "Umesh", "identifiers": [{"identifier": "Vazirani-Umesh-V", "scheme": "clpid"}], "name": "Vazirani, Umesh", "type": "personal"}}]}, "custom_fields": {"journal:journal": {"issn": "0004-5411", "issue": "4", "pages": "496-511", "title": "Journal of the ACM", "volume": "49"}}, "dates": [{"date": "2016-04-19", "description": "Created from EPrint\u0027s datestamp field", "type": {"id": "created", "title_l10n": "Created"}}, {"date": "2021-11-10", "description": "Created from EPrint\u0027s last_modified field", "type": {"id": "updated", "title_l10n": "Updated"}}], "description_stripped": "We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best\nclassical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing\nHolevo\u0027s theorem from a new perspective.\n\nIn the existing implementations of quantum computing, qubits are a very expensive resource.\nMoreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization\nis impossible in NMR quantum computing, which is perhaps the most advanced implementation of\nquantum computing at the moment. This motivates the study of quantum computation with restricted\nmemory and no reinitialization, that is, of quantum finite automata. It was known that there are\nlanguages that are recognized by quantum finite automata with sizes exponentially smaller than those\nof corresponding classical automata. Here, we apply our technique to show the surprising result that\nthere are languages for which quantum finite automata take exponentially more states than those of\ncorresponding classical automata.", "funding": [{"funder": {"name": "Berkeley Fellowship for Graduate Studies"}}, {"award": {"number": "CCR-9800024", "title_l10n": " "}, "funder": {"name": "NSF"}}, {"award": {"number": "FDP 49620-97-1-0220-03-98", "title_l10n": " "}, "funder": {"name": "Joint Science Education Project (JSEP)"}}], "is_draft": false, "publication_date_l10n_long": "July 2002", "publication_date_l10n_medium": "Jul 2002", "publishing_information": {"journal": "Journal of the ACM, 49(4), 496-511, ISSN: 0004-5411, 2002."}, "related_identifiers": [{"identifier": "10.1145/581771.581773", "relation_type": {"id": "describes", "title_l10n": "Describes"}, "scheme": "doi"}, {"identifier": "http://arxiv.org/abs/quant-ph/9804043", "relation_type": {"id": "describes", "title_l10n": "Describes"}, "scheme": "url"}], "resource_type": {"id": "publication-article", "title_l10n": "Journal Article"}, "rights": [{"description_l10n": "No commercial reproduction, distribution, display or performance rights in this work are provided.", "title_l10n": "Other"}], "updated_date_l10n_long": "April 16, 2026", "version": "public"}, "updated": "2026-04-16T05:34:42.802482+00:00", "versions": {"index": 2, "is_latest": true}}'
+  data-styles='[["chicago-author-date", "Chicago"], ["modern-language-association", "MLA"], ["ieee", "IEEE"], ["apa", "APA"], ["american-chemical-society", "ACS"], ["science", "Science"], ["bibtex", "Bibtex"]]'
+  data-defaultstyle='"chicago-author-date"'
+  data-include-deleted='false'>
+</div>
+              </section>
+	    </div>
+
+
+
+  <section id="description" class="rel-mt-2 rich-input-content" aria-label="Record abstract">
+    <h2 id="description-heading" class="sr-only">Abstract</h2>
+    
+    <div style="word-wrap: break-word;">
+      <p>We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best
+classical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing
+Holevo's theorem from a new perspective.
+
+In the existing implementations of quantum computing, qubits are a very expensive resource.
+Moreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization
+is impossible in NMR quantum computing, which is perhaps the most advanced implementation of
+quantum computing at the moment. This motivates the study of quantum computation with restricted
+memory and no reinitialization, that is, of quantum finite automata. It was known that there are
+languages that are recognized by quantum finite automata with sizes exponentially smaller than those
+of corresponding classical automata. Here, we apply our technique to show the surprising result that
+there are languages for which quantum finite automata take exponentially more states than those of
+corresponding classical automata.</p>
+    </div>
+  </section>
+
+
+
+  
+    
+    
+    <section
+      id="additional-description-1"
+      class="rel-mt-2 rich-input-content"
+      aria-label="Additional Information"
+    >
+      <h2>
+        Additional Information
+        <span class="text-muted language">
+          
+        </span>
+      </h2>
+      
+        © 2002 ACM. 
+
+RECEIVED JULY 2000; REVISED MAY 2002; ACCEPTED MAY 2002. 
+
+A. Ambainis was supported by the Berkeley Fellowship for Graduate Studies and, in part, by NSF grant CCR-9800024; A. Nayak and U. Vazirani were supported by JSEP grant FDP 49620-97-1-0220-03-98 and NSF grant CCR-9800024. 
+
+We would like to thank Ike Chuang for showing us the 3-into-1 quantum encoding; Dorit Aharonov, Ike Chuang, Michael Nielsen, Steven Rudich, and Avi Wigderson for many interesting discussions; and the anonymous referees for their helpful comments.
+      
+    </section>
+  
+
+              <section id="additional-details" class="rel-mt-2"
+                       aria-label="Additional record details">
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="record-details-heading">Additional details</h2>
+
+  <div class="ui divider"></div>
+
+  
+
+  
+    
+      <div class="ui grid">
+        <div class="sixteen wide mobile four wide tablet three wide computer column">
+          <h3 class="ui header">Identifiers</h3>
+        </div>
+        <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+          <dl class="details-list">
+            
+  
+    <dt class="ui tiny header">Eprint ID</dt>
+    <dd>
+      
+      
+        66276
+      
+    </dd>
+  
+    <dt class="ui tiny header">DOI</dt>
+    <dd>
+      
+      
+        <a href="https://doi.org/10.1145/581771.581773" target="_blank" title="Opens in new tab">
+          10.1145/581771.581773
+        </a>
+      
+    </dd>
+  
+    <dt class="ui tiny header">Resolver ID</dt>
+    <dd>
+      
+      
+        CaltechAUTHORS:20160419-112812430
+      
+    </dd>
+  
+
+          </dl>
+        </div>
+      </div>
+    
+    <div class="ui divider"></div>
+  
+
+  
+    
+      <div class="ui grid">
+        <div class="sixteen wide mobile four wide tablet three wide computer column">
+          <h3 class="ui header">Related works</h3>
+        </div>
+        <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+          
+  <dl class="details-list">
+      <dt class="ui tiny header">Describes</dt>
+      
+  
+    <dd>
+      
+
+      
+      
+      
+        <a href="https://doi.org/10.1145/581771.581773" target="_blank" title="Opens in new tab">
+          10.1145/581771.581773
+        </a>
+      
+
+      
+         (DOI)
+      
+    </dd>
+  
+    <dd>
+      
+
+      
+      
+      
+        <a href="http://arxiv.org/abs/quant-ph/9804043" target="_blank" title="Opens in new tab">
+          http://arxiv.org/abs/quant-ph/9804043
+        </a>
+      
+
+      
+         (URL)
+      
+    </dd>
+  
+
+  </dl>
+
+        </div>
+      </div>
+    
+    <div class="ui divider"></div>
+  
+
+  
+   
+      <div class="ui grid">
+        <div class="sixteen wide mobile four wide tablet three wide computer column">
+          <h3 class="ui header">Funding</h3>
+        </div>
+        <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+          <dl class="details-list">
+            
+  
+    
+  <dt class="ui tiny header">Berkeley Fellowship for Graduate Studies</dt>
+  
+    
+  <dt class="ui tiny header">NSF</dt><dt class="ui tiny header">
+    <span class="mr-0 text-muted">
+       </span><span class="ui mini basic label " id="number-label-1">
+        CCR-9800024
+      </span></dt>
+  
+    
+  <dt class="ui tiny header">Joint Science Education Project (JSEP)</dt><dt class="ui tiny header">
+    <span class="mr-0 text-muted">
+       </span><span class="ui mini basic label " id="number-label-2">
+        FDP 49620-97-1-0220-03-98
+      </span></dt>
+  
+
+          </dl>
+        </div>
+      </div>
+    
+    <div class="ui divider"></div>
+  
+
+  
+    
+      <div class="ui grid">
+        <div class="sixteen wide mobile four wide tablet three wide computer column">
+          <h3 class="ui header">Dates</h3>
+        </div>
+        <div class="sixteen wide mobile twelve wide tablet thirteen wide computer column">
+          <dl class="details-list">
+            
+  
+    
+    <dt class="ui tiny header">Created</dt>
+    <dd>
+      <div>2016-04-19</div>
+      <div class="text-muted">Created from EPrint&#39;s datestamp field</div>
+    </dd>
+  
+    
+    <dt class="ui tiny header">Updated</dt>
+    <dd>
+      <div>2021-11-10</div>
+      <div class="text-muted">Created from EPrint&#39;s last_modified field</div>
+    </dd>
+  
+
+          </dl>
+        </div>
+      </div>
+    
+    <div class="ui divider"></div>
+  
+
+  
+      
+      
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+
+      
+  
+
+  
+
+
+
+              </section>
+        </article>
+
+        
+        <aside class="sixteen wide tablet five wide computer column sidebar"
+               aria-label="Record details">
+          
+
+
+
+
+<section id="metrics" aria-label="Metrics" class="ui segment rdm-sidebar sidebar-container">
+
+
+<div class="ui tiny two statistics rel-mt-1">
+  
+  
+
+  <div class="ui statistic">
+    <div class="value">110</div>
+    <div class="label">
+      <i aria-hidden="true" class="eye icon"></i>
+      Views
+    </div>
+  </div>
+
+  <div class="ui statistic">
+    <div class="value">0</div>
+    <div class="label">
+      <i aria-hidden="true" class="download icon"></i>
+      Downloads
+    </div>
+  </div>
+</div>
+
+<div class="ui accordion rel-mt-1 centered">
+  <div class="title trigger" tabindex="0">
+    <i class="caret right icon" aria-hidden="true"></i>
+    <span
+      data-open-text="Show more details"
+      data-close-text="Show less details"
+    >
+      Show more details
+    </span>
+  </div>
+
+  <div class="content">
+    <table id="record-statistics" class="ui definition table fluid">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="right aligned">All versions</th>
+          <th class="right aligned">This version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Views
+            <i
+              tabindex="0"
+              role="button"
+              style="position:relative"
+              class="popup-trigger question circle small icon"
+              aria-expanded="false"
+              aria-label="More info"
+              data-variation="mini inverted"
+            >
+            </i>
+            <p role="tooltip" class="popup-content ui flowing popup transition hidden">
+              Total views
+            </p>
+          </td>
+          <td data-label="All versions" class="right aligned">
+  
+    110
+  
+</td>
+          <td data-label="This version" class="right aligned">
+  
+    110
+  
+</td>
+        </tr>
+        <tr>
+          <td>
+            Downloads
+            <i
+              tabindex="0"
+              role="button"
+              style="position:relative"
+              class="popup-trigger question circle small icon"
+              aria-expanded="false"
+              aria-label="More info"
+              data-variation="mini inverted"
+            >
+            </i>
+            <p role="tooltip" class="popup-content ui flowing popup transition hidden">
+              Total downloads
+            </p>
+          </td>
+          <td data-label="All versions" class="right aligned">
+  
+    0
+  
+</td>
+          <td data-label="This version" class="right aligned">
+  
+    0
+  
+</td>
+        </tr>
+        <tr>
+          <td>
+            Data volume
+            <i
+              tabindex="0"
+              role="button"
+              style="position:relative"
+              class="popup-trigger question circle small icon"
+              aria-expanded="false"
+              aria-label="More info"
+              data-variation="mini inverted"
+            >
+            </i>
+            <p role="tooltip" class="popup-content ui flowing popup transition hidden">
+              Total data volume
+            </p>
+          </td>
+
+          <td data-label="All versions" class="right aligned">0 Bytes</td>
+          <td data-label="This version" class="right aligned">0 Bytes</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-align-center rel-mt-1">
+      <small>
+        <a href="/help/statistics">More info on how stats are collected....</a>
+      </small>
+    </p>
+  </div>
+
+</div>
+
+</section>
+
+<div class="sidebar-container">
+  <h2 class="ui medium top attached header mt-0">Versions</h2>
+  <div id="record-versions" class="ui segment rdm-sidebar bottom attached pl-0 pr-0 pt-0">
+    <div class="versions">
+      <div id="recordVersions" data-record='{"access": {"embargo": {"active": false, "reason": null}, "files": "restricted", "record": "public", "status": "metadata-only"}, "created": "2023-08-19T09:44:12.099072+00:00", "custom_fields": {"journal:journal": {"issn": "0004-5411", "issue": "4", "pages": "496-511", "title": "Journal of the ACM", "volume": "49"}}, "deletion_status": {"is_deleted": false, "status": "P"}, "expanded": {"parent": {"access": {"owned_by": {"active": null, "blocked_at": null, "confirmed_at": null, "email": "", "id": "13", "is_current_user": false, "links": {"avatar": "https://authors.library.caltech.edu/api/users/13/avatar.svg", "records_html": "https://authors.library.caltech.edu/search/records?q=parent.access.owned_by.user:13", "self": "https://authors.library.caltech.edu/api/users/13"}, "profile": {"affiliations": "", "full_name": "Automation"}, "username": "automation", "verified_at": null}}, "communities": {"default": {"access": {"review_policy": "closed", "visibility": "public"}, "id": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "links": {"logo": "https://authors.library.caltech.edu/api/communities/aedd135f-227e-4fdf-9476-5b3fd011bac6/logo"}, "metadata": {"description": "CaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously through library and campus efforts.", "title": "CaltechAUTHORS", "type": null}, "slug": "caltechauthors"}}}}, "files": {"enabled": false}, "id": "36h91-pre89", "is_draft": false, "is_published": true, "links": {"access": "https://authors.library.caltech.edu/api/records/36h91-pre89/access", "access_grants": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/grants", "access_links": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/links", "access_request": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/request", "access_users": "https://authors.library.caltech.edu/api/records/36h91-pre89/access/users", "communities": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities", "communities-suggestions": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities-suggestions", "draft": "https://authors.library.caltech.edu/api/records/36h91-pre89/draft", "files": "https://authors.library.caltech.edu/api/records/36h91-pre89/files", "latest": "https://authors.library.caltech.edu/api/records/36h91-pre89/versions/latest", "latest_html": "https://authors.library.caltech.edu/records/36h91-pre89/latest", "media_files": "https://authors.library.caltech.edu/api/records/36h91-pre89/media-files", "parent": "https://authors.library.caltech.edu/api/records/t08ch-28129", "parent_html": "https://authors.library.caltech.edu/records/t08ch-28129", "preview_html": "https://authors.library.caltech.edu/records/36h91-pre89?preview=1", "requests": "https://authors.library.caltech.edu/api/records/36h91-pre89/requests", "reserve_doi": "https://authors.library.caltech.edu/api/records/36h91-pre89/draft/pids/doi", "self": "https://authors.library.caltech.edu/api/records/36h91-pre89", "self_html": "https://authors.library.caltech.edu/records/36h91-pre89", "self_iiif_manifest": "https://authors.library.caltech.edu/api/iiif/record:36h91-pre89/manifest", "self_iiif_sequence": "https://authors.library.caltech.edu/api/iiif/record:36h91-pre89/sequence/default", "versions": "https://authors.library.caltech.edu/api/records/36h91-pre89/versions"}, "media_files": {"enabled": false}, "metadata": {"additional_descriptions": [{"description": "\u00a9 2002 ACM. \n\nRECEIVED JULY 2000; REVISED MAY 2002; ACCEPTED MAY 2002. \n\nA. Ambainis was supported by the Berkeley Fellowship for Graduate Studies and, in part, by NSF grant CCR-9800024; A. Nayak and U. Vazirani were supported by JSEP grant FDP 49620-97-1-0220-03-98 and NSF grant CCR-9800024. \n\nWe would like to thank Ike Chuang for showing us the 3-into-1 quantum encoding; Dorit Aharonov, Ike Chuang, Michael Nielsen, Steven Rudich, and Avi Wigderson for many interesting discussions; and the anonymous referees for their helpful comments.", "type": {"id": "additional", "title": {"de": "Sonstige", "en": "Additional Information"}}}], "creators": [{"affiliations": [{"id": "00f809463", "identifiers": [{"identifier": "00f809463", "scheme": "ror"}], "name": "Institute for Advanced Study"}], "person_or_org": {"family_name": "Ambainis", "given_name": "Andris", "identifiers": [{"identifier": "Ambainis-A", "scheme": "clpid"}], "name": "Ambainis, Andris", "type": "personal"}}, {"affiliations": [{"id": "05dxps055", "identifiers": [{"identifier": "05dxps055", "scheme": "ror"}], "name": "California Institute of Technology"}], "person_or_org": {"family_name": "Nayak", "given_name": "Ashwin", "identifiers": [{"identifier": "Nayak-A", "scheme": "clpid"}, {"identifier": "0000-0002-3924-0875", "scheme": "orcid"}], "name": "Nayak, Ashwin", "type": "personal"}}, {"affiliations": [{"id": "04mhzgx49", "identifiers": [{"identifier": "04mhzgx49", "scheme": "ror"}], "name": "Tel Aviv University"}], "person_or_org": {"family_name": "Ta-Shma", "given_name": "Amnon", "identifiers": [{"identifier": "Ta-Shma-A", "scheme": "clpid"}], "name": "Ta-Shma, Amnon", "type": "personal"}}, {"affiliations": [{"id": "01an7q238", "identifiers": [{"identifier": "01an7q238", "scheme": "ror"}], "name": "University of California, Berkeley"}], "person_or_org": {"family_name": "Vazirani", "given_name": "Umesh", "identifiers": [{"identifier": "Vazirani-Umesh-V", "scheme": "clpid"}], "name": "Vazirani, Umesh", "type": "personal"}}], "dates": [{"date": "2016-04-19", "description": "Created from EPrint\u0027s datestamp field", "type": {"id": "created", "title": {"de": "Erstellt", "en": "Created"}}}, {"date": "2021-11-10", "description": "Created from EPrint\u0027s last_modified field", "type": {"id": "updated", "title": {"de": "Aktualisiert", "en": "Updated"}}}], "description": "We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best\nclassical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing\nHolevo\u0027s theorem from a new perspective.\n\nIn the existing implementations of quantum computing, qubits are a very expensive resource.\nMoreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization\nis impossible in NMR quantum computing, which is perhaps the most advanced implementation of\nquantum computing at the moment. This motivates the study of quantum computation with restricted\nmemory and no reinitialization, that is, of quantum finite automata. It was known that there are\nlanguages that are recognized by quantum finite automata with sizes exponentially smaller than those\nof corresponding classical automata. Here, we apply our technique to show the surprising result that\nthere are languages for which quantum finite automata take exponentially more states than those of\ncorresponding classical automata.", "funding": [{"funder": {"name": "Berkeley Fellowship for Graduate Studies"}}, {"award": {"number": "CCR-9800024", "title": {"en": " "}}, "funder": {"name": "NSF"}}, {"award": {"number": "FDP 49620-97-1-0220-03-98", "title": {"en": " "}}, "funder": {"name": "Joint Science Education Project (JSEP)"}}], "identifiers": [{"identifier": "66276", "scheme": "eprintid"}, {"identifier": "10.1145/581771.581773", "scheme": "doi"}, {"identifier": "CaltechAUTHORS:20160419-112812430", "scheme": "resolverid"}], "publication_date": "2002-07", "publisher": "Association for Computing Machinery", "related_identifiers": [{"identifier": "10.1145/581771.581773", "relation_type": {"id": "describes", "title": {"de": "Beschreibt", "en": "Describes"}}, "scheme": "doi"}, {"identifier": "http://arxiv.org/abs/quant-ph/9804043", "relation_type": {"id": "describes", "title": {"de": "Beschreibt", "en": "Describes"}}, "scheme": "url"}], "resource_type": {"id": "publication-article", "title": {"de": "Zeitschriftenartikel", "en": "Journal Article"}}, "rights": [{"description": {"en": "No commercial reproduction, distribution, display or performance rights in this work are provided."}, "title": {"en": "Other"}}], "title": "Dense Quantum Coding and Quantum Finite Automata", "version": "public"}, "parent": {"access": {"owned_by": {"user": "13"}, "settings": {"accept_conditions_text": null, "allow_guest_requests": false, "allow_user_requests": false, "secret_link_expiration": 0}}, "communities": {"default": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "entries": [{"access": {"member_policy": "open", "members_visibility": "public", "record_submission_policy": "open", "review_policy": "closed", "visibility": "public"}, "children": {"allow": false}, "created": "2023-08-18T22:58:03.731607+00:00", "custom_fields": {}, "deletion_status": {"is_deleted": false, "status": "P"}, "id": "aedd135f-227e-4fdf-9476-5b3fd011bac6", "links": {}, "metadata": {"description": "CaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously through library and campus efforts.", "page": "\u003cp\u003eCaltechAUTHORS contains research publications by Caltech faculty and other Caltech researchers. Most items in CaltechAUTHORS are articles, but there are also books, book chapters, conference papers and more. The repository is updated continuously as departments and library staff add available and recently published documents.\u003c/p\u003e", "title": "CaltechAUTHORS"}, "revision_id": 7, "slug": "caltechauthors", "updated": "2025-10-07T17:50:38.400491+00:00"}], "ids": ["aedd135f-227e-4fdf-9476-5b3fd011bac6"]}, "id": "t08ch-28129", "pids": {}}, "pids": {"oai": {"identifier": "oai:authors.library.caltech.edu:36h91-pre89", "provider": "oai"}}, "revision_id": 8, "stats": {"all_versions": {"data_volume": 0.0, "downloads": 0, "unique_downloads": 0, "unique_views": 110, "views": 110}, "this_version": {"data_volume": 0.0, "downloads": 0, "unique_downloads": 0, "unique_views": 110, "views": 110}}, "status": "published", "ui": {"access_status": {"description_l10n": "No files are available for this record.", "embargo_date_l10n": null, "icon": "tag", "id": "metadata-only", "message_class": "", "title_l10n": "Metadata-only"}, "additional_descriptions": [{"description": "\u00a9 2002 ACM. \n\nRECEIVED JULY 2000; REVISED MAY 2002; ACCEPTED MAY 2002. \n\nA. Ambainis was supported by the Berkeley Fellowship for Graduate Studies and, in part, by NSF grant CCR-9800024; A. Nayak and U. Vazirani were supported by JSEP grant FDP 49620-97-1-0220-03-98 and NSF grant CCR-9800024. \n\nWe would like to thank Ike Chuang for showing us the 3-into-1 quantum encoding; Dorit Aharonov, Ike Chuang, Michael Nielsen, Steven Rudich, and Avi Wigderson for many interesting discussions; and the anonymous referees for their helpful comments.", "type": {"id": "additional", "title_l10n": "Additional Information"}}], "created_date_l10n_long": "August 19, 2023", "creators": {"affiliations": [[1, "Institute for Advanced Study", "00f809463"], [2, "California Institute of Technology", "05dxps055"], [3, "Tel Aviv University", "04mhzgx49"], [4, "University of California, Berkeley", "01an7q238"]], "creators": [{"affiliations": [[1, "Institute for Advanced Study"]], "person_or_org": {"family_name": "Ambainis", "given_name": "Andris", "identifiers": [{"identifier": "Ambainis-A", "scheme": "clpid"}], "name": "Ambainis, Andris", "type": "personal"}}, {"affiliations": [[2, "California Institute of Technology"]], "person_or_org": {"family_name": "Nayak", "given_name": "Ashwin", "identifiers": [{"identifier": "Nayak-A", "scheme": "clpid"}, {"identifier": "0000-0002-3924-0875", "scheme": "orcid"}], "name": "Nayak, Ashwin", "type": "personal"}}, {"affiliations": [[3, "Tel Aviv University"]], "person_or_org": {"family_name": "Ta-Shma", "given_name": "Amnon", "identifiers": [{"identifier": "Ta-Shma-A", "scheme": "clpid"}], "name": "Ta-Shma, Amnon", "type": "personal"}}, {"affiliations": [[4, "University of California, Berkeley"]], "person_or_org": {"family_name": "Vazirani", "given_name": "Umesh", "identifiers": [{"identifier": "Vazirani-Umesh-V", "scheme": "clpid"}], "name": "Vazirani, Umesh", "type": "personal"}}]}, "custom_fields": {"journal:journal": {"issn": "0004-5411", "issue": "4", "pages": "496-511", "title": "Journal of the ACM", "volume": "49"}}, "dates": [{"date": "2016-04-19", "description": "Created from EPrint\u0027s datestamp field", "type": {"id": "created", "title_l10n": "Created"}}, {"date": "2021-11-10", "description": "Created from EPrint\u0027s last_modified field", "type": {"id": "updated", "title_l10n": "Updated"}}], "description_stripped": "We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best\nclassical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing\nHolevo\u0027s theorem from a new perspective.\n\nIn the existing implementations of quantum computing, qubits are a very expensive resource.\nMoreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization\nis impossible in NMR quantum computing, which is perhaps the most advanced implementation of\nquantum computing at the moment. This motivates the study of quantum computation with restricted\nmemory and no reinitialization, that is, of quantum finite automata. It was known that there are\nlanguages that are recognized by quantum finite automata with sizes exponentially smaller than those\nof corresponding classical automata. Here, we apply our technique to show the surprising result that\nthere are languages for which quantum finite automata take exponentially more states than those of\ncorresponding classical automata.", "funding": [{"funder": {"name": "Berkeley Fellowship for Graduate Studies"}}, {"award": {"number": "CCR-9800024", "title_l10n": " "}, "funder": {"name": "NSF"}}, {"award": {"number": "FDP 49620-97-1-0220-03-98", "title_l10n": " "}, "funder": {"name": "Joint Science Education Project (JSEP)"}}], "is_draft": false, "publication_date_l10n_long": "July 2002", "publication_date_l10n_medium": "Jul 2002", "publishing_information": {"journal": "Journal of the ACM, 49(4), 496-511, ISSN: 0004-5411, 2002."}, "related_identifiers": [{"identifier": "10.1145/581771.581773", "relation_type": {"id": "describes", "title_l10n": "Describes"}, "scheme": "doi"}, {"identifier": "http://arxiv.org/abs/quant-ph/9804043", "relation_type": {"id": "describes", "title_l10n": "Describes"}, "scheme": "url"}], "resource_type": {"id": "publication-article", "title_l10n": "Journal Article"}, "rights": [{"description_l10n": "No commercial reproduction, distribution, display or performance rights in this work are provided.", "title_l10n": "Other"}], "updated_date_l10n_long": "April 16, 2026", "version": "public"}, "updated": "2026-04-16T05:34:42.802482+00:00", "versions": {"index": 2, "is_latest": true}}' data-preview='false'>
+        <div class="rel-p-1"></div>
+        <div class="ui fluid placeholder rel-mr-1 rel-ml-1"></div>
+        <div class="header">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="sidebar-container">
+  <h2 class="ui medium top attached header mt-0">Details</h2>
+  <div id="record-details" class="ui segment bottom attached rdm-sidebar">
+
+    <dl class="details-list">
+      
+      
+  <dt class="ui tiny header">Resource type</dt>
+  <dd>Journal Article</dd>
+      
+      
+  <dt class="ui tiny header">Publisher</dt>
+  <dd>Association for Computing Machinery</dd>
+      
+  <dt class="ui tiny header">Published in</dt>
+  <dd>Journal of the ACM, 49(4), 496-511, ISSN: 0004-5411, 2002.</dd>
+      
+      
+      
+      
+      
+      
+    </dl>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  <div class="sidebar-container">
+    <h2 class="ui medium top attached header mt-0">Rights</h2>
+    <div id="licenses" class="ui segment bottom attached rdm-sidebar">
+      
+        <h4>License</h4>
+        <ul class="details-list m-0 p-0"><li id="license--1" class="has-popup">
+              <div id="title--1"
+                   class="license clickable"
+                   tabindex="0"
+                   aria-haspopup="dialog"
+                   aria-expanded="false"
+                   role="button"
+                   aria-label="Other"
+              >
+                
+
+                <span class="title-text">
+                Other
+              </span>
+              </div>
+              <div id="description--1"
+                   class="licenses-description ui flowing popup transition hidden"
+                   role="dialog"
+                   aria-labelledby="title--1"
+              >
+                <i role="button" tabindex="0" class="close icon text-muted"
+                   aria-label="Close"></i>
+
+                <div id="license-description-1" class="description">
+                <span class="text-muted">
+                  No commercial reproduction, distribution, display or performance rights in this work are provided.
+                </span>
+                  
+  
+
+                </div>
+              </div>
+            </li>
+          
+
+        </ul>
+      
+      
+    </div>
+
+  </div>
+<div
+  id="sidebar-communities-manage"
+  data-user-communities-memberships='{}'
+  data-record-community-endpoint="https://authors.library.caltech.edu/api/records/36h91-pre89/communities"
+  data-record-community-search-endpoint="https://authors.library.caltech.edu/api/records/36h91-pre89/communities-suggestions"
+  data-record-user-community-search-endpoint=""
+  data-pending-communities-search-config='{"aggs": [{"aggName": "type", "field": "type", "title": "Type"}, {"aggName": "status", "field": "status", "title": "Status"}], "appId": "InvenioAppRdm.RecordRequests", "defaultSortingOnEmptyQueryString": [{"sortBy": "newest"}], "initialQueryState": {"filters": [], "hiddenParams": [["expand", "1"], ["is_open", "true"], ["type", "community-inclusion"], ["type", "community-submission"]], "layout": "list", "page": 1, "size": 10, "sortBy": "bestmatch"}, "layoutOptions": {"gridView": false, "listView": true}, "paginationOptions": {"defaultValue": 10, "maxTotalResults": 10000, "resultsPerPage": [{"text": "10", "value": 10}, {"text": "20", "value": 20}, {"text": "50", "value": 50}]}, "searchApi": {"axios": {"headers": {"Accept": "application/json"}, "url": "https://authors.library.caltech.edu/api/records/36h91-pre89/requests", "withCredentials": true}, "invenio": {"requestSerializer": "InvenioRecordsResourcesRequestSerializer"}}, "sortOptions": [{"sortBy": "bestmatch", "text": "Best match"}, {"sortBy": "newest", "text": "Recently added"}, {"sortBy": "oldest", "text": "Oldest"}], "sortOrderDisabled": true}'
+  data-record-community-search-config='{"aggs": [{"aggName": "visibility", "field": "visibility", "title": "Visibility"}, {"aggName": "type", "field": "type", "title": "Type"}], "appId": "InvenioAppRdm.RecordCommunitiesSuggestions", "defaultSortingOnEmptyQueryString": [{"sortBy": "newest"}], "initialQueryState": {"filters": [], "hiddenParams": null, "layout": "list", "page": 1, "size": 10, "sortBy": "bestmatch"}, "layoutOptions": {"gridView": false, "listView": true}, "paginationOptions": {"defaultValue": 10, "maxTotalResults": 10000, "resultsPerPage": [{"text": "10", "value": 10}, {"text": "20", "value": 20}]}, "searchApi": {"axios": {"headers": {"Accept": "application/vnd.inveniordm.v1+json"}, "url": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities-suggestions", "withCredentials": true}, "invenio": {"requestSerializer": "InvenioRecordsResourcesRequestSerializer"}}, "sortOptions": [{"sortBy": "bestmatch", "text": "Best match"}, {"sortBy": "newest", "text": "Recently added"}, {"sortBy": "oldest", "text": "Oldest"}], "sortOrderDisabled": true}'
+  data-record-user-community-search-config='{"aggs": [{"aggName": "visibility", "field": "visibility", "title": "Visibility"}, {"aggName": "type", "field": "type", "title": "Type"}], "appId": "InvenioAppRdm.RecordUserCommunitiesSuggestions", "defaultSortingOnEmptyQueryString": [{"sortBy": "newest"}], "initialQueryState": {"filters": [], "hiddenParams": [["membership", "true"]], "layout": "list", "page": 1, "size": 10, "sortBy": "bestmatch"}, "layoutOptions": {"gridView": false, "listView": true}, "paginationOptions": {"defaultValue": 10, "maxTotalResults": 10000, "resultsPerPage": [{"text": "10", "value": 10}, {"text": "20", "value": 20}]}, "searchApi": {"axios": {"headers": {"Accept": "application/vnd.inveniordm.v1+json"}, "url": "https://authors.library.caltech.edu/api/records/36h91-pre89/communities-suggestions", "withCredentials": true}, "invenio": {"requestSerializer": "InvenioRecordsResourcesRequestSerializer"}}, "sortOptions": [{"sortBy": "bestmatch", "text": "Best match"}, {"sortBy": "newest", "text": "Recently added"}, {"sortBy": "oldest", "text": "Oldest"}], "sortOrderDisabled": true}'
+  data-permissions='{"can_edit": false, "can_manage": false, "can_media_read_files": true, "can_moderate": false, "can_new_version": false, "can_read_files": false, "can_review": false, "can_update_draft": false, "can_view": false}'
+  class="sidebar-container"
+>
+
+  <h2 class="ui medium top attached header">Communities</h2>
+
+  <div class="ui segment bottom attached rdm-sidebar">
+    <div class="ui fluid placeholder">
+      <div class="image header">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="image header">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="image header">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="sidebar-container">
+    <h2 class="ui medium top attached header mt-0">Export</h2>
+    <div id="export-record" class="ui segment bottom attached exports rdm-sidebar">
+
+      
+      
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <div id="recordExportDownload" data-formats='[{"export_url": "/records/36h91-pre89/export/json", "name": "JSON"}, {"export_url": "/records/36h91-pre89/export/json-ld", "name": "JSON-LD"}, {"export_url": "/records/36h91-pre89/export/csl", "name": "CSL"}, {"export_url": "/records/36h91-pre89/export/datacite-json", "name": "DataCite JSON"}, {"export_url": "/records/36h91-pre89/export/datacite-xml", "name": "DataCite XML"}, {"export_url": "/records/36h91-pre89/export/dublincore", "name": "Dublin Core XML"}, {"export_url": "/records/36h91-pre89/export/marcxml", "name": "MARCXML"}, {"export_url": "/records/36h91-pre89/export/bibtex", "name": "BibTeX"}, {"export_url": "/records/36h91-pre89/export/geojson", "name": "GeoJSON"}, {"export_url": "/records/36h91-pre89/export/dcat-ap", "name": "DCAT"}, {"export_url": "/records/36h91-pre89/export/codemeta", "name": "Codemeta"}, {"export_url": "/records/36h91-pre89/export/cff", "name": "Citation File Format"}, {"export_url": "/records/36h91-pre89/export/datapackage", "name": "Data Package JSON"}]'></div>
+    </div>
+  </div>
+<section
+  id="upload-info"
+  role="note"
+  aria-label="Upload information"
+  class="sidebar-container ui segment rdm-sidebar text-muted"
+>
+  <h2 class="ui small header text-muted p-0 mb-5"><small>Technical metadata</small></h2>
+  <dl class="m-0">
+    <dt class="inline"><small>Created</small></dt>
+    <dd class="inline">
+      <small>August 19, 2023</small>
+    </dd>
+    <div>
+      <dt class="rel-mt-1 inline"><small>Modified</small></dt>
+      <dd class="inline">
+        <small>April 16, 2026</small>
+      </dd>
+    </div>
+  </dl>
+</section>
+          
+        </aside>
+      </div>
+    </div>
+
+    <div class="ui container">
+      <div class="ui relaxed grid">
+        <div class="two column row">
+          <div class="sixteen wide tablet eleven wide computer column">
+            <div class="ui grid">
+                <div class="centered row rel-mt-1">
+                  <button id="jump-btn" class="jump-to-top ui button labeled icon"
+                          aria-label="Jump to top of page">
+                    <i class="arrow alternate circle up outline icon"></i>
+                    Jump up
+                  </button>
+                </div>
+              </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </main>
+    <footer id="rdm-footer-element">
+        <footer id="rdm-footer-element">
+ <script type="module" src="https://media.library.caltech.edu/cl-webcomponents/footer-global-lite.js"></script> 
+<footer-global-lite
+    custom
+    header="CaltechAUTHORS">
+    <a slot="custom-links" class="custom-links" aria-label="footer navigation" href="https://library.caltech.edu/c.php?g=512684&p=11281171">About</a>
+    <a slot="custom-links" class="custom-links" aria-label="footer navigation" href="https://library.caltech.edu/c.php?g=512684&p=11281170">Policies</a>
+    <a slot="custom-links" class="custom-links" aria-label="footer navigation" href="https://library.caltech.edu/c.php?g=512684&p=11207017">Help</a> 
+    <a slot="custom-links" class="custom-links" aria-label="footer navigation" href="https://inveniosoftware.org/products/rdm">Powered by InvenioRDM</a> 
+</footer-global-lite>
+</footer>
+        
+    </footer>
+  
+    
+
+        
+          <script type="text/javascript">
+            window.MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true // Allows escaping $ signs if needed
+              }
+            };
+          </script>
+          <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+<script src="/static/dist/js/manifest.b167f191c25acdcd8e3a.js"></script>
+<script src="/static/dist/js/73.f303276fb71f5bf1306d.js"></script>
+<script src="/static/dist/js/3526.0db016f67774bb5be6f5.js"></script>
+<script src="/static/dist/js/theme.9b5592a8ce23a54674f4.js"></script>
+<script src="/static/dist/js/335.a7cfe16759b170744d1f.js"></script>
+<script src="/static/dist/js/3763.f3149700a4946c536cc0.js"></script>
+<script src="/static/dist/js/5092.8091a76a2d1cb45dc17e.js"></script>
+<script src="/static/dist/js/8871.e57cf3d5b643d3452088.js"></script>
+<script src="/static/dist/js/4680.47123c99f5418cd53962.js"></script>
+<script src="/static/dist/js/1182.a097a1cb6c366e74a0bc.js"></script>
+<script src="/static/dist/js/4157.e596a5ac0983391fdecd.js"></script>
+<script src="/static/dist/js/base-theme-rdm.bf514bc5278068399c72.js"></script>
+<script src="/static/dist/js/i18n_app.f8b237dc67ed86974687.js"></script>
+<script src="/static/dist/js/6995.fb38b2de66fbd794bba1.js"></script>
+<script src="/static/dist/js/overridable-registry.37c85809949b22209b04.js"></script>
+  
+    
+      <script type='application/ld+json'>{"@context": "http://schema.org", "@type": "https://schema.org/ScholarlyArticle", "ISSN": "0004-5411", "author": [{"@type": "Person", "affiliation": [{"@id": "https://ror.org/00f809463", "@type": "Organization", "name": "Institute for Advanced Study"}], "familyName": "Ambainis", "givenName": "Andris", "name": "Ambainis, Andris"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/05dxps055", "@type": "Organization", "name": "California Institute of Technology"}], "familyName": "Nayak", "givenName": "Ashwin", "name": "Nayak, Ashwin"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/04mhzgx49", "@type": "Organization", "name": "Tel Aviv University"}], "familyName": "Ta-Shma", "givenName": "Amnon", "name": "Ta-Shma, Amnon"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/01an7q238", "@type": "Organization", "name": "University of California, Berkeley"}], "familyName": "Vazirani", "givenName": "Umesh", "name": "Vazirani, Umesh"}], "container_title": "Journal of the ACM", "creator": [{"@type": "Person", "affiliation": [{"@id": "https://ror.org/00f809463", "@type": "Organization", "name": "Institute for Advanced Study"}], "familyName": "Ambainis", "givenName": "Andris", "name": "Ambainis, Andris"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/05dxps055", "@type": "Organization", "name": "California Institute of Technology"}], "familyName": "Nayak", "givenName": "Ashwin", "name": "Nayak, Ashwin"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/04mhzgx49", "@type": "Organization", "name": "Tel Aviv University"}], "familyName": "Ta-Shma", "givenName": "Amnon", "name": "Ta-Shma, Amnon"}, {"@type": "Person", "affiliation": [{"@id": "https://ror.org/01an7q238", "@type": "Organization", "name": "University of California, Berkeley"}], "familyName": "Vazirani", "givenName": "Umesh", "name": "Vazirani, Umesh"}], "dateCreated": "2023-08-19T09:44:12.099072+00:00", "dateModified": "2026-04-16T05:34:42.802482+00:00", "datePublished": "2002-07", "description": "We consider the possibility of encoding m classical bits into many fewer n quantum bits (qubits) so that an arbitrary bit from the original m bits can be recovered with good probability. We show that nontrivial quantum codes exist that have no classical counterparts. On the other hand, we show that quantum encoding cannot save more than a logarithmic additive factor over the best\nclassical encoding. The proof is based on an entropy coalescence principle that is obtained by viewing\nHolevo\u0027s theorem from a new perspective.\n\nIn the existing implementations of quantum computing, qubits are a very expensive resource.\nMoreover, it is difficult to reinitialize existing bits during the computation. In particular, reinitialization\nis impossible in NMR quantum computing, which is perhaps the most advanced implementation of\nquantum computing at the moment. This motivates the study of quantum computation with restricted\nmemory and no reinitialization, that is, of quantum finite automata. It was known that there are\nlanguages that are recognized by quantum finite automata with sizes exponentially smaller than those\nof corresponding classical automata. Here, we apply our technique to show the surprising result that\nthere are languages for which quantum finite automata take exponentially more states than those of\ncorresponding classical automata.", "funding": [{"funder": {"@type": "Organization", "name": "Berkeley Fellowship for Graduate Studies"}}, {"funder": {"@type": "Organization", "name": "NSF"}, "name": "  (CCR-9800024)"}, {"funder": {"@type": "Organization", "name": "Joint Science Education Project (JSEP)"}, "name": "  (FDP 49620-97-1-0220-03-98)"}], "identifier": "https://authors.library.caltech.edu/api/records/36h91-pre89", "issue": "4", "name": "Dense Quantum Coding and Quantum Finite Automata", "page": "496-511", "publisher": {"@type": "Organization", "name": "Association for Computing Machinery"}, "temporal": ["2016-04-19", "2021-11-10"], "url": "https://authors.library.caltech.edu/records/36h91-pre89", "version": "public", "volume": "49"}</script>
+
+  <script src="/static/dist/js/invenio-app-rdm-landing-page-theme.ddbbc1b2bdd6799a3776.js"></script>
+  <script src="/static/dist/js/3088.096ca62237ab1c899f3b.js"></script>
+<script src="/static/dist/js/4970.9ac967fb14891f564dee.js"></script>
+<script src="/static/dist/js/1412.1c06979e343d97d7ddd0.js"></script>
+<script src="/static/dist/js/6471.d181c73b02c431fa7cad.js"></script>
+<script src="/static/dist/js/724.438d9edf5f027aef0ba1.js"></script>
+<script src="/static/dist/js/1183.7b6864f862b40594b007.js"></script>
+<script src="/static/dist/js/4252.832b4cb02b102a5540c5.js"></script>
+<script src="/static/dist/js/8585.aaa5ede53eb421d9d408.js"></script>
+<script src="/static/dist/js/1357.807750c52beb63fe9de4.js"></script>
+<script src="/static/dist/js/1644.40d9f75f4fddecbfb8e5.js"></script>
+<script src="/static/dist/js/8962.6823ae8d303c81b0aff9.js"></script>
+<script src="/static/dist/js/8283.86b1efa751fd33426bed.js"></script>
+<script src="/static/dist/js/5680.1278b6ac6d707c88a16a.js"></script>
+<script src="/static/dist/js/invenio-app-rdm-landing-page.cc3c0b2206d7f7a4d7ab.js"></script>
+  <script src="/static/dist/js/previewer_theme.7cbcca6c9c5e711496b3.js"></script>
+        <!-- Matomo -->
+ <script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://caltechlibrary.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/caltechlibrary.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+ </script>
+ <!-- End Matomo Code -->
+  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3478443cefc03d7',t:'MTc4ODI5OTY5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

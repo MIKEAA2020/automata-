@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://ceur-ws.org/Vol-1548/013-Dimitrijevs.pdf",
+    "name": "State Complexity Advantages of Ultrametric Automata",
+    "snippet": "by M Dimitrijevs · Cited by 2 — Ambainis, A.: The complexity of probabilistic versus deterministic finite automata . In: Asano, T., Igarashi, Y., Nagamochi, H., Miyano, S., Suri, S. (eds ...",
+    "host_name": "ceur-ws.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.numdam.org/item/10.1051/ita/2014003.pdf",
+    "name": "On the state complexity of semi-quantum finite automata⋆⋆⋆",
+    "snippet": "by S Zheng · 2014 · Cited by 35 — Ambainis, The complexity of probabilistic versus deterministic finite automata , Proc. of the International Symposium on Algorithms and ...",
+    "host_name": "www.numdam.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://air.unimi.it/retrieve/handle/2434/28986/720772/pubblicato.pdf",
+    "name": "Note on the Succinctness of Deterministic, Nondeterministic,",
+    "snippet": "Ambainis, The complexity of probabilistic versus deterministic finite automata , in Proc. 7th International Symposium on Algorithms and Computation (ISAAC) ...",
+    "host_name": "air.unimi.it",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ifip.hal.science/hal-05601975v1/document",
+    "name": "Improved Constructions for Succinct Affine Automata - IFIP - HAL",
+    "snippet": "Ambainis, A.: The complexity of probabilistic versus deterministic finite automata . In: Asano, T., Igarashi, Y., Nagamochi, H., Miyano, S., Suri, S. (eds ...",
+    "host_name": "ifip.hal.science",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2106.16197",
+    "name": "arXiv:2106.16197v1 [cs.FL] 30 Jun 2021",
+    "snippet": "Ambainis, A.: The complexity of probabilistic versus deterministic finite automata . In: ISAAC'96. LNCS, vol. 1178, pp. 233–238. Springer (1996). 3. Ambainis ...",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.bjmc.lu.lv/fileadmin/user_upload/lu_portal/projekti/bjmc/Contents/4_4_19_Dimitrejevs.pdf",
+    "name": "Ultrametric Finite Automata and Their Capabilities",
+    "snippet": "by M DIMITRIJEVS — The complexity of probabilistic versus deterministic finite automata . In: Asano, T., Igarashi, Y., Nagamochi, H., Miyano, S., Suri, S. (eds.) Algorithms and ...",
+    "host_name": "www.bjmc.lu.lv",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.numdam.org/item/ITA_2001__35_5_477_0.pdf",
+    "name": "Carlo Mereghetti , Beatrice Palano and Giovanni Pighizzini",
+    "snippet": "Ambainis, The complexity of probabilistic versus deterministic finite automata , in Proc. 7th International Symposium on Algorithms and Computation (ISAAC) ...",
+    "host_name": "www.numdam.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/1307.2499",
+    "name": "On the state complexity of semi-quantum finite automata",
+    "snippet": "by S Zheng · 2013 · Cited by 35 — Ambainis, The complexity of probabilistic versus deterministic finite automata , Proceed- ings of the International Symposium on Algorithms ...",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dblp.org/db/conf/isaac/isaac96",
+    "name": "7th ISAAC 1996: Osaka, Japan",
+    "snippet": "The Complexity of Probabilistic versus Deterministic Finite Automata . 233-238. view. electronic edition via DOI · unpaywalled version · details & citations.",
+    "host_name": "dblp.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://primo.bgu.ac.il/discovery/fulldisplay?vid=972BGU_INST%3A972BGU&docid=alma9926315904304361&context=L",
+    "name": "Algorithms and Computation : 7th International Symposium",
+    "snippet": "... complexity of probabilistic versus deterministic finite automata -- Bounded length UCFG equivalence -- The Steiner Minimal Tree problem in the ?-geometry ...",
+    "host_name": "primo.bgu.ac.il",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
