@@ -11,7 +11,8 @@ modified**.
 | v3 | `automata_unified_revised_v3.tex` / `.pdf` | FROZEN 2026-09-01 (read-only, md5 `eec4bad1…`) | A2–A6 + C1 + global bold-Σ (`\bm{\Sigma}`); 234 pp. |
 | v4 | `automata_unified_revised_v4.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `7ea7be4f…`) | three flagged citations + two positioning sentences; C2 + C3; D1–D3; E1–E5; AAK proof-check precision edits; 233 pp. |
 | v5 | `automata_unified_revised_v5.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `21db11d2…`) | two precision fixes from the remaining-theorems proof check: corrected display in `prop:grounding-tracking`(iii) (partition-independent term is the total modal mass 1−σ₁, not σ₁) and partition-reading convention added at `def:safe-right-cong`; 234 pp. |
-| v6 | `automata_unified_revised_v6.tex` / `.pdf` | **current latest** | the three non-blocking observations of the remaining-theorems proof check addressed (O1 forward references flagged at both sites; O2 Hadamard/Sylvester qualification at both sites, d = 11 of order 12 named; O3 verification suite recorded in the conventions remark) and the Data and Code Availability statement re-hardened to the assembled supplementary package; 234 pp. |
+| v6 | `automata_unified_revised_v6.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `df384d6f…`) | the three non-blocking observations of the remaining-theorems proof check addressed (O1 forward references flagged at both sites; O2 Hadamard/Sylvester qualification at both sites, d = 11 of order 12 named; O3 verification suite recorded in the conventions remark) and the Data and Code Availability statement re-hardened to the assembled supplementary package; 234 pp. |
+| v7 | `automata_unified_revised_v7.tex` / `.pdf` | **current latest** | the two disambiguation footnotes implemented after verification and correction (Price of Safety — corrected citation arXiv:2309.08709 Shang–Colin–Barlier–Cherkaoui, three-instantiation strengthening; grounding gap — precise two-part NLP-sense description, arXiv:2311.09144 Shaikh et al.); Lean count corrected to seventeen statements across seven modules with sources/build/axiom-audit stated as shipped; availability statement re-hardened to the actual development; one capitalization consistency fix; two bibliography entries added; 234 pp. |
 
 ## The supplementary package
 
@@ -22,11 +23,17 @@ exhaustive machine enumeration programs (renaming classes, Moore minimality,
 exact minimax games — reproducing the quoted 46,656/35,640 counts, the depth-6
 maximum with its 3,072 raw realizers at M = 4, and the depth-9 maximum at
 M = 5, all exactly), the extremal machine tables (CSV + LaTeX), the exact run
-outputs, and the Lean 4 statement manifest with its integration protocol. Its
+outputs, and — since v7 — **the actual Lean 4 development** (the `BST` Lake
+project: seven modules, seventeen tracked declarations, sorry-free sources,
+the build script, and the axiom-audit gate) together with the pristine
+companion package of the superseded shorter manuscript at `supplementary/legacy/`
+(120 verification programs, 10 consistency gates, SHA-256-manifest-verified;
+gates re-run here: 681/681 regression assertions, 98/98 traceability, lossscan
+PASS, controlled_ib VERIFIED at 1.8e-16). Its
 README documents the reproduction status of every quoted computational
-observation. The machine-checked `.lean` sources of the fifteen-statement
-development are imported into `supplementary/lean/` per that directory's
-README (one-file drop from the companion effort).
+observation. The machine-checked `.lean` sources are integrated in
+`supplementary/lean/BST/` (integrated this round from the companion effort,
+whose package is preserved verbatim at `supplementary/legacy/`).
 
 ## Companion documents
 
@@ -53,6 +60,16 @@ README (one-file drop from the companion effort).
   Theory of Computing backup, arXiv preprint immediately, two-paper split
   retained only as a desk-rejection contingency). Search evidence under
   `scripts/coinage_search/`.
+- `v7_revision_report.docx` — the five-task round: evaluation and correction of
+  the two suggested disambiguation wordings (the arXiv:2508.20246 →
+  2309.08709 citation fix and the three-instantiation strengthening; both
+  footnotes as implemented), the automata_corrected.tex restoration analysis
+  (label-level and line-level evidence; verdict: nothing to restore), the
+  dedicated sentence-level flaw search (two genuine findings, both fixed in
+  v7; full clean inventory), the supplementary/Lean integration (SHA-256-
+  verified companion package, the fifteen→seventeen reconciliation, gate runs),
+  and the open-questions assessment against v7 (ten settled, two open with
+  recommendations, one partial).
 
 ## v4 change log (relative to v3)
 
@@ -180,3 +197,49 @@ and byte-unchanged, md5 `21db11d2…`); tectonic compile exit 0 (234 pp.,
 1.09 MiB; 504 labels / 0 duplicates; 873 refs / 0 undefined; environments
 matched; brace balance 0; 9 overfull boxes, identical count and magnitudes to
 the v5 baseline, so no new overfull from the inserted text).
+
+## v7 change log (relative to v6)
+
+- **E1 — Price of Safety disambiguation footnote** (first occurrence,
+  Introduction, the surrogate paragraph): implemented after verification and
+  two corrections. The suggested wording's citation arXiv:2508.20246 is the
+  wrong paper (that is "Commitment Gap via Correlation Gap," Chawla–Christou–
+  Dang); the safe-linear-bandits preprint using the phrase is arXiv:2309.08709
+  (Shang, Colin, Barlier, Cherkaoui), now cited via the new `shang2023`
+  bibitem. Strengthened to name the manuscript's three instantiations
+  (`PoSquad`, `PoSlin` of sec:pos-linear; the mutual-information `PoS(M)` of
+  `cor:price-safety`), since the term is a family, not a single quantity.
+- **E2 — grounding-gap disambiguation footnote** (first occurrence,
+  Introduction): the short variant applies (the term is bound to
+  `def:symbolic-grounding-gap` at that exact point); strengthened with the
+  two-part NLP-sense description (conversational common ground; outputs-to-
+  world contact) and the citation `shaikh2023grounding` (arXiv:2311.09144,
+  Shaikh, Gligorić, Khetan, Gerstgrasser, Yang, Jurafsky).
+- **E3 — Lean statement count corrected** (`rem:lean-formalization`):
+  "Fifteen statements" → "Seventeen statements are checked in total, across
+  seven modules, with no appeal to sorry and no axioms beyond Lean's standard
+  three, namely propositional extensionality, the axiom of choice, and
+  quotient soundness. The sources, a build script, and the axiom audit
+  accompany the manuscript as supplementary material." The shipped BST
+  project's gate tracks exactly seventeen declarations and the companion
+  manuscript itself says seventeen; the "shorter" repo copy had truncated
+  the paragraph, and the error was inherited by v5/v6. (Fifteen counts the
+  content statements; the other two declarations are technical helpers —
+  mapping documented in `supplementary/lean/README.md`.)
+- **E4 — availability statement re-hardened to the actual development**: the
+  Lean component now names the development itself (seventeen machine-checked
+  statements in seven modules) together with the build script and the
+  axiom-audit gate that recompiles and verifies them.
+- **E5 — capitalization consistency** (`cor:price-safety` body): "The price
+  of safety is" → "The Price of Safety is" (the only lowercase use of the
+  coinage in running text; 22 other occurrences are capitalized).
+- **E6 — two bibliography entries** added (`shang2023`, `shaikh2023grounding`),
+  formatted like the existing arXiv-style entries; all 39 entries cited.
+
+Verification: `scripts/apply_v7_fixes.py` (six anchored, abort-before-write
+edits against the md5-verified frozen v6); tectonic compile exit 0 (234 pp.,
+1.10 MiB; 504 labels / 0 duplicates; 877 refs / 0 undefined; environments
+matched; brace balance 0; 9 overfull boxes, identical count and magnitudes to
+the v6 baseline, so no new overfull from the inserted footnotes);
+`scripts/verify_v7.py` — 23/23 checks PASS; v6 frozen and byte-unchanged
+(md5 `df384d6f…`).

@@ -1,55 +1,77 @@
-# Lean 4 Development — Statement Manifest
+# Lean 4 Development — Sources, Gate, and Statement Manifest
 
-This directory is the designated home of the manuscript's Lean 4 formalization
-described in the remark *Machine-Checked Fragments* (`rem:lean-formalization`)
-of the manuscript (Section 5). The development was produced and
-machine-checked in Lean 4 against Mathlib in a companion effort; this manifest
-records, verbatim from the manuscript, what is claimed, so that the checked
-`.lean` sources can be integrated here and audited against the claims.
+This directory contains the **actual Lean 4 formalization** referenced by the
+manuscript remark *Machine-Checked Fragments* (`rem:lean-formalization`).
+The development was produced and machine-checked in a companion effort
+(Lake project `BST`, Lean `v4.33.0-rc2`, Mathlib at the revision pinned in
+`BST/lean-toolchain` / `BST/lake-manifest.json`); the sources are integrated
+here verbatim, and their integrity is cross-checkable against the pristine
+companion snapshot in `../legacy/` via its `MANIFEST.txt` (SHA-256).
 
-## What the manuscript claims
+```
+lean/
+  BST/                  Lake project: 7 modules, 17 tracked declarations, 0 sorry
+    BST.lean            root import
+    BST/Basic.lean      imports
+    BST/Centring.lean   4 declarations (1 theorem + 3 lemmas)
+    BST/Halving.lean    5 theorems
+    BST/Sandwich.lean   3 theorems
+    BST/Anova.lean      2 theorems
+    BST/Refine.lean     3 theorems
+    BST/Smoke.lean      build smoke test
+  BUILD.md              how to rebuild (~3 min from a clean machine)
+  MODULES.md            module-by-module description (from the companion effort)
+  lean_check.py         standing gate: rebuild, sorry-free, axiom audit
+  README.md             this file
+```
 
-Fifteen statements are checked in total, with no appeal to `sorry` and no
-axioms beyond Lean's standard three. The named statement blocks are:
+## Statement count — reconciliation note
 
-1. **The centring step of `thm:global-kl-simplex`** — that
-   $\sum_i d_i = 0$ implies $\Vert d\Vert_2^2 \le \tfrac12 \Vert d\Vert_1^2$ —
-   together with its two supporting lemmas. *(3 statements.)*
-2. **The halving step of `prop:esyncsi-log`** — that
-   $c_2 \le c_1$ and $c_1 + c_2 \le n$ imply $2c_2 \le n$ — in a form making
-   its independence of $|\mathcal O|$ explicit. *(1 statement.)*
-3. **The comparison underlying `lem:discrete-bv-sandwich`** —
-   $\min\{a(M), b(M)\} \le a(N) + b(N)$. *(1 statement.)*
-4. **The mediant inequality underlying `lem:kappa-bounded`.** *(1 statement.)*
-5. **The parallel-axis identity** behind the ANOVA split. *(1 statement.)*
-6. **The minimality of the weighted mean.** *(1 statement.)*
-7. **The counting core of `prop:lsyncu-single-input`** — that a bounded
-   strictly increasing block count admits at most $M-1$ increases. *(1
-   statement.)*
+The manuscript's remark originally said "fifteen statements"; the shipped
+project tracks **seventeen declarations** and the companion manuscript
+(`../legacy/manuscript.tex`) itself claims seventeen. The reconciliation,
+confirmed against the sources (`BST/*.lean`), is:
 
-The remaining statements of the fifteen are the auxiliary lemmas supporting
-these blocks (in the manner of item 1's "two supporting lemmas").
+| Manuscript claim (remark text) | Declarations in the project |
+|---|---|
+| centring step + "its two supporting lemmas" | `sq_sum_le_half_abs_sum` + `abs_sum_eq`, `pos_eq_neg_part` (and the auxiliary `abs_le_half_l1`) |
+| halving step, |O|-independence explicit | `halving_step`, `halving_step_real`, `halving_alphabet_free` (+ `halve_iterate`, `mistakes_le_log`) |
+| comparison min{a(M),b(M)} ≤ a(N)+b(N) | `min_le_sum` |
+| mediant inequality | `mediant_le_max` (+ `mul_nonincreasing`) |
+| parallel-axis identity | `parallel_axis` |
+| minimality of the weighted mean | `mean_minimizes` |
+| counting core (≤ M−1 increases) | `strict_increase_bounded`, `refinement_rounds_le` (+ `stabilize_absorbing`) |
 
-## Scope (also as claimed by the manuscript)
+Counted as declarations: 17. Counted as "statements" in the manuscript's
+prose sense (main results + named supporting lemmas): 15, the other two
+(`halve_iterate`, `stabilize_absorbing`) being purely technical helpers.
+The manuscript (v7) states the directly auditable number — **seventeen
+tracked declarations across seven modules** — which is exactly what
+`lean_check.py` enforces: it fails if a declaration present in the sources
+is missing from its tracked list, so the count cannot drift silently.
 
-What is verified is the arithmetic skeleton: the inequalities, identities and
-counting arguments. Pinsker's inequality is taken as a hypothesis rather than
-imported; Ky Fan's maximum principle, the Kullback–Leibler functional itself,
+## The gate
+
+```sh
+python3 lean_check.py
+```
+
+It (1) rebuilds the project with `lake build`, (2) confirms the absence of
+`sorry`, (3) runs `#print axioms` on all seventeen tracked declarations and
+fails if any depends on an axiom outside Lean's standard three
+(`propext`, `Classical.choice`, `Quot.sound`), and (4) fails if the sources
+contain an untracked declaration. If the Lean toolchain is not installed
+(`~/.elan` absent), it degrades to an honest static report (sources present,
+sorry-free) rather than a false positive; install the toolchain per
+`BUILD.md` to run the full gate.
+
+## Scope (as claimed by the manuscript, and repeated here so the package
+cannot be read as claiming more)
+
+What is verified is the arithmetic skeleton: the inequalities, identities
+and counting arguments. Pinsker's inequality is a *hypothesis* rather than an
+import; Ky Fan's maximum principle, the Kullback–Leibler functional itself,
 and all automata-theoretic constructions — Mealy machines, version spaces,
 the adaptive games — are **not** formalized, so the surrounding theorems are
-not verified end to end.
-
-## Integration protocol for the checked sources
-
-1. Place the machine-checked `.lean` file(s) of the companion development in
-   this directory.
-2. Verify, in a Mathlib-capable Lean 4 toolchain, that the file compiles with
-   no `sorry` and that `#print axioms` on each of the fifteen statement names
-   reports only Lean's standard three axioms
-   (`propext`, `Quot.sound`, `Classical.choice`).
-3. Check that the statement names/numbering match the blocks above; any
-   discrepancy is a manuscript-level finding to be recorded before submission.
-
-The Data and Code Availability statement of the manuscript references this
-package; the statement manifest above is what it points to for the Lean
-component.
+not verified end to end. `MODULES.md` records the manuscript-site mapping
+for each module.

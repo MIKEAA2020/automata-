@@ -1,10 +1,12 @@
 # Supplementary Package — Machine-Checked and Computational Material
 
 This package accompanies the manuscript *automata unified (revised)* (current
-version: `automata_unified_revised_v6.tex`). It contains the programs, the
+version: `automata_unified_revised_v7.tex`). It contains the programs, the
 extremal machine tables, and the exact outputs referenced by the manuscript's
-Data and Code Availability statement, together with the statement manifest of
-its Lean 4 development.
+Data and Code Availability statement, together with the **actual Lean 4
+development** (sources, build script, and axiom-audit gate) of
+`rem:lean-formalization`, and the pristine companion package from which the
+Lean development and a broad legacy verification suite originate.
 
 ## Contents
 
@@ -15,7 +17,8 @@ its Lean 4 development.
 | `programs/gen_machine_tables.py` | emits the tables of the manuscript's fixed example machines |
 | `machine_tables/` | extremal and example machines, each as CSV (program-readable) and LaTeX tabular (manuscript-consistent) |
 | `outputs/` | exact run logs (`verify_numerical_claims.log`, `enumeration.log`) and the machine-readable `enumeration_summary.json` |
-| `lean/` | statement manifest of the fifteen-statement Lean 4 / Mathlib development (`rem:lean-formalization`), with its integration protocol |
+| `lean/` | **the Lean 4 / Mathlib development itself** (v7 claims seventeen machine-checked statements across seven modules): the `BST` Lake project, `BUILD.md`, `MODULES.md`, the `lean_check.py` standing gate, and the statement manifest / reconciliation note |
+| `legacy/` | pristine companion package of the superseded shorter manuscript (`automata_corrected.tex`): 120 verification programs, 10 consistency gates, its own SHA-256 `MANIFEST.txt`, and integration notes |
 
 ## Conventions
 
@@ -75,10 +78,17 @@ exhaustive run; the manuscript's output-alphabet-independence remark covers it.
 
 ## Lean 4 development
 
-The fifteen-statement Lean 4 / Mathlib development of `rem:lean-formalization`
-was produced and machine-checked in a companion effort; `lean/README.md` is
-its statement manifest and integration protocol. The manuscript's availability
-statement points to this package for it.
+The seventeen-statement (seventeen tracked declarations across seven modules)
+Lean 4 / Mathlib development of `rem:lean-formalization` is **included in
+this package** at `lean/`: the sources, the build script (`lean/BUILD.md`,~
+3 min from a clean machine), and the standing gate (`lean/lean_check.py`)
+that rebuilds the project, checks it is `sorry`-free, and audits every
+tracked declaration against Lean's standard three axioms. The development
+was produced and machine-checked in a companion effort; its pristine
+snapshot — whose `legacy/MANIFEST.txt` SHA-256s the exact files — is at
+`legacy/` together with 120 further verification programs and 10 consistency
+gates (see `legacy/INTEGRATION_NOTES.md` for the label-lineage caveats when
+running the legacy gates against the current manuscript).
 
 ## Machine-table inventory
 
