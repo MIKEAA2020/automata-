@@ -13,7 +13,8 @@ modified**.
 | v5 | `automata_unified_revised_v5.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `21db11d2…`) | two precision fixes from the remaining-theorems proof check: corrected display in `prop:grounding-tracking`(iii) (partition-independent term is the total modal mass 1−σ₁, not σ₁) and partition-reading convention added at `def:safe-right-cong`; 234 pp. |
 | v6 | `automata_unified_revised_v6.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `df384d6f…`) | the three non-blocking observations of the remaining-theorems proof check addressed (O1 forward references flagged at both sites; O2 Hadamard/Sylvester qualification at both sites, d = 11 of order 12 named; O3 verification suite recorded in the conventions remark) and the Data and Code Availability statement re-hardened to the assembled supplementary package; 234 pp. |
 | v7 | `automata_unified_revised_v7.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `fe3da4d5…`) | the two disambiguation footnotes implemented after verification and correction (Price of Safety — corrected citation arXiv:2309.08709 Shang–Colin–Barlier–Cherkaoui, three-instantiation strengthening; grounding gap — precise two-part NLP-sense description, arXiv:2311.09144 Shaikh et al.); Lean count corrected to seventeen statements across seven modules with sources/build/axiom-audit stated as shipped; availability statement re-hardened to the actual development; one capitalization consistency fix; two bibliography entries added; 234 pp. |
-| v8 | `automata_unified_revised_v8.tex` / `.pdf` | **current latest** | five-part deep review of v7 (full 18,100-line read + extended automated scan, 327 raw flags adjudicated): two internal-connection cross-references (the §7 infinite-support remark now names the §3 remark it duplicates; the §6 normalized-valuation discussion now names `cor:boolean-01` as its schema-layer statement) and a new back-matter **Notation Index** — four cross-referenced booktabs tables covering ~50 principal symbols, ToC-linked, no new packages; verdicts: clarification layer saturated, register clean, flow seamless, one visual aid merited; 238 pp. |
+| v8 | `automata_unified_revised_v8.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `39c1b519…`) | five-part deep review of v7 (full 18,100-line read + extended automated scan, 327 raw flags adjudicated): two internal-connection cross-references (the §7 infinite-support remark now names the §3 remark it duplicates; the §6 normalized-valuation discussion now names `cor:boolean-01` as its schema-layer statement) and a new back-matter **Notation Index** — four cross-referenced booktabs tables covering ~50 principal symbols, ToC-linked, no new packages; verdicts: clarification layer saturated, register clean, flow seamless, one visual aid merited; 238 pp. |
+| v9 | `automata_unified_revised_v9.tex` / `.pdf` | **current latest** | the three delegated editorial decisions, each actioned: **Q13a** resolved by moving the five-environment unifilar machine-model block (`rem:unifilar-feasibility` … `rem:epsilon-machine-relation`) from §9 *Type-Correct Axes on One Clock* to §3 *Stationary Controlled Causal Machines* (after `ex:onestep-not-congruence`, before the Full-KL Retention Gap subsection) — all nine model environments now form one run ~2,500 lines ahead of the theory that uses them, killing the ordering inversion; **arXiv 2608.12791 citation decided YES** — a retention-gap disambiguation footnote at the phrase's first body occurrence (Introduction), following the Price-of-Safety / grounding-gap pattern, with bibitem `sudo2026` (verified against the live arXiv record: A. Sudo, cond-mat.stat-mech, 2026; bibliography 39 → 40, all cited); **Q12 decided: keep unified** (coherence grounds recorded in OPEN_QUESTIONS; no content moved); 239 pp. |
 
 ## The supplementary package
 
@@ -82,6 +83,14 @@ whose package is preserved verbatim at `supplementary/legacy/`).
   mechanical flags were scanner artifacts), and the visual-aids assessment
   (exactly one warranted addition, the Notation Index, implemented; figures
   and a master results-map declined as decorative).
+
+- `v9_decision_report.docx` — the three delegated decisions: Q13a (block
+  move, with the ordering-inversion evidence and the repair simulation), the
+  arXiv 2608.12791 citation decision (identity verification, same-phrase/
+  different-sense analysis, the footnote text, and the reasoning for citing
+  rather than monitoring), and the Q12 coherence assessment (single-publication
+  verdict with the grounds, and what stays contingent). Includes the v9
+  verification numbers and the freeze-state table.
 
 ## v4 change log (relative to v3)
 
@@ -301,6 +310,64 @@ md5 `fe3da4d5…`; all three edits present, old strings absent; 509 labels /
 45+ resolving row references; theorem-like environment count unchanged, so no
 numbering disturbed).
 
+## v9 change log (relative to v8)
+
+- **E1 — Q13a resolved: the unifilar machine-model block relocated** (§9 →
+  §3). The five environments `rem:unifilar-feasibility`,
+  `prop:unifilar-lumpability`, `rem:unifilar-converse-hypothesis`,
+  `prop:input-driven-specialization`, `rem:epsilon-machine-relation` (8,953
+  chars, 171 lines) moved from §9 *Type-Correct Axes on One Clock* (where
+  T36's scope note had left them and T39–T44's §3/§5 theory had grown around
+  them) to §3 *Stationary Controlled Causal Machines*, immediately after
+  `ex:onestep-not-congruence` and before the *Full-KL Retention Gap*
+  subsection, where the other four model environments (`def:unifilar-machine`,
+  `rem:unifilar-proper-subclass`, `def:unifilar-lumpable`,
+  `rem:unifilar-support-not-automatic`) already live. All nine model
+  environments now form one run ~2,500 lines ahead of the theory
+  (`subsec:unifilar-retention`) that depends on them; the 3,622-line ordering
+  inversion and its 11 long forward references are gone. The two residual
+  dependencies the simulated repair predicted (`rem:complexity-transfer`,
+  `subsec:retention-complexity`) remain benign roadmap pointers, as
+  predicted. Option (a) of Q13a, as recorded in OPEN_QUESTIONS.md.
+- **E2 — arXiv 2608.12791 cited, with a disambiguation footnote** (the
+  citation decision delegated this session; previously a monitor-only watch
+  item). At the first body occurrence of "retention gap" (Introduction), a
+  footnote fixes this manuscript's sense — the state-compression cost, i.e.
+  the `\RetKL(M)` of `def:full-kl-retention`, its controlled relative
+  `\RetKLc` of `def:controlled-full-kl`, and the quadratic surrogate
+  `\RetQuad` of `def:gaussian-quadratic` — against the
+  thermodynamics-of-learning sense (a value-side quantity `L_gen` for
+  finite-state learning devices under task-distribution shift). Third entry
+  in the disambiguation-footnote family, after Price of Safety (2309.08709)
+  and grounding gap (2311.09144).
+- **E3 — bibitem `sudo2026` added** (verified against the live arXiv record
+  before insertion: author Sudo, Akihito; primary class cond-mat.stat-mech;
+  title and year as on the abs page): bibliography 39 → 40 entries, every
+  entry cited; the entry follows the manuscript's arXiv-entry format
+  (sentence-case title, comma inside the closing quotes, `A.~Sudo`).
+- **Q12 decided: keep unified — no content moved.** The coherence
+  assessment and the grounds (split boundary cuts through the retention
+  theory; 70 back-references; unification apparatus entirely in the residual;
+  uniform architecture and seamless-flow audit verdicts; length absorbed by
+  the venue decision) are recorded in OPEN_QUESTIONS.md. The split remains a
+  desk-rejection contingency only.
+
+Verification: `scripts/apply_v9_fixes.py` (three anchored, abort-before-write
+edits against the md5-verified frozen v8; first run aborted cleanly on a
+bibliography-quote-comma anchor mismatch — fixed to the manuscript's
+comma-inside convention, then clean); tectonic compile exit 0 (239 pp.,
+1.12 MiB, 0 errors, 0 undefined refs); overfull baseline = the 9 v8 boxes at
+identical magnitudes (positions shifted consistently with the 171-line move)
+plus one new 0.9pt reflow transient at the §17 active-bound item (invisible,
+same class as the documented v8 first-pass transient);
+`scripts/verify_v9.py` — 23/23 checks PASS (v8 frozen and byte-unchanged, md5
+`39c1b519…`; block present in §3, absent from §9, model precedes theory;
+footnote present at the anchor with all three targets resolvable; bibitem
+well-formed, 40/40 cited both directions; 509 labels / 0 duplicates / 0
+undefined refs; environment pairing; brace balance; theorem-like environment
+count identical to v8, so no numbering disturbed; PDF renders the footnote
+and the [40] citation). v9 frozen after verification (md5 `341707e8…`).
+
 ## Submission package (built on v8, 2026-09-02)
 
 `submission_package_v8/` (zip: `automata_ic_submission_v8.zip`) — the
@@ -308,11 +375,21 @@ complete Information and Computation submission package per the venue
 decision, plus the ready-to-upload arXiv preprint bundle. No manuscript
 version was created or modified: v8 ships as-is.
 
+**Status after v9:** v9 (this session's three decisions) is now the current
+latest; the package above remains the built artifact on v8. To submit on v9,
+rebuild the manuscript folder from v9 (the two new content items — the
+relocated block and the footnote+entry — carry over unchanged; the cover
+letter's claims are unaffected) and bump the personalization protocol: the
+author-block fill now creates **v10**, since v9 is taken. The
+SUBMISSION_NOTES "not cited by default" line for arXiv 2608.12791 is
+superseded — the work is now cited in the manuscript itself (footnote +
+`sudo2026`).
+
 - `SUBMISSION_NOTES.md` — the operating manual: contents map, the
-  personalization protocol (author block → new version file v9 under the
-  freeze policy; cover-letter placeholders), Editorial Manager upload
-  order, the one open citation decision (arXiv 2608.12791, not cited by
-  default), and the desk-rejection contingencies.
+  personalization protocol (author block → new version file under the
+  freeze policy — now v10; cover-letter placeholders), Editorial Manager upload
+  order, the (formerly open, now resolved) citation decision
+  (arXiv 2608.12791, cited since v9), and the desk-rejection contingencies.
 - `cover_letter/cover_letter.tex` + `.pdf` — the cover letter (2 pp.),
   drafted per the venue report's Section 7: the four High-novelty items
   foregrounded, the per-regime-instruments-are-transports positioning

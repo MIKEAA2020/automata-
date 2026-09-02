@@ -183,7 +183,7 @@ both as "full" and "letter" versions.
   one-sided form is correct; `∼_δ ⊆ ∼` is sufficient, not imposable. *(turn 7)*
 
 
-## Q12 — Split into a focused retention paper? (raised turn 19)
+## Q12 — Split into a focused retention paper? *(RESOLVED — keep unified, option (b))*
 
 The audit recommends extracting a narrower paper — *Finite-State Information
 Bottlenecks: Spectral Converses, Sharp Global Bounds, and Computational
@@ -201,7 +201,34 @@ current manuscript, so the split is a matter of cutting, not writing.
 - **(b)** Keep the unified manuscript; revisit after referee reports.
 - **(c)** Keep unified but move the six named areas to appendices.
 
-### Split-safety analysis (added T47; decision still open)
+### Decision (this session, user-delegated): keep unified — option (b)
+
+Asked directly whether the paper is coherent enough to merit single
+publication or should be split. Verdict: **coherent enough for one paper.**
+Grounds, in order of weight:
+
+1. **The boundary cuts through the theory, not around it.** The split-safety
+   analysis above stands: 70 residual items cite into the core, and the whole
+   unifilar layer depends on core results. The two papers would be a technical
+   core and its framing, not two independent contributions — a split that
+   weakens both while doubling the referee surface.
+2. **The coherence evidence is strong.** Uniform schema-to-instantiation
+   architecture across all 18 sections; one type discipline (§16) governing
+every statement; zero duplicate labels; every repeated environment title
+cross-referenced; the five-part review verdict on flow was "seamless"; the
+327-flag audit left 0 genuine register defects. A paper that needs splitting
+shows seams — this one shows a single spine (the schema) with regime
+instantiations.
+3. **The length objection is already absorbed.** Information and Computation
+   accepts long papers; the arXiv preprint establishes priority for the
+   multiletter-AAK theorem regardless. Section balance (Q13b) reflects where
+   the mathematics is, not disorder.
+
+The split remains what the venue decision already made it: a desk-rejection
+contingency, with option (c) (six areas to appendices) as the intermediate
+fallback. No content was moved for Q12.
+
+### Split-safety analysis (added T47; decision now recorded)
 
 `tools/partition.py` computes, for any proposed core, the transitive
 dependency closure, the residual, the bridge items, and — the binding
@@ -272,11 +299,28 @@ is presented as self-contained and the framework paper cites it.
 
 ---
 
-## Q13 — Structural reorganization? *(OPEN — one measured defect, one judgment call)*
+## Q13 — Structural reorganization? *(RESOLVED in v9 — (a) moved; (b) no action)*
 
 Raised T56 after a structural scan. Two findings, of very different weight.
 
-### (a) A genuine misplacement, and the only one found
+### (a) A genuine misplacement — RESOLVED (v9, option (a))
+
+**Action taken:** the five-environment block (`rem:unifilar-feasibility`,
+`prop:unifilar-lumpability`, `rem:unifilar-converse-hypothesis`,
+`prop:input-driven-specialization`, `rem:epsilon-machine-relation`) moved from
+§9 *Type-Correct Axes on One Clock* to §3 *Stationary Controlled Causal
+Machines*, immediately after `ex:onestep-not-congruence` and before the
+*Full-KL Retention Gap* subsection. All nine machine-model environments now
+form one run in §3, roughly 2,500 lines ahead of the theory
+(`subsec:unifilar-retention` in §5) that depends on them; the ordering
+inversion is gone. The two residual dependencies the simulated repair
+predicted (`rem:complexity-transfer`, `subsec:retention-complexity`) remain
+benign roadmap-style pointers, as predicted. v9 verification: 509 labels, 0
+duplicates, 0 undefined refs, theorem-environment count identical to v8 (no
+renumbering), overfull baseline = v8's nine boxes at identical magnitudes
+plus one new 0.9pt reflow transient, 239 pp.
+
+The original finding, kept for the record:
 
 The unifilar **machine model** — `def:unifilar-machine`,
 `rem:unifilar-proper-subclass`, `def:unifilar-lumpable`,
@@ -311,7 +355,8 @@ normal and desirable. The defect is concentrated, not diffuse.
 
 **Options:** (a) move the block to §5, immediately before the unifilar
 retention subsection · (b) leave it and add an explicit pointer at first use ·
-(c) leave as is.
+(c) leave as is. — **(a) applied in v9**, adapted to the current structure:
+§3, where the other four model environments already live.
 
 ### (b) Section balance — a judgment call, not a defect
 
@@ -323,3 +368,27 @@ different guise.
 
 No other ordering inversion was found: 0 duplicate labels, 0 near-duplicate
 paragraphs, every repeated environment title cross-referenced.
+
+---
+
+## Q14 — Cite arXiv 2608.12791? *(RESOLVED — cited in v9)*
+
+Raised by the coinage search: the "retention gap" near-collision, recorded as
+a monitor-only watch item in the venue report and as "not cited by default"
+in SUBMISSION_NOTES. Decision, on direct user delegation: **cite it**, as a
+disambiguation footnote at the phrase's first body occurrence (Introduction),
+matching the pattern already used for "Price of Safety" (arXiv 2309.08709)
+and "grounding gap" (arXiv 2311.09144). The footnote fixes this manuscript's
+sense (state-compression cost: the `\RetKL(M)` of `def:full-kl-retention`,
+its controlled relative, and the quadratic surrogate) against the
+thermodynamics-of-learning sense (value-side `L_gen` for finite-state
+learning devices under task-distribution shift).
+
+Rationale: the two works are contemporaneous neighbors in spirit (typed
+accounting for finite-state devices) but strangers in substance; an explicit
+disambiguation pre-empts referee confusion, protects the coinage, and is the
+honest-scholarship default. Verified against the live arXiv record before
+insertion: A. Sudo, "Thermodynamics of learning: a typed four-component
+accounting of memory, fit, and value," arXiv:2608.12791 [cond-mat.stat-mech],
+2026. Bibliography 39 → 40 entries, every entry still cited exactly; the
+SUBMISSION_NOTES "not cited by default" line is superseded by this entry.
