@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://www.alphaxiv.org/abs/2309.08709",
+    "name": "Price of Safety in Linear Best Arm Identification",
+    "snippet": "Sep 15, 2023 — We introduce the safe best-arm identification framework with linear feedback, where the agent is subject to some stage-wise safety constraint ...",
+    "host_name": "www.alphaxiv.org",
+    "rank": 0,
+    "date": "Sep 15, 2023",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v151/wang22h/wang22h.pdf",
+    "name": "Best Arm Identification with Safety Constraints",
+    "snippet": "by Z Wang · 2022 · Cited by 41 — The best arm identification problem in the multi-armed bandit setting is an excellent model of many real-world decision-making. 33 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2402.16710v1",
+    "name": "Cost Aware Best Arm Identification",
+    "snippet": "Feb 26, 2024 — Abstract. In this paper, we study a best arm identification problem with dual objects . In addition to the classic reward, each arm is ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "Feb 26, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=mt5knCQyq0",
+    "name": "Balancing Performance and Costs in Best Arm Identification",
+    "snippet": "by MO Harding · Cited by 1 — This paper introduces a novel framework for Best Arm Identification (BAI) in multi-armed bandits that directly balances the trade-off between sampling cost and ...",
+    "host_name": "openreview.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stats.stackexchange.com/questions/579642/how-do-find-the-best-arm-in-a-multi-armed-bandit-when-exploitation-is-unimportan",
+    "name": "How do find the best arm in a multi-armed bandit when",
+    "snippet": "Jun 22, 2022 — I have a problem similar to the 'Bernoulli bandit' problem in the exploration-exploitation paradigm, but without the exploitation element. In particular, ...",
+    "host_name": "stats.stackexchange.com",
+    "rank": 4,
+    "date": "Jun 22, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://par.nsf.gov/servlets/purl/10354739",
+    "name": "Best Arm Identification with Safety Constraints",
+    "snippet": "by Z Wang · 2021 · Cited by 41 — The best arm identification problem in the multi-armed bandit setting is an excellent model of many real-world decision-making.",
+    "host_name": "par.nsf.gov",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://jmlr.org/papers/v17/kaufman16a.html",
+    "name": "On the Complexity of Best-Arm Identification in Multi-Armed",
+    "snippet": "by E Kaufmann · 2016 · Cited by 857 — The stochastic multi-armed bandit model is a simple abstraction that has proven useful in many different contexts in statistics and machine learning.",
+    "host_name": "jmlr.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/MLQuestions/comments/b7ac3j/identifying_best_multiarmed_bandit_arm",
+    "name": "Identifying best multi-armed bandit arm : r/MLQuestions",
+    "snippet": "I can't find any info on the following MAB problem: what if we are only interested in identifying the best arm and not in maximizing our total reward? ...",
+    "host_name": "www.reddit.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://perso.limos.fr/~palafour/PAPERS/PDF/CLLS19.pdf",
+    "name": "Secure Best Arm Identification in Multi-Armed Bandits",
+    "snippet": "by R Ciucanu · Cited by 16 — The budget would refer here to the number of survey answers the user wants the cloud to use before outputting the best option. As a simplified example, assume ... 20 pages",
+    "host_name": "perso.limos.fr",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

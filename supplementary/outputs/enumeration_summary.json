@@ -1,0 +1,220 @@
+{
+ "cyclic_shift": [
+  {
+   "L": 1,
+   "depth": 1,
+   "bayes": 0.5,
+   "minimal": true
+  },
+  {
+   "L": 2,
+   "depth": 2,
+   "bayes": 1.0,
+   "minimal": true
+  },
+  {
+   "L": 3,
+   "depth": 3,
+   "bayes": 1.5,
+   "minimal": true
+  },
+  {
+   "L": 4,
+   "depth": 4,
+   "bayes": 2.0,
+   "minimal": true
+  },
+  {
+   "L": 5,
+   "depth": 5,
+   "bayes": 2.5,
+   "minimal": true
+  },
+  {
+   "L": 6,
+   "depth": 6,
+   "bayes": 3.0,
+   "minimal": true
+  },
+  {
+   "L": 7,
+   "depth": 7,
+   "bayes": 3.5,
+   "minimal": true
+  },
+  {
+   "L": 8,
+   "depth": 8,
+   "bayes": 4.0,
+   "minimal": true
+  },
+  {
+   "L": 9,
+   "depth": 9,
+   "bayes": 4.5,
+   "minimal": true
+  },
+  {
+   "L": 10,
+   "depth": 10,
+   "bayes": 5.0,
+   "minimal": true
+  }
+ ],
+ "signatures": [
+  {
+   "M": 2,
+   "I": 1,
+   "O": 2,
+   "raw_total": 16,
+   "raw_minimal": 8,
+   "renaming_classes": 10,
+   "canonical_minimal": 4,
+   "max_depth_canonical": 1,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 4,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 2,
+   "I": 1,
+   "O": 4,
+   "raw_total": 64,
+   "raw_minimal": 48,
+   "renaming_classes": 36,
+   "canonical_minimal": 24,
+   "max_depth_canonical": 1,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 24,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 2,
+   "I": 2,
+   "O": 2,
+   "raw_total": 256,
+   "raw_minimal": 192,
+   "renaming_classes": 136,
+   "canonical_minimal": 96,
+   "max_depth_canonical": 1,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 96,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 2,
+   "I": 2,
+   "O": 4,
+   "raw_total": 4096,
+   "raw_minimal": 3840,
+   "renaming_classes": 2080,
+   "canonical_minimal": 1920,
+   "max_depth_canonical": 1,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 1920,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 3,
+   "I": 1,
+   "O": 2,
+   "raw_total": 216,
+   "raw_minimal": 72,
+   "renaming_classes": 44,
+   "canonical_minimal": 12,
+   "max_depth_canonical": 2,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 12,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 3,
+   "I": 1,
+   "O": 4,
+   "raw_total": 1728,
+   "raw_minimal": 1080,
+   "renaming_classes": 316,
+   "canonical_minimal": 180,
+   "max_depth_canonical": 2,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 72,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 3,
+   "I": 2,
+   "O": 2,
+   "raw_total": 46656,
+   "raw_minimal": 35640,
+   "renaming_classes": 7860,
+   "canonical_minimal": 5940,
+   "max_depth_canonical": 3,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 96,
+   "max_mistakes_canonical": 1,
+   "depth_max_realizers_raw": 576,
+   "raw_minimal_checked": 35640
+  },
+  {
+   "M": 3,
+   "I": 2,
+   "O": 4,
+   "raw_total": 2985984,
+   "raw_minimal": 2812320,
+   "renaming_classes": 498864,
+   "canonical_minimal": 468720,
+   "max_depth_canonical": 3,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 1152,
+   "max_mistakes_canonical": 1
+  },
+  {
+   "M": 4,
+   "I": 1,
+   "O": 2,
+   "raw_total": 4096,
+   "raw_minimal": 960,
+   "renaming_classes": 218,
+   "canonical_minimal": 40,
+   "max_depth_canonical": 3,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 24,
+   "max_mistakes_canonical": 2
+  },
+  {
+   "M": 4,
+   "I": 1,
+   "O": 4,
+   "raw_total": 65536,
+   "raw_minimal": 34944,
+   "renaming_classes": 3044,
+   "canonical_minimal": 1456,
+   "max_depth_canonical": 3,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 144,
+   "max_mistakes_canonical": 2
+  },
+  {
+   "M": 4,
+   "I": 2,
+   "O": 2,
+   "raw_total": 16777216,
+   "raw_minimal": 13203456,
+   "renaming_classes": 703760,
+   "canonical_minimal": 550144,
+   "max_depth_canonical": 6,
+   "unidentifiable_canonical": 0,
+   "depth_max_realizers_canonical": 128,
+   "max_mistakes_canonical": 2,
+   "depth_max_realizers_raw": 3072,
+   "raw_minimal_checked": 13203456
+  }
+ ],
+ "m5_structured": {
+  "raw_total": 1875000,
+  "renaming_classes": 16100,
+  "minimal_canonical": 11830,
+  "max_depth": 9,
+  "depth_max_realizers_canonical": 80
+ }
+}

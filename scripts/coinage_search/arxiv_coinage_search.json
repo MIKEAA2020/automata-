@@ -1,0 +1,104 @@
+{
+ "_probe": {
+  "probe_phrase": "this paper is organized as follows",
+  "total_results": 18,
+  "conclusion": "full-text indexing NOT confirmed; treat results as metadata-level"
+ },
+ "unifilar_lumpability": {
+  "phrase": "unifilar lumpability",
+  "total_results": 0,
+  "zero_results": true,
+  "top_titles": [],
+  "url": "https://arxiv.org/search/?query=%22unifilar%20lumpability%22&searchtype=all&size=25"
+ },
+ "unifilar_lumpable": {
+  "phrase": "unifilar-lumpable",
+  "total_results": 0,
+  "zero_results": true,
+  "top_titles": [],
+  "url": "https://arxiv.org/search/?query=%22unifilar-lumpable%22&searchtype=all&size=25"
+ },
+ "commitment_gap": {
+  "phrase": "commitment gap",
+  "total_results": 2,
+  "zero_results": false,
+  "top_titles": [
+   "Commitment Gap via Correlation Gap",
+   "Informational Puts"
+  ],
+  "url": "https://arxiv.org/search/?query=%22commitment%20gap%22&searchtype=all&size=25"
+ },
+ "retention_gap": {
+  "phrase": "retention gap",
+  "total_results": 3,
+  "zero_results": false,
+  "top_titles": [
+   "Thermodynamics of Learning: A Typed Four-Component Accounting of Memory, Fit, and Value",
+   "CAMeR: Keyword-Gated Hybrid Activation for Adaptive Memory Retention in LLM Agents",
+   "The Product Promotion and Consumer Retention Gap in Online Shopping"
+  ],
+  "url": "https://arxiv.org/search/?query=%22retention%20gap%22&searchtype=all&size=25"
+ },
+ "grounding_gap": {
+  "phrase": "grounding gap",
+  "total_results": 21,
+  "zero_results": false,
+  "top_titles": [
+   "VERA-8B: Evidence-Grounded Audit Risk Reasoning from SEC Filings",
+   "Knowing Isn&#39;t Always Saying: When Do Spatial Encodings Reach Answers in Vision-Language Models?",
+   "From Region Arrival to Instance-Level Grounding in Vision-and-Language Navigation",
+   "Do Medical Vision Language Models Actually See? A Counterfactual Grounding Framework and Hard-Negative Contrastive Training for Visually-Reliant Medical VLMs",
+   "DigitalCoach: Communication and Grounding Gaps in Human and Agentic Computer Use Coaching",
+   "RAPTOR+: A Visually Grounded Vision-Language Framework to Improve Clinical Trust and Auditability in Automated Cancer Referral Processing",
+   "Omni-Persona: Systematic Benchmarking and Improving Omnimodal Personalization",
+   "The Grounding Gap: How LLMs Anchor the Meaning of Abstract Concepts Differently from Humans",
+   "VoxSafeBench: Not Just What Is Said, but Who, How, and Where",
+   "WebXSkill: Skill Learning for Autonomous Web Agents"
+  ],
+  "url": "https://arxiv.org/search/?query=%22grounding%20gap%22&searchtype=all&size=25"
+ },
+ "price_of_safety": {
+  "phrase": "Price of Safety",
+  "total_results": 2,
+  "zero_results": false,
+  "top_titles": [
+   "Price of Safety in Linear Best Arm Identification",
+   "Context-Guided BERT for Targeted Aspect-Based Sentiment Analysis"
+  ],
+  "url": "https://arxiv.org/search/?query=%22Price%20of%20Safety%22&searchtype=all&size=25"
+ },
+ "kappa_pair": {
+  "phrase": "kappa_pair",
+  "total_results": 0,
+  "zero_results": true,
+  "top_titles": [],
+  "url": "https://arxiv.org/search/?query=%22kappa_pair%22&searchtype=all&size=25"
+ },
+ "determination_index": {
+  "phrase": "determination index",
+  "total_results": 11,
+  "zero_results": false,
+  "top_titles": [
+   "Harness Engineering for Predictable Agentic Systems: An Empirical Study of Deterministic Execution Constraints",
+   "Paratrophic Determinants over $\\mathbb{Z}/N\\mathbb{Z}$ via Discrete Fourier Transform",
+   "A Quantum-Empowered SPEI Drought Forecasting Algorithm Using Spatially-Aware Mamba Network",
+   "Focusing on Refinement Typing",
+   "Edge Determining Sets and Determining Index",
+   "The Varchenko Determinant for Apartments",
+   "Functional determinants, index theorems, and exact quantum black hole entropy",
+   "Symmetric theta divisors of Klein surfaces",
+   "Abelian Yang-Mills theory on Real tori and Theta divisors of Klein surfaces",
+   "The statistics of the photometric accuracy based on MASS data and the evaluation of high-altitude wind"
+  ],
+  "url": "https://arxiv.org/search/?query=%22determination%20index%22&searchtype=all&size=25"
+ },
+ "protocol_stratification": {
+  "phrase": "protocol stratification",
+  "total_results": 1,
+  "zero_results": false,
+  "top_titles": [
+   "SALT-V: Lightweight Authentication for 5G V2X Broadcasting"
+  ],
+  "url": "https://arxiv.org/search/?query=%22protocol%20stratification%22&searchtype=all&size=25"
+ }
+}

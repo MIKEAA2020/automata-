@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Lumpability",
+    "name": "Lumpability",
+    "snippet": "lumpability is a method for reducing the size of the state space of some continuous-time Markov chains, first published by Kemeny and Snell.",
+    "host_name": "en.wikipedia.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ora.ox.ac.uk/objects/uuid:871a6557-b0d3-49c3-b7be-6ced8bad84db/files/s5138jf59n",
+    "name": "Lumpability for Uncertain Continuous-Time Markov Chains",
+    "snippet": "by L Cardelli · 2021 · Cited by 12 — We develop a notion of lumpability which identifies a partition of states where each block preserves the reachable set of the sum of its probabilities,",
+    "host_name": "ora.ox.ac.uk",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/29616761_On_weak_lumpability_in_Markov_chains",
+    "name": "(PDF) On weak lumpability in Markov chains",
+    "snippet": "Jul 15, 2026 — We consider weak lumpability of finite homogeneous Markov chains, which is when a lumped Markov chain with respect to a partition of the initial ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "Jul 15, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1304.4180",
+    "name": "The lumpability property for a family of Markov chains on",
+    "snippet": "by D D'Angeli · 2013 · Cited by 6 — Abstract:We construct different classes of lumpings for a family of Markov chain products which reflect the structure of a given finite poset.",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.pku.edu.cn/teachers/yaoy/Fall2011/lecture09.pdf",
+    "name": "Lecture 9. Lumpability (Metastability) and MNcut",
+    "snippet": "Oct 23, 2011 — To answer this we will introduce the concept of lumpability in this lecture. obtain a sequence a coarse-grained representation of original ... 5 pages",
+    "host_name": "math.pku.edu.cn",
+    "rank": 4,
+    "date": "Oct 23, 2011",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1999-4893/17/4/159",
+    "name": "Efficient Algorithm for Proportional Lumpability and Its",
+    "snippet": "by C Piazza · 2024 · Cited by 5 — This study involves the development and analysis of a proportionally lumpable model specifically tailored for examining selfish mining behaviors ... Read more",
+    "host_name": "www.mdpi.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.lib.purdue.edu/dissertations/AAI3263659",
+    "name": "Lumpability approximation methods for Markov models",
+    "snippet": "by L Zhang · 2006 · Cited by 2 — In this thesis, the theory of lumpability (strong lumpability and weak lumpability ) of irreducible finite Markov chains was studied.",
+    "host_name": "docs.lib.purdue.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inria.hal.science/inria-00073889",
+    "name": "Weak Lumpability of Finite Markov Chains and Positive",
+    "snippet": "We show that weak lumpability is equivalent to the existence of a decomposable polyhedral cone which is positively invariant by the transition probability ... Read more",
+    "host_name": "inria.hal.science",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ideas.repec.org/a/eee/stapro/v64y2003i1p17-23.html",
+    "name": "Testing lumpability in Markov chains",
+    "snippet": "by RW Jernigan · 2003 · Cited by 16 — The chi-squared test of Markov chain lumpability is shown to operate reliably under a corrected derivation of the degrees of freedom. Read more",
+    "host_name": "ideas.repec.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

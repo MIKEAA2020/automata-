@@ -10,7 +10,23 @@ modified**.
 | v2 | `automata_unified_revised_fixed.tex` / `.pdf` | FROZEN 2026-09-01 (read-only, md5 `287b28e5…`) | review findings A1 + B1–B7 applied |
 | v3 | `automata_unified_revised_v3.tex` / `.pdf` | FROZEN 2026-09-01 (read-only, md5 `eec4bad1…`) | A2–A6 + C1 + global bold-Σ (`\bm{\Sigma}`); 234 pp. |
 | v4 | `automata_unified_revised_v4.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `7ea7be4f…`) | three flagged citations + two positioning sentences; C2 + C3; D1–D3; E1–E5; AAK proof-check precision edits; 233 pp. |
-| v5 | `automata_unified_revised_v5.tex` / `.pdf` | **current latest** | two precision fixes from the remaining-theorems proof check: corrected display in `prop:grounding-tracking`(iii) (partition-independent term is the total modal mass 1−σ₁, not σ₁) and partition-reading convention added at `def:safe-right-cong`; 234 pp. |
+| v5 | `automata_unified_revised_v5.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `21db11d2…`) | two precision fixes from the remaining-theorems proof check: corrected display in `prop:grounding-tracking`(iii) (partition-independent term is the total modal mass 1−σ₁, not σ₁) and partition-reading convention added at `def:safe-right-cong`; 234 pp. |
+| v6 | `automata_unified_revised_v6.tex` / `.pdf` | **current latest** | the three non-blocking observations of the remaining-theorems proof check addressed (O1 forward references flagged at both sites; O2 Hadamard/Sylvester qualification at both sites, d = 11 of order 12 named; O3 verification suite recorded in the conventions remark) and the Data and Code Availability statement re-hardened to the assembled supplementary package; 234 pp. |
+
+## The supplementary package
+
+`supplementary/` (repository root) is the actual package referenced by the
+manuscript's availability statement since v6: the numerical verification suite
+(41 checks, all PASS, log identical to the archived proof-check run), the
+exhaustive machine enumeration programs (renaming classes, Moore minimality,
+exact minimax games — reproducing the quoted 46,656/35,640 counts, the depth-6
+maximum with its 3,072 raw realizers at M = 4, and the depth-9 maximum at
+M = 5, all exactly), the extremal machine tables (CSV + LaTeX), the exact run
+outputs, and the Lean 4 statement manifest with its integration protocol. Its
+README documents the reproduction status of every quoted computational
+observation. The machine-checked `.lean` sources of the fifteen-statement
+development are imported into `supplementary/lean/` per that directory's
+README (one-file drop from the companion effort).
 
 ## Companion documents
 
@@ -30,6 +46,13 @@ modified**.
   numerical checks pass, including the counter-family values, both
   non-convexity instances, the Csiszár identity, and the depth-6 witness
   machine).
+- `coinage_search_venue_decision.docx` — completion of the novelty report's
+  pre-submission checklist: arXiv-class phrase search on the nine coinages
+  (verdict: no same-sense collision; the core coinages unclaimed) and the
+  venue decision (single submission, Information and Computation primary,
+  Theory of Computing backup, arXiv preprint immediately, two-paper split
+  retained only as a desk-rejection contingency). Search evidence under
+  `scripts/coinage_search/`.
 
 ## v4 change log (relative to v3)
 
@@ -120,3 +143,40 @@ Verification: anchored edits confirmed in place; tectonic compile exit 0
 (234 pp., 1.09 MiB; 504 labels / 0 duplicates; 871 refs / 0 undefined;
 environments matched; brace balance 0; 9 overfull boxes, identical count and
 magnitudes to the v4 baseline, so no new overfull from the inserted text).
+
+## v6 change log (relative to v5)
+
+- **O1 — forward references flagged (presentational).**
+  `cor:fisher-uniform-remainder` now reads "Under the hypotheses of
+  Theorem `thm:local-full-kl`, stated immediately below", and the proof of
+  `cor:controlled-elementary-general` reads "As in Corollary
+  `cor:controlled-elementary`, the independent-input special case stated
+  below". Both references always resolved; the local reading order is now
+  explicit. Reordering the results was deliberately avoided (churn risk).
+- **O2 — Hadamard/Sylvester qualification, both sites.** The alphabet-reduction
+  remark now says `d = 3, 7, 15, …` are the Sylvester orders `2^k − 1` and that
+  every other Hadamard order also qualifies, `d = 11` (order-12 Hadamard
+  matrix) being the smallest qualifier outside the Sylvester pattern; the
+  open-problems summary carries the parallel qualification. The operative
+  exact condition was already displayed and is unchanged.
+- **O3 — independent verification suite recorded.** The Computational
+  Conventions remark now records that the recomputable subset of the
+  computational observations is reproduced exactly by an independent
+  verification suite, and that the exhaustive searches are re-implemented
+  under the stated conventions, distributed with the machine tables and exact
+  outputs as part of the supplementary package (assembled in this round; see
+  `supplementary/README.md` for the full reproduction table — the quoted
+  46,656/35,640 counts, the 3,072 depth-6 realizers, and the M = 5 depth-9
+  maximum all reproduce exactly).
+- **Availability statement re-hardened.** "Are being prepared … and will be
+  made available upon publication" replaced by a concrete statement of the
+  package contents: the verification suite with exact outputs, the enumeration
+  programs implementing the conventions, the machine tables of the extremal
+  witnesses, and the statement manifest of the fifteen-statement Lean 4
+  development.
+
+Verification: `scripts/verify_v6.py` — 19/19 checks PASS (including v5 frozen
+and byte-unchanged, md5 `21db11d2…`); tectonic compile exit 0 (234 pp.,
+1.09 MiB; 504 labels / 0 duplicates; 873 refs / 0 undefined; environments
+matched; brace balance 0; 9 overfull boxes, identical count and magnitudes to
+the v5 baseline, so no new overfull from the inserted text).

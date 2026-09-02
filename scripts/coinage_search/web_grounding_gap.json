@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://arxiv.org",
+    "name": "Grounding Gaps in Language Model Generations",
+    "snippet": "by O Shaikh · 2023 · Cited by 90 — To understand the roots of the identified grounding gap , we examine the role of instruction tuning and preference optimization, finding that ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://aclanthology.org",
+    "name": "Grounding Gaps in Language Model Generations",
+    "snippet": "by O Shaikh · 2024 · Cited by 88 — To understand the roots of the identified grounding gap , we examine the role of instruction tuning and preference optimization, finding that training on ... Read more",
+    "host_name": "aclanthology.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net",
+    "name": "Where to Look? Bridging Perception and Grounding Gap in",
+    "snippet": "by EM BAKR — We call this the understanding– grounding gap , where enhancing grounding comes at the expense of perception. In this work, we propose Look&Learn, a segmentation- ... Read more",
+    "host_name": "openreview.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvpr.thecvf.com",
+    "name": "GroundingME: Exposing the Visual Grounding Gap in",
+    "snippet": "Jun 5, 2026 — GroundingME: Exposing the Visual Grounding Gap in MLLMs through Multi-Dimensional Evaluation. Rang Li ⋅ Lei Li ⋅ Shuhuai Ren ⋅ Hao Tian ... Read more",
+    "host_name": "cvpr.thecvf.com",
+    "rank": 3,
+    "date": "Jun 5, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu",
+    "name": "The Grounding Gap: How LLMs Anchor the Meaning of Abstract",
+    "snippet": "This yields a large and consistent grounding gap : no model exceeds a Pearson correlation r=0.37 with human responses, compared to a human-to-human ceiling above ...",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com",
+    "name": "odychlapanis/grounding-gap",
+    "snippet": "The Grounding Gap : How LLMs Anchor the Meaning of Abstract Concepts Differently from Humans. Code, data, and sample runs accompanying the paper. Paper. Read more",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://icml.cc",
+    "name": "Bridging the Grounding Gap in VideoQA via Typed Memory",
+    "snippet": "Jul 6, 2026 — VideoQA models can be accurate yet often fail to align answers with the correct video segments (the \\emph{ grounding gap }). Read more",
+    "host_name": "icml.cc",
+    "rank": 6,
+    "date": "Jul 6, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.astrelle.ca",
+    "name": "The Grounding Gap - Plumb",
+    "snippet": "The grounding gap describes a distinct class of failure: the model worked from real evidence and still distorted it. The output is not invented. It is ... Read more",
+    "host_name": "www.astrelle.ca",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Lumpability",
+    "name": "Lumpability",
+    "snippet": "lumpability is a method for reducing the size of the state space of some continuous-time Markov chains, first published by Kemeny and Snell.",
+    "host_name": "en.wikipedia.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ora.ox.ac.uk/objects/uuid:871a6557-b0d3-49c3-b7be-6ced8bad84db/files/s5138jf59n",
+    "name": "Lumpability for Uncertain Continuous-Time Markov Chains",
+    "snippet": "by L Cardelli · 2021 · Cited by 12 — We develop a notion of lumpability which identifies a partition of states where each block preserves the reachable set of the sum of its probabilities,",
+    "host_name": "ora.ox.ac.uk",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/29616761_On_weak_lumpability_in_Markov_chains",
+    "name": "(PDF) On weak lumpability in Markov chains",
+    "snippet": "Jul 15, 2026 — We consider weak lumpability of finite homogeneous Markov chains, which is when a lumped Markov chain with respect to a partition of the initial ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "Jul 15, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1304.4180",
+    "name": "The lumpability property for a family of Markov chains on",
+    "snippet": "by D D'Angeli · 2013 · Cited by 6 — Abstract:We construct different classes of lumpings for a family of Markov chain products which reflect the structure of a given finite poset.",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.pku.edu.cn/teachers/yaoy/Fall2011/lecture09.pdf",
+    "name": "Lecture 9. Lumpability (Metastability) and MNcut",
+    "snippet": "Oct 23, 2011 — To answer this we will introduce the concept of lumpability in this lecture. obtain a sequence a coarse-grained representation of original ... 5 pages",
+    "host_name": "math.pku.edu.cn",
+    "rank": 4,
+    "date": "Oct 23, 2011",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,30 @@
+{
+ "Commitment Gap via Correlation Gap": [
+  {
+   "arxiv_id": "http://arxiv.org/abs/2508.20246v2",
+   "title": "Commitment Gap via Correlation Gap",
+   "abstract": "Selection problems with costly information, dating back to Weitzman's Pandora's Box problem, have received much attention recently. We study the general model of Costly Information Combinatorial Selection (CICS) that was recently introduced by Chawla et al. [2024] and Bowers et al. [2025]. In this problem, a decision maker needs to select a feasible subset of stochastic variables, and can only learn information about their values through a series of costly steps, modeled by a Markov decision process. The algorithmic objective is to maximize the total value of the selection minus the cost of information acquisition. However, determining the optimal algorithm is known to be a computationally challenging problem. To address this challenge, previous approaches have turned to approximation algorithms by considering a restricted class of committing policies that simplify the decision-making aspects of the problem and allow for efficient optimization. This motivates the question of bounding the commitment gap, measuring the worst case ratio in the performance of the optimal committing policy and the overall optimal. In this work, we obtain improved bounds on the commitment gap of CICS through a reduction to a simpler problem of Bayesian Combinatorial Selection where information is free. By establishing a close relationship between these problems, we are able to relate the commitment g"
+  }
+ ],
+ "Price of Safety in Linear Best Arm Identification": [
+  {
+   "arxiv_id": "http://arxiv.org/abs/2309.08709v1",
+   "title": "Price of Safety in Linear Best Arm Identification",
+   "abstract": "We introduce the safe best-arm identification framework with linear feedback, where the agent is subject to some stage-wise safety constraint that linearly depends on an unknown parameter vector. The agent must take actions in a conservative way so as to ensure that the safety constraint is not violated with high probability at each round. Ways of leveraging the linear structure for ensuring safety has been studied for regret minimization, but not for best-arm identification to the best our knowledge. We propose a gap-based algorithm that achieves meaningful sample complexity while ensuring the stage-wise safety. We show that we pay an extra term in the sample complexity due to the forced exploration phase incurred by the additional safety constraint. Experimental illustrations are provided to justify the design of our algorithm."
+  }
+ ],
+ "Grounding Gaps in Language Model Generations": [
+  {
+   "arxiv_id": "http://arxiv.org/abs/2311.09144v2",
+   "title": "Grounding Gaps in Language Model Generations",
+   "abstract": "Effective conversation requires common ground: a shared understanding between the participants. Common ground, however, does not emerge spontaneously in conversation. Speakers and listeners work together to both identify and construct a shared basis while avoiding misunderstanding. To accomplish grounding, humans rely on a range of dialogue acts, like clarification (What do you mean?) and acknowledgment (I understand.). However, it is unclear whether large language models (LLMs) generate text that reflects human grounding. To this end, we curate a set of grounding acts and propose corresponding metrics that quantify attempted grounding. We study whether LLM generations contain grounding acts, simulating turn-taking from several dialogue datasets and comparing results to humans. We find that -- compared to humans -- LLMs generate language with less conversational grounding, instead generating text that appears to simply presume common ground. To understand the roots of the identified grounding gap, we examine the role of instruction tuning and preference optimization, finding that training on contemporary preference data leads to a reduction in generated grounding acts. Altogether, we highlight the need for more research investigating conversational grounding in human-AI interaction."
+  }
+ ],
+ "Thermodynamics of Learning: A Typed Four-Component Accounting of Memory, Fit, and Value": [
+  {
+   "arxiv_id": "http://arxiv.org/abs/2608.12791v1",
+   "title": "Thermodynamics of Learning: A Typed Four-Component Accounting of Memory, Fit, and Value",
+   "abstract": "What a finite learning device has recorded and what will hold value for it on future tasks are not the same quantity. We develop a typed accounting for finite-state learning devices that separates four components: a training-side fit functional $\u03a6_{\\mathrm{fit}}$, the record-correlation stock $J_{D}=I(M;D)$, an update-side search ledger $\u03c3_{M}$, and an operational capital value $V(M;T,b)$. This value is the work gap between an informed protocol class and a blind class obtained by deleting the memory-read port and re-optimizing from scratch. (I) Separation: for every $n$, there is a device family on which record correlation and world correlation grow by $n\\ln 2$ while the capital gain is exactly zero. In the $\\mathrm{flat}^{*}$ regime, data-free updates never increase $V$. (II) Capitalization ledger: an exact $\\mathrm{flat}^{*}$ extraction identity and a universal ledger identity give, for (F5$'$)-stable $M$-local updates under a no-discarded-record-correlation condition (f), the bound $\u03b7_{\\mathrm{cap}}\\le 1$ for the capitalization efficiency $\u03b7_{\\mathrm{cap}}=\u0394V/(k T\\,\u03c3_{M})$, together with necessary and sufficient conditions for equality. (III) Value retention: for the retention gap $L_{\\mathrm{gen}}$ and retention ratio $\u03c1_{\\mathrm{gen}}$ (the former carries no sign constraint; the latter is defined for positive training-side value and is not confined to $[0,1]$) we give a tw"
+  }
+ ]
+}

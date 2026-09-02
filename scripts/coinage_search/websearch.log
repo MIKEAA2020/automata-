@@ -1,0 +1,25 @@
+=== unifilar_lumpability : unifilar lumpability ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_unifilar_lumpability.json
+=== unifilar_lumpable : unifilar-lumpable ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_unifilar_lumpable.json
+=== commitment_gap : commitment gap ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_commitment_gap.json
+=== retention_gap : retention gap ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_retention_gap.json
+=== grounding_gap : grounding gap ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_grounding_gap.json
+=== price_of_safety : Price of Safety ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_price_of_safety.json
+=== determination_index : determination index ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_determination_index.json
+=== protocol_stratification : protocol stratification ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_protocol_stratification.json
+=== commitment_corr : commitment gap correlation gap ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_commitment_corr.json
+=== pos_bandit : Price of Safety bandit best arm identification ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_pos_bandit.json
+=== kappa_pair : kappa_pair determination index ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_kappa_pair.json
+=== kappa_raw : kappa_pair ===
+✅ File saved to: /home/z/my-project/automata-repo/scripts/coinage_search/web_kappa_raw.json
+done
