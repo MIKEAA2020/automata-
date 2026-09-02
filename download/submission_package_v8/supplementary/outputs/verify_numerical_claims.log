@@ -1,0 +1,57 @@
+== 1. Counter family C_M, beta=1/2, gamma=1/10 ==
+[PASS] RetKLc(2) for C_3 got 0.0481 vs 0.0481
+[PASS] RetKLc(3) == 0 for C_3 got -6.25e-17
+[PASS] RetKLc(3) for C_4 got 0.0321 vs 0.0321
+[PASS] RetKLc(4) == 0 for C_4 got -4.63e-18
+[PASS] RetKLc(4) for C_5 got 0.0192 vs 0.0192
+[PASS] RetKLc(5) == 0 for C_5 got 0.00e+00
+[PASS] RetKLc(5) for C_6 got 0.0107 vs 0.0107
+[PASS] RetKLc(6) == 0 for C_6 got 0.00e+00
+[PASS] RetKLc(6) for C_7 got 0.0057 vs 0.0057
+[PASS] RetKLc(7) == 0 for C_7 got 1.47e-17
+== 2. prop:rd-nonconvex instances ==
+  D values: ['0.0948616', '0.0148089', '0.0049099', '0.0021747', '-0.0000000']
+[PASS] D(M=1) matches got 0.0948616 vs 0.0948616
+[PASS] D(M=2) matches got 0.0148089 vs 0.0148089
+[PASS] D(M=3) matches got 0.0049099 vs 0.0049099
+[PASS] D(M=4) matches got 0.0021747 vs 0.0021747
+[PASS] D(M=5) matches got -0.0000000 vs 0.0
+  chord slopes: ['-0.115492', '-0.024414', '-0.009508', '-0.009746']
+[PASS] non-convex (last slope decreases) slope4=-0.009746 < slope3=-0.009508
+  4-state D: ['0.2887482', '0.1601480', '0.0145216', '0.0000000']
+[PASS] 4-state D(M=1) got 0.2887482 vs 0.2887482
+[PASS] 4-state D(M=2) got 0.1601480 vs 0.160148
+[PASS] 4-state D(M=3) got 0.0145216 vs 0.0145216
+[PASS] 4-state D(M=4) got 0.0000000 vs 0.0
+== 3. Csiszar identity (dagger) ==
+[PASS] KL generator satisfies (dagger) defect 6.66e-16
+[PASS] reverse KL fails (dagger) at claimed point got -0.1657
+[PASS] KL generator: max (dagger) defect over 3000 random triples 3.55e-15
+== 4. prop:lsyncu-binomial M=4 witness ==
+[PASS] witness machine adaptive depth == 6 got 6
+[PASS] witness machine minimal 
+== 5. thm:stream-lower-bound simulation, L=2 (M=4) ==
+[PASS] forced mistakes == M*L got 8, expected 8
+[PASS] g fully defined on Q |dom g| = 4
+[PASS] machine A_g reproduces full stream consistently 
+[PASS] stream length <= M(3L+2) len=28
+== 6. prop:bernoulli-fisher-scales ratio ==
+[PASS] ratio -> 0.50009 got 0.50010
+== 7. prop:kl-simplex-sharp expansion ==
+[PASS] RetKL(1) ~ 2e^2+4/3 e^4 at eps=0.01 exact 0.00020001 vs approx 0.00020001
+[PASS] RetKL(1) ~ 2e^2+4/3 e^4 at eps=0.05 exact 0.00500837 vs approx 0.00500833
+[PASS] RetKL(1) ~ 2e^2+4/3 e^4 at eps=0.1 exact 0.02013551 vs approx 0.02013333
+== 8. thm:esyncsi-theta cyclic-shift depth ==
+[PASS] cyclic-shift depth == L == 1 got 1
+[PASS] cyclic-shift depth == L == 2 got 2
+[PASS] cyclic-shift depth == L == 3 got 3
+[PASS] cyclic-shift depth == L == 4 got 4
+[PASS] cyclic-shift depth == L == 5 got 5
+[PASS] cyclic-shift depth == L == 6 got 6
+== 9. thm:global-kl-simplex minorant (random instances) ==
+[PASS] no violations of RetKL(phi) >= sum_{i>M} lambda_i in 400 random instances 0/4084 violations
+== 10. rem:gating-needed chained readout count ==
+   chained-count model total (for context): 256
+[PASS] chained readout breaks product structure (qualitative) see note
+
+ALL CHECKS: PASS

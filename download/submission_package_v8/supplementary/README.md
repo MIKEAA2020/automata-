@@ -1,15 +1,17 @@
 # Supplementary Package — Machine-Checked and Computational Material
 
-This package accompanies the manuscript *automata unified (revised)* (current
-version: `automata_unified_revised_v8.tex`; v8 adds two cross-references and a
-back-matter Notation Index over v7, with no change to any theorem, proof, or
-quoted computational value, so all reproduction statements below apply
-verbatim to v8). It contains the programs, the
-extremal machine tables, and the exact outputs referenced by the manuscript's
-Data and Code Availability statement, together with the **actual Lean 4
-development** (sources, build script, and axiom-audit gate) of
-`rem:lean-formalization`, and the pristine companion package from which the
-Lean development and a broad legacy verification suite originate.
+This package accompanies the manuscript *The Rate–Distortion Theory of Bounded
+Sequential Transduction: A Comparative Syntax for Finite-State Approximation*
+(current version: `automata_unified_revised_v8.tex`). It contains the programs,
+the extremal machine tables, and the exact outputs referenced by the
+manuscript's Data and Code Availability statement, together with the **actual
+Lean 4 development** (sources, build script, and axiom-audit gate) of
+`rem:lean-formalization`.
+
+Relative to version v7, the current manuscript version v8 adds two
+cross-references and a back-matter Notation Index; no theorem, proof, or
+quoted computational value changed, so every reproduction statement below
+applies verbatim to v8.
 
 ## Contents
 
@@ -20,8 +22,7 @@ Lean development and a broad legacy verification suite originate.
 | `programs/gen_machine_tables.py` | emits the tables of the manuscript's fixed example machines |
 | `machine_tables/` | extremal and example machines, each as CSV (program-readable) and LaTeX tabular (manuscript-consistent) |
 | `outputs/` | exact run logs (`verify_numerical_claims.log`, `enumeration.log`) and the machine-readable `enumeration_summary.json` |
-| `lean/` | **the Lean 4 / Mathlib development itself** (v7 claims seventeen machine-checked statements across seven modules): the `BST` Lake project, `BUILD.md`, `MODULES.md`, the `lean_check.py` standing gate, and the statement manifest / reconciliation note |
-| `legacy/` | pristine companion package of the superseded shorter manuscript (`automata_corrected.tex`): 120 verification programs, 10 consistency gates, its own SHA-256 `MANIFEST.txt`, and integration notes |
+| `lean/` | **the Lean 4 / Mathlib development itself** (seventeen machine-checked statements across seven modules): the `BST` Lake project, `BUILD.md`, `MODULES.md`, the `lean_check.py` standing gate, and the statement manifest / reconciliation note |
 
 ## Conventions
 
@@ -83,15 +84,10 @@ exhaustive run; the manuscript's output-alphabet-independence remark covers it.
 
 The seventeen-statement (seventeen tracked declarations across seven modules)
 Lean 4 / Mathlib development of `rem:lean-formalization` is **included in
-this package** at `lean/`: the sources, the build script (`lean/BUILD.md`,~
-3 min from a clean machine), and the standing gate (`lean/lean_check.py`)
+this package** at `lean/`: the sources, the build script (`lean/BUILD.md`,
+~3 min from a clean machine), and the standing gate (`lean/lean_check.py`)
 that rebuilds the project, checks it is `sorry`-free, and audits every
-tracked declaration against Lean's standard three axioms. The development
-was produced and machine-checked in a companion effort; its pristine
-snapshot — whose `legacy/MANIFEST.txt` SHA-256s the exact files — is at
-`legacy/` together with 120 further verification programs and 10 consistency
-gates (see `legacy/INTEGRATION_NOTES.md` for the label-lineage caveats when
-running the legacy gates against the current manuscript).
+tracked declaration against Lean's standard three axioms.
 
 ## Machine-table inventory
 

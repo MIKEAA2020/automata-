@@ -1,0 +1,87 @@
+[    0.0s] Stage 1: cyclic-shift family, L=1..10
+[    0.0s]   L= 1: depth=1 (claim 1), bayes=0.500000 (claim 0.5), minimal=True -> PASS
+[    0.0s]   L= 2: depth=2 (claim 2), bayes=1.000000 (claim 1.0), minimal=True -> PASS
+[    0.0s]   L= 3: depth=3 (claim 3), bayes=1.500000 (claim 1.5), minimal=True -> PASS
+[    0.0s]   L= 4: depth=4 (claim 4), bayes=2.000000 (claim 2.0), minimal=True -> PASS
+[    0.0s]   L= 5: depth=5 (claim 5), bayes=2.500000 (claim 2.5), minimal=True -> PASS
+[    0.0s]   L= 6: depth=6 (claim 6), bayes=3.000000 (claim 3.0), minimal=True -> PASS
+[    0.0s]   L= 7: depth=7 (claim 7), bayes=3.500000 (claim 3.5), minimal=True -> PASS
+[    0.0s]   L= 8: depth=8 (claim 8), bayes=4.000000 (claim 4.0), minimal=True -> PASS
+[    0.0s]   L= 9: depth=9 (claim 9), bayes=4.500000 (claim 4.5), minimal=True -> PASS
+[    0.1s]   L=10: depth=10 (claim 10), bayes=5.000000 (claim 5.0), minimal=True -> PASS
+[    0.1s] Stage 2: signature grid (M in {2,3,4}, I in {1,2}, O in {2,4}; raw <= 2^24)
+[    0.1s]   signature (M=2, I=1, O=2): raw table pairs = 16
+[    0.1s]     raw minimal: 8
+[    0.1s]     renaming classes: 10
+[    0.1s]     minimal renaming classes: 4
+[    0.1s]     max depth (minimal, canonical): 1 (realizers 4); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=2, I=1, O=4): raw table pairs = 64
+[    0.1s]     raw minimal: 48
+[    0.1s]     renaming classes: 36
+[    0.1s]     minimal renaming classes: 24
+[    0.1s]     max depth (minimal, canonical): 1 (realizers 24); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=2, I=2, O=2): raw table pairs = 256
+[    0.1s]     raw minimal: 192
+[    0.1s]     renaming classes: 136
+[    0.1s]     minimal renaming classes: 96
+[    0.1s]     max depth (minimal, canonical): 1 (realizers 96); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=2, I=2, O=4): raw table pairs = 4,096
+[    0.1s]     raw minimal: 3,840
+[    0.1s]     renaming classes: 2,080
+[    0.1s]     minimal renaming classes: 1,920
+[    0.1s]     max depth (minimal, canonical): 1 (realizers 1920); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=3, I=1, O=2): raw table pairs = 216
+[    0.1s]     raw minimal: 72
+[    0.1s]     renaming classes: 44
+[    0.1s]     minimal renaming classes: 12
+[    0.1s]     max depth (minimal, canonical): 2 (realizers 12); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=3, I=1, O=4): raw table pairs = 1,728
+[    0.1s]     raw minimal: 1,080
+[    0.1s]     renaming classes: 316
+[    0.1s]     minimal renaming classes: 180
+[    0.1s]     max depth (minimal, canonical): 2 (realizers 72); unidentifiable: 0
+[    0.1s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.1s]   signature (M=3, I=2, O=2): raw table pairs = 46,656
+[    0.2s]     raw minimal: 35,640
+[    0.2s]     renaming classes: 7,860
+[    0.2s]     minimal renaming classes: 5,940
+[    0.2s]     max depth (minimal, canonical): 3 (realizers 96); unidentifiable: 0
+[    0.2s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[    0.2s]     raw minimal realizers of max depth 3: 576
+[    0.2s]   signature (M=3, I=2, O=4): raw table pairs = 2,985,984
+[    7.3s]     raw minimal: 2,812,320
+[    7.4s]     renaming classes: 498,864
+[    8.2s]     minimal renaming classes: 468,720
+[   15.0s]     max depth (minimal, canonical): 3 (realizers 1152); unidentifiable: 0
+[   15.0s]     max identification mistakes: 1 (bound floor(log2 M) = 1)
+[   15.0s]   signature (M=4, I=1, O=2): raw table pairs = 4,096
+[   15.0s]     raw minimal: 960
+[   15.0s]     renaming classes: 218
+[   15.0s]     minimal renaming classes: 40
+[   15.1s]     max depth (minimal, canonical): 3 (realizers 24); unidentifiable: 0
+[   15.1s]     max identification mistakes: 2 (bound floor(log2 M) = 2)
+[   15.1s]   signature (M=4, I=1, O=4): raw table pairs = 65,536
+[   15.2s]     raw minimal: 34,944
+[   15.2s]     renaming classes: 3,044
+[   15.2s]     minimal renaming classes: 1,456
+[   15.2s]     max depth (minimal, canonical): 3 (realizers 144); unidentifiable: 0
+[   15.2s]     max identification mistakes: 2 (bound floor(log2 M) = 2)
+[   15.2s]   signature (M=4, I=2, O=2): raw table pairs = 16,777,216
+[   95.9s]     raw minimal: 13,203,456
+[   97.2s]     renaming classes: 703,760
+[   99.1s]     minimal renaming classes: 550,144
+[  111.5s]     max depth (minimal, canonical): 6 (realizers 128); unidentifiable: 0
+[  111.5s]     max identification mistakes: 2 (bound floor(log2 M) = 2)
+[  215.2s]     raw minimal realizers of max depth 6: 3,072
+[  215.2s] Stage 3: M=5 structured subclass (first input a permutation, constant first-input outputs, single probe on the second input)
+[  215.2s]   raw machines: 1,875,000
+[  224.1s]   renaming classes: 16,100
+[  224.2s]   minimal renaming classes: 11,830
+[  224.6s]   max adaptive depth: 9 (manuscript: 9; C(5,2) = 10)
+[  224.6s] summary saved -> outputs/enumeration_summary.json
+[  224.6s] DONE

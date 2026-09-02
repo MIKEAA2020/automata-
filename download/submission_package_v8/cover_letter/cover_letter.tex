@@ -1,0 +1,174 @@
+% =====================================================================
+% Cover letter — journal submission of automata_unified_revised_v8.tex
+% Target journal: Information and Computation (Elsevier)
+%
+% PERSONALIZATION CHECKLIST (do these before submitting):
+%   1. Replace [Author Name], [Department, Institution],
+%      [City, Country], [email@institution.edu] with your details.
+%   2. Adjust the arXiv sentence if the preprint is already posted
+%      (replace "will be posted" and cite the identifier).
+%   3. Recompile:  tectonic cover_letter.tex
+%   4. Optionally add a suggested-reviewers block after the closing.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{microtype}
+\usepackage{parskip}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=black,
+            pdftitle={Cover letter: The Rate--Distortion Theory of Bounded Sequential Transduction},
+            pdfauthor={[Author Name]},
+            pdfsubject={Submission to Information and Computation},
+            pdfcreator={LaTeX (Tectonic)}]{hyperref}
+
+\pagestyle{plain}
+\widowpenalty=10000
+\clubpenalty=10000
+
+\begin{document}
+
+% ---------------------------------------------------------------------
+% Letterhead
+% ---------------------------------------------------------------------
+[Author Name]\\
+{}[Department, Institution]\\
+{}[City, Country]\\
+{}\texttt{[email@institution.edu]}
+
+\hfill\today
+
+\bigskip
+
+% ---------------------------------------------------------------------
+% Recipient
+% ---------------------------------------------------------------------
+The Editors\\
+\emph{Information and Computation}
+
+\bigskip
+
+\textbf{Re: Submission of a regular research article --- ``The
+Rate--Distortion Theory of Bounded Sequential Transduction: A Comparative
+Syntax for Finite-State Approximation''}
+
+\medskip
+
+Dear Editors,
+
+I am submitting the manuscript referenced above for consideration as a
+regular research article in \emph{Information and Computation}. The
+manuscript develops a rate--distortion theory of bounded sequential
+transduction in which the rate is a state budget $M$ and the distortion is a
+regime-specific task loss, and it spans precisely the journal's stated scope:
+theoretical computer science together with computational applications of
+information theory. The work is original, has not been published previously,
+and is not under consideration by any other journal. The submission comprises
+the manuscript (238 pages, 18 sections, 390 theorem-like environments of
+which 141 carry proofs, with a 39-entry bibliography and a back-matter
+notation index) and a supplementary package, both described below.
+
+\textbf{What the paper establishes.} The manuscript gives one comparative
+syntax for finite-state approximation across three regimes that until now
+have been studied with disjoint instruments. Commitment targets deterministic
+specifications through Mealy machines and Myhill--Nerode residuals; retention
+targets stochastic controlled processes through stationary controlled
+unifilar causal machines and their lumpable quotients; grounding targets
+stochastic channels through linear finite-rank Hankel realizations, whose
+resource is operator rank rather than quotient index. All three share one
+syntactic core --- histories, finite-index right congruences, quotient
+machines, stationary aggregation, and variational gaps --- while their
+semantic objects differ, and every approximation claim carries an explicit
+type signature fixing regime, feasible set, aggregation, support, protocol,
+and analytical bridge, so that statements from different regimes cannot be
+silently conflated.
+
+\textbf{The contributions we would foreground.} First, the comparative
+syntax itself, together with its negative results: an independence theorem
+shows that the three regimes' approximation obstructions vary
+independently, so no cross-regime ordering of gaps holds. Second, the type
+discipline: seven-coordinate signatures that make regime boundaries
+mechanically checkable, which is what allows the comparative statements to
+be stated at all. Third, the determination-index ladder
+($\kappa_{\mathrm{pair}}$, $\kappa_{\mathrm{obs}}$,
+$\kappa_{\mathrm{det}}$), which organizes commitment-side approximability;
+exact-phrase searches over arXiv and the open web (2026-09-02) confirm the
+terms enter the literature unclaimed. Fourth, the protocol stratification:
+mistake complexity $\Theta(M\log M)$ in the reset-word, persistent-stream,
+and active residual-identification protocols, with agnostic regret
+$\Theta(\sqrt{TM\log M})$. On the retention side the paper also proves an
+exact information-bottleneck decomposition, NP-completeness in the Gaussian
+quadratic restricted regime, and a sharp spectral converse; on the grounding
+side it identifies the unrestricted gap with $\sigma_{M+1}$ by
+Eckart--Young--Mirsky and a superpolynomial determinism gap.
+
+\textbf{Positioning.} I would state plainly that the per-regime instruments
+are, for the most part, transports of known tools --- information-bottleneck
+decompositions, spectral converses, singular-value approximation,
+minimax lower-bound techniques --- into the unified accounting. The
+contribution is the comparative layer: the shared schema, the independence
+and non-orderability results, the type discipline, and the exact constants
+that become meaningful only when the regimes are placed side by side. The
+manuscript's introduction positions the work against the automata
+minimization, computational-mechanics, and Hankel/AAK operator-theoretic
+literatures, and its coined terms carry disambiguation footnotes where
+neighboring literatures use similar phrases.
+
+\textbf{Length and referee navigation.} The manuscript is long, and it was
+engineered for that: a table of contents, a notation index of four
+cross-referenced tables resolving roughly fifty bespoke symbols to their
+defining sites, consolidated cross-references, and theorem numbering within
+sections. The three regimes are individually self-contained chapters, so a
+referee can navigate by the section map on page one. A preprint of this
+version will be posted to arXiv concurrent with the submission, to timestamp
+the coined vocabulary and the results while review proceeds.
+
+\textbf{The multiletter-AAK status, stated honestly.} The most exposed
+single claim concerns the Hankel-structured grounding gap for multilet
+alphabets. The manuscript proves a conditional-form theorem: the transport
+argument is proved, and its conclusion holds under a structure-preserving
+embedding hypothesis that is recorded as an explicit open problem, not as an
+established fact. This material has been internally proof-checked to the
+line level, its supporting computational claims have been independently
+reproduced, and it has no external corroboration~--- which is the documented
+reason it received a dedicated check. The abstract and the theorem's
+scope remarks state the conditional status explicitly, so no downstream
+claim overstates it.
+
+\textbf{Verification depth.} Two dedicated proof-check reports accompany
+this submission as optional editor material; between them they record
+line-level checks of all 141 proof-bearing results, including the
+multiletter-AAK material. The supplementary package converts every quoted
+computational observation into a runnable check: a 41-check numerical
+verification suite, the exhaustive enumeration programs with their exact
+outputs and extremal machine tables, and the Lean 4 development of the
+machine-checked fragment --- seventeen statements across seven modules
+against Mathlib, shipped with a build script and an axiom-audit gate that
+recompiles the development and verifies every tracked declaration against
+Lean's standard three axioms. The manuscript's availability statement
+describes all of this, and the supplementary README documents the three
+places where reproduction is partial or not re-run, with reasons.
+
+\textbf{Declarations.} The author received no funding for this work and
+declares no competing interests. Generative-AI assistance in drafting and
+manuscript preparation is declared in the manuscript's back matter
+(``Acknowledgments and Declaration of Generative AI''), where the author's
+responsibility for the final content is stated. No empirical dataset was
+used.
+
+Thank you for considering the manuscript. I would be glad to provide any
+further material that would help the review.
+
+\bigskip
+
+Sincerely,
+
+\medskip
+
+[Author Name]\\
+{}[Department, Institution]
+
+\end{document}

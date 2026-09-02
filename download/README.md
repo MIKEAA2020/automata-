@@ -300,3 +300,39 @@ md5 `fe3da4d5…`; all three edits present, old strings absent; 509 labels /
 39/39 bibitems cited both directions; notation index correctly placed with
 45+ resolving row references; theorem-like environment count unchanged, so no
 numbering disturbed).
+
+## Submission package (built on v8, 2026-09-02)
+
+`submission_package_v8/` (zip: `automata_ic_submission_v8.zip`) — the
+complete Information and Computation submission package per the venue
+decision, plus the ready-to-upload arXiv preprint bundle. No manuscript
+version was created or modified: v8 ships as-is.
+
+- `SUBMISSION_NOTES.md` — the operating manual: contents map, the
+  personalization protocol (author block → new version file v9 under the
+  freeze policy; cover-letter placeholders), Editorial Manager upload
+  order, the one open citation decision (arXiv 2608.12791, not cited by
+  default), and the desk-rejection contingencies.
+- `cover_letter/cover_letter.tex` + `.pdf` — the cover letter (2 pp.),
+  drafted per the venue report's Section 7: the four High-novelty items
+  foregrounded, the per-regime-instruments-are-transports positioning
+  stated plainly, the multiletter-AAK status stated honestly
+  (conditional-form theorem, hypothesis an explicit open problem, line-level
+  proof-checked, computational support reproduced, no external
+  corroboration), verification depth, and declarations. Placeholders for
+  author details.
+- `manuscript/` — v8 source and a PDF recompiled from that exact source at
+  packaging time (integrity: 238 pp., 0 errors, 0 undefined refs, the
+  documented 9-box overfull baseline reproduced).
+- `supplementary/` + `supplementary_v8.zip` — the journal-facing
+  supplementary package (programs, machine tables, outputs, Lean 4
+  development; 43 files, byte-identical to the repository's
+  `supplementary/`), exactly the material the availability statement
+  enumerates; the internal `legacy/` provenance package is excluded.
+- `optional_editor_material/` — the two proof-check reports (the venue
+  report recommends attaching them; upload optional).
+- `arxiv/arxiv_source_v8.tar.gz` + `ARXIV_NOTES.md` — the arXiv bundle
+  (self-contained v8 `.tex` at root + the supplementary as `anc/` ancillary
+  files, 54 entries) and the metadata notes (title, categories suggestion
+  cs.FL / cs.IT / math.IT / stat.ML, comments field, sequencing).
+- `highlights.txt` — optional Elsevier highlights (5 bullets, ≤85 chars).
