@@ -12,7 +12,8 @@ modified**.
 | v4 | `automata_unified_revised_v4.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `7ea7be4f…`) | three flagged citations + two positioning sentences; C2 + C3; D1–D3; E1–E5; AAK proof-check precision edits; 233 pp. |
 | v5 | `automata_unified_revised_v5.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `21db11d2…`) | two precision fixes from the remaining-theorems proof check: corrected display in `prop:grounding-tracking`(iii) (partition-independent term is the total modal mass 1−σ₁, not σ₁) and partition-reading convention added at `def:safe-right-cong`; 234 pp. |
 | v6 | `automata_unified_revised_v6.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `df384d6f…`) | the three non-blocking observations of the remaining-theorems proof check addressed (O1 forward references flagged at both sites; O2 Hadamard/Sylvester qualification at both sites, d = 11 of order 12 named; O3 verification suite recorded in the conventions remark) and the Data and Code Availability statement re-hardened to the assembled supplementary package; 234 pp. |
-| v7 | `automata_unified_revised_v7.tex` / `.pdf` | **current latest** | the two disambiguation footnotes implemented after verification and correction (Price of Safety — corrected citation arXiv:2309.08709 Shang–Colin–Barlier–Cherkaoui, three-instantiation strengthening; grounding gap — precise two-part NLP-sense description, arXiv:2311.09144 Shaikh et al.); Lean count corrected to seventeen statements across seven modules with sources/build/axiom-audit stated as shipped; availability statement re-hardened to the actual development; one capitalization consistency fix; two bibliography entries added; 234 pp. |
+| v7 | `automata_unified_revised_v7.tex` / `.pdf` | FROZEN 2026-09-02 (read-only, md5 `fe3da4d5…`) | the two disambiguation footnotes implemented after verification and correction (Price of Safety — corrected citation arXiv:2309.08709 Shang–Colin–Barlier–Cherkaoui, three-instantiation strengthening; grounding gap — precise two-part NLP-sense description, arXiv:2311.09144 Shaikh et al.); Lean count corrected to seventeen statements across seven modules with sources/build/axiom-audit stated as shipped; availability statement re-hardened to the actual development; one capitalization consistency fix; two bibliography entries added; 234 pp. |
+| v8 | `automata_unified_revised_v8.tex` / `.pdf` | **current latest** | five-part deep review of v7 (full 18,100-line read + extended automated scan, 327 raw flags adjudicated): two internal-connection cross-references (the §7 infinite-support remark now names the §3 remark it duplicates; the §6 normalized-valuation discussion now names `cor:boolean-01` as its schema-layer statement) and a new back-matter **Notation Index** — four cross-referenced booktabs tables covering ~50 principal symbols, ToC-linked, no new packages; verdicts: clarification layer saturated, register clean, flow seamless, one visual aid merited; 238 pp. |
 
 ## The supplementary package
 
@@ -70,6 +71,17 @@ whose package is preserved verbatim at `supplementary/legacy/`).
   verified companion package, the fifteen→seventeen reconciliation, gate runs),
   and the open-questions assessment against v7 (ten settled, two open with
   recommendations, one partial).
+- `v8_deep_review_report.docx` — the five-part deep-review round on v7:
+  sentence-level merit scan (verdict: clarification/pedagogy layer saturated —
+  hypothesis witnesses, mechanism remarks and reconciliation remarks cover
+  all four failure modes; declined candidates documented), internal-connections
+  analysis (two genuine gaps, closed as E1/E2; three connection candidates
+  examined and left alone with reasons), the remnants/redundancy/informal-
+  language scan (327 raw flags → 0 genuine defects beyond the E1 duplication;
+  full adjudication table), the line-level flow verdict (seamless; all
+  mechanical flags were scanner artifacts), and the visual-aids assessment
+  (exactly one warranted addition, the Notation Index, implemented; figures
+  and a master results-map declined as decorative).
 
 ## v4 change log (relative to v3)
 
@@ -243,3 +255,48 @@ matched; brace balance 0; 9 overfull boxes, identical count and magnitudes to
 the v6 baseline, so no new overfull from the inserted footnotes);
 `scripts/verify_v7.py` — 23/23 checks PASS; v6 frozen and byte-unchanged
 (md5 `df384d6f…`).
+
+## v8 change log (relative to v7)
+
+- **E1 — infinite-support remark cross-referenced** (§7,
+  `rem:infinite-support-grounding`): the grounding-side remark had repeated the
+  content of the §3 abstract-impulse-response remark (`rem:infinite-support`)
+  nearly verbatim — including two byte-identical closing sentences — without
+  acknowledging it. It now states that it is the grounding-side instance of
+  `rem:infinite-support`, that the content (boundedness needs decay;
+  geometric decay suffices; non-decaying cases are decided case by case)
+  transfers verbatim from the abstract setting, and that the Schur-test
+  criterion is the same as there. The §3 remark remains the canonical
+  statement; the maintenance hazard of two unlinked identical passages is
+  removed. (Found by the Q2/Q3 cross-section duplicate-sentence detector.)
+- **E2 — normalized-valuation echo linked** (§6, discussion after
+  `thm:commitment-spec`): the structural `{0,∞}` vs. normalized `{0,1}`
+  valuation discussion re-derived the point of §4's `cor:boolean-01` without
+  linking it. One sentence added naming `cor:boolean-01` as the schema-layer
+  statement of the separation, of which the displayed pair of valuations is
+  the commitment instance. (Found by the same detector.)
+- **E3 — Notation Index added** (new back-matter section between the
+  bibliography and the availability statement, ToC-linked): four cross-
+  referenced booktabs tables — shared schema objects; regime gaps and
+  thresholds; divergences, operators and spectral objects; temporal,
+  online-learning and strategic quantities — covering the ~50 principal
+  recurring symbols with a one-line meaning and a resolving cross-reference
+  to the site at which each is fixed. Lead-in paragraph states the scope rule
+  (locally used symbols not repeated; regime-superscripted macro families
+  listed once). No new packages; the manuscript previously had zero notation
+  lookup devices across 234 pages and ~60 bespoke macro symbols. (The one
+  warranted answer to Q5; figures and a master results-map were considered
+  and declined as decorative, reasons recorded in the report.)
+
+Verification: `scripts/apply_v8_fixes.py` (three anchored, abort-before-write
+edits against the md5-verified frozen v7); tectonic compile exit 0 (238 pp.,
+1.12 MiB, 0 errors, 0 undefined refs); first compile exposed one 22pt overfull
+in a notation-table row (symbol column too narrow for the $\Esync$-family
+atoms) — column widths rebalanced, final compile reproduces exactly the 9
+overfull boxes of the v7 baseline, identical positions and magnitudes, zero
+new; `scripts/verify_v8.py` — 21/21 checks PASS (v7 frozen and byte-unchanged,
+md5 `fe3da4d5…`; all three edits present, old strings absent; 509 labels /
+0 duplicates; 942 refs / 0 undefined (v7: 877; the notation index adds 65); environment pairing; brace balance;
+39/39 bibitems cited both directions; notation index correctly placed with
+45+ resolving row references; theorem-like environment count unchanged, so no
+numbering disturbed).

@@ -1,0 +1,149 @@
+TOTAL findings: 327
+  spell: 237
+  informal: 23
+  punct: 22
+  dup-word: 16
+  flow-initial: 15
+  sent-case: 9
+  dup-sentence-xsec: 4
+  hyphen: 1
+
+================ spell (237 shown 30) ================
+  L127: suspected misspelling: ommit
+  L169: suspected misspelling: ommit
+  L190: suspected misspelling: ommit
+  L223: suspected misspelling: ommit
+  L239: suspected misspelling: ommit
+  L252: suspected misspelling: ommit
+  L372: suspected misspelling: ommit
+  L394: suspected misspelling: ommit
+  L414: suspected misspelling: ommit
+  L418: suspected misspelling: ommit
+  L466: suspected misspelling: ommit
+  L484: suspected misspelling: ommit
+  L493: suspected misspelling: ommit
+  L527: suspected misspelling: ommit
+  L548: suspected misspelling: ommit
+  L572: suspected misspelling: ommit
+  L597: suspected misspelling: ommit
+  L679: suspected misspelling: ommit
+  L708: suspected misspelling: ommit
+  L808: suspected misspelling: ommit
+  L888: suspected misspelling: ommit
+  L1053: suspected misspelling: ommit
+  L1062: suspected misspelling: ommit
+  L1172: suspected misspelling: ommit
+  L1476: suspected misspelling: ommit
+  L2305: suspected misspelling: ommit
+  L2318: suspected misspelling: ommit
+  L2330: suspected misspelling: ommit
+  L2331: suspected misspelling: ommit
+  L2349: suspected misspelling: ommit
+
+================ informal (23 shown 23) ================
+  L370: possible redundancy word: ...'istic Mealy machines, whose resource is again a right-congruence'
+  L700: check: roadmap vs plan: ...'\\subsection{Roadmap}'
+  L701: check: roadmap vs plan: ...'\\label{subsec:roadmap}'
+  L2621: possible redundancy word: ...' MATH  every continuation  MATH  again lies in  MATH  and has the residual'
+  L3186: very informal: ...'Two things the principle deliberately does not ass'
+  L4625: possible redundancy word: ...', partition) pairs with  MATH ,  MATH , again'
+  L4723: check register: ...'D_{\\mathrm{KL}}\\bigl(P_s^x\\,\\big\\|\\,Q_k^x\\bigr),'
+  L4781: check register: ...'\\bigl(P_{Y\\mid S,X}\\,\\big\\|\\,P_{Y\\mid K,X}\\bigr),'
+  L4835: check register: ...'D_{\\mathrm{KL}}\\bigl(P_s^x\\,\\big\\|\\,Q_k^x\\bigr),'
+  L4900: check register: ...'\\bigl(P_{Y\\mid S,X}\\,\\big\\|\\,P_{Y\\mid K,X}\\bigr)'
+  L7098: possible redundancy word: ...'Equality of residuals is again equality of supports.  The primitive co'
+  L8265: check register: ...'_b\\mathbb P(Y_t=b\\mid X_{1:t},Y_{<t})\\ \\big|\\ X_{1:t}\\bigr]'
+  L8326: possible redundancy word: ...'rational probabilities is again rational, while the candidate machine s'
+  L9292: very informal: ...'three things simultaneously: a common response opera'
+  L10780: possible redundancy word: ...'again absolute.  Second, the lemma constrains'
+  L11077: check: overused filler?: ...'play with  MATH .  The averaged form is in fact stronger'
+  L11660: informal filler (check if proof term of art): ...'(iii)  MATH  (iv), and (iv) trivially implies (i).'
+  L12595: possible redundancy word: ...'again with qualifications: commitment is Bool'
+  L14115: very informal: ...'The two quantities certify different things, and the distinction is what makes'
+  L14643: very informal: ...'search, these being the two things a universal experiment cannot deliver a'
+  L15404: check register: ...'\\Pr\\bigl[\\hat y_t\\ne g(v)_j \\,\\big|\\, \\mathcal F_{t-1}\\bigr]=\\tfrac12 .'
+  L15537: possible redundancy word: ...' MATH , so their sum is again  MATH  and this family does'
+  L15670: check: overused filler?: ...'em:attainment-sporadic}, whose evidence in fact favours'
+
+================ punct (22 shown 22) ================
+  L2515: space before period
+  L3032: space before comma
+  L4827: space before period
+  L5167: space before period
+  L5991: space before comma
+  L6097: space before comma
+  L7350: space before period
+  L7485: space before comma
+  L8813: space before period
+  L9779: space before period
+  L9799: space before comma
+  L11575: space before period
+  L11867: space before comma
+  L11876: space before period
+  L13380: space before comma
+  L14233: space before comma
+  L14301: space before comma
+  L14757: space before period
+  L14870: space before period
+  L14991: space before comma
+  L15418: space before period
+  L17434: space before period
+
+================ dup-word (16 shown 16) ================
+  L2005: "MATH MATH"
+  L2077: "MATH MATH"
+  L2650: "MATH MATH"
+  L4235: "MATH MATH"
+  L4412: "MATH MATH"
+  L5677: "MATH MATH"
+  L6610: "MATH MATH"
+  L7456: "MATH MATH"
+  L7579: "MATH MATH"
+  L9447: "MATH MATH"
+  L9451: "MATH MATH"
+  L12064: "MATH MATH"
+  L13227: "MATH MATH"
+  L13634: "MATH MATH"
+  L15554: "MATH MATH"
+  L16924: "MATH MATH"
+
+================ flow-initial (15 shown 15) ================
+  L2628: sentence-initial connective: "Now let  MATH  be any right congruence on  MATH  admitting a"
+  L3016: sentence-initial connective: "But  MATH  is a function of  MATH , so"
+  L3473: sentence-initial connective: "Moreover,"
+  L5430: sentence-initial connective: "Now scale all coordinates by an integer"
+  L5778: sentence-initial connective: "Now suppose that  MATH .  Consider any  MATH -state"
+  L6439: sentence-initial connective: "Moreover  MATH  if and only if"
+  L7474: sentence-initial connective: "Moreover an optimal approximant may be taken of the form  MA"
+  L8233: sentence-initial connective: "Moreover,"
+  L10946: sentence-initial connective: "Moreover the envelope calibration of"
+  L11927: sentence-initial connective: "But the discrete quadratic free and safe partitions both sep"
+  L12039: sentence-initial connective: "But it does not by itself prove that the Boolean commitment "
+  L12555: sentence-initial connective: "But the full meta-theorem across all regimes is not literall"
+  L12725: sentence-initial connective: "Moreover,"
+  L13579: sentence-initial connective: "Moreover the matching lower bound holds in the \emph{same} p"
+  L15605: sentence-initial connective: "Moreover no observation in one block constrains the unknown "
+
+================ sent-case (9 shown 9) ================
+  L1172: lowercase "e" after sentence end: ...'approximant is a deterministic Mealy BSG. \n     each state s'
+  L1176: lowercase "e" after sentence end: ...'e sense \n of Definition~  and \n Remark~ . \n     each state s'
+  L4654: lowercase "a" after sentence end: ...'earch, or numerical evaluation is quoted.    are labelled tr'
+  L4656: lowercase "i" after sentence end: ...'ore partition refinement before counting. \n   is lexicograph'
+  L4658: lowercase "a" after sentence end: ...'l machines are identified up to renaming.    \n are named at '
+  L4660: lowercase "i" after sentence end: ...'put function has a single \n probe state).    is exact ration'
+  L7648: lowercase "a" after sentence end: ...'struction, but only in that scalar model. \n   an intrinsic ('
+  L7738: lowercase "e" after sentence end: ...'rvals; see the discussion in \n Section~ .    \n either an exa'
+  L17290: lowercase "i" after sentence end: ...'tive lower bound itself is \n Corollary~ . \n     in both the '
+
+================ dup-sentence-xsec (4 shown 4) ================
+  L595: cross-section repeated sentence (2x, secs [1, 8], lines 595, 8607): "Contextwise  MATH  
+ aggregation does not by itself imply Schatten- MATH  domination."
+  L1755: cross-section repeated sentence (2x, secs [3, 7], lines 1755, 7700): "Bounded symbolic impulse 
+ responses that fail to decay may or may not define bounded Hankel operato"
+  L2819: cross-section repeated sentence (2x, secs [4, 6], lines 2819, 6307): "The threshold is the same; 
+ only the positive mismatch value changes."
+  L7754: cross-section repeated sentence (2x, secs [7, 11], lines 7754, 12455): "The  MATH  R\'enyi vertex is max-divergence."
+
+================ hyphen (1 shown 1) ================
+  L11999: possible noun use of "right-congruence and"
+
